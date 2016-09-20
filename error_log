@@ -1,0 +1,18 @@
+[21-Aug-2016 15:23:15] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  syntax error at or near &quot;oG0s&quot; at character 70 in /home/deauvece/public_html/login.php on line 11
+[21-Aug-2016 15:23:15] PHP Warning:  pg_numrows() expects parameter 1 to be resource, boolean given in /home/deauvece/public_html/login.php on line 12
+[21-Aug-2016 15:23:15] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  syntax error at or near &quot;oG0s&quot; at character 71 in /home/deauvece/public_html/login.php on line 17
+[21-Aug-2016 15:23:15] PHP Warning:  pg_numrows() expects parameter 1 to be resource, boolean given in /home/deauvece/public_html/login.php on line 18
+[21-Aug-2016 15:23:15] PHP Warning:  pg_fetch_array() expects parameter 1 to be resource, boolean given in /home/deauvece/public_html/login.php on line 22
+[21-Aug-2016 15:23:15] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/deauvece/public_html/login.php:11) in /home/deauvece/public_html/login.php on line 25
+[21-Aug-2016 15:30:56] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  syntax error at or near &quot;oG0s&quot; at character 69 in /home/deauvece/public_html/login.php on line 11
+[21-Aug-2016 15:30:56] PHP Warning:  pg_numrows() expects parameter 1 to be resource, boolean given in /home/deauvece/public_html/login.php on line 12
+[21-Aug-2016 15:30:56] PHP Warning:  pg_fetch_array() expects parameter 1 to be resource, boolean given in /home/deauvece/public_html/login.php on line 37
+[21-Aug-2016 15:30:56] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/deauvece/public_html/login.php:11) in /home/deauvece/public_html/login.php on line 40
+[21-Aug-2016 15:31:59] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  syntax error at or near &quot;oG0s&quot; at character 66 in /home/deauvece/public_html/login.php on line 11
+[21-Aug-2016 15:31:59] PHP Warning:  pg_numrows() expects parameter 1 to be resource, boolean given in /home/deauvece/public_html/login.php on line 12
+[21-Aug-2016 15:31:59] PHP Warning:  pg_fetch_array() expects parameter 1 to be resource, boolean given in /home/deauvece/public_html/login.php on line 37
+[21-Aug-2016 15:31:59] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/deauvece/public_html/login.php:11) in /home/deauvece/public_html/login.php on line 40
+[21-Aug-2016 16:33:50] PHP Parse error:  syntax error, unexpected '<' in /home/deauvece/public_html/contacto.php on line 50
+[21-Aug-2016 17:35:03] PHP Parse error:  syntax error, unexpected '<' in /home/deauvece/public_html/contacto.php on line 50
+[21-Aug-2016 16:36:33] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/deauvece/public_html/contacto.php:25) in /home/deauvece/public_html/contacto.php on line 27
+[21-Aug-2016 16:36:55] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/deauvece/public_html/contacto.php:25) in /home/deauvece/public_html/contacto.php on line 27

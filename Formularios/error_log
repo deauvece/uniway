@@ -1,0 +1,45 @@
+[04-Aug-2016 21:55:38] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 21:56:56] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 21:57:49] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 21:58:04] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:02:02] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:03:19] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  duplicate key value violates unique constraint &quot;lugar_pkey&quot;
+DETAIL:  Key (id_lugar)=(l001) already exists. in /home/deauvece/public_html/Formularios/recibeLugar.php on line 34
+[04-Aug-2016 22:03:34] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[05-Aug-2016 07:04:44] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:05:06] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:07:59] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:08:09] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:08:10] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:08:13] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:11:07] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:14:01] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:14:06] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:14:09] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:14:34] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:14:36] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:14:37] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:14:38] PHP Fatal error:  Cannot redeclare conectarse() (previously declared in /home/deauvece/public_html/Formularios/conec.php:4) in /home/deauvece/public_html/Formularios/conec.php on line 16
+[04-Aug-2016 22:29:42] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  INSERT has more expressions than target columns at character 201 in /home/deauvece/public_html/Formularios/recibeTransporte.php on line 17
+[04-Aug-2016 22:34:56] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  value too long for type character varying(4) in /home/deauvece/public_html/Formularios/recibeTransporte.php on line 17
+[05-Aug-2016 07:37:27] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  value too long for type character varying(4) in /home/deauvece/public_html/Formularios/recibeTransporte.php on line 17
+[05-Aug-2016 07:38:00] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  insert or update on table &quot;transporte&quot; violates foreign key constraint &quot;transporte_id_color_fkey&quot;
+DETAIL:  Key (id_color)=( cl03) is not present in table &quot;color&quot;. in /home/deauvece/public_html/Formularios/recibeTransporte.php on line 17
+[04-Aug-2016 22:40:03] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  insert or update on table &quot;transporte&quot; violates foreign key constraint &quot;transporte_id_color_fkey&quot;
+DETAIL:  Key (id_color)=( cl01) is not present in table &quot;color&quot;. in /home/deauvece/public_html/Formularios/recibeTransporte.php on line 17
+[04-Aug-2016 22:46:37] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  value too long for type character varying(4) in /home/deauvece/public_html/Formularios/recibeTransporte.php on line 17
+[05-Aug-2016 04:12:26] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  value too long for type character varying(4) in /home/deauvece/public_html/Formularios/recibeTransporte.php on line 17
+[05-Aug-2016 06:57:45] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  insert or update on table &quot;pasajero&quot; violates foreign key constraint &quot;pasajero_id_universidad_fkey&quot;
+DETAIL:  Key (id_universidad)=( u02 ) is not present in table &quot;universidad&quot;. in /home/deauvece/public_html/Formularios/recibePasajero.php on line 22
+[05-Aug-2016 08:50:22] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  duplicate key value violates unique constraint &quot;lugar_pkey&quot;
+DETAIL:  Key (id_lugar)=(l004) already exists. in /home/deauvece/public_html/Formularios/recibeLugar.php on line 34
+[05-Aug-2016 08:52:45] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  duplicate key value violates unique constraint &quot;pasajero_pkey&quot;
+DETAIL:  Key (id_pasajero)=(p0003) already exists. in /home/deauvece/public_html/Formularios/recibePasajero.php on line 22
+[20-Aug-2016 22:55:40] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  duplicate key value violates unique constraint &quot;color_pkey&quot;
+DETAIL:  Key (id_color)=(cl02) already exists. in /home/deauvece/public_html/Formularios/recibeColor.php on line 10
+[21-Aug-2016 16:17:38] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  duplicate key value violates unique constraint &quot;color_pkey&quot;
+DETAIL:  Key (id_color)=(cl07) already exists. in /home/deauvece/public_html/Formularios/recibeColor.php on line 10
+[21-Aug-2016 17:01:37] PHP Parse error:  syntax error, unexpected T_STRING in /home/deauvece/public_html/Formularios/barra_nav.php on line 31
+[21-Aug-2016 17:04:18] PHP Parse error:  syntax error, unexpected T_ECHO in /home/deauvece/public_html/Formularios/barra_nav.php on line 31
+[22-Aug-2016 15:49:18] PHP Warning:  pg_query() [<a href='function.pg-query'>function.pg-query</a>]: Query failed: ERROR:  duplicate key value violates unique constraint &quot;calificacion_pkey&quot;
+DETAIL:  Key (id_calificacion)=(k001) already exists. in /home/deauvece/public_html/Formularios/recibeCalificacion.php on line 16
