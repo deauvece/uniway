@@ -1,2 +1,2 @@
-# [Uniway](URL http://uiway.heliohost.org)
+# [Uniway](http://uniway.heliohost.org)
 The best website ever!
