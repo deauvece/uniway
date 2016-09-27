@@ -8,7 +8,7 @@
      <body>
           <?PHP
      	     // llamar la funciones
-     	     include("barra_nav.php");
+     	     include("../Php/barra_nav.php");
      	     hacer_barra_nav();
           ?>
           <form  action="recibeRuta_Lugar.php" method="post">
@@ -24,8 +24,8 @@
                     </td>
                     <td>
                          <select name="id_ruta">
-                          <?PHP 
-                               include("conec.php");
+                          <?PHP
+                               include("..Php/conec.php");
                                $conn=conectarse();
                                $sql1="SELECT * FROM ruta";
                                $result = pg_query($conn,$sql1);
@@ -36,8 +36,8 @@
                                          <option value="<?PHP echo $vector['id_ruta']?>">
                                          <?PHP echo $vector['id_ruta']; ?>
                                          </option>
-                                            
-                                         <?PHP    
+
+                                         <?PHP
                                     }
                           ?>
                          </select>
@@ -49,7 +49,7 @@
                     </td>
                     <td>
                          <select name="id_lugar">
-                          <?PHP 
+                          <?PHP
                                $conn=conectarse();
                                $sql1="SELECT * FROM lugar";
                                $result = pg_query($conn,$sql1);
@@ -60,8 +60,8 @@
                                          <option value="<?PHP echo $vector['id_lugar']?>">
                                          <?PHP echo $vector['id_lugar']; ?>
                                          </option>
-                                            
-                                         <?PHP    
+
+                                         <?PHP
                                     }
                           ?>
                          </select>

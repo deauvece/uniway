@@ -8,9 +8,9 @@
      <body>
           <?PHP
      	     // llamar la funciones
-     	     include("barra_nav.php");
+     	     include("../Php/barra_nav.php");
      	     hacer_barra_nav();
-          ?>     
+          ?>
           <form  action="recibeUniversidad.php" method="post">
                <table >
                <tr>

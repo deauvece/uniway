@@ -22,17 +22,17 @@
                     $result3 = pg_query($conn,$sql3);
                     $numFilas3 = pg_numrows($result3);
                     if ($numFilas3===0) {
-                         header("location:login-user.php?errorusuario=si");
+                         header("location:../login-user.php?errorusuario=si");
                     }else{
                          $vector=pg_fetch_array($result3);
                          //si definitivamente no encontro el id para administrador o no es el correcto
                          if (!$vector['id_administrador']) {
-                              header("location:login-user.php?errorusuario=si");
+                              header("location:../login-user.php?errorusuario=si");
                          }else{
                               //si lo encontró inicia sesion y define las variables de sesion
                               $_SESSION['id_usuario']= $vector['id_administrador'];
                               $_SESSION['id_nombre_usuario']= $vector['nombres'];
-                              header("location:dataBase.html");
+                              header("location:../dataBase.html");
                          }
                     }
 
@@ -40,12 +40,12 @@
                     $vector=pg_fetch_array($result2);
                     //si definitivamente no encontro el id para conductor o no es el correcto
                     if (!$vector['id_conductor']) {
-                         header("location:login.html");
+                         header("location:../login.html");
                     }else{
                          //si lo encontró inicia sesion y define las variables de sesion
                          $_SESSION['id_usuario']= $vector['id_conductor'];
                          $_SESSION['id_nombre_usuario']= $vector['nombres'];
-                         header("location:home_usuario_conductor.php");
+                         header("location:../Sesion/sesionOpen.html");
                     }
 
                }
@@ -54,12 +54,12 @@
                $vector=pg_fetch_array($result1);
                //si definitivamente no encontro el id para conductor o no es el correcto
                if (!$vector['id_pasajero']) {
-                    header("location:login.html");
+                    header("location:../login.html");
                }else{
                     //si lo encontró inicia sesion y define las variables de sesion
                     $_SESSION['id_usuario']= $vector['id_pasajero'];
                     $_SESSION['id_nombre_usuario']= $vector['nombres'];
-                    header("location:home_usuario.php");
+                    header("location:../Sesion/sesionOpen.html");
                }
           }
      }

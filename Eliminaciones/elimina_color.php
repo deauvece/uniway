@@ -2,7 +2,7 @@
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 extract($_POST);
-include("conec.php");
+include("../Php/conec.php");
 $conn=conectarse();
 $sql1= "DELETE FROM color where id_color='".$codigo."'";
 $result1 = pg_query($conn,$sql1);

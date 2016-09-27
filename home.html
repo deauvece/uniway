@@ -1,35 +1,10 @@
-<?php
-	//para que no entre a la pagina sin haber iniciado sesion
-	include("conec.php");
-	$conn=conectarse();
-	session_start();
-	if (!$_SESSION) {
-		header("location:home.html");
-	}
- ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Uniway-admin</title>
+	<title>Uniway</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" href="CSS/home-form-Style.css">
-	<script src="html5logo.js"></script>
-     <script src="mathlib-min.js"></script>
-     <script src="k3d-min.js"></script>
 </head>
 
 <body>
@@ -37,7 +12,7 @@
 <!--BOTON IR ARRIBA-->
 <span class="ir-arriba">
 	<a href="#inicio">
-		<img src="up.png">
+		<img src="Imagenes/up.png">
 	</a>
 </span>
 <!--BARRA DE NAVEGACION-->
@@ -46,29 +21,28 @@
 		<li>
 			<input type="checkbox" name="name" id="btn">
 			<div class="label">
-				<label for="btn"> <img src="menu1.png" alt="menu-ham" height="50" width="50" /> </label>
+				<label for="btn"> <img src="Imagenes/menu1.png" alt="menu-ham" height="50" width="50" /> </label>
 			</div>
 			<ul class="sinmenu" >
 				<li>
-					<a href="home_admin.php">Inicio</a>
+					<a href="home.html">Inicio</a>
 				</li>
+				<!--
 				<li>
 					<a href="dataBase.html">Data Base</a>
 				</li>
+				-->
 				<li>
 					<a href="contacto.html">Contacto</a>
 				</li>
 				<li>
-					<a href="#">ADMIN</a>
+					<a href="home.html#misionyvision">Quienes somos</a>
 				</li>
 				<li>
-					<a href="home_admin.php#misionyvision">Quienes somos</a>
+					<a href="home.html#misionyvision">Cómo funciona</a>
 				</li>
 				<li>
-					<a href="perfil.php"> <?php echo $_SESSION['id_nombre_usuario']; ?> </a>
-				</li>
-				<li>
-					<a href="logout.php">Cerrar Sesion</a>
+					<a href="login-user.php">Inicia Sesión</a>
 				</li>
 			</ul>
 		</li>
@@ -76,9 +50,9 @@
 </nav>
 <!--LOGOOO-->
 <div id="logo">
-	<a href="home_admin.php">
-	<img src="logo-only.png" height="50" />
-	<img src="logo-name.png" height="40" id="nombre" />
+	<a href="home.html">
+	<img src="Imagenes/logo-only.png" height="50" />
+	<img src="Imagenes/logo-name.png" height="40" id="nombre" />
 	</a>
 </div>
 
@@ -98,7 +72,7 @@
 	<div class="columnas">
 		<div class="col">
 			<div class="imagen">
-				<img src="mission.png" height="120">
+				<img src="Imagenes/mission.png" height="120">
 			</div>
 			<h5>Misión</h5>
 			<p>
@@ -107,7 +81,7 @@
 		</div>
 		<div class="col">
 			<div class="imagen">
-				<img src="vision.png" height="120">
+				<img src="Imagenes/vision.png" height="120">
 			</div>
 			<h5>Visión</h5>
 			<p>
@@ -116,11 +90,19 @@
 		</div>
 	</div>
 </section>
-<!--canvaaaaaaaaaaaas-->
-<section class="canvas">
-	<a href="tools.html" target="_blank" onClick="window.open(this.href, this.target, 'width=500,height=600'); return false;">
-		<canvas id="canvas" style="background-color:#ddd"></canvas>
-	</a>
+<!--cuenta-->
+<section class="cuenta">
+	<div class="enlaces">
+		<div class="registro">
+			<p>
+				¿Todavia no tienes una cuenta? <br>
+				Registrate ahora y haz parte de la comunidad universitaria más grande de carpooling
+			</p>
+			<a href="#">Crea tu cuenta</a>
+			<a href="login-user.php">Inicia sesión</a> <br>
+			¿Olvidaste tu contraseña?
+		</div>
+	</div>
 </section>
 
 <!--FEEDBACK-->
@@ -135,9 +117,9 @@
 	</div>
 	<div class="social">
 		<h3>Encuentranos tambien aquí</h3>
-			<a href="#" onclick="javascript:if(confirm('Este link te dirige a nuestra pagina de Facebook')) {parent.location='http://google.com'}else{''};"><img src="fb.png" alt="facebook"/></a>
-			<a href="#" onclick="javascript:if(confirm('Este link te dirige a nuestra pagina de Twitter')) {parent.location='http://google.com'}else{''};"><img src="tw.png" alt="twitter"/></a>
-			<a href="#" onclick="javascript:if(confirm('Este link te dirige a nuestra pagina de Instagram')) {parent.location='http://google.com'}else{''};" ><img src="insta.png" alt="instagram"/></a>
+			<a href="#" onclick="javascript:if(confirm('Este link te dirige a nuestra pagina de Facebook')) {parent.location='http://google.com'}else{''};"><img src="Imagenes/fb.png" alt="facebook"/></a>
+			<a href="#" onclick="javascript:if(confirm('Este link te dirige a nuestra pagina de Twitter')) {parent.location='http://google.com'}else{''};"><img src="Imagenes/tw.png" alt="twitter"/></a>
+			<a href="#" onclick="javascript:if(confirm('Este link te dirige a nuestra pagina de Instagram')) {parent.location='http://google.com'}else{''};" ><img src="Imagenes/insta.png" alt="instagram"/></a>
 		<p>
 			info@uniway.com.co <br>
 		</p>

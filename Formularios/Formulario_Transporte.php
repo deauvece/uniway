@@ -8,9 +8,9 @@
      <body>
           <?PHP
      	     // llamar la funciones
-     	     include("barra_nav.php");
+     	     include("../Php/barra_nav.php");
      	     hacer_barra_nav();
-          ?>     
+          ?>
           <form  action="recibeTransporte.php" method="post">
                <table  >
                	<tr>
@@ -104,8 +104,8 @@
                          </td>
                          <td>
                               <select name="color" required>
-                                   <?PHP 
-                                         include("conec.php");
+                                   <?PHP
+                                         include("..Php/conec.php");
                                          $conn=conectarse();
                                          $sql1="SELECT * FROM color";
                                          $result = pg_query($conn,$sql1);
@@ -116,8 +116,8 @@
                                                    <option value="<?PHP echo $vector['id_color']?>">
                                                    <?PHP echo $vector['colores']; ?>
                                                    </option>
-                                                      
-                                                   <?PHP    
+
+                                                   <?PHP
                                               }
                                    ?>
                               </select>

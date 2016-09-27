@@ -117,7 +117,7 @@ nav {
 /*==========================HEADER====================================*/
 header {
 	min-height: 500px;
-	background-image: url("cover.jpg");
+	background-image: url("../Imagenes/cover.jpg");
 	padding-top: 250px;
 	padding-left: 30px;
 	padding-right: 30px;
@@ -136,25 +136,25 @@ header {
 	}
 @media (min-width:1024px) {
 	header{
-		background-image: url("cover4.png");
+		background-image: url("../Imagenes/cover4.png");
 		background-size:  100% 120%;
 	}
 }
 @media (max-width:1024px) {
 	header{
-		background-image: url("cover4.png");
+		background-image: url("../Imagenes/cover4.png");
 		background-size:  100% 100%;
 	}
 }
 @media (max-width:768px) {
 	header{
-		background-image: url("cover2.jpg");
+		background-image: url("../Imagenes/cover2.jpg");
 		background-size:  100% 100%;
 	}
 }
 @media (max-width:480px) {
 	header{
-		background-image: url("cover3.png");
+		background-image: url("../Imagenes/cover3.png");
 		background-size:  100% 100%;
 		}
 		header h2 {

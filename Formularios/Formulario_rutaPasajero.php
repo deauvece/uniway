@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-                
+
           <title>Formulario Ruta-Pasajero</title>
           <link rel="stylesheet" href="../CSS/formStyle.css" >
           <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -8,7 +8,7 @@
      <body >
           <?PHP
      	     // llamar la funciones
-     	     include("barra_nav.php");
+     	     include("../Php/barra_nav.php");
      	     hacer_barra_nav();
           ?>
           <form  action="recibeRuta-Pasajero.php" method="post">
@@ -24,8 +24,8 @@
                     </td>
                     <td>
                          <select name="id_ruta">
-                          <?PHP 
-                               include("conec.php");
+                          <?PHP
+                               include("..Php/conec.php");
                                $conn=conectarse();
                                $sql1="SELECT * FROM ruta";
                                $result = pg_query($conn,$sql1);
@@ -36,8 +36,8 @@
                                          <option value="<?PHP echo $vector['id_ruta']?>">
                                          <?PHP echo $vector['id_ruta']; ?>
                                          </option>
-                                            
-                                         <?PHP    
+
+                                         <?PHP
                                     }
                           ?>
                          </select>
@@ -49,7 +49,7 @@
                     </td>
                     <td>
                          <select name="id_pasajero">
-                                   <?PHP 
+                                   <?PHP
                                          $conn=conectarse();
                                          $sql1="SELECT * FROM pasajero";
                                          $result = pg_query($conn,$sql1);
@@ -61,8 +61,8 @@
                                                    <?PHP echo $vector['nombres']; ?>
                                                    <?PHP echo $vector['apellidos']; ?>
                                                    </option>
-                                                      
-                                                   <?PHP    
+
+                                                   <?PHP
                                               }
                                    ?>
                          </select>

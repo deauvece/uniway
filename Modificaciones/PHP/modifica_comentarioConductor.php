@@ -1,6 +1,6 @@
 <?PHP
 // llamar la funciones
-include("conec.php");
+include("../../Php/conec.php");
 $conn=conectarse();
 extract($_POST);
 $sql1= "UPDATE comentario_conductor SET  id_comentario_conductor='".$id_comentario_conductor."',id_conductor='".$id_conductor."',id_ruta='".$id_ruta."',hora='".$hora."',fecha='".$fecha."' ,contenido='".$contenido."'  where id_comentario_conductor='".$id_comentario_conductor."'";

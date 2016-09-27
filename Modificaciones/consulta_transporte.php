@@ -1,8 +1,8 @@
 <?PHP
      // llamar la funciones
-     include("conec.php");
-     include("encabezado.php");
-     include("barra_nav.php");
+     include("../Php/conec.php");
+     include("../Php/encabezado.php");
+     include("../Php/barra_nav.php");
      $conn=conectarse();
      $titulo="Consulta transporte";
      hacer_encabezado($titulo);
@@ -22,8 +22,8 @@
                $tipo_transporte=$vector["3"];
                $aire_acondicionado=$vector["4"];
                $precio=$vector["5"];
-               $modelo_transporte=$vector["6"];              
-               $wifi=$vector["7"];               
+               $modelo_transporte=$vector["6"];
+               $wifi=$vector["7"];
                $id_color=$vector["8"];
 ?>
                <form action="PHP/modifica_transporte.php" method="POST">

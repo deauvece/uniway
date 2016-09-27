@@ -15,7 +15,7 @@
 		<li>
 			<input type="checkbox" name="name" id="btn">
 			<div class="label">
-				<label for="btn"> <img src="menu1.png" alt="menu-ham" height="50" width="50" /> </label>
+				<label for="btn"> <img src="Imagenes/menu1.png" alt="menu-ham" height="50" width="50" /> </label>
 			</div>
 			<ul class="sinmenu" >
 				<li>
@@ -34,8 +34,8 @@
 <!--LOGOOO-->
 <div id="logo">
 	<a href="home.html">
-	<img src="logo-only.png" height="50" />
-	<img src="logo-name.png" height="40" id="nombre" />
+	<img src="Imagenes/logo-only.png" height="50" />
+	<img src="Imagenes/logo-name.png" height="40" id="nombre" />
 	</a>
 </div>
 
@@ -46,8 +46,8 @@
 	<h2>INICIA SESIÓN </h2>
 	<div class="container">
 		<div class="login">
-			<form  action="login.php" method="POST" >
-                                <img class="loginImg" src="loginImage.jpg" alt="usuario" width="354" /><br><br>
+			<form  action="Php/login.php" method="POST" >
+                                <img class="loginImg" src="Imagenes/loginImage.jpg" alt="usuario" width="354" /><br><br>
 				<input type="email" name="correo" placeholder="Correo" required>
 				<input type="password" name="contrasena" placeholder="Contraseña" required>
 				<?php 

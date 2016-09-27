@@ -7,7 +7,7 @@
 		<html lang="es">
 		<head>
 			<title>Uniway</title>
-			<meta charset="utf-8">
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<meta name="viewport" content="width=device-width,initial-scale=1.0">
 			<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
 		</head>
@@ -20,7 +20,7 @@
 				<li>
 					<input type="checkbox" name="name" id="btn">
 					<div class="label">
-						<label for="btn"> <img src="menu1.png" alt="menu-ham" height="50" width="50" /> </label>
+						<label for="btn"> <img src="Imagenes/menu1.png" alt="menu-ham" height="50" width="50" /> </label>
 					</div>
 					<ul class="sinmenu" >
 						<li>
@@ -48,8 +48,8 @@
 		<!--LOGOOO-->
 		<div id="logo">
 			<a href="home.html">
-			<img src="logo-only.png" height="50" />
-			<img src="logo-name.png" height="40" id="nombre" />
+			<img src="Imagenes/logo-only.png" height="50" />
+			<img src="Imagenes/logo-name.png" height="40" id="nombre" />
 			</a>
 		</div>
 		

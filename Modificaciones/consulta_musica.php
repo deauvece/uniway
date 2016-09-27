@@ -1,8 +1,8 @@
 <?PHP
      // llamar la funciones
-     include("conec.php");
-     include("encabezado.php");
-     include("barra_nav.php");
+     include("../Php/conec.php");
+     include("../Php/encabezado.php");
+     include("../Php/barra_nav.php");
      $conn=conectarse();
      $titulo="Consulta musica";
      hacer_encabezado($titulo);

@@ -8,7 +8,7 @@
      <body>
      <?PHP
 	     // llamar la funciones
-	     include("barra_nav.php");
+	     include("../Php/barra_nav.php");
 	     hacer_barra_nav();
      ?>
 
@@ -41,8 +41,8 @@
                     </td>
                     <td>
                          <select name="id_Conductor" required>
-                                   <?PHP 
-                                         include("conec.php");
+                                   <?PHP
+                                         include("..Php/conec.php");
                                          $conn=conectarse();
                                          $sql1="SELECT * FROM conductor";
                                          $result = pg_query($conn,$sql1);
@@ -54,8 +54,8 @@
                                                    <?PHP echo $vector['nombres']; ?>
                                                    <?PHP echo $vector['apellidos']; ?>
                                                    </option>
-                                                      
-                                                   <?PHP    
+
+                                                   <?PHP
                                               }
                                                    pg_free_result($result);
 						   pg_close($conn);
@@ -69,7 +69,7 @@
                     </td>
                     <td>
                     <select name="id_Pasajero" required>
-                                   <?PHP 
+                                   <?PHP
 
                                          $conn=conectarse();
                                          $sql1="SELECT * FROM pasajero";
@@ -82,8 +82,8 @@
                                                    <?PHP echo $vector['nombres']; ?>
                                                    <?PHP echo $vector['apellidos']; ?>
                                                    </option>
-                                                      
-                                                   <?PHP    
+
+                                                   <?PHP
                                               }
                                                    pg_free_result($result);
 						   pg_close($conn);

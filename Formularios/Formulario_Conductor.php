@@ -8,7 +8,7 @@
      <body >
           <?PHP
      	     // llamar la funciones
-     	     include("barra_nav.php");
+     	     include("../Php/barra_nav.php");
      	     hacer_barra_nav();
           ?>
           <form  action="recibeConductor.php" method="post">
@@ -20,7 +20,7 @@
                	</tr>
                     <tr>
                          <td colspan="2" >
-                              <img class="perfil" src="usuario.png" width="200" height="200">
+                              <img class="perfil" src="../Imagenes/usuario.png" width="200" height="200">
                          </td>
                     </tr>
                     <tr>
@@ -63,8 +63,8 @@
                          </td>
                          <td>
                     	<select name="id_universidad" required>
-                          <?PHP 
-                               include("conec.php");
+                          <?PHP
+                               include("..Php/conec.php");
                                $conn=conectarse();
                                $sql1="SELECT * FROM universidad";
                                $result = pg_query($conn,$sql1);
@@ -75,8 +75,8 @@
                                          <option value="<?PHP echo $vector['id_universidad']?>" >
                                          <?PHP echo $vector['nombre']; ?>
                                          </option>
-                                            
-                                         <?PHP    
+
+                                         <?PHP
                                     }
                           ?>
                          </select>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-          
+
           <title>Formulario Genero</title>
           <link rel="stylesheet" href="../CSS/formStyle.css" >
           <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -8,7 +8,7 @@
      <body >
           <?PHP
      	     // llamar la funciones
-     	     include("barra_nav.php");
+     	     include("../Php/barra_nav.php");
      	     hacer_barra_nav();
           ?>
           <form  action="recibeGenero.php" method="post">
