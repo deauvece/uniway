@@ -97,7 +97,7 @@ nav{
 	background-color: #232626;
 	color: white;
 	float: left;
-	max-width:19%;
+	width: 19%;
 	height: 100%;
 	text-align: center;
 	}
@@ -113,7 +113,8 @@ nav{
 			text-decoration: underline;
 		}
 	.options img {
-		height: 80px;
+		border-radius: 45px;
+		height: 90px;
 		display: block;
 		margin-top: 30px;
 		margin-left: auto;
@@ -126,50 +127,16 @@ nav{
 		margin-left: 5px;
 		margin-right: 10px;
 	}
-	#bio {
-		display: block;
-		margin-left: 15px;
-		margin-right: 15px;
-		margin-bottom: 15px;
-		font-style: italic;
-		font-size: 90%;
-	}
-	.rutas {
-		margin-top: 20px;
-		margin-bottom: 30px;
-		color: darkgrey;
-		font-size: 110%;
-		width: 50%;
-		float: left;
-	}
-		.rutas span {
-			display: block;
-		}
-	.calif {
-		margin-top: 20px;
-		margin-bottom: 30px;
-		color: darkgrey;
-		font-size: 110%;
-		width: 50%;
-		float: right;
-	}
-		.calif span {
-			display: block;
-		}
-		.description {
-			font-weight: bold;
-			font-size: 50%;
-		}
-	#calificacion {
-		color: green;
-		font-weight: bolder;
-	}
 
 	.lista {
 		display: block;
-		margin-top: 30px;
+		margin-top: 20px;
 		list-style-type: none;
 		text-align: left;
+	}
+	.lista li span {
+		margin-right: 5px;
+		float: right;
 	}
 		.lista li {
 			font-size: 90%;
@@ -180,6 +147,13 @@ nav{
 				cursor: pointer;
 				background-color: grey;
 			}
+		.lista li .icono {
+			display: inline;
+			margin-right: 15px;
+			margin-top: -20px;
+			border-radius: 0px;
+			height: 15px;
+		}
 /*style for feed section		   	CENTRO	*/
 .find {
 	padding: 10px;
@@ -223,18 +197,20 @@ nav{
 		padding: 5px;
 		color: white;
 		border-radius: 30px;
-		background-color: #017247;
+		background-color: #B72C2C;
 		border-width: 0px;
 		outline: 0;
 	}
 		#btn-add:hover , #btn-find:hover {
 			cursor: pointer;
-			background-color: #005132;
+			background-color: #9E2626;
+			font-size: 170%;
 		}
 
 
 .publicaciones {
 	padding: 10px;
+	padding-bottom: 0px;
 	margin:10px;
 	margin-top: 0px;
 	margin-left: 20%;
@@ -249,11 +225,9 @@ nav{
 	cursor: pointer;
 }
 	.publicaciones img {
-		padding-top: 10px;
-		padding-bottom: 10px;
+		border-radius: 35px;
 		float: left;
-		margin-left: 5px;
-		margin-right: 15px;
+		margin: 10px 10px 10px 5px;
 		height: 70px;
 	}
 	.publicaciones .name {
@@ -266,36 +240,34 @@ nav{
 		color: darkgreen;
 	}
 	.publicaciones .comentario {
+		margin-left: 85px;
 		margin-top: 5px;
 		display: block;
 	}
 	.publicaciones .cupo {
+		margin-left: 15px;
+		float: right;
 		color: darkgreen;
-		font-size: 90%;
-		margin-top: 10px;
+		font-size: 100%;
 		display: block;
 	}
-
 	#btn-verRuta , #btn-pedirCupo {
 		width: 80px;
 		float: right;
 		padding: 5px;
-		border-radius: 2px;
-		color: white;
-		margin-top: 15px;
-		margin-right: 40px;
-		background-color: #017247;
-		border-color: #017247;
-		margin-right: 10px;
-		margin-left: 3px;
-		margin-bottom: 10px;
+		color: gray;
+		background-color: #F1F1F1;
+		margin-top: 16px;
+		margin-right: -10px;
+		border-width: 0px;
 	}
-	#btn-pedirCupo {
-		clear: right;
-		margin-top: 0px;
+	#btn-verRuta {
+		margin-right: 1px;
 	}
-	#btn-verRuta:hover , #btn-pedirCupo:hover  {
+	#btn-verRuta:hover , #btn-pedirCupo:hover, #btn-verRuta:focus , #btn-pedirCupo:focus  {
 		cursor: pointer;
+		color: darkgreen;
+		outline-color: darkgreen;
 	}
 
 /*styles for recomendados section             DERECHA 	*/
@@ -355,7 +327,7 @@ nav{
 	}
 	/*panel izquierdo*/
 	.options {
-		max-width: 20%;
+		width: 23%;
 	}
 }
 
@@ -382,8 +354,9 @@ nav{
 	.publicaciones img {
 		width: 50px;
 		height: 50px;
-		padding-top: 5px;
-		padding-bottom: 50px;
+	}
+	.publicaciones .comentario {
+		margin-left: 65px;
 	}
 	nav .right {
 		display: none;

@@ -56,23 +56,25 @@
 		<section class="options">
 			<img src="user-real-0.jpg" alt="userImage" />
 			<span class="nombre">María Fernanda Acevedo</span>
-			<span id="bio">"Best conductora ever, siempre puntual, siempre a tiempo."</span>
-			<div class="rutas">
-				<span>250</span>
-				<span class="description">Rutas creadas</span>
-			</div>
-			<div class="calif">
-				<span id="calificacion">4.7</span>
-				<span class="description">Puntuación</span>
-			</div>
 			<a class="editar">Editar perfil</a>
-
+			<!--buscar otra manera para el hr-->
+			<hr color="#161717" >
 			<div class="other-options">
 				<ul class="lista">
-					<li>Conectar con facebook</li>
+					<li> <span>4,7</span> <img src="puntuacion.png" class="icono" alt="iconos" /> Puntuacion</li>
+					<li> <span>4</span> <img src="ruta.png" class="icono" alt="iconos" /> Rutas creadas   </li>
+					<li> <span>35</span> <img src="follow.png" class="icono" alt="iconos" /> Seguidores  </li>
+					<li> <span>2</span> <img src="mensaje.png" class="icono" alt="iconos" /> Mensajes   </li>
+				</ul>
+			</div>
+			<!--buscar otra manera para el hr-->
+			<hr color="#161717" >
+			<div class="other-options">
+				<ul class="lista">
+					<li>Conectar con facebook </li>
 					<li>Recomendar a un amigo</li>
 					<li>Estadisticas</li>
-					<li>Perfil</li>
+					<li>Contacto</li>
 					<li>Ayuda</li>
 				</ul>
 			</div>
@@ -111,8 +113,9 @@
 		</section>
 		<div class="publicaciones">
 			<img src="user-real-5.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				3 cupos.
+			</span>
 			<span class="name">
 				Julian Sebastian Pico Jerez  - 15 min
 			</span>
@@ -123,15 +126,18 @@
 				- Cañaveral / UIS
 			</span>
 			<span class="comentario">
+				Todos los martes a esta misma horaTodos los martes a esta misma hora
 			</span>
-			<span class="cupo">
-				3 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-2.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				2 cupos.
+			</span>
 			<span class="name">
 				Vivianne Zamary Cadena Naranjo  - 17 min
 			</span>
@@ -144,14 +150,16 @@
 			<span class="comentario">
 				Inbox o wpp: 316 385 3747
 			</span>
-			<span class="cupo">
-				2 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-3.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				1 cupo.
+			</span>
 			<span class="name">
 				Julian puentes	  - 35 min
 			</span>
@@ -164,14 +172,16 @@
 			<span class="comentario">
 				Todos los martes a esta misma hora
 			</span>
-			<span class="cupo">
-				1 cupo libre.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-4.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				1 cupo.
+			</span>
 			<span class="name">
 				Fernando Pérez López  - 15 min
 			</span>
@@ -184,14 +194,16 @@
 			<span class="comentario">
 				Salgo a las 5:15am para estar a las 6:00am en la universidad
 			</span>
-			<span class="cupo">
-				1 cupo libre.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-1.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				0 cupos.
+			</span>
 			<span class="name">
 				Julieth Esparragoza  - 3h
 			</span>
@@ -204,14 +216,16 @@
 			<span class="comentario">
 				Podemos discutir la ruta a tomar en el camino.
 			</span>
-			<span class="cupo">
-				0 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-5.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				2 cupos.
+			</span>
 			<span class="name">
 				Julian Sebastian Pico Jerez  - 15 min
 			</span>
@@ -223,14 +237,16 @@
 			</span>
 			<span class="comentario">
 			</span>
-			<span class="cupo">
-				2 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-2.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				0 cupos.
+			</span>
 			<span class="name">
 				Vivianne Zamary Cadena Naranjo  - 17 min
 			</span>
@@ -243,14 +259,16 @@
 			<span class="comentario">
 				Inbox o wpp: 316 385 3747
 			</span>
-			<span class="cupo">
-				0 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-3.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				3 cupos.
+			</span>
 			<span class="name">
 				Julian puentes	  - 35 min
 			</span>
@@ -263,14 +281,16 @@
 			<span class="comentario">
 				Todos los martes a esta misma hora
 			</span>
-			<span class="cupo">
-				3 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-4.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				3 cupos.
+			</span>
 			<span class="name">
 				Fernando Pérez López  - 15 min
 			</span>
@@ -283,14 +303,16 @@
 			<span class="comentario">
 				Salgo a las 5:15am para estar a las 6:00am en la universidad
 			</span>
-			<span class="cupo">
-				3 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 		<div class="publicaciones">
 			<img src="user-real-1.jpg" alt="perfil" />
-			<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-			<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+			<span class="cupo">
+				0 cupos.
+			</span>
 			<span class="name">
 				Julieth Esparragoza  - 3h
 			</span>
@@ -303,9 +325,10 @@
 			<span class="comentario">
 				Podemos discutir la ruta a tomar en el camino.
 			</span>
-			<span class="cupo">
-				0 cupos libres.
-			</span>
+			<div class="botones">
+				<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+				<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+			</div>
 		</div>
 
 
