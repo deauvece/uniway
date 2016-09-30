@@ -76,12 +76,12 @@ nav{
 		}
 	/*--------------------------------------------*/
 	.sinmenu {
+		transform: translateX(200%);
 		width: 260px;
 		height: 100%;
-		display: none;
-		margin-top: 46px;
+		margin-top: 45px;
+		margin-right: -10px;
 		background-color: #232626;
-		box-shadow: 0 0 2px;
 		transition: all 0.4s;
 	}
 	.sinmenu li a {
@@ -105,12 +105,6 @@ nav{
 		}
 		.sinmenu {
 			float: right;
-			display: block;
-			transform: translateX(200%);
-		}
-		#btn:checked ~ .sinmenu {
-			transition: all 0.3s;
-			transform: translateX(5%);
 		}
 	}
 
@@ -323,13 +317,14 @@ nav{
 	}
 	.bloque img {
 		border-radius: 15px;
+		margin-bottom: 10px;
 		height: 30px;
 		float:left;
 	}
 	.bloque .name {
 		font-size: 80%;
 		display: inline-block;
-		margin-top: 20px;
+		margin-top: 10px;
 		margin-left: 15px;
 		font-weight: bold;
 	}
