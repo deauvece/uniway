@@ -23,12 +23,14 @@ nav{
 			.left img {
 				display: inline;
 				margin-left: 30px;
+				margin-top: 10px;
+				height: 25px;
 			}
 		.center{
 			text-align: center;
 			width: 50%;
 		}
-			img{
+			 .center img{
 				margin-top: 10px;
 				height: 25px;
 			}
@@ -39,7 +41,10 @@ nav{
 		}
 			.right img {
 				display: inline;
+				margin-top: 10px;
 				margin-right: 10px;
+				height: 25px;
+				width: 25px;
 			}
 	/*menu desplegable responsive*/
 	nav ul {
@@ -51,6 +56,25 @@ nav{
 		margin-top: 0px;
 		list-style-type: none;
 	}
+	.label img {
+		margin-top: 10px;
+		height: 25px;
+		width: 25px;
+	}
+		/*Style for perfil section in the drop menu */
+		.sinmenu li img {
+			margin-left: -10px;
+			height: 100px;
+			border-radius: 50px;
+		}
+		.sinmenu li span {
+			width: 150px;
+			color: white;
+			position: fixed;
+			top: 65px;
+			right: 10px;
+		}
+	/*--------------------------------------------*/
 	.sinmenu {
 		width: 260px;
 		height: 100%;
@@ -58,6 +82,7 @@ nav{
 		margin-top: 46px;
 		background-color: #232626;
 		box-shadow: 0 0 2px;
+		transition: all 0.4s;
 	}
 	.sinmenu li a {
 		color: white;
@@ -88,6 +113,8 @@ nav{
 			transform: translateX(5%);
 		}
 	}
+
+
 /*style for options section     IZQUIERDA*/
 .options {
 	display: block;
@@ -158,13 +185,12 @@ nav{
 .find {
 	padding: 10px;
 	margin:10px;
-	margin-top: 50px;
+	margin-top: 55px;
 	margin-left: 20%;
 	display: inline-block;
 	height: 35px;
 	width: 55%;
 	background-color: white;
-
 
 }
 	.search {
@@ -173,6 +199,10 @@ nav{
 		padding-left: 30px;
 		border-width:0;
 	}
+		.find img {
+		    margin-top: 10px;
+		    height: 25px;
+		}
 		/*Para quitar el sombreado del input una vez se ha enfocado*/
 		.search:hover , .search:focus {
 			outline: 0;
@@ -180,11 +210,11 @@ nav{
 	#btn-find {
 		float: right;
 		height: 55px;
+		width: 55px;
 		padding: 5px;
 		margin-top: -10px;
 		margin-right: -10px;
-		color: white;
-		background-color: #017247;
+		background-color: white;
 		border-width: 0px;
 	}
 	#btn-add {
@@ -201,7 +231,7 @@ nav{
 		border-width: 0px;
 		outline: 0;
 	}
-		#btn-add:hover , #btn-find:hover {
+		#btn-add:hover {
 			cursor: pointer;
 			background-color: #9E2626;
 			font-size: 170%;
@@ -270,28 +300,48 @@ nav{
 		outline-color: darkgreen;
 	}
 
-/*styles for recomendados section             DERECHA 	*/
+/*styles for recomendados right section           DERECHA 	*/
 .recomendados {
 	margin-top: 50px;
 	display: inline-block;
 	background: white;
 	float: right;
-	width: 17%;
-	height: 400px;
-	margin-right: 15px;
+	width: 18%;
+	height: 300px;
+	margin-right: 10px;
 	padding: 15px;
 }
 	.recomendados .title {
-		font-size: 90%;
+		display: block;
+		font-size: 80%;
+		margin-bottom: 15px;
 	}
+	.recomendados .bloque {
+		width: 100%;
+		display: inline-block;
+		margin-bottom: 15px;
+	}
+	.bloque img {
+		border-radius: 15px;
+		height: 30px;
+		float:left;
+	}
+	.bloque .name {
+		font-size: 80%;
+		display: inline-block;
+		margin-top: 20px;
+		margin-left: 15px;
+		font-weight: bold;
+	}
+
 .ads {
 	clear: right;
 	margin-top: 10px;
 	background: white;
 	float: right;
-	width: 17%;
+	width: 18%;
 	height: 400px;
-	margin-right: 15px;
+	margin-right: 10px;
 	padding: 15px;
 }
 	.ads .copy {
@@ -351,6 +401,9 @@ nav{
 	}
 }
 @media (max-width:480px) {
+	.publicaciones, .find{
+		width: 89%;
+	}
 	.publicaciones img {
 		width: 50px;
 		height: 50px;
