@@ -1,4 +1,0 @@
-[27-Sep-2016 14:07:31] PHP Warning:  include(conec.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/deauvece/public_html/Formularios/Formulario_calificacion.php on line 45
-[27-Sep-2016 14:07:31] PHP Warning:  include(conec.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/deauvece/public_html/Formularios/Formulario_calificacion.php on line 45
-[27-Sep-2016 14:07:31] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'conec.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/deauvece/public_html/Formularios/Formulario_calificacion.php on line 45
-[27-Sep-2016 14:07:31] PHP Fatal error:  Call to undefined function conectarse() in /home/deauvece/public_html/Formularios/Formulario_calificacion.php on line 46
