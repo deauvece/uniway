@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
 	<title>Uniway</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
+	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 </head>
 
 <body>
@@ -46,20 +47,34 @@
 	<h2>INICIA SESIÓN </h2>
 	<div class="container">
 		<div class="login">
+
 			<form  action="Php/login.php" method="POST" >
-                                <img class="loginImg" src="Imagenes/loginImage.jpg" alt="usuario" width="354" /><br><br>
-				<input type="email" name="correo" placeholder="Correo" required>
+        <img class="loginImg" src="Imagenes/loginImage.jpg" alt="usuario" width="354" /><br><br>
+				<input type="email" name="correo" placeholder="Correo electrónico" required>
 				<input type="password" name="contrasena" placeholder="Contraseña" required>
-				<?php 
+				<?php
+				  //Error de contraseña o correo
 					if (isset($_GET["errorusuario"])=="si")
 					{
-				?> 
-					<b>La cuenta o la contraseña es incorrecta. </b><br>
+				?>
+					<span class="error">La cuenta o la contraseña es incorrecta.</span>
 				<?php
 					}
-				?> 
+				?>
+				<?php
+					//Error de inicio se sesion
+					if (isset($_GET["errorSesion"])=="si")
+					{
+				?>
+					 <span class="error">No has iniciado sesión!</span>
+				<?php
+					}
+				?>
 				<input class="botonLogin" type="submit" name="submit" value="Entrar">
 			</form>
+			<a href="register_user.php">
+				<input class="botonLogin" type="submit" name="submit" value="Registrarse">
+			</a>
 		</div>
 	</div>
 

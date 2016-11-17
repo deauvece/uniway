@@ -16,6 +16,7 @@ body{
 nav {
 	position: fixed;
 	top: 0px;
+	z-index: 1;
 	padding-top:20px;
 	height: 60px;
 	font-size: 75%;
@@ -41,10 +42,11 @@ nav {
 	}
 		nav .sinmenu li {
 			min-height: 70px;
+			padding-left: 0px;
 			display: inline;
 		}
 		nav .sinmenu li a {
-			color: #006666;
+      color: #006666;
 			font-weight: bolder;
 			display: inline;
 			padding: 10px;
@@ -54,10 +56,15 @@ nav {
 @media (max-width:1024px){
 	nav .sinmenu  {
 		float: right;
-		width: 50%;
-		margin-top: 48px;
+		width: 210px;
+		display: block;
+		height: 1000px;
+		margin-top: 50px;
 		text-align: left;
-		transform: translateY(-200%);
+		transform: translateX(200%);
+    background-color: #232626;
+		position: relative;
+		z-index: inherit;
 	}
 	nav .sinmenu li {
 		display: block;
@@ -66,10 +73,11 @@ nav {
 		padding: 20px;
 		margin: 0px;
 		display: block;
+                color:white;
 	}
 	#btn:checked ~ .sinmenu {
 		transition: all 0.3s;
-		transform: translateY(0%);
+		transform: translateX(0%);
 	}
 	nav img {
 		position: absolute;
@@ -96,6 +104,7 @@ nav {
 	position: fixed;
 	top: 15px;
 	left: 20px;
+	z-index: 2;
 }
 #logo a {
 	text-decoration: none;
@@ -522,32 +531,187 @@ header {
 
 .contenedorContact .container .login {
 	padding: 20px;
-	background-color: #002A2A;
+	background-color: white;
 	border-radius: 5px;
-	display: inline-block;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	width: 350px;
 }
 	.contenedorContact .container .login input {
+		border-width: 0px;
+		background-color:#F3F3F3;
 		width: 310px;
-		margin-bottom: 10px;
-		padding: 20px;
+		margin-bottom: 20px;
+		padding: 15px;
 	}
 	.contenedorContact .container .login .botonLogin {
-		border-radius: 5px;
-		background-color: white;
-		margin-top: 20px;
-		width: 40%;
+		border-radius: 2px;
+		color: white;
+		font-size: 100%;
+		background-color: #002A2A;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 97%;
 		cursor: pointer;
 	}
+	.contenedorContact .error {
+		margin-top: -5px;
+		margin-bottom: 10px;
+		display: block;
+		font-size: 80%;
+		font-weight: bold;
+		color: black;
+	}
 @media (max-width:480px){
-	.loginImg {
-                width:200px;
-        }
-.contenedorContact .container .login {
-	width: 200px;
+		.loginImg {
+			width:300px;
+		}
+		.contenedorContact .container .login {
+			width: 300px;
+		}
+		.contenedorContact .container .login input {
+			width: 260px;
+		}
 }
+@media (max-width:400px){
+
+	.loginImg {
+		width: 250px;
+	}
+	.contenedorContact .container .login {
+		width: 250px;
+	}
 	.contenedorContact .container .login input {
-		width: 150px;
+		width: 210px;
+	}
+}
+@media (max-width:350px){
+
+	.loginImg {
+		width: 100%;
+	}
+	.contenedorContact .container .login {
+		margin-left: -25px;
+		width: 100%;
+	}
+	.contenedorContact .container .login input {
+		width: 230px;
+	}
+}
+/*=============================REGISTER -REGISTRO USUARIO============================*/
+.contenedorContact .container .register {
+	color: black;
+	padding: 20px;
+	background-color: white;
+	border-radius: 5px;
+	display: inline-block;
+}
+.register p {
+	font-family: arial;
+	font-size: 135%;
+	width: 330px;
+}
+
+.register input, select {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	border-width: 0px;
+	background-color:#F3F3F3;
+}
+	.register input {
+		width: 300px;
+		padding: 15px;
+	}
+	.register input[type="submit"]{
+		width: 330px;
+		color: white;
+		background-color: #002A2A;
+	}
+		.register input[type="submit"]:hover{
+			width: 330px;
+			cursor: pointer;
+		}
+	.register select {
+		width: 335px;
+		padding: 15px;
+		background-color: #F3F3F3;
+	}
+
+   input[type="radio"] {
+		display: none;
+	}
+	.sex {
+		position: relative;
+		z-index: 0;
+	}
+	.sex label {
+		width: 100px;
+		font-size: 14px;
+		color: gray;
+		background-color: #F3F3F3;
+		display: inline-block;
+		margin-bottom: 20px;
+		padding: 10px;
+		padding-left: 40px;
+		padding-right: 20px;
+		position: relative;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+	.sex label:before {
+		background:none;
+		border: 3px solid #002A2A;
+		content: "";
+		display: inline-block;
+		width: 13px;
+		height: 13px;
+		border-radius: 50%;
+		position: absolute;
+		top: 8px;
+		left: 12px;
+	}
+	.sex input[type="radio"]:checked + label:before{
+		background-color: #002A2A;
+	}
+@media (max-width:430px) {
+	.contenedorContact {
+		background-color: white;
+	}
+	.register {
+		margin-left: -20px;
+		width: auto;
+	}
+}
+@media (max-width:390px) {
+
+	.contenedorContact .container .register {
+		padding: 20px;
+	}
+	.register input , .register p {
+		width: 250px;
+	}
+	.register select , .register input[type="submit"]  {
+		width: 280px;
+	}
+	.sex label {
+		width: 80px;
+	}
+}
+@media (max-width:380px) {
+	.register input {
+		width: 210px;
+	}
+	.register p {
+		width: 240px;
+	}
+	.register select , .register input[type="submit"]  {
+		width: 240px;
+	}
+	.sex label {
+		width: 60px;
 	}
 }
 /*=============================FOOTER============================*/
