@@ -1,8 +1,8 @@
 /*General styles*/
 body{
-	background-color: #E9EBEE;
+	background-color: #EBEEF0;
 	margin: 0px;
-	font-family: "arial";
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
 /*============================================START FEED STYLE==============================================*/
 
@@ -14,7 +14,7 @@ body{
 	width: 100%;
 	background-color: white;
 	position: fixed;
-	box-shadow: 0 0 3px;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 	.navFeed div {
 		height: 50px;
@@ -26,7 +26,7 @@ body{
 		}
 			.left img {
 				display: inline;
-				margin-left: 30px;
+				margin-left: 85px;
 				margin-top: 10px;
 				height: 25px;
 			}
@@ -134,7 +134,7 @@ body{
 		font-size: 80%;
 		display: block;
 		text-decoration: none;
-		color: darkgreen;
+		color: #009999;
 		margin-bottom: 20px;
 	}
 		.options .editar:hover{
@@ -152,7 +152,7 @@ body{
 	.options .nombre {
 		display: block;
 		margin-top: 15px;
-		margin-bottom: 20px;
+		margin-bottom: 5px;
 		margin-left: 5px;
 		margin-right: 10px;
 	}
@@ -170,11 +170,12 @@ body{
 		.lista li {
 			font-size: 90%;
 			padding: 10px;
-			margin-left: -40px;
+			margin-left: -30px;
 		}
 			.lista li:hover {
+				color: #009999;
+				font-weight: bold;
 				cursor: pointer;
-				background-color: grey;
 			}
 		.lista li .icono {
 			display: inline;
@@ -187,6 +188,23 @@ body{
 			text-decoration: none;
 			color: white;
 		}
+
+		.lista li span:before {
+			margin-top: -7px;
+			background:#009999;
+			border: 3px solid #009999;
+			content: "";
+			display: inline-block;
+			width: 0px;
+			height: 30px;
+			position: absolute;
+			left: -10px;
+		}
+		.lista li:hover > span:before {
+			left: 0px;
+			transition: all 0.2s;
+		}
+
 /*============================================LEFT SIDE=====================================================*/
 
 /*============================================CENTER SIDE===================================================*/
@@ -199,12 +217,14 @@ body{
 	height: 35px;
 	width: 55%;
 	background-color: white;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 	.search {
 		height: 35px;
 		width: 75%;
 		padding-left: 30px;
 		border-width:0;
+		font-size: 120%;
 	}
 		.find img {
 		    margin-top: 10px;
@@ -236,14 +256,14 @@ body{
 		height: 55px;
 		padding: 5px;
 		color: white;
-		background-color: #6B1919;
+		background-color: #009999;
 		border-radius: 30px;
 		border-width: 0px;
 		outline: 0;
 	}
 		#btn-add:hover {
 			cursor: pointer;
-			background-color: #9E2626;
+			background-color: #006E6E;
 			font-size: 170%;
 		}
 
@@ -254,11 +274,13 @@ body{
 	margin:10px;
 	margin-top: 0px;
 	margin-left: 20%;
+	margin-bottom: 0px;
 	display: inline-block;
 	background: white;
 	width: 55%;
 	min-height: 100px;
 	font-size: 90%;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 	.publicaciones a {
 		text-decoration: none;
@@ -281,7 +303,7 @@ body{
 		display: block;
 	}
 	.publicaciones .ruta {
-		color: darkgreen;
+		color: #009999;
 	}
 	.publicaciones .comentario {
 		margin-left: 85px;
@@ -291,7 +313,7 @@ body{
 	.publicaciones .cupo {
 		margin-left: 15px;
 		float: right;
-		color: darkgreen;
+		color: #009999;
 		font-size: 100%;
 		display: block;
 	}
@@ -310,14 +332,14 @@ body{
 	}
 	#btn-verRuta:hover , #btn-pedirCupo:hover, #btn-verRuta:focus , #btn-pedirCupo:focus  {
 		cursor: pointer;
-		color: darkgreen;
-		outline-color: darkgreen;
+		color: #006161;
+		outline-color: #006161;
 	}
 /*============================================CENTER SIDE===================================================*/
 
 /*============================================RIGHT SIDE====================================================*/
 .recomendados {
-	margin-top: 50px;
+	margin-top: 55px;
 	display: inline-block;
 	background: white;
 	float: right;
@@ -325,6 +347,7 @@ body{
 	height: 300px;
 	margin-right: 10px;
 	padding: 15px;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 	.recomendados a {
 		text-decoration: none;
@@ -356,13 +379,15 @@ body{
 
 .ads {
 	clear: right;
-	margin-top: 10px;
+	margin-top: 15px;
 	background: white;
 	float: right;
 	width: 18%;
 	height: 400px;
 	margin-right: 10px;
 	padding: 15px;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
+	border-radius: 3px;
 }
 	.ads .copy {
 		font-size: 95%;
@@ -377,6 +402,39 @@ body{
 		}
 
 /*============================================RIGHT SIDE====================================================*/
+/*============================================MODAL WINDOW====================================================*/
+.modal-window {
+	display: none;
+	position: fixed;
+	top: 150px;
+	left: 475px;
+	height: 300px;
+	width: 400px;
+	background-color: white;
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgba(160,165,168,1);
+}
+	.modal-window .encb img {
+		display: block;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		height: 120px;
+		width: 120px;
+		border-radius: 60px;
+	}
+	.modal-window .encb span {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		display: block;
+		text-align: center;
+		font-weight: bold;
+	}
+	.modal-window .info-usr {
+		display: block;
+		text-align: center;
+	}
+/*============================================MODAL WINDOW====================================================*/
 
 /*============================================RESPONSIVE FEED===============================================*/
 /*responsiveeeeeeeeeeeeeeee*/
@@ -451,140 +509,188 @@ body{
 /*============================================NAV BAR PROFILE=================================================*/
 .navProfile ul {
 	margin: 0px;
-	background-color: #E3E3E3;
+	background-color: white;
 	padding: 0px;
+	padding-top: 27px;
 	list-style-type: none;
-	height: 45px;
-	text-align: center;
+	height: 44px;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 	.navProfile ul li {
 		display: inline;
 	}
+	.navProfile ul li a {
+		text-decoration: none;
+		font-weight: bold;
+		color: black;
+	}
+	.navProfile ul li span {
+		display: inline;
+		font-weight: bold;
+		font-size: 110%;
+	}
 	.navProfile ul li:nth-child(1){
-		float: left;
-		margin-left: 5px;
+		margin-left: 25px;
 	}
-	.navProfile ul li:nth-child(2){
-		margin-right: 5px;
-		float: right;
-	}
-	/*.........style for image.......*/
-	.navProfile img {
-		margin-top: 5px;
-		height: 35px;
-	}
-/*============================================NAV BAR PROFILE=================================================*/
 
+/*============================================NAV BAR PROFILE=================================================*/
+/*============================================BIG CONTAINER=================================================*/
+.big_container{
+	/*padding izq es mayor por la barra lateral de 275px*/
+	padding: 40px;
+	padding-left: 315px;
+}
+/*============================================BIG CONTAINER=================================================*/
 /*============================================GENERAL INFO STYLE==============================================*/
-.topSection {
-	background-color: #E3E3E3;
-	padding: 30px 50px;
+.left-section {
+	float: left;
+	background-color: #232626;
+	width: 275px;
+	height: 2300px;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
+}
+.logo-section {
+	padding: 25px 0px;
+	text-align: center;
+}
+.logo-section a {
+	text-decoration: none;
+}
+.logo-section img{
+	height: 25px;
 }
 
 .generalInfo {
-	background-color: white;
-	min-height: 320px;
-	box-shadow: 0 0 1px;
+	background-color: #232626;
+	padding-top: 10px;
+	height: 50%;
+	color: white;
 }
-	.generalInfo img {
-		float: left;
-		margin-top: 70px;
-		margin-left: 50px;
-		height: 180px;
+	#little_img  {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		height: 120px;
+		width: 120px;
 		border-radius: 90px;
 		padding: 2px;
 		background-color: grey;
 		cursor: pointer;
 	}
-	#profile_Image {
-		background-color: black;
-		color: white;
+
+	#image_box {
 		display: none;
-		padding: 3px;
-		text-align: center;
+		background-color: lightgrey;
+		background: rgba(0, 0, 0, 0.4);
 		position: absolute;
-		top: 300px;
-		left:200px;
-		border-top-right-radius: 5px;
-		border-bottom-right-radius: 5px;
-		border-bottom-left-radius: 5px;
+		left: 0;
+		top: 0;
+		height: 260%;
+		width: 100%;
+		z-index: 2;
+	}
+	#profile_Image {
+		height: 350px;
+		width: 300px;
+		background-color: white;
+		display: none;
+		text-align: center;
+		position: fixed;
+		border-radius: 5px;
+		top: 100px;
+		left:500px;
 		z-index: 1;
 	}
 		#profile_Image  input{
 			display: block;
 		}
 		#profile_Image  button{
+			display: block;
 			cursor: pointer;
 		}
-		@media (max-width:860px) {
-			#profile_Image {
-				top: 270px;
-				left:300px;
-			}
+		#big_image {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 20px;
+			height: 250px;
+			width: 250px;
+			border-radius: 125px;
 		}
-		@media (max-width:655px) {
-			#profile_Image {
-				top: 230px;
-				left:250px;
-			}
+
+		#profile_Image input[type="file"]{
+			display: none;
 		}
-		@media (max-width:522px) {
-			#profile_Image {
-				top: 230px;
-				left:150px;
-			}
+		#profile_Image label {
+			display: inline-block;
+			padding: 10px;
+			color: black;
+			background-color: #E4E4E4;
+			cursor: pointer;
+			font-size: 100%;
+			border-radius: 3px;
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+			border-width: 0px;
+			margin-top: 20px;
+			margin-right: -4px;
 		}
-		@media (max-width:418px) {
-			#profile_Image {
-				top: 230px;
-				left:50px;
-			}
+		#profile_Image button {
+			display: inline-block;
+			text-align: right;
+			padding: 10px;
+			background-color: #009999;
+			color: white;
+			cursor: pointer;
+			font-size: 100%;
+			border-radius: 3px;
+			border-width: 0px;
+			margin-top: 20px;
+			border-top-left-radius: 0px;
+			border-bottom-left-radius: 0px;
 		}
-	.generalInfo .content {
-		height: 320px;
-		margin-left: 290px;
+		#profile_Image #cancel_img {
+			color: black;
+			position: fixed;
+			margin: 0px;
+			top: 95px;
+			left: 800px;
+			border-width: 0px;
+			font-size: 130%;
+			font-weight: bold;
+			background: rgba(0, 0, 0, 0.0);
+		}
+
+	.generalInfo .options-left-section ul {
+		list-style-type: none;
+		padding-left: 60px;
+		margin-top: 50px;
 	}
-	.generalInfo .content span {
-		display: block;
-		position: relative;
-		top: 120px;
-	}
-	.generalInfo .content .name {
-		color: black;
-		font-size: 200%;
-	}
-	.generalInfo .verif {
-		width: 100px;
-		font-style: italic;
-	}
-	.generalInfo .verif img {
-		float: right;
-		margin: -5px 0px 0px 5px;
-		height: 20px;
-		padding: 0px;
-		background-color: white;
-	}
-	.generalInfo  .moreInfo {
-		float: right;
-		padding:15px;
-		margin-right: 5px;
-	}
-	.generalInfo  .moreInfo .infoGen {
-		background-color: white;
-		width: 100%;
-		padding: 15px 10px;
-		font-size: 120%;
-		position: static;
-		display: inline-block;
-	}
-	.generalInfo .moreInfo .infoGen .title {
-		display: block;
-		font-size: 80%;
-		font-weight: bold;
-	}
-	.generalInfo  .moreInfo span:hover {
-		background-color: #E3E3E3;
-	}
+		.generalInfo .options-left-section ul li {
+			padding-top: 15px;
+			height: 30px;
+		}
+		.generalInfo .options-left-section ul li:hover {
+			color: #009999;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		.generalInfo .options-left-section ul li span:before {
+			margin-top: -7px;
+			background:#009999;
+			border: 3px solid #009999;
+			content: "";
+			display: inline-block;
+			width: 0px;
+			height: 30px;
+			position: absolute;
+			left: -10px;
+		}
+		.generalInfo .options-left-section ul li:hover > span:before {
+			left: 0px;
+			transition: all 0.2s;
+		}
+
 
 
 /*============================================GENERAL INFO STYLE==============================================*/
@@ -594,10 +700,10 @@ body{
 	display: none;
 	background-color: lightgrey;
 	background: rgba(0, 0, 0, 0.4);
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
-	height: 230%;
+	height: 260%;
 	width: 100%;
 	z-index: 2;
 }
@@ -605,7 +711,7 @@ body{
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-  margin-top: 150px;
+     margin-top:150px;
 	padding: 0px;
 	padding-bottom: 10px;
 	background: rgba(255, 0, 0, 1);
@@ -614,12 +720,12 @@ body{
 	box-shadow: 0 0 10px;
 	width: 300px;
 	min-height: 300px;
-	text-align: center;
 }
 #addRoute p {
 	background-color: #002A2A;
 	color: white;
 	padding: 15px 5px;
+	text-align: center;
 }
 #addRoute input , #addRoute button , #addRoute select{
 	padding: 5px;
@@ -653,6 +759,7 @@ body{
 	background-color: #E3E3E3;
 	padding: 5px ;
 	margin-bottom: 20px;
+	margin-left: 15px;
 }
 
 #addRoute button , #addRoute select{
@@ -726,7 +833,7 @@ body{
 #addRoute .opt-routes{
 	position: relative;
 	top: -9px;
-	width: 239px;
+	width: 240px;
 	margin: 0px;
 }
 #addRoute .finish_start{
@@ -737,10 +844,12 @@ body{
 	background-color: #E3E3E3;
 }
 .finish_start span {
+	background-color: white;
 	display: block;
 	padding: 3px;
 	font-size: 80%;
 	margin-bottom: 5px;
+	font-weight: bold;
 }
 
 	#addRoute #start_l:before , #addRoute #finish_l:before  {
@@ -764,7 +873,7 @@ body{
 		width: 135px;
 		margin-top: -5px;
 		float: right;
-		background-color: #C1C1C1;
+		background-color: #E3E3E3;
 		font-size: 80%;
 	}
 	#addRoute #start_l{
@@ -774,15 +883,17 @@ body{
 		background-color: #002A2A;
 		color: white;
 	}
-	#addRoute #commentTitle {
+	#commentTitle {
 		font-size: 80%;
 		display: inline-block;
 		width: 270px;
-		background-color: #C1C1C1;
+		margin-left: 15px;
+		font-weight: bold;
 	}
 	#addRoute textarea {
 		margin-bottom: 10px;
 		margin-top: -1px;
+		margin-left: 15px;
 		border: none;
 		background-color: #E3E3E3;
 		min-width: 266px;
@@ -790,109 +901,183 @@ body{
 
 	}
 /*============================================FORM ADD ROUTES STYLE==============================================*/
-
-/*============================================INFO OPTIONS STYLE==============================================*/
-.infoOptions {
-	text-align: center;
-	display: none;
-	margin-top: -15px;
-	background-color: gray;
-}
-	.infoOptions ul {
-		background-color: #002A2A;
-		list-style-type: none;
-		padding: 0px;
+	/*     titulos   */
+	.basicInfo > .title , .userRutesBox > .title , .qualificationsBox> .title{
+		text-align: left;
+		padding: 10px;
+		padding-left: 20px;
+		padding-top: 25px;
+		font-size: 120%;
+		font-weight: bold;
+		border-width: 0px;
+		border-style:  solid;
+		border-bottom-width: 2px;
+		border-color: #E5E5E5;
 	}
-	.infoOptions ul li {
-		display: inline;
+	.basicInfo > .title span ,.userRutesBox > .title span , .qualificationsBox> .title span{
+		display: block;
+		font-size: 75%;
+		font-weight: normal;
+		margin-top: 5px;
+		margin-bottom: 5px;
 	}
-	.infoOptions ul li label {
-		color: white;
-		text-align: center;
-		padding-top: 15px;
-		font-size: 110%;
-		width: 150px;
-		display: inline-block;
-		background-color: #002A2A;
-		height: 28px;
-	}
-		.infoOptions ul li label:hover {
-			background-color: #001F1F;
-			cursor: pointer;
-		}
-	.infoOptions ul li input {
-		display: none;
-	}
-/*============================================INFO OPTIONS STYLE==============================================*/
-/*============================================SELECTED OPTIONS STYLE==========================================*/
-.selectedOptions {
-	margin-top: -16px;
-	min-height: 500px;
-	background-color: #E3E3E3;
-	padding: 30px 50px ;
-}
-		/*		DATOS		*/
+		/*		informacion basica		*/
 		.basicInfo {
-			display: none;
-			padding: 40px 40px 20px 40px  ;
-			background-color: white;
-			box-shadow: 0 0 1px;
-		}
-			.basicInfo:hover {
-				color: white;
-				background-color: #001F1F;
-			}
-		.basicInfo .title {
-			display: inline-block;
-			width: 200px;
-			font-size: 125%;
-			font-weight: bold;
+			text-align: right;;
+			box-shadow: 0 0 1px rgba(160,165,168,1);
 			margin-bottom: 20px;
+			background-color: white;
+			border-radius: 3px;
 		}
-		#transport img {
-			margin-left: 200px;
-			display: block;
-			height: 150px;
+			.basicInfo ul {
+				list-style-type: none;
+				padding: 0px;
+				padding-left: 25px;
+				text-align: left;
+			}
+			.basicInfo ul li {
+				width: 400px;
+				display: inline-block;
+				margin-bottom: 15px;
+			}
+			.basicInfo ul li:nth-child(2n) {
+				margin-left: 100px;
+			}
+			.basicInfo ul li label {
+				font-weight: lighter;
+				font-size: 90%;
+				width: 400px;
+			}
+			.basicInfo ul li input {
+				display: block;
+				width: 400px;
+				height: 27px;
+				border-width: 0px;
+				border-style:  solid;
+				border-bottom-width: 2px;
+				border-color: #E5E5E5;
+				background-color:  white;
+				padding-left: 20px;
+				transition: all 0.2s;
+				font-size: 110%;
+			}
+			.basicInfo ul li input:focus{
+				outline: none;
+				border-color: #292929;
+				height: 25px;
+			}
+			.basicInfo button {
+				text-align: right;
+				padding: 10px;
+				background-color: #009999;
+				color: white;
+				cursor: pointer;
+				font-size: 100%;
+				border-radius: 3px;
+				border-width: 0px;
+				margin-right: 40px;
+				margin-bottom: 15px;
+			}
+		/*   Transporte*/
+		.basicInfo .add-transport-box{
+			padding: 15px;
+			text-align: center;
+		}
+		.basicInfo form {
+			display: none;
+			transition: all 0.3s;
 		}
 
-		/*		DATOS		*/
-		/*     titulos   */
-		.userRutesBox > .title , .qualificationsBox> .title{
-			text-align: left;
-			padding: 10px;
-			font-size: 130%;
-			box-shadow: 0 0 1px;
-			background-color: #002A2A;
-			color: white;
+		.basicInfo input[type="color"] {
+			padding: 0px;
+			height: 35px;
+			width: 55px;
+			margin-left: 175px;
+			margin-right: 175px;
+			border-width: 0px;
 			cursor: pointer;
 		}
+		.basicInfo input[type="radio"] {
+			  display: none;
+		  }
+		  .basicInfo .radio {
+			  position: relative;
+			  z-index: 0;
+			  text-align: center;
+		  }
+		  .basicInfo .radio label {
+			  width: 100px;
+			  font-size: 14px;
+			  color: gray;
+			  background-color: #F3F3F3;
+			  display: inline-block;
+			  margin-bottom: 20px;
+			  padding: 10px;
+			  padding-left: 40px;
+			  padding-right: 20px;
+			  position: relative;
+			  border-radius: 3px;
+			  cursor: pointer;
+		  }
+		  .basicInfo .radio label:before {
+			  background:none;
+			  border: 3px solid #002A2A;
+			  content: "";
+			  display: inline-block;
+			  width: 13px;
+			  height: 13px;
+			  border-radius: 50%;
+			  position: absolute;
+			  top: 8px;
+			  left: 12px;
+		  }
+		  .basicInfo .radio input[type="radio"]:checked + label:before{
+			  background-color: #002A2A;
+		  }
+
+		  .basicInfo select {
+		  	display: block;
+		  	margin-left: auto;
+		  	margin-right: auto;
+		  	margin-bottom: 20px;
+		  	border-width: 0px;
+		  	background-color:#F3F3F3;
+		  }
+
+		  .basicInfo select {
+			  width: 335px;
+			  padding: 15px;
+			  background-color: #F3F3F3;
+		  }
+
+		/*   Transporte*/
+
+
 
 		/*		RUTAS DEL USUARIO		*/
 		.userRutesBox {
 			text-align: center;
-			box-shadow: 0 0 1px;
+			box-shadow: 0 0 1px rgba(160,165,168,1);
 			margin-bottom: 20px;
 			background-color: white;
+			border-radius: 3px;
 		}
 						/*boton agregar ruta*/
+						.box-button {
+							text-align: right;
+							height: 60px;
+						}
 						.userAddRutes {
-							display: inline-block;
-							padding-top: 200px;
-							padding-bottom: 40px;
-							width: 200px;
-							margin: 15px;
-							margin-bottom: 20px;
-							background-color: darkgrey;
+							display: block;
+							padding: 10px;
+							background-color: #009999;
+							color: white;
 							cursor: pointer;
-							border-radius: 5px;
-							transition: all 0.2s;
-						}
-						.userAddRutes:hover{
-							background-color: lightgrey;
-						}
-						.userAddRutes img {
-							position: relative;
-							top:-80px;
+							font-size: 100%;
+							border-radius: 3px;
+							border-width: 0px;
+							float: right;
+							margin-right: 35px;
 						}
 						/*boton agregar ruta*/
 		.userRutes {
@@ -942,15 +1127,14 @@ body{
 		/*		RUTAS DEL USUARIO		*/
 		/*		Qualifications- calificaciones		*/
 			.qualificationsBox {
-
 				background-color: white;
-				box-shadow: 0 0 1px;
+				box-shadow: 0 0 1px rgba(160,165,168,1);
+				border-radius: 3px;
 			}
 			.qualifications{
 				display: block;
 				padding:40px;
 				background-color: white;
-				box-shadow: 0 0 1px;
 			}
 			.qualifications:hover {
 				background-color: #F7F7F7;
@@ -980,12 +1164,6 @@ body{
 				margin-left: 70px;
 			}
 		/*		Qualifications- calificaciones		*/
-
-
-
-
-
-/*============================================SELECTED OPTIONS STYLE==========================================*/
 
 /*============================================RESPONSIVE PROFILE PAGE=========================================*/
 @media (max-width:1050px) {
@@ -1028,7 +1206,7 @@ body{
 	.generalInfo img , .generalInfo .content , .generalInfo .verif {
 		float: none;
 	}
-	.topSection{
+	.left-section{
 		padding: 20px 50px;
 	}
 	.generalInfo{
@@ -1068,7 +1246,7 @@ body{
 	.navProfile ul {
 		background-color: white;
 	}
-	.topSection {
+	.left-section {
 		padding: 0px;
 	}
 	.generalInfo .content .name {

@@ -61,7 +61,7 @@ if ($_SESSION['admin']=='f') {
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Uniway</title>
+		<title>Uniway / Perfil</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="sesionOpen.css">
@@ -69,192 +69,237 @@ if ($_SESSION['admin']=='f') {
 		<link rel="stylesheet" href="jquery-ui.min.css">
 		<script src="../JS/jquery-3.1.1.min.js"></script>
 		<script src="../JS/jquery-ui.min.js"></script>
+		<script src="../JS/main.js"></script>
+		<!--Fuente texto-->
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 
 	</head>
 	<body>
-		<!--Nav bar-->
-		<nav class="navProfile" >
-			<ul>
-				<li> <a href="sesionOpen.php"><img src="back.png" alt="go back" /></a></li>
-				<li><img src="config.png" alt="settings" /></li>
-				<li><a href="#"><img src="../Imagenes/logo-name.png" alt="" /></a></li>
-			</ul>
-		</nav>
-		<section class="topSection" >
-			<section class="generalInfo">
-        <?php
-          //saber si el usuario ya ha cambiado la imagen de perfil predeterminada
-          $sql1_image="SELECT profile_image FROM users WHERE id_user='$idu'";
-          $result1_image = pg_query($conn, $sql1_image);
-          $vector_img=pg_fetch_array($result1_image);
-          $rute_img=$vector_img['profile_image'];
-          if ($rute_img==NULL) {
-            //si no la ha cambiado se pone la predeterminada
-            ?><img onclick="subirImagen()" src="perfil.png" alt="user image"/><?php
-          }else{
-            //si la cambió, se busca por el id del usuario en la ruta predeterminada
-            ?><img onclick="subirImagen()" src="<?php echo $rute_img;?>" alt="" /><?php
-          }
-        ?>
-        <!--formulario para subir la imagen-->
-        <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
-          <input type="file" name="file" accept="image/*" required>
-          <?php if ($rute_img==NULL) {
-            //si no la ha cambiado se pone la predeterminada
-            ?><button type="submit" name="button">Subir</button><?php
-          }else{
-            //si la cambió, se busca por el id del usuario en la ruta predeterminada
-            ?><button type="submit" name="button">Actualizar</button><?php
-          }
-        ?>
-        </form>
-
-
-				<div class="moreInfo">
-					<span class="infoGen"> <span class="title">Universidad</span> <?php echo $university; ?> (<?php echo $university_acr; ?>)</span><br>
-					<span class="infoGen"> <span class="title">Carrera</span> Ingenieria Industrial </span><br>
-					<span class="infoGen"> <span class="title">Correo</span><?php echo $email; ?> </span><br>
-					<span class="infoGen"> <span class="title">Telefono</span> <?php echo $phone; ?> </span><br>
-				</div>
-				<div class="content">
-					<span class="name"> <?php echo $full_name; ?> </span>
-					<span class="score">4.8</span>
-					<?php
-								if ($is_verified=='t') {
-									?><span class="verif" ><img src="check.png" alt="user verificated" />Verificado</span><?php
-								}else {
-									?><span class="verif" ><img src="cross.png" alt="user verificated" />Verificado</span><?php
-								}
-					?>
-				</div>
+		<section class="left-section" >
+			<section class="logo-section" >
+				<a href="sesionOpen.php">
+					<img src="../Imagenes/logo-only.png" alt="" />
+					<img src="../Imagenes/logo-name.png" alt="" />
+				</a>
 			</section>
-		</section>
-		<section class="infoOptions" >
-			<ul>
-				<li>
-					<label id="rutasLabel" for="rutas">Rutas</label>
-					<input type="radio" id="rutas" name="typeInfo" checked>
-				</li>
-				<li>
-					<label id="calificacionesLabel" for="calificaciones">Calificaciones</label>
-					<input type="radio" id="calificaciones" name="typeInfo">
-				</li>
-				<li>
-					<label id="datosLabel"  for="datos">Datos</label>
-					<input type="radio" id="datos" name="typeInfo" >
-				</li>
-			</ul>
-		</section>
-
-
-    <div id="addRouteBox">
-      <form action="../Php/addRoute.php" method="post" id="addRoute">
-        <button type="button" id="closeAddRoute" onclick="crearRuta()" > X </button>
-        <p>
-          Escribe y selecciona una parada.
-        </p>
-        <input type="text" class="paradas" id="buscar" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar2" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar3" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar4" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar5" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
-        <select name="spots" >
-          <option value="1">1 cupo</option>
-          <option value="2">2 cupos</option>
-          <option value="3">3 cupos</option>
-          <option value="4" selected >4 cupos</option>
-        </select>
-        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
-        <button type="submit" >Crear</button>
-      </form>
-    </div>
-
-
-		<section class="selectedOptions" >
-			<!--BASCI INFO (DATOS)-->
-			<div class="basicInfoBox">
-				<div class="basicInfo">
-					<span class="title">Universidad</span>
-					<span class="content"><?php echo $university; ?> (<?php echo $university_acr; ?>)</span>
-				</div>
-				<div class="basicInfo">
-					<span class="title">Edad</span>
-					<span class="content">21.</span>
-				</div>
-				<?php if ($is_driver=='t') {
-					?>
-					<div id="transport" class="basicInfo">
-						<span class="title">Transporte</span>
-						<span class="content"> Spark GT modelo 2015 </span>
-						<img src="transport.jpg" alt="user transport" />
-					</div>
-					<?php
+			<section class="generalInfo">
+				<?php
+				//saber si el usuario ya ha cambiado la imagen de perfil predeterminada
+				$sql1_image="SELECT profile_image FROM users WHERE id_user='$idu'";
+				$result1_image = pg_query($conn, $sql1_image);
+				$vector_img=pg_fetch_array($result1_image);
+				$rute_img=$vector_img['profile_image'];
+				if ($rute_img==NULL) {
+					//si no la ha cambiado se pone la predeterminada
+					?><img id="little_img" onclick="subirImagen()" src="perfil.png" alt="user image"/><?php
+				}else{
+					//si la cambió, se busca por el id del usuario en la ruta predeterminada
+					?><img id="little_img" onclick="subirImagen()" src="<?php echo $rute_img;?>" alt="" /><?php
 				}
 				?>
-				<div class="basicInfo">
-					<span class="title">Correo</span>
-					<span class="content"><?php echo $email; ?>.</span>
+				<div id="image_box">
+					<!--formulario para subir la imagen-->
+					<form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
+						<img id="big_image" src="<?php echo $rute_img;?>" alt="" />
+						<label for="file_input">Elige una imagen</label>
+						<input id="file_input" type="file" name="file" accept="image/*" required>
+						<?php if ($rute_img==NULL) {
+							//si no la ha cambiado se pone la predeterminada
+							?>
+								<button type="submit" name="button">Subir</button>
+							<?php
+						}else{
+							//si la cambió, se busca por el id del usuario en la ruta predeterminada
+							?>
+								<button type="submit" name="button">Actualizar</button>
+							<?php
+						}
+						?>
+					     <button id="cancel_img" type="button" onclick="subirImagen()" name="button">x</button>
+					</form>
 				</div>
-				<div class="basicInfo">
-					<span class="title">Telefono</span>
-					<span class="content"><?php echo $phone; ?>.</span>
-				</div>
-			</div>
-
-			</div>
-			<!--RUTAS (RUTAS DEL USUARIO SÍ ES CONDUCTOR)-->
-			<div class="userRutesBox">
+				<section class="options-left-section">
+					<ul>
+						<li><span></span>Rutas</li>
+						<li><span></span>Comentarios</li>
+						<li><span></span>Información básica</li>
+						<li><span></span>Transporte</li>
+						<li><span></span>Verificar cuenta</li>
+					</ul>
+				</section>
+			</section>
+		</section>
+		<nav class="navProfile" >
+			<ul>
+				<li> <a href="sesionOpen.php">Ir atrás</a></li>
+				<li> <span>/ Configuración de usuario</span></li>
+			</ul>
+		</nav>
+		<div class="big_container">
+			<div class="basicInfo">
 				<div class="title">
-					Rutas
+					informacion básica
+					<span>Cambia las configuraciones básicas de tu cuenta.</span>
 				</div>
+					<ul>
+						<li>
+							<label for="">Nombres</label>
+							<input type="text" name="name" value=" <?php echo "$name"; ?> ">
+						</li>
+						<li>
+							<label for="">Apellidos</label>
+							<input type="text" name="name" value="<?php echo "$last_name"; ?>">
+						</li>
+						<li>
+							<label for="">Universidad</label>
+							<input type="text" disabled name="name" value="<?php echo "$university"; ?>">
+						</li>
+						<li>
+							<label for="">Sexo</label>
+							<input type="text" name="name" value="<?php echo "$sex"; ?>">
+						</li>
+						<li>
+							<label for="">Telefono</label>
+							<input type="text" name="name" value="<?php echo "$phone"; ?>">
+						</li>
+						<li>
+							<label for="">Correo</label>
+							<input type="text" name="name" value="<?php echo "$email"; ?>">
+						</li>
+						<li>
+							<label for="">Contraseña</label>
+							<input type="password" name="name" value="">
+						</li>
+					</ul>
+					<button type="button" name="button" >Guardar</button>
+			</div>
+			<div class="basicInfo">
+				<div class="title">
+					Transporte
+					<span>Agrega información de un vehiculo para compartir tus rutas con los demás usuarios.</span>
+				</div>
+				<?php
+				//dos casos, si es conductor o si no lo es
+				if ($is_driver=="f") {
+					//formulario para agregar un transporte
+					?>
+					<div class="add-transport-box">
+						<button type="button" id="btn-transp" onclick="addTransport()" name="button" >Agregar</button>
+					</div>
+					<form id="transport-box" action="addTransport.php" method="post">
+						<ul>
+							<li>
+								<label for="">Placa</label>
+								<input type="text" placeholder="xxx-nnn" name="name" value="">
+							</li>
+							<li>
+								<label for="">Tipo de vehiculo</label>
+								<select name="type_transport">
+									<option value="Carro">Carro</option>
+									<option value="Moto">Moto</option>
+									<option value="Camioneta">Camioneta</option>
+									<option value="Van">Minivan</option>
+								</select>
 
-        <?php
-        $conn=conectarse();
-        //selecciono todas las rutas del usuario
-        $sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
-        $result_routes = pg_query($conn, $sql_routes);
-        $numFilas_routes = pg_num_rows($result_routes);
-        if  ($numFilas_routes!=0)
-           {
-                while($vector_routes=pg_fetch_array($result_routes))
-                {
-                  ?> <div class="userRutes"> <?php
-                  $id_ruta= $vector_routes['id_route'];
-                  //selecciono todas las paradas de esa ruta
-                  $sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
-                  $result_stops = pg_query($conn, $sql_stops);
-                  while($vector_stops=pg_fetch_array($result_stops))
-                  {
-                    $id_parada=$vector_stops['id_stop'];
-                    //selecciono el nombre de cada parada
-                    $sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
-                    $result_allstops = pg_query($conn, $sql_allstops);
-                    while($vector_allstops=pg_fetch_array($result_allstops))
-                    {
-                      $nameStop=$vector_allstops['name'];
-                      ?><span class="stop"><?php echo $nameStop; ?>
-                      </span><?php
-                    }
-                  }
-                  ?>
-                  <button type="button">Mapa</button>
-                </div>
-                <?php
-
-                }
-
-            }else {
-              echo "no hay rutas disponibles";
-            }
-        ?>
-        <a onclick="crearRuta()" class="userAddRutes"><img src="mapa.png" alt="" /></a>
+							</li>
+							<li>
+								<label for="">Modelo</label>
+								<input type="text" name="name" value="">
+							</li>
+							<li>
+								<label for="">Aire acondicionado</label>
+								<div class="radio">
+									<!--M(masculino) F(femenino)-->
+										<input type="radio" id="radio_airs" name="cool_air" value="si" required>
+										<label for="radio_airs">Si</label>
+										<input type="radio" id="radio_airn" name="cool_air" value="no">
+										<label for="radio_airn">No</label>
+								</div>
+							</li>
+							<li>
+								<label for="">Precio</label>
+								<input type="text" placeholder="Se recomienda un valor de 2000 COP" name="name" value="">
+							</li>
+							<li>
+								<label for="">Wi-fi</label>
+								<div class="radio">
+									<!--M(masculino) F(femenino)-->
+										<input type="radio" id="radio_wfs" name="wifi" value="si" required>
+										<label for="radio_wfs">Si</label>
+										<input type="radio" id="radio_wfn" name="wifi" value="no">
+										<label for="radio_wfn">No</label>
+								</div>
+							</li>
+							<li>
+								<label for="">Selecciona el color</label>
+								<input type="color" name="name" value="">
+							</li>
+							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
+						</ul>
+						<button type="button" name="button" onclick="addTransport()" >Cancelar</button>
+						<button type="button" name="button" >Guardar</button>
+					</form>
+					<?php
+				}else{
+					//Muestra la informacion del transporte
+					echo "soy conductor";
+				}
+				 ?>
 
 			</div>
 
+
+
+			<div class="userRutesBox">
+			<div class="title">
+				Rutas
+				<span>Crea y elimina las rutas de tus recorridos.</span>
+			</div>
+
+		        <?php
+		        $conn=conectarse();
+		        //selecciono todas las rutas del usuario
+		        $sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+		        $result_routes = pg_query($conn, $sql_routes);
+		        $numFilas_routes = pg_num_rows($result_routes);
+		        if  ($numFilas_routes!=0)
+		           {
+		                while($vector_routes=pg_fetch_array($result_routes))
+		                {
+		                  ?> <div class="userRutes"> <?php
+		                  $id_ruta= $vector_routes['id_route'];
+		                  //selecciono todas las paradas de esa ruta
+		                  $sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
+		                  $result_stops = pg_query($conn, $sql_stops);
+		                  while($vector_stops=pg_fetch_array($result_stops))
+		                  {
+		                    $id_parada=$vector_stops['id_stop'];
+		                    //selecciono el nombre de cada parada
+		                    $sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
+		                    $result_allstops = pg_query($conn, $sql_allstops);
+		                    while($vector_allstops=pg_fetch_array($result_allstops))
+		                    {
+		                      $nameStop=$vector_allstops['name'];
+		                      ?><span class="stop"><?php echo $nameStop; ?>
+		                      </span><?php
+		                    }
+		                  }
+		        ?>
+				<button type="button">Mapa</button>
+				</div>
+				<?php
+                   }
+                   }else { echo "no hay rutas disponibles";  }
+		        ?>
+			   <div class="box-button">
+				   <button class="userAddRutes" onclick="crearRuta()" type="button" name="button">Agregar</button>
+			   </div>
+			</div>
 			<!--calificaciones del usuario-->
 			<div class="qualificationsBox">
 				<div class="title">
-					Calificaciones
+					Comentarios y calificaciones
+					<span>Comentarios y calificaciones que otros usuarios te han hecho.</span>
 				</div>
 				<div class="qualifications">
 					<span class="number">4,7</span>
@@ -288,8 +333,32 @@ if ($_SESSION['admin']=='f') {
 				</div>
 			</div>
 
+		</div>
 
-		</section>
+
+
+    <div id="addRouteBox">
+      <form action="../Php/addRoute.php" method="post" id="addRoute">
+        <button type="button" id="closeAddRoute" onclick="crearRuta()" > X </button>
+        <p>
+          Escribe y selecciona una parada.
+        </p>
+        <input type="text" class="paradas" id="buscar" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
+        <input type="text" class="paradas" id="buscar2" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
+        <input type="text" class="paradas" id="buscar3" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
+        <input type="text" class="paradas" id="buscar4" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
+        <input type="text" class="paradas" id="buscar5" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
+        <select name="spots" >
+          <option value="1">1 cupo</option>
+          <option value="2">2 cupos</option>
+          <option value="3">3 cupos</option>
+          <option value="4" selected >4 cupos</option>
+        </select>
+        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
+        <button type="submit" >Crear</button>
+      </form>
+    </div>
+
 		<script src="../JS/main.js" > </script>
 	</body>
 </html>

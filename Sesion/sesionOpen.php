@@ -22,6 +22,8 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
+		<!--Fuente texto-->
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 	</head>
 	<body>
 		<a name="inicio"></a>
@@ -108,26 +110,25 @@
         ?>
 			</a>
 			<span class="nombre"><?php echo $full_name; ?></span>
-			<a class="editar">Editar perfil</a>
-			<!--buscar otra manera para el hr-->
-			<hr color="#161717" >
+			<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
+
 			<div class="other-options">
 				<ul class="lista">
-					<a href="#"><li> <span>4,7</span> <img src="puntuacion.png" class="icono" alt="iconos" /> Puntuacion</li></a>
-					<a href="#"><li> <span>4</span> <img src="ruta.png" class="icono" alt="iconos" /> Rutas creadas</li></a>
-					<a href="#"><li> <span>2</span> <img src="mensaje.png" class="icono" alt="iconos" /> Mensajes</li></a>
-					<a href="../Php/logout.php"><li><img src="logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
+					<a href="#"><li><span></span><img src="puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
+					<a href="#"><li><span></span><img src="ruta.png" class="icono" alt="iconos" /> Rutas creadas     4</li></a>
+					<a href="#"><li><span></span><img src="mensaje.png" class="icono" alt="iconos" /> Mensajes   8</li></a>
+					<a href="../Php/logout.php"><li><span></span><img src="logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
 			</div>
 			<!--buscar otra manera para el hr-->
 			<hr color="#161717" >
 			<div class="other-options">
 				<ul class="lista">
-					<li>Conectar con facebook </li>
-					<li>Recomendar a un amigo</li>
-					<li>Estadisticas</li>
-					<li>Contacto</li>
-					<li>Ayuda</li>
+					<li><span></span>Conectar con facebook </li>
+					<li><span></span>Recomendar a un amigo</li>
+					<li><span></span>Estadisticas</li>
+					<li><span></span>Contacto</li>
+					<li><span></span>Ayuda</li>
 				</ul>
 			</div>
 		</section>
@@ -270,31 +271,6 @@
 				<button type="submit" >Crear</button>
 			</form>
 		</div>
-
-		<div class="publicaciones" onclick='cerrarMenu();'>
-					<a href="#"><img src="user-real-5.jpg" alt="perfil" /></a>
-					<span class="cupo">
-						3 cupos.
-					</span>
-					<a href="#">
-						<span class="name">
-							Julian Sebastian Pico Jerez  - 15 min
-						</span>
-					</a>
-					<span class="time">
-						En la universidad a las 2:00 pm
-					</span>
-					<span class="ruta" >
-						- Cañaveral / UIS
-					</span>
-					<span class="comentario">
-						Todos los martes a esta misma horaTodos los martes a esta misma hora
-					</span>
-					<div class="botones">
-						<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
-						<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-					</div>
-		</div>
 		<?php
 		//Hace la consulta de todos los recorridos disponibles
 		$sql_ways="SELECT * FROM ways ";
@@ -323,7 +299,7 @@
 								$profile_image_user=$vector_name['profile_image'];
 								$full_name_user=$first_names." ".$last_names;
 								?>
-										<a href="#"><img src="<?php echo $profile_image_user; ?>" alt="perfil" /></a>
+										<a href="#"><img onclick="open_modal()" src="<?php echo $profile_image_user; ?>" alt="perfil" /></a>
 										<span class="cupo">
 											<?php echo $spots; ?> cupos.
 										</span>
@@ -369,6 +345,17 @@
 						}
 				}
 		?>
+		<section onclick="open_modal()" id="modal-window" class="modal-window">
+				<div class="encb">
+					<img src="perfil.png" alt="user imageeeee"/>
+					<span>Nombre usuario</span>
+				</div>
+				<hr>
+				<div class="info-usr">
+					Datos del usuario a mostrar
+				</div>
+
+		</section>
 
 		<script type="text/javascript" src="../JS/main.js"  ></script>
 	</body>

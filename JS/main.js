@@ -11,14 +11,38 @@ function crearRuta(){
 //animacion subir imagen userProfile.php
 function subirImagen(){
 	var uploadFormBox=document.getElementById('profile_Image');
+	var bigBox=document.getElementById('image_box');
 
 	if (uploadFormBox.style.display == 'inline-block') {
 		uploadFormBox.style.display = 'none';
+		bigBox.style.display = 'none';
 	}else {
 		uploadFormBox.style.display = 'inline-block';
+		bigBox.style.display = 'block';
 	}
 }
+function addTransport(){
+	var transportBox=document.getElementById('transport-box');
+	var btntransport=document.getElementById('btn-transp');
 
+	if (transportBox.style.display == 'block') {
+		transportBox.style.display = 'none';
+		btntransport.style.display = 'inline';
+	}else {
+		transportBox.style.display = 'block';
+		btntransport.style.display = 'none';
+	}
+}
+//animacion ventana modal-window
+function open_modal(){
+	var modalwindow=document.getElementById('modal-window');
+
+	if (modalwindow.style.display == 'block') {
+		modalwindow.style.display = 'none';
+	}else {
+		modalwindow.style.display = 'block';
+	}
+}
 //busqueda de paradas en userProfile.php
 	$( function() {
 	 $( "#buscar" ).autocomplete({
