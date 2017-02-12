@@ -167,15 +167,15 @@ ALTER TABLE public.stops OWNER TO deauvece;
 
 CREATE TABLE transports (
     license_plate text NOT NULL,
-    model text NOT NULL,
-    color text NOT NULL,
-    spots text NOT NULL,
+    model text,
     air_conditioner boolean,
     wifi boolean,
-    price numeric NOT NULL,
+    price numeric,
     creation_date timestamp with time zone DEFAULT now(),
     edition_date timestamp with time zone DEFAULT now(),
-    id_user text NOT NULL
+    id_user text NOT NULL,
+    image text,
+    type text
 );
 
 
@@ -436,7 +436,9 @@ STOP38	ACROPOLIS	No hay descripcion	2016-10-15 22:35:05.479084-05	2016-10-15 22:
 -- Data for Name: transports; Type: TABLE DATA; Schema: public; Owner: deauvece
 --
 
-COPY transports (license_plate, model, color, spots, air_conditioner, wifi, price, creation_date, edition_date, id_user) FROM stdin;
+COPY transports (license_plate, model, air_conditioner, wifi, price, creation_date, edition_date, id_user, image, type) FROM stdin;
+CTE124	         Spar gt modelo 2015         	t	t	2500	2017-02-12 18:19:05.054028-05	2017-02-12 18:19:05.054028-05	USR15	../Imagenes/transportImages/transport_image_USR15.jpeg	Camioneta
+fge123	Spar gt modelo 2015	f	t	2500	2017-02-12 16:28:47.088489-05	2017-02-12 16:28:47.088489-05	USR12		Carro
 \.
 
 
@@ -469,9 +471,9 @@ SELECT pg_catalog.setval('user_id_seq', 16, true);
 --
 
 COPY users (id_user, names, last_names, phone, sex, email, password, is_driver, id_u, is_admin, is_verified, creation_date, edition_date, profile_image) FROM stdin;
-USR15	Carlos Andres	Marquez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	f	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg
-USR16	Sergio	Martinez	3183524852	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	f	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg
-USR12	Daniel	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	f	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg
+USR16	 Sergio Andres	Martinez L	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	f	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg
+USR12	Daniel	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	t	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg
+USR15	 Carlos Andres 	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	t	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg
 \.
 
 
