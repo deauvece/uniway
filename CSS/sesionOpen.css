@@ -471,8 +471,8 @@ body{
 		.info-usr ul li {
 			cursor: pointer;
 			padding: 0px;
-			padding-top: 5px;
 			margin: 0px;
+			margin-top: -5px;
 			width: 32%;
 			height: 25px;
 			display: inline-block;
@@ -480,8 +480,12 @@ body{
 			text-transform: uppercase;
 			font-size: 80%;
 		}
-		.info-usr ul li:nth-child(1){
-			color: white;
+		.info-usr .li_underline {
+			position: relative;
+			display: inline-block;
+			top:22px;
+			height: 2px;
+			width: 100%;
 			background-color: #009999;
 		}
 
@@ -558,8 +562,13 @@ body{
 
 /*============================================PROFILE STYLE===================================================*/
 /*============================================NAV BAR PROFILE=================================================*/
+.navProfile {
+	width: 100%;
+	position: absolute;
+}
 .navProfile ul {
 	margin: 0px;
+	margin-left: 270px;
 	background-color: white;
 	padding: 0px;
 	padding-top: 27px;
@@ -594,10 +603,10 @@ body{
 /*============================================BIG CONTAINER=================================================*/
 /*============================================GENERAL INFO STYLE==============================================*/
 .left-section {
-	float: left;
+	position: fixed;
 	background-color: #232626;
 	width: 275px;
-	height: 2300px;
+	height: 100%;
 	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 .logo-section {
@@ -957,7 +966,7 @@ body{
 	}
 /*============================================FORM ADD ROUTES STYLE==============================================*/
 	/*     titulos   */
-	.basicInfo > .title , .userRutesBox > .title , .qualificationsBox> .title{
+	.basicInfo > .title , .userRutesBox > .title , .qualificationsBox> .title , .transportInfo > .title{
 		text-align: left;
 		padding: 10px;
 		padding-left: 20px;
@@ -969,7 +978,7 @@ body{
 		border-bottom-width: 2px;
 		border-color: #E5E5E5;
 	}
-	.basicInfo > .title span ,.userRutesBox > .title span , .qualificationsBox> .title span{
+	.basicInfo > .title span ,.userRutesBox > .title span , .qualificationsBox> .title span , .transportInfo > .title span{
 		display: block;
 		font-size: 75%;
 		font-weight: normal;
@@ -977,33 +986,33 @@ body{
 		margin-bottom: 5px;
 	}
 		/*		informacion basica		*/
-		.basicInfo {
+		.basicInfo , .transportInfo {
+			margin-top: 60px;
 			text-align: right;;
 			box-shadow: 0 0 1px rgba(160,165,168,1);
-			margin-bottom: 20px;
 			background-color: white;
 			border-radius: 3px;
 		}
-			.basicInfo ul {
+			.basicInfo ul , .transportInfo ul {
 				list-style-type: none;
 				padding: 0px;
 				padding-left: 25px;
 				text-align: left;
 			}
-			.basicInfo ul li {
+			.basicInfo ul li , .transportInfo ul li {
 				width: 400px;
 				display: inline-block;
 				margin-bottom: 15px;
 			}
-			.basicInfo ul li:nth-child(2n) {
+			.basicInfo ul li:nth-child(2n), .transportInfo ul li:nth-child(2n) {
 				margin-left: 100px;
 			}
-			.basicInfo ul li label {
+			.basicInfo ul li label , .transportInfo ul li label {
 				font-weight: lighter;
 				font-size: 90%;
 				width: 400px;
 			}
-			.basicInfo ul li input {
+			.basicInfo ul li input, .transportInfo ul li input {
 				display: block;
 				width: 400px;
 				height: 27px;
@@ -1016,12 +1025,12 @@ body{
 				transition: all 0.2s;
 				font-size: 110%;
 			}
-			.basicInfo ul li input:focus{
+			.basicInfo ul li input:focus , .transportInfo ul li input:focus{
 				outline: none;
 				border-color: #292929;
 				height: 25px;
 			}
-			.basicInfo button {
+			.basicInfo button , .transportInfo button {
 				text-align: right;
 				padding: 10px;
 				background-color: #009999;
@@ -1034,32 +1043,32 @@ body{
 				margin-bottom: 15px;
 			}
 		/*   Transporte*/
-		.basicInfo .add-transport-box{
+		.transportInfo {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		.transportInfo .add-transport-box {
 			padding: 15px;
 			text-align: center;
 		}
-		.basicInfo form {
+		.transportInfo form {
 			display: none;
 		}
-
-		.basicInfo input[type="color"] {
-			padding: 0px;
-			height: 35px;
-			width: 55px;
-			margin-left: 175px;
-			margin-right: 175px;
-			border-width: 0px;
-			cursor: pointer;
+		#form-update-transport {
+			display: block;
 		}
-		.basicInfo input[type="radio"] {
+		.basicInfo input[type="radio"] , .transportInfo input[type="radio"] {
 			  display: none;
 		  }
-		  .basicInfo .radio {
+		  .basicInfo .radio, .transportInfo .radio {
 			  position: relative;
 			  z-index: 0;
 			  text-align: center;
 		  }
-		  .basicInfo .radio label {
+		  .basicInfo input[type="file"], .transportInfo input[type="file"] {
+			  display: none;
+		  }
+		  .basicInfo .radio label , .transportInfo .radio label {
 			  width: 100px;
 			  font-size: 14px;
 			  color: gray;
@@ -1073,7 +1082,7 @@ body{
 			  border-radius: 3px;
 			  cursor: pointer;
 		  }
-		  .basicInfo .radio label:before {
+		  .basicInfo .radio label:before , .transportInfo .radio label:before {
 			  background:none;
 			  border: 3px solid #002A2A;
 			  content: "";
@@ -1088,8 +1097,10 @@ body{
 		  .basicInfo .radio input[type="radio"]:checked + label:before{
 			  background-color: #002A2A;
 		  }
-
-		  .basicInfo select {
+		  .transportInfo .radio input[type="radio"]:checked + label:before{
+			  background-color: #002A2A;
+		  }
+		  .basicInfo select, .transportInfo select {
 		  	display: block;
 		  	margin-left: auto;
 		  	margin-right: auto;
@@ -1098,12 +1109,33 @@ body{
 		  	background-color:#F3F3F3;
 		  }
 
-		  .basicInfo select {
+		  .basicInfo select , .transportInfo select{
 			  width: 335px;
 			  padding: 15px;
 			  background-color: #F3F3F3;
 		  }
-
+		  .transportInfo select{
+			  margin-top: 5px;
+			  padding: 7px;
+		  }
+		  .transportInfo img {
+			  border-radius: 5px;
+			  border-bottom-right-radius: 0px;
+			  border-bottom-left-radius: 0px;
+			  margin-top: 10px;
+			  display: block;
+			  width: 420px;
+		  }
+		  #file_label {
+			  text-align: center;
+			  cursor: pointer;
+			  display: block;
+			  color: white;
+			  padding: 10px;
+			  background-color: #009999;
+			  border-bottom-right-radius: 5px;
+			  border-bottom-left-radius: 5px;
+		  }
 		/*   Transporte*/
 
 

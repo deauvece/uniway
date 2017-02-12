@@ -20,7 +20,6 @@ if( $tamano < $tamaño_max){ // Comprovamos el tamaño
           $sql1_update= "UPDATE users SET profile_image='$ruta' WHERE id_user='".$idu."' ";
           $result_img = pg_query($conn,$sql1_update);
           move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $destino . '/' .$cad.'.'.$tipo);  // Subimos el archivo
-
           header("location:../../Sesion/userProfile.php?idu=myProfile");
       }else {
         echo "el tipo de archivo no es de los permitidos";/* Si no es el tipo permitido lo decimos*/

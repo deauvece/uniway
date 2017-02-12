@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-	//prueba de json 9/2/2017
+	//json user query
 	$(".open-modal").click(function(){
 		$.ajax({
-			url: '../Sesion/json_user_query.php',
+			url: '../Php/json_user_query.php',
 			type: 'get',
 			data: {
 				id_user_query: $(this).attr("alt")
@@ -59,6 +59,11 @@ $(document).ready(function () {
 		$("#btn-transp").fadeIn("slow");
 		$("#transport-box").slideUp();
 	});
+	//input file transport image userprofile.php
+	$("#uploadBtn").change(function(){
+		$("#file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
+
+	});
 	//agregar ruta userprofile.php
 	$("#add-route-user").click(function(){
 		$("#addRouteBox").fadeIn();
@@ -90,30 +95,30 @@ $(document).ready(function () {
 	//busqueda de paradas en userProfile.php
 		$( function() {
 		 $( "#buscar" ).autocomplete({
-			 source: 'ajax.php'
+			 source: '../Php/json_stops.php'
 		 });
 		} );
 
 		$( function() {
 			 $( "#buscar2" ).autocomplete({
-				 source: 'ajax.php'
+				 source: '../Php/json_stops.php'
 			 });
 		} );
 
 		$( function() {
 			 $( "#buscar3" ).autocomplete({
-				 source: 'ajax.php'
+				 source: '../Php/json_stops.php'
 			 });
 		 } );
 
 		$( function() {
 			 $( "#buscar4" ).autocomplete({
-				 source: 'ajax.php'
+				 source: '../Php/json_stops.php'
 			 });
 		} );
 		$( function() {
 			 $( "#buscar5" ).autocomplete({
-				 source: 'ajax.php'
+				 source: '../Php/json_stops.php'
 			 });
 		 } );
 

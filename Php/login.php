@@ -24,6 +24,7 @@
 		    $_SESSION['is_driver']= $vector['is_driver'];
 		    $_SESSION['id_university']= $vector['id_u'];
 		    $_SESSION['is_verified']= $vector['is_verified'];
+		    $_SESSION['profile_image']= $vector['profile_image'];
               $_SESSION['activo'] = true;
               $_SESSION['admin'] = $vector['is_admin'];
 

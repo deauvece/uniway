@@ -13,12 +13,9 @@ $is_driver=$_SESSION['is_driver'];
 $id_university=$_SESSION['id_university'];
 $is_verified=$_SESSION['is_verified'];
 $university=$_SESSION['user_university'];
+$rute_img=$_SESSION['profile_image'];
 $university_acr=$_SESSION['user_university_acr'];
 
-$sql_img_account="SELECT profile_image FROM users WHERE id_user='$idu'";
-$result_img_account = pg_query($conn, $sql_img_account);
-$vector_img_account=pg_fetch_array($result_img_account);
-$rute_img= $vector_img_account['profile_image'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +23,7 @@ $rute_img= $vector_img_account['profile_image'];
 		<title>Uniway</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
@@ -50,11 +47,11 @@ $rute_img= $vector_img_account['profile_image'];
 		<!--Nav bar-->
 		<nav class="navFeed" >
 			<div class="left">
-				<img src="logo-name.png" alt="logo"/>
+				<img src="../Imagenes/logo-name.png" alt="logo"/>
 			</div>
 			<div class="center">
 				<a href="#inicio">
-					<img src="logo-only.png" alt="logo"/>
+					<img src="../Imagenes/logo-only.png" alt="logo"/>
 				</a>
 			</div>
 			<!--Menu responsive-->
@@ -92,7 +89,7 @@ $rute_img= $vector_img_account['profile_image'];
 			<!--fin menu responsive-->
 			<div class="right">
 				<a href="userProfile.php?idu=myProfile">
-				<img src="config.png" alt="settings" />
+				<img src="../Imagenes/config.png" alt="settings" />
 				</a>
 			</div>
 		</nav>
@@ -107,10 +104,10 @@ $rute_img= $vector_img_account['profile_image'];
 
 			<div class="other-options">
 				<ul class="lista">
-					<a href="#"><li><span></span><img src="puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
-					<a href="#"><li><span></span><img src="ruta.png" class="icono" alt="iconos" /> Rutas creadas     4</li></a>
-					<a href="#"><li><span></span><img src="mensaje.png" class="icono" alt="iconos" /> Mensajes   8</li></a>
-					<a href="../Php/logout.php"><li><span></span><img src="logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
+					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
+					<a href="#"><li><span></span><img src="../Imagenes/ruta.png" class="icono" alt="iconos" /> Rutas creadas     4</li></a>
+					<a href="#"><li><span></span><img src="../Imagenes/mensaje.png" class="icono" alt="iconos" /> Mensajes   8</li></a>
+					<a href="../Php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
 			</div>
 			<!--buscar otra manera para el hr-->
@@ -155,7 +152,7 @@ $rute_img= $vector_img_account['profile_image'];
 		<button id="btn-add" type="button" name="button">+</button>
 
 		<section class="find">
-			<button id="btn-find" type="button" name="button"> <img src="search.png" alt="" /></button>
+			<button id="btn-find" type="button" name="button"> <img src="../Imagenes/search.png" alt="" /></button>
 			<input class="search" type="text" name="name" placeholder="Busca una ruta!">
 		</section>
 
@@ -303,7 +300,7 @@ if  ($numFilas_ways!=0)
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
 			<div class="encb">
-				<img id="user_img_query" src="perfil.png"  alt="user imageeeee"/>
+				<img id="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
 				<div class="block">
 					<label for="user_name_query">Nombre</label>
 					<span id="user_name_query">Nombre usuario</span>
@@ -328,10 +325,19 @@ if  ($numFilas_ways!=0)
 			</div>
 			<div class="info-usr">
 				<ul>
-					<li>Datos</li>
+					<li><span class="li_underline"></span>Vehículo</li>
 					<li>Rutas</li>
 					<li>Comentarios</li>
 				</ul>
+				<div class="transport-info">
+
+				</div>
+				<div class="routes-info">
+
+				</div>
+				<div class="comments-info">
+
+				</div>
 			</div>
 		</section>
 	</div>

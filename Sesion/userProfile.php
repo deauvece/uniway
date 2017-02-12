@@ -23,11 +23,21 @@ $id_university=$_SESSION['id_university'];
 $is_verified=$_SESSION['is_verified'];
 $university=$_SESSION['user_university'];
 $university_acr=$_SESSION['user_university_acr'];
+$rute_img=$_SESSION['profile_image'];
 
-$sql_img_account="SELECT profile_image FROM users WHERE id_user='$idu'";
-$result_img_account = pg_query($conn, $sql_img_account);
-$vector_img_account=pg_fetch_array($result_img_account);
-$rute_img= $vector_img_account['profile_image'];
+if ($is_driver=='t') {
+	$sql11="SELECT * FROM transports WHERE id_user='$idu'";
+	$result11 = pg_query($conn, $sql11);
+	$vectorTransport=pg_fetch_array($result11);
+
+	$license_plate=$vectorTransport['license_plate'];
+	$model=$vectorTransport['model'];
+	$air_conditioner=$vectorTransport['air_conditioner'];
+	$wifi=$vectorTransport['wifi'];
+	$price=$vectorTransport['price'];
+	$type=$vectorTransport['type'];
+	$image=$vectorTransport['image'];
+}
 
 ?>
 
@@ -37,7 +47,7 @@ $rute_img= $vector_img_account['profile_image'];
 		<title>Uniway / Perfil</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
@@ -51,6 +61,12 @@ $rute_img= $vector_img_account['profile_image'];
 
 	</head>
 	<body>
+		<nav class="navProfile" >
+			<ul>
+				<li> <a href="sesionOpen.php">Ir atrás</a></li>
+				<li> <span>/ Configuración de usuario</span></li>
+			</ul>
+		</nav>
 		<section class="left-section" >
 			<section class="logo-section" >
 				<a href="sesionOpen.php">
@@ -84,26 +100,22 @@ $rute_img= $vector_img_account['profile_image'];
 				</section>
 			</section>
 		</section>
-		<nav class="navProfile" >
-			<ul>
-				<li> <a href="sesionOpen.php">Ir atrás</a></li>
-				<li> <span>/ Configuración de usuario</span></li>
-			</ul>
-		</nav>
+
 		<div class="big_container">
 			<div class="basicInfo">
 				<div class="title">
 					informacion básica
 					<span>Cambia las configuraciones básicas de tu cuenta.</span>
 				</div>
+				<form action="../Php/update-user.php" method="post">
 					<ul>
 						<li>
 							<label for="">Nombres</label>
-							<input type="text" name="name" value=" <?php echo "$name"; ?> ">
+							<input type="text" name="names" value=" <?php echo "$name"; ?> ">
 						</li>
 						<li>
 							<label for="">Apellidos</label>
-							<input type="text" name="name" value="<?php echo "$last_name"; ?>">
+							<input type="text" name="last_names" value="<?php echo "$last_name"; ?>">
 						</li>
 						<li>
 							<label for="">Universidad</label>
@@ -111,24 +123,22 @@ $rute_img= $vector_img_account['profile_image'];
 						</li>
 						<li>
 							<label for="">Sexo</label>
-							<input type="text" name="name" value="<?php echo "$sex"; ?>">
+							<input type="text" name="sex" value="<?php echo "$sex"; ?>">
 						</li>
 						<li>
 							<label for="">Telefono</label>
-							<input type="text" name="name" value="<?php echo "$phone"; ?>">
+							<input type="text" name="phone" value="<?php echo "$phone"; ?>">
 						</li>
 						<li>
 							<label for="">Correo</label>
-							<input type="text" name="name" value="<?php echo "$email"; ?>">
+							<input type="text" name="email" value="<?php echo "$email"; ?>">
 						</li>
-						<li>
-							<label for="">Contraseña</label>
-							<input type="password" name="name" value="">
-						</li>
+						<input type="text" name="id_user" hidden value="<?php echo "$idu"; ?>">
 					</ul>
-					<button type="button" name="button" >Guardar</button>
+					<button type="submit" name="button" >Guardar</button>
+				</form>
 			</div>
-			<div class="basicInfo">
+			<div class="transportInfo">
 				<div class="title">
 					Transporte
 					<span>Agrega información de un vehiculo para compartir tus rutas con los demás usuarios.</span>
@@ -139,15 +149,16 @@ $rute_img= $vector_img_account['profile_image'];
 					<div class="add-transport-box">
 						<button type="button" id="btn-transp"  name="button" >Agregar</button>
 					</div>
-					<form id="transport-box" action="addTransport.php" method="post">
+					<form id="transport-box" action="../Php/addTransport.php" method="post" enctype="multipart/form-data">
+						<input type="text" name="id_user" hidden value="<?php echo "$idu";?>">
 						<ul>
 							<li>
 								<label for="">Placa</label>
-								<input type="text" placeholder="xxx-nnn" name="name" value="">
+								<input type="text" placeholder="xxxnnn ( Sin guiones )" name="license_plate" >
 							</li>
 							<li>
 								<label for="">Tipo de vehiculo</label>
-								<select name="type_transport">
+								<select name="type">
 									<option value="Carro">Carro</option>
 									<option value="Moto">Moto</option>
 									<option value="Camioneta">Camioneta</option>
@@ -157,47 +168,115 @@ $rute_img= $vector_img_account['profile_image'];
 							</li>
 							<li>
 								<label for="">Modelo</label>
-								<input type="text" name="name" value="">
+								<input type="text" name="model">
 							</li>
 							<li>
 								<label for="">Aire acondicionado</label>
 								<div class="radio">
 									<!--M(masculino) F(femenino)-->
-										<input type="radio" id="radio_airs" name="cool_air" value="si" required>
+										<input type="radio" id="radio_airs" name="air_conditioner" value="yes" required>
 										<label for="radio_airs">Si</label>
-										<input type="radio" id="radio_airn" name="cool_air" value="no">
+										<input type="radio" id="radio_airn" name="air_conditioner" value="no">
 										<label for="radio_airn">No</label>
 								</div>
 							</li>
 							<li>
 								<label for="">Precio</label>
-								<input type="text" placeholder="Se recomienda un valor de 2000 COP" name="name" value="">
+								<input type="text" placeholder="Se recomienda un valor de 2000 COP" name="price">
 							</li>
 							<li>
 								<label for="">Wi-fi</label>
 								<div class="radio">
 									<!--M(masculino) F(femenino)-->
-										<input type="radio" id="radio_wfs" name="wifi" value="si" required>
+										<input type="radio" id="radio_wfs" name="wifi" value="yes" required>
 										<label for="radio_wfs">Si</label>
 										<input type="radio" id="radio_wfn" name="wifi" value="no">
 										<label for="radio_wfn">No</label>
 								</div>
 							</li>
 							<li>
-								<label for="">Selecciona el color</label>
-								<input type="color" name="name" value="">
+								<label for="">Foto del vehículo</label>
+								<label id="file_label" for="uploadBtn">Selecciona una foto</label>
+								<input id="uploadBtn" type="file"  name="file" accept="image/*" />
 							</li>
 							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
 						</ul>
 						<button type="button" name="button" id="close-transport"  >Cancelar</button>
-						<button type="button" name="button" >Guardar</button>
+						<button type="submit" name="button" >Guardar</button>
 					</form>
 					<?php
 					}else{
 						//Muestra la informacion del transporte
-						echo "soy conductor";
-					}
-					 ?>
+						?>
+						<form id="form-update-transport" action="../Php/update-transport.php" method="post" enctype="multipart/form-data">
+							<ul>
+								<li>
+									<label for="">Placas</label>
+									<input type="text" disabled name="license_plate" value=" <?php echo "$license_plate";?> ">
+								</li>
+								<li>
+									<label for="">Modelo</label>
+									<input type="text" name="model" value=" <?php echo "$model";?> ">
+								</li>
+								<li>
+									<label for="">Precio</label>
+									<input type="text" name="price" value=" <?php echo "$price";?> ">
+								</li>
+								<li>
+									<label >Tipo </label>
+									<select name="type">
+										<option value="Camioneta"
+										<?php if ($type=="Camioneta") {
+											echo " selected ";
+										}?>>Camioneta</option>
+										<option value="Carro" <?php if ($type=="Carro") {
+											echo " selected ";
+										}?>>Carro</option>
+										<option value="Moto" <?php if ($type=="Moto") {
+											echo " selected ";
+										}?>>Moto</option>
+										<option value="Minivan" <?php if ($type=="Minivan") {
+											echo " selected ";
+										}?>>Minivan</option>
+									</select>
+								</li>
+								<li>
+									<label >Aire acondicionado</label>
+									<select name="air_conditioner">
+										<option value="yes"
+										<?php if ($air_conditioner=="t") {
+											echo " selected ";
+										}?>>Si</option>
+										<option value="no" <?php if ($air_conditioner=="f") {
+											echo " selected ";
+										}?>>No</option>
+									</select>
+								</li>
+								<li>
+									<label >Wi-fi</label>
+									<select  name="wifi">
+										<option value="yes"
+										<?php if ($wifi=="t") {
+											echo " selected ";
+										}?>>Si</option>
+										<option value="no" <?php if ($wifi=="f") {
+											echo " selected ";
+										}?>>No</option>
+									</select>
+								</li>
+								<li>
+									<label >Imagen </label>
+									<img src=" <?php echo "$image"; ?> "/>
+									<label id="file_label" for="uploadBtn">Selecciona una foto</label>
+									<input id="uploadBtn" type="file" name="file" accept="image/*"/>
+								</li>
+							</ul>
+							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
+							<button type="submit" name="button" >Guardar</button>
+						</form>
+<?php
+}
+?>
 
 			</div>
 
@@ -254,31 +333,31 @@ if  ($numFilas_routes!=0)
 				</div>
 				<div class="qualifications">
 					<span class="number">4,7</span>
-					<img src="perfil.png"/>
+					<img src="../Imagenes/perfil.png"/>
 					<span class="name">Julian Andres Perez</span>
 					<span class="comment">Muy buena conductora, siempre llega a tiempo</span>
 				</div>
 				<div class="qualifications">
 					<span class="number">5,0</span>
-					<img src="perfil.png"/>
+					<img src="../Imagenes/perfil.png"/>
 					<span class="name">James Duarte</span>
 					<span class="comment">No sabe manejaaaaaaaaaaaaaaar</span>
 				</div>
 				<div class="qualifications">
 					<span class="number">4,5</span>
-					<img src="perfil.png"/>
+					<img src="../Imagenes/perfil.png"/>
 					<span class="name">Ivonne Paola Hincapié Zárate</span>
 					<span class="comment">Re puntual</span>
 				</div>
 				<div class="qualifications">
 					<span class="number">4,7</span>
-					<img src="perfil.png"/>
+					<img src="../Imagenes/perfil.png"/>
 					<span class="name">Santiago Rendon Patiño</span>
 					<span class="comment"></span>
 				</div>
 				<div class="qualifications">
 					<span class="number">1,0</span>
-					<img src="perfil.png"/>
+					<img src="../Imagenes/perfil.png"/>
 					<span class="name">Javier Rueda</span>
 					<span class="comment">Pesimo servicio, nunca llegó.</span>
 				</div>

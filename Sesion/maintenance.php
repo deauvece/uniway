@@ -13,9 +13,9 @@
 <html>
 	<head>
 		<title>Uniway</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 	</head>
 	<body>
