@@ -1,14 +1,14 @@
 /*==============================GENERAL====================================*/
 body{
 	margin:0px;
-	/*font-family: "Agency FB";*/
-	font-family: arial;
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
 /*===============================Boton ir arriba===============================*/
 .ir-arriba {
-	position: fixed;
-	bottom:20px;
-	right:20px;
+	display: none;
+	position: absolute;
+	bottom:100px;
+	right:50%;
 	cursor: pointer;
 }
 /*=================================NAV====================================*/
@@ -17,14 +17,13 @@ nav {
 	position: fixed;
 	top: 0px;
 	z-index: 1;
-	padding-top:20px;
-	height: 60px;
+	padding-top:15px;
+	height: 55px;
 	font-size: 75%;
 	background-color: white;
 	width: 100%;
-	box-shadow: 0 0 10px;
-	opacity: 0.98;
 	text-align: right;
+	box-shadow:0px 2px 5px #444444;
 }
 
 	nav ul li input {
@@ -39,6 +38,7 @@ nav {
 	}
 	nav .sinmenu {
 		background-color: white;
+		padding-right: 70px;
 	}
 		nav .sinmenu li {
 			min-height: 70px;
@@ -46,13 +46,103 @@ nav {
 			display: inline;
 		}
 		nav .sinmenu li a {
-      color: #006666;
+      		color :black;
 			font-weight: bolder;
 			display: inline;
 			padding: 10px;
 			text-decoration: none;
 			text-transform: uppercase;
 		}
+	#login {
+		background-color: #b72c2c;
+		padding: 10px;
+		border-radius: 3px;
+		box-shadow:  2px 2px 2px 1px #444444;
+		cursor: pointer;
+	}
+		#login a {
+			color: white;
+		}
+	#login-form {
+		z-index: 2;
+		display: none;
+		border-radius: 3px;
+		padding-top: 30px;
+		position: fixed;
+		top: 80px;
+		right: 100px;
+		background-color: white;
+		height: 380px;
+		width: 310px;
+		box-shadow:  7px 7px 20px 1px #242424;
+		text-align: center;
+	}
+	#login-form hr {
+		width: 70%;
+		margin-bottom: 10px;
+	}
+	#login-form img {
+		height: 30px;
+		margin-bottom: 20px;
+	}
+	#login-form input {
+		padding: 15px;
+		width: 250px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #ACAAAA;
+		border-radius: 3px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 10px;
+		background-color:#F3F3F3;
+	}
+	#login-form a {
+		display: block;
+		text-decoration: none;
+		color: #0086BF;
+		margin-top: 5px;
+	}
+	#login-form button {
+		margin-top: 20px;
+		margin-bottom: 10px;
+		border-width: 0px;
+		color: white;
+		border-radius: 3px;
+		background-color: #b72c2c;
+		padding: 10px;
+		width: 270px;
+		cursor: pointer;
+		box-shadow:  2px 2px 2px 1px #444444;
+	}
+/*=================================LOGO====================================*/
+		#logo {
+			position: fixed;
+			z-index: 2;
+			top: -10px;
+			left:30px;
+			background-color: rgba(0, 0, 0, 0);
+			height: 60px;
+			width: 250px;
+			padding-top: 15px;
+			padding-left: 10px;
+			border-radius: 3px;
+			cursor: pointer;
+
+		}
+		#logo a  {
+			z-index: 2;
+			text-decoration: none;
+		}
+		#logo a img {
+			height: 40px;
+		}
+		#logo a img:nth-child(2){
+			padding-top: 10px;
+		}
+
+
 @media (max-width:1024px){
 	nav .sinmenu  {
 		float: right;
@@ -62,7 +152,7 @@ nav {
 		margin-top: 50px;
 		text-align: left;
 		transform: translateX(200%);
-    background-color: #232626;
+    		background-color: #232626;
 		position: relative;
 		z-index: inherit;
 	}
@@ -99,435 +189,159 @@ nav {
 	}
 }
 
-/*=================================LOGO====================================*/
-#logo {
-	position: fixed;
-	top: 15px;
-	left: 20px;
-	z-index: 2;
-}
-#logo a {
-	text-decoration: none;
-}
 
-/*================pagina deherramientas tools.html*/
- .botonCerrar {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 15px;
-	width: 220px;
-	cursor: pointer;
-	background-color: #EBEBEB;
-	border-radius: 5px;
-}
-	.botonCerrar:hover {
-		background: darkgray;
-	}
+
 /*==========================HEADER====================================*/
 header {
-	min-height: 500px;
+	font-family: 'Lato', sans-serif;
+	min-height: 400px;
 	background-image: url("../Imagenes/cover.jpg");
 	padding-top: 250px;
-	padding-left: 30px;
-	padding-right: 30px;
 	text-align: center;
+	box-shadow: inset 0px 0px 20px 0px;
+	text-shadow: 0px 0px 2px #000000;
+
 }
 	header h2 {
+		float: left;
+		margin-top: 250px;
+		margin-left: 30px;
 		color: white;
 		text-transform: uppercase;
 		font-weight: bolder;
 		font-size: 300%;
 	}
 	header p{
-		color: white;
+		float: left;
+		clear: both;
+		display: block;
+		margin-left: 30px;
+		margin-top: -30px;
+		color:  white;
 		font-weight: bolder;
 		font-size: 150%;
 	}
-@media (min-width:1024px) {
-	header{
-		background-image: url("../Imagenes/cover4.png");
-		background-size:  100% 120%;
-	}
-}
-@media (max-width:1024px) {
-	header{
-		background-image: url("../Imagenes/cover4.png");
-		background-size:  100% 100%;
-	}
-}
-@media (max-width:768px) {
-	header{
-		background-image: url("../Imagenes/cover2.jpg");
-		background-size:  100% 100%;
-	}
-}
-@media (max-width:480px) {
-	header{
-		background-image: url("../Imagenes/cover3.png");
-		background-size:  100% 100%;
-		}
-		header h2 {
-			color: white;
-			text-transform: uppercase;
-			font-weight: bolder;
-			font-size: 250%;
-		}
-		header p{
-			font-size: 100%;
-		}
-}
-
 
 /*================================MISION Y VISION===============================*/
 .contenedorM {
+	background-color: #EBEEF0;
 	min-height: 600px;
 	padding: 30px;
 	text-align: center;
 }
 	.contenedorM h2  {
-		color: #006666;
-		text-transform: uppercase;
-		font-size: 200%;
+		color: #3F3F42;
+		font-size: 180%;
 		margin: 70px 0px 50px;
 	}
-		.contenedorM > p {
-			color: darkgrey;
-		}
 			.contenedorM .columnas  .col {
-
+				cursor: pointer;
+				border-radius: 5px;
+				position: relative;
+				background-color: white;
 				display: inline-block;
-				min-height: 300px;
-				max-width: 350px;
-				margin: 30px 50px;
+				height: 300px;
+				width: 280px;
+				margin: 30px 25px;
+				transition: all 0.5s;
+			}
+			.contenedorM .columnas  .col:hover {
+				box-shadow: 2px 2px 4px 0px #68686E;
 			}
 			.contenedorM .columnas  .col h5 {
+				margin-top: 20px;
+				color: #881E1E;
 				font-size: 100%;
 			}
 			.contenedorM .columnas  .col p {
+				padding: 0px 10px;
+				color: #68686E;
+				display: block;
+				height: 100px;
 				text-align: justify;
 			}
-@media (max-width:768px) {
-	.contenedorM .columnas  .col {
-		display: inline-block;
-		margin: 30px 10px;
-	}
-}
-/*============================CUENTA====================================*/
-.cuenta {
-
-	background-color: #006666;
-	padding: 70px 10px;
-
-}
-
-	.registro {
-				background-color:white;
-				color: black;
-				text-align: center;
-				font-size: 70%;
-				border-radius: 5px;
-				max-width: 400px;
-				min-height: 300px;
-				margin-left: auto;
-				margin-right: auto;
-				box-shadow: 0px 0px 100px;
+			.contenedorM .columnas  .col img {
+				border-top-right-radius: 5px;
+				border-top-left-radius: 5px;
+				height: 140px;
+				width: 280px;
 			}
-				.enlaces .registro p {
-					font-size: 150%;
-					padding-top: 30px;
-					height: 100px;
-					}
 
-				.enlaces .registro a {
-					border-radius: 5px;
-					margin: 10px auto;
-					display: block;
-					width: 75%;
-					background-color: #006666;
-					text-decoration: none;
-					color: white;
-					padding: 15px;
-					transition: 0.3s;
-				}
+}
 
-				.enlaces .registro a:hover {
-					font-weight: bold;
-				}
-
-/*================================DATA BASEEE===============================*/
-
-/*menu de opciones*/
 .contenedorFormularios .opciones ul {
-	list-style-type: none;
-	background-color: #002A2A;
-	margin-bottom: 50px;
-	margin-top: -27px;
-	min-height: 10px;
-	margin-left: -10px;
-	margin-right: -10px;
-	text-align: center;
-	padding: 0px;
-}
-	.contenedorFormularios .opciones li {
-		background-color: #002A2A;
-		display: inline-block;
-		width: 23%;
-		min-height: 30px;
-		padding-top: 10px;
-	}
-		.contenedorFormularios .opciones li:hover {
-			background-color: #001515;
-			transition: all 0.4s;
-		}
-.contenedorFormularios .opciones li a {
-	margin-top: 10px;
-	text-decoration: none;
-	color: white;
-	text-transform: uppercase;
-	font-size: 80%;
+	/*afecta register_user.php*/
 }
 
-@media (max-width:480px){
-	.contenedorFormularios .opciones li a {
+.contact-box {
+	display: none;
+	z-index: 3;
+	background-color: lightgrey;
+	background: rgba(0, 0, 0, 0.4);
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 260%;
+	width: 100%;
+}
+	.contact-form {
+		border-radius: 3px;
+		padding: 20px;
+		display: block;
+		margin:125px auto 0 auto;
+		background-color: white;
+		width: 40%;
+	}
+	.contact-form form {
+		margin-top: -25px;
+	}
+	.contact-form label {
+		margin-left: 9%;
 		font-size: 80%;
-		text-transform: none;
 	}
-}
-/*===============*/
-.contenedorFormularios h2 {
-	margin-top: -10px;
-	margin-left: -10px;
-	margin-right: -10px;
-	height: 100px;
-	padding-top: 50px;
-	background-color: #002A2A;
-	text-transform: uppercase;
-	font-size: 200%;
-}
-.contenedorFormularios>p {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-.contenedorFormularios {
-	background-color: #005252;
-	color: white;
-	min-height: 800px;
-	padding: 80px 10px 10px 10px;
-	text-align: center;
-}
-	.contenedorFormularios .columnas p  {
-		padding: 10px;
-		text-align:justify;
-	}
-		.contenedorFormularios .columnas {
-			padding: 10px;
-
-		}
-			/*Para la pagina de database*/
-			.contenedorFormularios .columnas  .col {
-				background-color: white;
-				color: black;
-				border-radius: 5px;
-				display: inline-block;
-				min-height: 200px;
-				width: 250px;
-				margin: 25px 25px;
-				box-shadow: 0px 0px 20px;
-			}
-			.contenedorFormularios .columnas  .col a{
-				text-decoration: none;
-				color: black;
-			}
-			.contenedorFormularios .columnas  .col:hover {
-				transition: all 0.3s;
-				background-color: #EBEBEB;
-				width: 255px;
-				height: 205px;
-			}
-			.contenedorFormularios .columnas .col h5 {
-				font-size:150%;
-				padding-top: 40px;
-			}
-			/*Para la pagina de formularios*/
-			.contenedorFormularios .columnas  .colFormularios {
-				background-color: white;
-				color: black;
-				border-radius: 5px;
-				display: inline-block;
-				min-height: 200px;
-				width: 250px;
-				margin: 25px 25px;
-				box-shadow: 0px 0px 20px;
-			}
-			.contenedorFormularios .columnas  .colFormularios:hover {
-				transition: all 0.3s;
-				background-color: #EBEBEB;
-			}
-			.contenedorFormularios .columnas  .colFormularios a{
-				text-decoration: none;
-				color: black;
-			}
-			.contenedorFormularios .columnas .colFormularios h5 {
-				font-size:150%;
-				padding-top: 40px;
-			}
-			/*Para la pagina de CONSULTAS y para las ELIMINACIONES*/
-			.contenedorFormularios .columnas  .colConsultas {
-				background-color: white;
-				color: black;
-				border-radius: 5px;
-				display: inline-block;
-				min-height: 200px;
-				min-width: 250px;
-				margin: 25px 25px;
-				box-shadow: 0px 0px 20px;
-			}
-			.contenedorFormularios .columnas .colConsultas h5 {
-				font-size:100%;
-				text-transform: uppercase;
-			}
-			.contenedorFormularios .columnas .colConsultas form input {
-				display: block;
-				margin-left: auto;
-				margin-right: auto;
-				width: 220px;
-				text-align: center;
-			}
-			.contenedorFormularios .columnas .colConsultas form input[type="text"] {
-				margin: 15px;
-			}
-			.contenedorFormularios .columnas .colConsultas form .boton {
-				margin-top: 20px;
-				margin-bottom: 20px;
-				padding: 15px;
-				width: 220px;
-				cursor: pointer;
-				background-color: #EBEBEB;
-				border-radius: 5px;
-			}
-				.contenedorFormularios .columnas .colConsultas form .boton:hover {
-					background: darkgray;
-				}
-
-/*=============================PAG CONTACTO============================*/
-.contenedorContact {
-	background-color: #005252;
-	color: white;
-	min-height: 800px;
-	padding: 80px 10px 10px 10px;
-	text-align: center;
-}
-.contenedorContact h2 {
-	margin-top: -10px;
-	margin-left: -10px;
-	margin-right: -10px;
-	height: 100px;
-	padding-top: 50px;
-	background-color: #002A2A;
-	text-transform: uppercase;
-	font-size: 200%;
-}
-	.contenedorContact .container {
-		margin-left: auto;
-		margin-right: auto;
-		min-height: 300px;
-		width: 90%;
-		padding: 20px;
-		text-align: center;
-	}
-	.contenedorContact .container .input {
-		padding: 20px;
-		background-color: #002A2A;
-		border-radius: 5px;
-		display: inline-block;
-		width: 350px;
-	}
-		.contenedorContact .container .input input {
-			width: 310px;
-			margin-bottom: 10px;
-			padding: 20px;
-		}
-		.contenedorContact .container .input textarea {
-			width: 100%;
-		}
-		.contenedorContact .container .input .enviarCorreo {
-			border-radius: 5px;
-			background-color: white;
-			margin-top: 20px;
-			width: 40%;
-			cursor: pointer;
-		}
-		.file {
-			width: 100%;
-		}
-
-	.contenedorContact .container .info {
-		height: 360px;
-		float: right;
-		max-width: 300px;
-		margin-right: 100px;
-		padding: 10px;
-	}
-		.contenedorContact .container .info h3 {
-			font-size: 16px;
-			margin-top: 100px;
-			text-align: justify;
-		}
-		.contenedorContact .container .info a {
-			color: black;
-			text-transform: uppercase;
-			text-decoration: none;
-		}
-@media (max-width:1000px){
-	.contenedorContact .container .input {
+	.contact-form input , textarea {
+		background-color: #F3F3F3;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #B4B4B4;
+		border-radius: 3px;
+		margin: 5px auto;
+		padding: 3px;
 		width: 80%;
-		padding: 20px;
+		display: block;
 	}
-		.contenedorContact .container .input input {
-			width: 80%;
-		}
-		.contenedorContact .container .input textarea {
-			width: 86%;
-			margin-left: 0px;
-			margin-right: 0px;
-		}
+	.contact-form textarea {
+		max-width: 80%;
+		height: 100px;
+		max-height: 120px;
+	}
+	.contact-form input[type="submit"] {
+		margin-top: 25px;
+		color: white;
+		padding: 10px;
+		background-color: #b72c2c;
+		width: 82%;
+	}
+	#close-contact-form {
+		cursor: pointer;
+		color: white;
+		font-weight: bold;
+		font-size: 200%;
+		position: relative;
+		top: -30px;
+		left: 106%;
+	}
 
-	.contenedorContact .container .info {
-		float: none;
-		margin-right: auto;
-		margin-left: auto;
-		height: 30px;
-		margin-bottom: 20px;
-	}
-		.contenedorContact  .container  .info  h3 {
-			display: none;
-		}
-		.contenedorContact  .container  .info  p {
-			display: none;
-		}
-}
-#btn-inicio a {
-	font-weight: bold;
-	background-color: white;
-	margin-top: 20px;
-	padding: 10px 30px;
-	border-radius: 5px;
-	color: #002A2A;
-	text-decoration:none;
-	cursor: pointer;
-}
-@media (max-width:600px){
-	.contenedorContact .container .input textarea {
-		width: 90%;
-	}
-}
-@media (max-width:480px){
-	.contenedorContact .container .input textarea {
-		width: 95%;
-	}
-}
 
 /*=============================LOGIN - INICIAR SESION============================*/
+.contenedorContact {
+	min-height: 576px;
+	background-color: white;
+	color: white;
+	padding: 40px 10px 10px 10px;
+	text-align: center;
+}
+
 
 .contenedorContact .container .login {
 	padding: 20px;
@@ -546,10 +360,10 @@ header {
 		padding: 15px;
 	}
 	.contenedorContact .container .login .botonLogin {
-		border-radius: 2px;
+		border-radius: 3px;
 		color: white;
 		font-size: 100%;
-		background-color: #002A2A;
+		background-color: #921E1E;
 		margin-top: 10px;
 		margin-bottom: 10px;
 		width: 97%;
@@ -560,55 +374,59 @@ header {
 		margin-bottom: 10px;
 		display: block;
 		font-size: 80%;
+		font-weight: bolder;
+		color: #921E1E;
+	}
+	.container .login .title {
 		font-weight: bold;
-		color: black;
+		margin-top: 10px;
+		margin-bottom: 15px;
+		display: block;
+		font-size: 90%;
+		color: grey;
 	}
-@media (max-width:480px){
-		.loginImg {
-			width:300px;
-		}
-		.contenedorContact .container .login {
-			width: 300px;
-		}
-		.contenedorContact .container .login input {
-			width: 260px;
-		}
-}
-@media (max-width:400px){
-
-	.loginImg {
-		width: 250px;
-	}
-	.contenedorContact .container .login {
-		width: 250px;
-	}
-	.contenedorContact .container .login input {
-		width: 210px;
-	}
-}
-@media (max-width:350px){
-
-	.loginImg {
-		width: 100%;
-	}
-	.contenedorContact .container .login {
-		margin-left: -25px;
-		width: 100%;
-	}
-	.contenedorContact .container .login input {
-		width: 230px;
-	}
-}
 /*=============================REGISTER -REGISTRO USUARIO============================*/
-.contenedorContact .container .register {
+.account-login ul {
+	margin-top: 60px;
+	height: 50px;
+	list-style-type: none;
+	padding: 10px 50px 0px 0px;
+	text-align: right;
+	background-color: #F2F2F2;
+	cursor: default;
+}
+.account-login ul li {
+	display: inline-block;
+}
+.account-login ul li:nth-child(2) {
+	margin-left: 20px;
+}
+.account-login ul li a {
+	text-decoration: none;
+}
+.simple-nav {
+	position: absolute;
+	background-color: #921E1E;
+	z-index: 0;
+	padding-top: 0px;
+	height: 60px;
+	box-shadow: 0px 0px 0px;
+}
+.simple-nav img {
+	display: block;
+	margin: 0px auto 10px auto;
+	height: 40px;
+}
+.contenedorContact .register {
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
 	color: black;
 	padding: 20px;
+	margin-top: -40px;
 	background-color: white;
 	border-radius: 5px;
 	display: inline-block;
 }
 .register p {
-	font-family: arial;
 	font-size: 135%;
 	width: 330px;
 }
@@ -628,7 +446,8 @@ header {
 	.register input[type="submit"]{
 		width: 330px;
 		color: white;
-		background-color: #002A2A;
+		border-radius: 3px;
+		background-color: #921E1E;
 	}
 		.register input[type="submit"]:hover{
 			width: 330px;
@@ -676,6 +495,13 @@ header {
 	.sex input[type="radio"]:checked + label:before{
 		background-color: #002A2A;
 	}
+	.termycon {
+		display: block;
+		margin: -30px auto 10px;
+		width: 300px;
+		padding: 20px 0px;
+		text-align: center;
+	}
 @media (max-width:430px) {
 	.contenedorContact {
 		background-color: white;
@@ -687,7 +513,7 @@ header {
 }
 @media (max-width:390px) {
 
-	.contenedorContact .container .register {
+	.contenedorContact  .register {
 		padding: 20px;
 	}
 	.register input , .register p {
@@ -776,8 +602,9 @@ footer {
 }
 
 .copyright {
+	text-align: center;
 	color: white;
 	font-size: 80%;
 	background-color: black;
-	padding: 5px 5px 5px 30px;
+	padding: 5px;
 }

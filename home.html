@@ -2,10 +2,20 @@
 <html lang="es">
 <head>
 	<title>Uniway</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" href="CSS/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
+	<!--jquery-->
+	<script src="JS/jquery-3.1.1.min.js"></script>
+	<script src="JS/jquery-ui/jquery-ui.js"></script>
+	<script src="JS/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="JS/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="JS/jquery-ui/jquery-ui.structure.css">
+	<link rel="stylesheet" type="text/css" href="JS/jquery-ui/jquery-ui.theme.css">
+	<!--Fuente texto-->
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 
 <body>
@@ -25,41 +35,44 @@
 				<label for="btn"> <img src="Imagenes/menu1.png" alt="menu-ham" height="50" width="50" /> </label>
 			</div>
 			<ul class="sinmenu" >
-				<li>
-					<a href="home.html">Inicio</a>
-				</li>
 				<!--
-				<li>
-					<a href="dataBase.html">Data Base</a>
-				</li>
-				-->
 				<li>
 					<a href="contacto.html">Contacto</a>
 				</li>
+				-->
 				<li>
-					<a href="home.html#misionyvision">Quienes somos</a>
+					<a href="register_user.php">Registrarse</a>
 				</li>
-				<li>
-					<a href="home.html#misionyvision">Cómo funciona</a>
-				</li>
-				<li>
-					<a href="login-user.php">Inicia Sesión</a>
+				<li id="login">
+					<a >Iniciar Sesión</a>
 				</li>
 			</ul>
 		</li>
 	</ul>
 </nav>
+<form id="login-form"  action="Php/login.php" method="POST" >
+	<img src="Imagenes/logo-name.png" />
+	<input type="email" name="correo" placeholder="Correo electrónico" required>
+	<input type="password" name="contrasena" placeholder="Contraseña" required>
+	<button type="submit" name="button">Entrar</button>
+	<span><a href="">¿Has olvidado tu contraseña?</a></span>
+	<hr>
+	<span class="title">¿Todavia no tienes una cuenta? Regístrate!</span>
+	<a href="register_user.php">
+	<button type="button" name="button">Registrarse</button>
+	</a>
+</form>
 <!--LOGOOO-->
 <div id="logo">
 	<a href="home.html">
-	<img src="Imagenes/logo-only.png" height="50" />
-	<img src="Imagenes/logo-name.png" height="40" id="nombre" />
+	<img src="Imagenes/logo-only.png" />
+	<img src="Imagenes/logo-name.png" />
 	</a>
 </div>
 
 <!--HEADER-->
 <header>
-	<h2>comparte, conoce, mejora.</h2>
+	<h2>Viaja seguro y rápido</h2>
 	<p>
 		La mejor plataforma para que puedas compartir tu carro con toda la comunidad universitaria.
 	</p>
@@ -68,39 +81,30 @@
 <a name="misionyvision"></a>
 <section class="contenedorM">
 
-	<h2>Nuestra misión y visión.</h2>
-	<p>Conoce sobre nuestras motivaciones y objetivos.</p>
+	<h2>Pertenecer a esta comunidad te traerá muchas ventajas.</h2>
 	<div class="columnas">
 		<div class="col">
-			<div class="imagen">
-				<img src="Imagenes/mission.png" height="120">
-			</div>
-			<h5>Misión</h5>
+			<img src="Imagenes/ahorra2.jpg" >
+			<h5>Ahorra</h5>
 			<p>
-				Incentivar y promover el uso compartido del carro particular entre la comunidad universitaria generando disminución de la congestión vehicular de la ciudad, creación y fortalecimiento de los vinculos sociales y reducción de la contaminación al medio ambiente.
+				Al compartir tu vehiculo con la comunidad puedes generar un ingreso extra que te ayudará con los gastos de tu universidad. <br>
+				<br>
 			</p>
 		</div>
 		<div class="col">
-			<div class="imagen">
-				<img src="Imagenes/vision.png" height="120">
-			</div>
-			<h5>Visión</h5>
+			<img src="Imagenes/confianza.jpg">
+			<h5>Confianza</h5>
 			<p>
-				Dentro de unos años esperamos ser la mejor opción de todas las universidades del pais para movilizarse dentro de sus respectivas ciudades.<br><br><br><br>
+				Solo personas que pertenecen a tu comunidad universitaria pueden prestarte el servicio, no cualquier extraño con posibles malas intenciones.
 			</p>
 		</div>
-	</div>
-</section>
-<!--cuenta-->
-<section class="cuenta">
-	<div class="enlaces">
-		<div class="registro">
+		<div class="col">
+			<img src="Imagenes/conoce.jpg">
+			<h5>Conoce</h5>
 			<p>
-				¿Todavia no tienes una cuenta? <br>
-				Registrate ahora y haz parte de la comunidad universitaria más grande de carpooling
+				Conoce a toda la comunidad, profesores y compañeros, para crear y fortalecer vinculos sociales. <br>
+				<br>
 			</p>
-			<a href="register_user.php">Crea tu cuenta</a>
-			<a href="login-user.php">Inicia sesión</a>
 		</div>
 	</div>
 </section>
@@ -113,7 +117,7 @@
 			¿Tienes alguna pregunta? sientete libre de escribirnos cualquier cosa, recomendaciones, preguntas, criticas, donaciones
 			, regaños, estaremos respondiendo lo más pronto posible!
 		</p>
-		<a href="contacto.html">Escribenos</a>
+		<a id="contact-modal">Escribenos</a>
 	</div>
 	<div class="social">
 		<h3>Encuentranos tambien aquí</h3>
@@ -125,9 +129,27 @@
 		</p>
 	</div>
 </footer>
+
+<div id="contact-box" class="contact-box">
+	<div class="contact-form">
+		<span id="close-contact-form">x</span>
+		<form  action="Php/uploader.php" method="POST" >
+			<label for="nombre-contact">Nombre</label>
+			<input id="nombre-contact" type="text" name="nombre"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
+			<label for="email-contact">Direccion de correo electronico</label>
+			<input id="email-contact" type="email" name="Correo"  required>
+			<label for="asunto-contact">Asunto</label>
+			<input id="asunto-contact" type="text" name="Asunto"  pattern="[a-zA-Z\s]{4,25}" required>
+			<label for="content-contact">Mensaje</label>
+			<textarea id="content-contact" name="comentario" rows="3" cols="10" required pattern="[A-Z0-9\s]{4,250}" ></textarea>
+			<input class="enviarCorreo" type="submit" name="submit" value="Enviar">
+		</form>
+	</div>
+</div>
+
 <!--COPYRIGHT-->
 <section class="copyright">
-	<p>Uniway &copy;2016. All Rights Reserved.<p>
+	<p>Uniway &copy;2017. All Rights Reserved.<p>
 </section>
 </body>
 </html>

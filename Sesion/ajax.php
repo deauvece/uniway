@@ -5,7 +5,7 @@ class Ajax {
   public function Buscar($a){
     //se hace la conexion con la base de datos
     $this->buscador = $a;
-    include("../Php/conec.php");
+    include("../Php/functions.php");
     $conn=conectarse();
     $sql1="SELECT * FROM stops WHERE name LIKE '%$this->buscador%' ";
     $result1 = pg_query($conn, $sql1);

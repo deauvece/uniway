@@ -1,6 +1,6 @@
 <?PHP
 // llamar la funciones
-include("conec.php");
+include("functions.php");
 $conn=conectarse();
 extract($_POST);
 

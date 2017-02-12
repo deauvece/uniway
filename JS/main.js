@@ -1,77 +1,124 @@
-//animacion crear ruta userProfile.php addroute
-function crearRuta(){
-	var formBox=document.getElementById('addRouteBox');
+$(document).ready(function () {
 
-	if (formBox.style.display== 'block') {
-		formBox.style.display = 'none';
-	}else {
-		formBox.style.display = 'block';
-	}
-}
-//animacion subir imagen userProfile.php
-function subirImagen(){
-	var uploadFormBox=document.getElementById('profile_Image');
-	var bigBox=document.getElementById('image_box');
+	//prueba de json 9/2/2017
+	$(".open-modal").click(function(){
+		$.ajax({
+			url: '../Sesion/json_user_query.php',
+			type: 'get',
+			data: {
+				id_user_query: $(this).attr("alt")
+			},
+			dataType: 'json',
+			success: function(array){
+				$("#user_img_query").attr("src", array.profile_image);
+				$("#user_name_query").text(array.full_name);
+				$("#user_university_query").text(array.university_acr);
+				$("#user_email_query").text(array.email);
+				$("#user_phone_query").text(array.phone);
+			}
+		});
 
-	if (uploadFormBox.style.display == 'inline-block') {
-		uploadFormBox.style.display = 'none';
-		bigBox.style.display = 'none';
-	}else {
-		uploadFormBox.style.display = 'inline-block';
-		bigBox.style.display = 'block';
-	}
-}
-function addTransport(){
-	var transportBox=document.getElementById('transport-box');
-	var btntransport=document.getElementById('btn-transp');
+	});
 
-	if (transportBox.style.display == 'block') {
-		transportBox.style.display = 'none';
-		btntransport.style.display = 'inline';
-	}else {
-		transportBox.style.display = 'block';
-		btntransport.style.display = 'none';
-	}
-}
-//animacion ventana modal-window
-function open_modal(){
-	var modalwindow=document.getElementById('modal-window');
 
-	if (modalwindow.style.display == 'block') {
-		modalwindow.style.display = 'none';
-	}else {
-		modalwindow.style.display = 'block';
-	}
-}
-//busqueda de paradas en userProfile.php
-	$( function() {
-	 $( "#buscar" ).autocomplete({
-		 source: 'ajax.php'
-	 });
-	} );
 
-	$( function() {
-		 $( "#buscar2" ).autocomplete({
+	//login user home.html
+	var bin=0;
+		$("#login").click(function(){
+			if (bin==0) {
+				$("#login-form ").fadeIn();
+				bin=1;
+			}else{
+				$("#login-form ").fadeOut();
+				bin=0;
+			}
+		});
+	//contact-form home.html
+	$("#contact-modal").click(function(){
+		$("#contact-box").fadeIn();
+	});
+	$("#close-contact-form").click(function() {
+		$("#contact-box").fadeOut();
+	});
+
+	//crear recorrido sesionopen.php
+	$("#btn-add").click(function(){
+		$("#addRouteBox").fadeIn();
+		$('#timepicker').lolliclock({autoclose:true});
+	});
+	$("#closeAddRoute").click(function(){
+		$("#addRouteBox").fadeOut();
+	});
+
+	//agregar transporte userprofile.php
+	$("#btn-transp").click(function(){
+		$("#btn-transp").css("display", "none");
+		$("#transport-box").slideDown();
+	});
+	$("#close-transport").click(function(){
+		$("#btn-transp").fadeIn("slow");
+		$("#transport-box").slideUp();
+	});
+	//agregar ruta userprofile.php
+	$("#add-route-user").click(function(){
+		$("#addRouteBox").fadeIn();
+	});
+	$("#closeAddRoute").click(function(){
+		$("#addRouteBox").fadeOut();
+	});
+
+	//cambiar imagen userprofile.php
+	$("#little_img").click(function(){
+		$("#image_box").css("display", "inline-block");
+		$("#profile_Image").fadeIn();
+	});
+	$("#cancel_img").click(function(){
+		$("#image_box").fadeOut();
+	});
+
+	//ventana modal sesionopen.php
+    $(".open-modal").click(function(){
+	    $(".modal-box").fadeIn("fast");
+    });
+    $("#modal-box").click(function(){
+	    $(".modal-box").fadeOut("fast");
+    });
+    $("#modal-window").click(function(){
+	    event.stopPropagation();
+    });
+
+	//busqueda de paradas en userProfile.php
+		$( function() {
+		 $( "#buscar" ).autocomplete({
 			 source: 'ajax.php'
 		 });
-	} );
+		} );
 
-	$( function() {
-		 $( "#buscar3" ).autocomplete({
-			 source: 'ajax.php'
-		 });
-	 } );
+		$( function() {
+			 $( "#buscar2" ).autocomplete({
+				 source: 'ajax.php'
+			 });
+		} );
 
-	$( function() {
-		 $( "#buscar4" ).autocomplete({
-			 source: 'ajax.php'
-		 });
-	} );
-	$( function() {
-		 $( "#buscar5" ).autocomplete({
-			 source: 'ajax.php'
-		 });
-	 } );
+		$( function() {
+			 $( "#buscar3" ).autocomplete({
+				 source: 'ajax.php'
+			 });
+		 } );
+
+		$( function() {
+			 $( "#buscar4" ).autocomplete({
+				 source: 'ajax.php'
+			 });
+		} );
+		$( function() {
+			 $( "#buscar5" ).autocomplete({
+				 source: 'ajax.php'
+			 });
+		 } );
+
+});
+
 
 
 
@@ -89,52 +136,5 @@ function open_modal(){
 		}
 		else {
 			document.getElementsByClassName('sinmenu')[0].style.webkitTransform = 'translateX(200%)';
-		}
-	}
-//Amimaciones del menu desplegable INICIO
-
-
-
-//Animacion cambio de opcion en la pagina del perfil
-	var datosLabel = document.getElementById("datosLabel");
-	var redesLabel = document.getElementById("redesLabel");
-	var calificacionesLabel = document.getElementById("calificacionesLabel");
-
-	var vectorBasicInfo = document.getElementsByClassName('basicInfo');
-	var vectorRutes = document.getElementsByClassName('userRutesBox');
-	var vectorCalificaciones = document.getElementsByClassName('qualificationsBox');
-	var i,j,k,m;
-
-	datosLabel.onclick=function(){
-		for (i = 0; i < vectorBasicInfo.length; i++) {
-			vectorBasicInfo[i].style.display="block";
-		}
-		for (j = 0; j < vectorRutes.length; j++) {
-			vectorRutes[j].style.display="none";
-		}
-		for (k = 0; k < vectorCalificaciones.length; k++) {
-			vectorCalificaciones[k].style.display="none";
-		}
-	}
-	rutasLabel.onclick=function(){
-		for (i = 0; i < vectorBasicInfo.length; i++) {
-			vectorBasicInfo[i].style.display="none";
-		}
-		for (j = 0; j < vectorRutes.length; j++) {
-			vectorRutes[j].style.display="block";
-		}
-		for (k = 0; k < vectorCalificaciones.length; k++) {
-			vectorCalificaciones[k].style.display="none";
-		}
-	}
-	calificacionesLabel.onclick=function(){
-		for (i = 0; i < vectorBasicInfo.length; i++) {
-			vectorBasicInfo[i].style.display="none";
-		}
-		for (j = 0; j < vectorRutes.length; j++) {
-			vectorRutes[j].style.display="none";
-		}
-		for (k = 0; k < vectorCalificaciones.length; k++) {
-			vectorCalificaciones[k].style.display="block";
 		}
 	}

@@ -1,29 +1,49 @@
 <?php
-		//se comprueba si ha iniciado sesion
-		session_start();
-		if ($_SESSION['activo'] == false) {
-			header("location:../login-user.php?errorSesion=si");
-		}else {
-			$name = $_SESSION['id_nombre_usuario'] ;
-			$last_name = $_SESSION['id_apellido_usuario'] ;
-			$full_name= $name ." ". $last_name;
-			$idu=$_SESSION['id_usuario'] ;
-		}
-		if ($_SESSION['admin']=='f') {
-			header("location:maintenance.php");
-			exit();
-		}
+include("../Php/functions.php"); //check the user type
+checkLogin();
+$conn=conectarse();
+//datos de usuario
+$idu=$_SESSION['id_usuario'];
+$name=$_SESSION['id_nombre_usuario'];
+$last_name=$_SESSION['id_apellido_usuario'];
+$phone=$_SESSION['user_phone'];
+$sex=$_SESSION['user_sex'];
+$email=$_SESSION['user_email'];
+$is_driver=$_SESSION['is_driver'];
+$id_university=$_SESSION['id_university'];
+$is_verified=$_SESSION['is_verified'];
+$university=$_SESSION['user_university'];
+$university_acr=$_SESSION['user_university_acr'];
+
+$sql_img_account="SELECT profile_image FROM users WHERE id_user='$idu'";
+$result_img_account = pg_query($conn, $sql_img_account);
+$vector_img_account=pg_fetch_array($result_img_account);
+$rute_img= $vector_img_account['profile_image'];
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Uniway</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
+
+		<script src="../JS/jquery-3.1.1.min.js"></script>
+		<script src="../JS/jquery-ui/jquery-ui.js"></script>
+		<script src="../JS/main.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.structure.css">
+		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.theme.css">
+
+		<script src="../JS/lolliclock.js"></script>
+		<link rel="stylesheet" type="text/css" href="../JS/lolliclock.css">
+
+
+
 	</head>
 	<body>
 		<a name="inicio"></a>
@@ -47,28 +67,12 @@
 					<ul class="sinmenu" >
 						<li>
 							<a href="userProfile.php?idu=myProfile">
-								<?php
-									//consulta de datos
-									include("../Php/conec.php");
-									$conn=conectarse();
-				          //saber si el usuario ya ha cambiado la imagen de perfil predeterminada
-				          $sql1_image="SELECT profile_image FROM users WHERE id_user='$idu'";
-				          $result1_image = pg_query($conn, $sql1_image);
-				          $vector_img=pg_fetch_array($result1_image);
-				          $rute_img=$vector_img['profile_image'];
-				          if ($rute_img==NULL) {
-				            //si no la ha cambiado se pone la predeterminada
-				            ?><img 	src="perfil.png" alt="user imageeeee"/><?php
-				          }else{
-				            //si la cambió, se busca por el id del usuario en la ruta predeterminada
-				            ?><img 	src="<?php echo $rute_img;?>" alt="" /><?php
-				          }
-				        ?>
+								<img 	src="<?php echo $rute_img;?>" alt="" />
 							</a>
 							<span> <?php echo $name; ?></span>
 						</li>
 						<li>
-							<a href="#">Configuracion</a>
+							<a href="userProfile.php?idu=myProfile">Configuracion</a>
 						</li>
 						<li>
 							<a href="#">Mensajes</a>
@@ -87,27 +91,16 @@
 			</ul>
 			<!--fin menu responsive-->
 			<div class="right">
+				<a href="userProfile.php?idu=myProfile">
 				<img src="config.png" alt="settings" />
+				</a>
 			</div>
 		</nav>
 
 		<!--options section (left)-->
 		<section class="options">
 			<a href="userProfile.php?idu=myProfile">
-				<?php
-          //saber si el usuario ya ha cambiado la imagen de perfil predeterminada
-          $sql1_image="SELECT profile_image FROM users WHERE id_user='$idu'";
-          $result1_image = pg_query($conn, $sql1_image);
-          $vector_img=pg_fetch_array($result1_image);
-          $rute_img=$vector_img['profile_image'];
-          if ($rute_img==NULL) {
-            //si no la ha cambiado se pone la predeterminada
-            ?><img 	src="perfil.png" alt="user imageeeeee"/><?php
-          }else{
-            //si la cambió, se busca por el id del usuario en la ruta predeterminada
-            ?><img 	src="<?php echo $rute_img;?>" alt="" /><?php
-          }
-        ?>
+				<img src="<?php echo $rute_img;?>" alt="" />
 			</a>
 			<span class="nombre"><?php echo $full_name; ?></span>
 			<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
@@ -135,40 +128,8 @@
 
 
 		<!--recomended section (right)-->
-		<section class="recomendados">
-			<span class="title" >Conductores más activos:</span>
-				<a href="#">
-					<div class="bloque">
-						<img src="user-real-4.jpg" alt="" />
-						<span class="name">  Fernando Pérez </span>
-					</div>
-				</a>
-				<a href="#">
-					<div class="bloque">
-						<img src="user-real-2.jpg" alt="" />
-						<span class="name">  Vivianne Cadena </span>
-					</div>
-				</a>
-				<a href="#">
-					<div class="bloque">
-						<img src="user-real-1.jpg" alt="" />
-						<span class="name">  Julieth Esparragoza </span>
-					</div>
-				</a>
-				<a href="#">
-					<div class="bloque">
-						<img src="user-real-0.jpg" alt="" />
-						<span class="name">  María Acevedo </span>
-					</div>
-				</a>
-				<a href="#">
-					<div class="bloque">
-						<img src="user-real-3.jpg" alt="" />
-						<span class="name">  Julian Puentes </span>
-					</div>
-				</a>
-
-
+		<section class="news">
+			<span class="title" >Seccion de noticias</span>
 		</section>
 		<!--ads section (right)-->
 		<section class="ads">
@@ -191,7 +152,7 @@
 
 
 		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
-		<button id="btn-add" onclick="crearRuta()" type="button" name="button">+</button>
+		<button id="btn-add" type="button" name="button">+</button>
 
 		<section class="find">
 			<button id="btn-find" type="button" name="button"> <img src="search.png" alt="" /></button>
@@ -200,54 +161,56 @@
 
 
 		<div id="addRouteBox">
-			<form action="../Php/addWay.php" method="post" id="addRoute">
-				<button type="button" id="closeAddRoute" onclick="crearRuta()" > X </button>
+			<form  action="../Php/addWay.php" method="post" id="addRoute">
+				<button type="button" id="closeAddRoute" > X </button>
 				<p>
 					Publica un recorrido.
 				</p>
 				<input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
 				<span id="commentTitle" >Selecciona una de tus rutas:</span>
-				<?php
-				//consulta las rutas del usuario y las muestra como opcion
-				$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
-        $result_routes = pg_query($conn, $sql_routes);
-        $numFilas_routes = pg_num_rows($result_routes);
-				$contador=1;
-				if  ($numFilas_routes!=0)
-           {
-                while($vector_routes=pg_fetch_array($result_routes))
-                {
-									$id_ruta= $vector_routes['id_route'];
-									?>
-									<div class="rutaXBox">
-										<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
-										<label for="ruta<?php echo $contador; ?>"></label>
-										<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
-										<option value="" selected >Ruta <?php echo $contador; ?></option>
-									  <?php
-										//se imprimen las paradas
-										$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
-	                  $result_stops = pg_query($conn, $sql_stops);
-										while($vector_stops=pg_fetch_array($result_stops))
-	                  {
-	                    $id_parada=$vector_stops['id_stop'];
-	                    //selecciono el nombre de cada parada
-	                    $sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
-	                    $result_allstops = pg_query($conn, $sql_allstops);
-	                    while($vector_allstops=pg_fetch_array($result_allstops))
-	                    {
-	                      $nameStop=$vector_allstops['name'];
-	                      ?><option value="<?php echo $nameStop; ?>" disabled ><?php echo $nameStop; ?></option><?php
-	                    }
-	                  }
-										 ?>
-										 </select>
-									</div>
-									<?php
-								$contador=$contador + 1;
-								}
-						}
-				?>
+<?php
+//consulta las rutas del usuario y las muestra como opcion
+$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+$result_routes = pg_query($conn, $sql_routes);
+$numFilas_routes = pg_num_rows($result_routes);
+$contador=1;
+if  ($numFilas_routes!=0)
+{
+	while($vector_routes=pg_fetch_array($result_routes))
+	{
+		$id_ruta= $vector_routes['id_route'];
+		?>
+			<div class="rutaXBox">
+			<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
+			<label for="ruta<?php echo $contador; ?>"></label>
+			<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
+			<option value="" selected >Ruta <?php echo $contador; ?></option>
+		<?php
+		//se imprimen las paradas
+		$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
+		$result_stops = pg_query($conn, $sql_stops);
+		while($vector_stops=pg_fetch_array($result_stops))
+		{
+			$id_parada=$vector_stops['id_stop'];
+			//selecciono el nombre de cada parada
+			$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
+			$result_allstops = pg_query($conn, $sql_allstops);
+			while($vector_allstops=pg_fetch_array($result_allstops))
+			{
+				$nameStop=$vector_allstops['name'];
+				?><option value="<?php echo $nameStop; ?>" disabled ><?php echo $nameStop; ?></option><?php
+			}
+		}
+		?>
+		</select>
+		</div>
+		<?php
+		$contador=$contador + 1;
+	}
+}else{
+	echo "No hay rutas disponibles";
+}
+?>
 				<span id="commentTitle" >Selecciona los cupos disponibles:</span>
 				<select name="spots" >
 					<option value="1">1 cupo</option>
@@ -256,7 +219,7 @@
 					<option value="4" selected >4 cupos</option>
 				</select>
 				<span id="commentTitle" >Selecciona una hora:</span>
-				<input type="time" name="time" required>
+				<input id="timepicker" type="text" name="timepicker" required>
 
 				<div class="finish_start">
 					<span>El recorrido comienza o termina en la universidad</span>
@@ -271,92 +234,106 @@
 				<button type="submit" >Crear</button>
 			</form>
 		</div>
-		<?php
-		//Hace la consulta de todos los recorridos disponibles
-		$sql_ways="SELECT * FROM ways ";
-		$result_ways= pg_query($conn, $sql_ways);
-		$numFilas_ways = pg_num_rows($result_ways);
-		$cont_ways=1;
-		if  ($numFilas_ways!=0)
-			 {
-						while($vector_ways=pg_fetch_array($result_ways))
-						{
-							//datos de cada recorrido
-							$id_way=$vector_ways['id_way'];
-							$hour=$vector_ways['hour'];
-							$id_user_w=$vector_ways['id_user'];
-							$id_route=$vector_ways['id_route'];
-							$spots=$vector_ways['spots'];
-							$touniversity=$vector_ways['touniversity'];
-							?>
-							<div class="publicaciones" onclick='cerrarMenu();'>
-								<?php
-								$sql1_name="SELECT names, last_names, profile_image FROM users WHERE id_user='$id_user_w'";
-								$result1_name = pg_query($conn, $sql1_name);
-								$vector_name=pg_fetch_array($result1_name);
-								$first_names=$vector_name['names'];
-								$last_names=$vector_name['last_names'];
-								$profile_image_user=$vector_name['profile_image'];
-								$full_name_user=$first_names." ".$last_names;
-								?>
-										<a href="#"><img onclick="open_modal()" src="<?php echo $profile_image_user; ?>" alt="perfil" /></a>
-										<span class="cupo">
-											<?php echo $spots; ?> cupos.
-										</span>
-										<a href="#">
-											<span class="name">
-												<?php
-												echo $full_name_user;
-												?>
-											</span>
-										</a>
-										<span class="time">
-											<?php
-											$sql1_goto="SELECT touniversity, hour FROM ways WHERE id_way='$id_way'";
-											$result1_goto = pg_query($conn, $sql1_goto);
-											$vector_goto=pg_fetch_array($result1_goto);
-											$gotouniversity=$vector_goto['touniversity'];
-											$hour=$vector_goto['hour'];
-											if ($gotouniversity=="false") {
-												?>Saliendo de la universidad a las <?php echo $hour;
-											}else{
-												?>En la universidad a las <?php echo $hour;
-											}
-											?>
-										</span>
-										<span class="ruta" >
-											- Cañaveral / UIS
-										</span>
-										<span class="comentario">
-											<?php
-											$sql1_comm="SELECT comment FROM ways WHERE id_way='$id_way'";
-											$result1_comm= pg_query($conn, $sql1_comm);
-											$vector_comm=pg_fetch_array($result1_comm);
-											$comentario=$vector_comm['comment'];
-											echo $comentario;
-											?>
-										</span>
-										<div class="botones">
-											<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
-											<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
-										</div>
-							</div>
-							<?php
+<?php
+//Hace la consulta de todos los recorridos disponibles
+$sql_ways="SELECT * FROM ways ";
+$result_ways= pg_query($conn, $sql_ways);
+$numFilas_ways = pg_num_rows($result_ways);
+$cont_ways=1;
+if  ($numFilas_ways!=0)
+	 {
+		while($vector_ways=pg_fetch_array($result_ways))
+		{
+			//datos de cada recorrido
+			$id_way=$vector_ways['id_way'];
+			$hour=$vector_ways['hour'];
+			$id_user_w=$vector_ways['id_user'];
+			$id_route=$vector_ways['id_route'];
+			$spots=$vector_ways['spots'];
+			$touniversity=$vector_ways['touniversity'];
+			//datos del usuario que publica
+			$sql1_name="SELECT names, last_names, profile_image FROM users WHERE id_user='$id_user_w'";
+			$result1_name = pg_query($conn, $sql1_name);
+			$vector_name=pg_fetch_array($result1_name);
+			$first_names=$vector_name['names'];
+			$last_names=$vector_name['last_names'];
+			$profile_image_user=$vector_name['profile_image'];
+			$full_name_user=$first_names." ".$last_names;
+			//datos del recorrido publicado
+			$sql1_goto="SELECT touniversity, hour, comment FROM ways WHERE id_way='$id_way'";
+			$result1_goto = pg_query($conn, $sql1_goto);
+			$vector_goto=pg_fetch_array($result1_goto);
+			$gotouniversity=$vector_goto['touniversity'];
+			$hour=$vector_goto['hour'];
+			$comentario=$vector_goto['comment'];
+?>
+			<div class="publicaciones" onclick='cerrarMenu();'>
+					<img class="open-modal"  src="<?php echo $profile_image_user; ?>" alt="<?php echo $id_user_w; ?>" />
+					<span class="cupo">
+						<?php echo $spots; ?> cupos.
+					</span>
+					<a href="#">
+						<span class="name">
+							<?php echo $full_name_user;?>
+						</span>
+					</a>
+					<span class="time">
+						<?php
+						if ($gotouniversity=="false") {
+							echo "Saliendo de la universidad a las ",$hour;
+						}else{
+							echo "En la universidad a las ",$hour;
 						}
-				}
-		?>
-		<section onclick="open_modal()" id="modal-window" class="modal-window">
-				<div class="encb">
-					<img src="perfil.png" alt="user imageeeee"/>
-					<span>Nombre usuario</span>
+						?>
+					</span>
+					<span class="ruta" >
+						- Cañaveral / UIS
+					</span>
+					<span class="comentario">
+						<?php echo $comentario;?>
+					</span>
+					<div class="botones">
+						<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
+						<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+					</div>
+			</div>
+<?php
+}}//cierra las llaves del while e if
+?>
+	<div id="modal-box" class="modal-box">
+		<section   id="modal-window" class="modal-window">
+			<div class="encb">
+				<img id="user_img_query" src="perfil.png"  alt="user imageeeee"/>
+				<div class="block">
+					<label for="user_name_query">Nombre</label>
+					<span id="user_name_query">Nombre usuario</span>
 				</div>
-				<hr>
-				<div class="info-usr">
-					Datos del usuario a mostrar
+				<div class="block">
+					<label for="user_university_query">Universidad</label>
+					<span id="user_university_query" >Universidad UIS</span>
+				</div>
+				<div class="block">
+					<label for="user_score">Calificacion</label>
+					<span id="user_score">4.5</span>
+				</div>
+				<div class="block">
+					<label for="user_email_query">Correo</label>
+					<span id="user_email_query">correo@ejemplo.com</span>
+				</div>
+				<div class="block">
+					<label for="user_phone_query">telefono</label>
+					<span id="user_phone_query">3183524157</span>
 				</div>
 
+			</div>
+			<div class="info-usr">
+				<ul>
+					<li>Datos</li>
+					<li>Rutas</li>
+					<li>Comentarios</li>
+				</ul>
+			</div>
 		</section>
-
-		<script type="text/javascript" src="../JS/main.js"  ></script>
+	</div>
 	</body>
 </html>

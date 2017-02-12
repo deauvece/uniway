@@ -23,11 +23,7 @@
               $_SESSION['activo'] = true;
               $_SESSION['admin'] = $vector['is_admin'];
               if($vector['is_admin']=='t') {
-                  echo '{ "status":';
-                      echo '"OK"';
-                          echo ', "id":'+$vector['is_admin'];
-                      echo '"ERROR"';
-                  echo '}';
+                header("location:../Sesion/sesionOpen.php");
               }else {
                 header("location:../Sesion/maintenance.php");
               }

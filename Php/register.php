@@ -1,6 +1,6 @@
 <?PHP
 extract($_POST);
-include("conec.php");
+include("functions.php");
 include("hash_pass.php");
 $conn=conectarse();
 //comprueba que no exista el correo electornico

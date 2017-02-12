@@ -1,5 +1,5 @@
 <?php
-include("../../Php/conec.php");
+include("../../Php/functions.php");
 $conn=conectarse();
 extract($_POST);
 //ide del usuario para el nombre de la imagen a subir

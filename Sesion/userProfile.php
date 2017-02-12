@@ -1,60 +1,33 @@
 <?php
-//se comprueba si ha iniciado sesion
-session_start();
-if ($_SESSION['activo'] == false) {
-  header("location:../login-user.php?errorSesion=si");
-}else {
-  $name = $_SESSION['id_nombre_usuario'] ;
-  $last_name = $_SESSION['id_apellido_usuario'] ;
-  $full_name= $name ." ". $last_name;
-}
-if ($_SESSION['admin']=='f') {
-  header("location:maintenance.php");
-  exit();
-}
-	// Activar errores
-  ini_set('display_errors', 'On');
-  ini_set('display_errors', 1);
-	//consulta del id para obtener todos los datos
-	//id obtenido por la url
-	$var=$_GET["idu"];
-	if ($var=='myProfile') {
-		$idu=$_SESSION['id_usuario'] ;
-	}else{
-		$idu=$var;
-	}
-	//consulta de datos
-	include("../Php/conec.php");
-	$conn=conectarse();
-	$sql1="SELECT * FROM users WHERE id_user='$idu'";
-	$result1 = pg_query($conn, $sql1);
-	$numFilas = pg_num_rows($result1);
-	if  ($numFilas!=0)
-     {
-          if ($vector=pg_fetch_array($result1))
-          {
-	          $name=$vector["1"];
-	          $last_name=$vector["2"];
-						$full_name = $name." ".$last_name;
-						$phone=$vector["3"];
-						$sex=$vector["4"];
-						$email=$vector["5"];
-						$is_driver=$vector["7"];
-						//id de la universidad
-						$id_university=$vector["8"];
-						$is_verified=$vector["10"];
+// Activar errores
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
 
+include("../Php/functions.php"); //check the user type
+checkLogin();
 
-						$sql1="SELECT * FROM universities WHERE id_u='$id_university'";
-						$result1 = pg_query($conn, $sql1);
-						$vector=pg_fetch_array($result1);
-						$university= $vector["name"];
-						$university_acr= $vector["acronym"];
+//consulta del id para obtener todos los datos
+$var=$_GET["idu"];
+if ($var=='myProfile') {	$idu=$_SESSION['id_usuario'] ;
+}else{$idu=$var;}
 
-					}
-	}else {
-		echo "No hay filas en el resultado";
-	}
+//user info
+$conn=conectarse();
+$name=$_SESSION['id_nombre_usuario'];
+$last_name=$_SESSION['id_apellido_usuario'];
+$phone=$_SESSION['user_phone'];
+$sex=$_SESSION['user_sex'];
+$email=$_SESSION['user_email'];
+$is_driver=$_SESSION['is_driver'];
+$id_university=$_SESSION['id_university'];
+$is_verified=$_SESSION['is_verified'];
+$university=$_SESSION['user_university'];
+$university_acr=$_SESSION['user_university_acr'];
+
+$sql_img_account="SELECT profile_image FROM users WHERE id_user='$idu'";
+$result_img_account = pg_query($conn, $sql_img_account);
+$vector_img_account=pg_fetch_array($result_img_account);
+$rute_img= $vector_img_account['profile_image'];
 
 ?>
 
@@ -62,16 +35,19 @@ if ($_SESSION['admin']=='f') {
 <html>
 	<head>
 		<title>Uniway / Perfil</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
-		<link rel="stylesheet" href="jquery-ui.min.css">
-		<script src="../JS/jquery-3.1.1.min.js"></script>
-		<script src="../JS/jquery-ui.min.js"></script>
-		<script src="../JS/main.js"></script>
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
+
+		<script src="../JS/jquery-3.1.1.min.js"></script>
+		<script src="../JS/jquery-ui/jquery-ui.js"></script>
+		<script src="../JS/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.structure.css">
+		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.theme.css">
 
 	</head>
 	<body>
@@ -83,38 +59,14 @@ if ($_SESSION['admin']=='f') {
 				</a>
 			</section>
 			<section class="generalInfo">
-				<?php
-				//saber si el usuario ya ha cambiado la imagen de perfil predeterminada
-				$sql1_image="SELECT profile_image FROM users WHERE id_user='$idu'";
-				$result1_image = pg_query($conn, $sql1_image);
-				$vector_img=pg_fetch_array($result1_image);
-				$rute_img=$vector_img['profile_image'];
-				if ($rute_img==NULL) {
-					//si no la ha cambiado se pone la predeterminada
-					?><img id="little_img" onclick="subirImagen()" src="perfil.png" alt="user image"/><?php
-				}else{
-					//si la cambió, se busca por el id del usuario en la ruta predeterminada
-					?><img id="little_img" onclick="subirImagen()" src="<?php echo $rute_img;?>" alt="" /><?php
-				}
-				?>
+				<img id="little_img" onclick="subirImagen()" src="<?php echo $rute_img;?>"/>
 				<div id="image_box">
 					<!--formulario para subir la imagen-->
 					<form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
-						<img id="big_image" src="<?php echo $rute_img;?>" alt="" />
+						<img id="big_image" src="<?php echo $rute_img;?>"  />
 						<label for="file_input">Elige una imagen</label>
 						<input id="file_input" type="file" name="file" accept="image/*" required>
-						<?php if ($rute_img==NULL) {
-							//si no la ha cambiado se pone la predeterminada
-							?>
-								<button type="submit" name="button">Subir</button>
-							<?php
-						}else{
-							//si la cambió, se busca por el id del usuario en la ruta predeterminada
-							?>
-								<button type="submit" name="button">Actualizar</button>
-							<?php
-						}
-						?>
+						<button type="submit" name="button">Subir</button>
 					     <button id="cancel_img" type="button" onclick="subirImagen()" name="button">x</button>
 					</form>
 				</div>
@@ -125,6 +77,9 @@ if ($_SESSION['admin']=='f') {
 						<li><span></span>Información básica</li>
 						<li><span></span>Transporte</li>
 						<li><span></span>Verificar cuenta</li>
+						<li>
+							<span></span><a href="../Php/logout.php">Cerrar sesión</a>
+						</li>
 					</ul>
 				</section>
 			</section>
@@ -178,13 +133,11 @@ if ($_SESSION['admin']=='f') {
 					Transporte
 					<span>Agrega información de un vehiculo para compartir tus rutas con los demás usuarios.</span>
 				</div>
-				<?php
-				//dos casos, si es conductor o si no lo es
-				if ($is_driver=="f") {
-					//formulario para agregar un transporte
-					?>
+				<?php if ($is_driver=="f") {
+				//formulario para agregar un transporte
+				?>
 					<div class="add-transport-box">
-						<button type="button" id="btn-transp" onclick="addTransport()" name="button" >Agregar</button>
+						<button type="button" id="btn-transp"  name="button" >Agregar</button>
 					</div>
 					<form id="transport-box" action="addTransport.php" method="post">
 						<ul>
@@ -236,65 +189,63 @@ if ($_SESSION['admin']=='f') {
 							</li>
 							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
 						</ul>
-						<button type="button" name="button" onclick="addTransport()" >Cancelar</button>
+						<button type="button" name="button" id="close-transport"  >Cancelar</button>
 						<button type="button" name="button" >Guardar</button>
 					</form>
 					<?php
-				}else{
-					//Muestra la informacion del transporte
-					echo "soy conductor";
+					}else{
+						//Muestra la informacion del transporte
+						echo "soy conductor";
+					}
+					 ?>
+
+			</div>
+
+
+
+
+<div class="userRutesBox">
+	<div class="title">
+		Rutas
+		<span>Crea y elimina las rutas de tus recorridos.</span>
+	</div>
+<?php
+//selecciono todas las rutas del usuario
+$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+$result_routes = pg_query($conn, $sql_routes);
+$numFilas_routes = pg_num_rows($result_routes);
+if  ($numFilas_routes!=0)
+ {
+      while($vector_routes=pg_fetch_array($result_routes))
+      {
+		?> <div class="userRutes"> <?php
+		$id_ruta= $vector_routes['id_route'];
+		//selecciono todas las paradas de esa ruta
+		$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
+		$result_stops = pg_query($conn, $sql_stops);
+		while($vector_stops=pg_fetch_array($result_stops))
+		{
+			$id_parada=$vector_stops['id_stop'];
+			//selecciono el nombre de cada parada
+			$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
+			$result_allstops = pg_query($conn, $sql_allstops);
+			while($vector_allstops=pg_fetch_array($result_allstops))
+				{
+				  $nameStop=$vector_allstops['name'];
+				  ?><span class="stop"><?php echo $nameStop; ?>
+				  </span><?php
 				}
-				 ?>
+		}
+		echo "</div>";
+	 }
+}else { echo "no hay rutas disponibles";  }
+?>
+   <div class="box-button">
+	   <button class="userAddRutes" id="add-route-user" onclick="crearRuta()" type="button" name="button">Agregar</button>
+   </div>
+</div>
 
-			</div>
 
-
-
-			<div class="userRutesBox">
-			<div class="title">
-				Rutas
-				<span>Crea y elimina las rutas de tus recorridos.</span>
-			</div>
-
-		        <?php
-		        $conn=conectarse();
-		        //selecciono todas las rutas del usuario
-		        $sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
-		        $result_routes = pg_query($conn, $sql_routes);
-		        $numFilas_routes = pg_num_rows($result_routes);
-		        if  ($numFilas_routes!=0)
-		           {
-		                while($vector_routes=pg_fetch_array($result_routes))
-		                {
-		                  ?> <div class="userRutes"> <?php
-		                  $id_ruta= $vector_routes['id_route'];
-		                  //selecciono todas las paradas de esa ruta
-		                  $sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
-		                  $result_stops = pg_query($conn, $sql_stops);
-		                  while($vector_stops=pg_fetch_array($result_stops))
-		                  {
-		                    $id_parada=$vector_stops['id_stop'];
-		                    //selecciono el nombre de cada parada
-		                    $sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
-		                    $result_allstops = pg_query($conn, $sql_allstops);
-		                    while($vector_allstops=pg_fetch_array($result_allstops))
-		                    {
-		                      $nameStop=$vector_allstops['name'];
-		                      ?><span class="stop"><?php echo $nameStop; ?>
-		                      </span><?php
-		                    }
-		                  }
-		        ?>
-				<button type="button">Mapa</button>
-				</div>
-				<?php
-                   }
-                   }else { echo "no hay rutas disponibles";  }
-		        ?>
-			   <div class="box-button">
-				   <button class="userAddRutes" onclick="crearRuta()" type="button" name="button">Agregar</button>
-			   </div>
-			</div>
 			<!--calificaciones del usuario-->
 			<div class="qualificationsBox">
 				<div class="title">
@@ -338,27 +289,25 @@ if ($_SESSION['admin']=='f') {
 
 
     <div id="addRouteBox">
-      <form action="../Php/addRoute.php" method="post" id="addRoute">
-        <button type="button" id="closeAddRoute" onclick="crearRuta()" > X </button>
-        <p>
-          Escribe y selecciona una parada.
-        </p>
-        <input type="text" class="paradas" id="buscar" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar2" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar3" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar4" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
-        <input type="text" class="paradas" id="buscar5" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
-        <select name="spots" >
-          <option value="1">1 cupo</option>
-          <option value="2">2 cupos</option>
-          <option value="3">3 cupos</option>
-          <option value="4" selected >4 cupos</option>
-        </select>
-        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
-        <button type="submit" >Crear</button>
-      </form>
+	      <form action="../Php/addRoute.php" method="post" id="addRoute">
+		        <button type="button" id="closeAddRoute" onclick="crearRuta()" > X </button>
+		        <p>
+		          Escribe y selecciona una parada.
+		        </p>
+		        <input type="text" class="paradas" id="buscar" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" id="buscar2" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" id="buscar3" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" id="buscar4" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" id="buscar5" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <select name="spots" >
+		          <option value="1">1 cupo</option>
+		          <option value="2">2 cupos</option>
+		          <option value="3">3 cupos</option>
+		          <option value="4" selected >4 cupos</option>
+		        </select>
+		        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
+		        <button type="submit" >Crear</button>
+	      </form>
     </div>
-
-		<script src="../JS/main.js" > </script>
-	</body>
+</body>
 </html>

@@ -6,49 +6,40 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 
 <body>
 <a name="inicio"></a>
 <!--BARRA DE NAVEGACION-->
-<nav>
-	<ul>
+<nav class="simple-nav">
+	<ul >
 		<li>
-			<input type="checkbox" name="name" id="btn">
-			<div class="label">
-				<label for="btn"> <img src="Imagenes/menu1.png" alt="menu-ham" height="50" width="50" /> </label>
-			</div>
-			<ul class="sinmenu" >
-				<li>
-					<a href="home.html">Inicio</a>
-				</li>
-				<li>
-					<a href="contacto.html">Contacto</a>
-				</li>
-				<li>
-					<a href="home.html#misionyvision">Quienes somos</a>
-				</li>
-			</ul>
+			<a href="home.html">
+				<img src="Imagenes/logo-name-white.png" height="40" id="nombre" />
+			</a>
 		</li>
 	</ul>
 </nav>
-<!--LOGOOO-->
-<div id="logo">
-	<a href="home.html">
-	<img src="Imagenes/logo-only.png" height="50" />
-	<img src="Imagenes/logo-name.png" height="40" id="nombre" />
-	</a>
-</div>
+<section class="account-login">
+<ul>
+	<li>
+		¿Ya tienes una cuenta?
+	</li>
+	<li id="login">
+		<a href="login-user.php">Iniciar Sesión</a>
+	</li>
+</ul>
+</section>
 
 
 <!--MISIONYVISION-->
 <section class="contenedorContact">
-
-	<div class="container">
 		<div class="register">
-			<form  action="Php/register.php" method="POST" >
+			<form autocomplete="off" action="Php/register.php" method="POST" >
 					<p>
-						Registrate y has parte de esta gran comunidad!
+						Ingresa tus datos y has parte de esta gran comunidad!
 					</p>
 					<input type="text" name="names" placeholder="Nombres" required/>
 					<input type="text" name="last_names" placeholder="Apellidos" required>
@@ -63,7 +54,7 @@
 					<select name="id_u"  required>
 					<option value="">Elige tu universidad</option>
 						<?PHP
-						include("Php/conec.php");
+						include("Php/functions.php");
 						$conn=conectarse();
 						$sql1="SELECT * FROM universities";
 						$result = pg_query($conn,$sql1);
@@ -90,18 +81,21 @@
 					<?php
 						}
 					?>
+
 					<input type="password" id="pass1" name="password" placeholder="Contraseña"  required>
 					<!-- <input type="text" id="pass2" name="confirmPassword" placeholder="Confirma tu contraseña" required > -->
-					<input type="submit" value="Registrar">
+					<input type="submit" value="Crear cuenta">
 			</form>
+
 		</div>
-	</div>
-
 </section>
-
+<span class="termycon">
+	Al hacer click en "Crear cuenta", aceptas los Términos y las condiciones
+	de Uniway y la politica de privacidad.
+</span>
 <!--COPYRIGHT-->
 <section class="copyright">
-	<p>Uniway &copy;2016. All Rights Reserved.<p>
+	<p>Uniway &copy;2017. All Rights Reserved.<p>
 </section>
 </body>
 </html>
