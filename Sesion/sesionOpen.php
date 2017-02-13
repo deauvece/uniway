@@ -59,7 +59,7 @@ $university_acr=$_SESSION['user_university_acr'];
 				<li>
 					<input type="checkbox" name="name" id="btn" onclick='menuDesplegable()' >
 					<div class="label">
-						<label for="btn"> <img src="menu1.png" alt="menu-ham" height="50" width="50" /> </label>
+						<label for="btn"> <img src="../Imagenes/menu1.png" alt="menu-ham" height="50" width="50" /> </label>
 					</div>
 					<ul class="sinmenu" >
 						<li>
@@ -96,6 +96,7 @@ $university_acr=$_SESSION['user_university_acr'];
 
 		<!--options section (left)-->
 		<section class="options">
+			<img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/>
 			<a href="userProfile.php?idu=myProfile">
 				<img src="<?php echo $rute_img;?>" alt="" />
 			</a>

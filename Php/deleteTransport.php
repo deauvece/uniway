@@ -4,10 +4,7 @@ include("functions.php");
 $conn=conectarse();
 extract($_POST);
 
-echo "$id_user";
-echo "<br>";
-echo "$license_plate";
-
+//elimina todos los veheiculos relacionados con el usuario, por ahora siempre hay un solo vehuculo
 $sql="DELETE FROM transports WHERE id_user='$id_user'";
 $result = pg_query($conn, $sql);
 
