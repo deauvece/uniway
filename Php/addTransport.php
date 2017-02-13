@@ -24,7 +24,7 @@ if (!$file) {
 	$idu=$id_user;
 	$cad = "transport_image_".$idu;
 	$tamano = $_FILES[ 'file' ][ 'size' ]; // Leemos el tamaño del fichero en bytes
-	$tamaño_max="3000000"; // Tamaño maximo permitido son 3 megabytes
+	$tamaño_max="2000000"; // Tamaño maximo permitido son 2 megabytes
 	if( $tamano < $tamaño_max){ // Comprovamos el tamaño
 		 $destino = '../Imagenes/transportImages' ; // Carpeta donde se guardara
 		 $sep=explode('image/',$_FILES['file']['type']); // Separamos image/

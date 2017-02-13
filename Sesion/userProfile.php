@@ -76,16 +76,6 @@ if ($is_driver=='t') {
 			</section>
 			<section class="generalInfo">
 				<img id="little_img" onclick="subirImagen()" src="<?php echo $rute_img;?>"/>
-				<div id="image_box">
-					<!--formulario para subir la imagen-->
-					<form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
-						<img id="big_image" src="<?php echo $rute_img;?>"  />
-						<label for="file_input">Elige una imagen</label>
-						<input id="file_input" type="file" name="file" accept="image/*" required>
-						<button type="submit" name="button">Subir</button>
-					     <button id="cancel_img" type="button" onclick="subirImagen()" name="button">x</button>
-					</form>
-				</div>
 				<section class="options-left-section">
 					<ul>
 						<li><span></span>Rutas</li>
@@ -196,7 +186,7 @@ if ($is_driver=='t') {
 							</li>
 							<li>
 								<label for="">Foto del vehículo</label>
-								<label id="file_label" for="uploadBtn">Selecciona una foto</label>
+								<label class="file_label" for="uploadBtn">Selecciona una foto</label>
 								<input id="uploadBtn" type="file"  name="file" accept="image/*" />
 							</li>
 							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
@@ -212,15 +202,15 @@ if ($is_driver=='t') {
 							<ul>
 								<li>
 									<label for="">Placas</label>
-									<input type="text" disabled name="license_plate" value=" <?php echo "$license_plate";?> ">
+									<input type="text" disabled name="license_plate" value="<?php echo "$license_plate";?>">
 								</li>
 								<li>
 									<label for="">Modelo</label>
-									<input type="text" name="model" value=" <?php echo "$model";?> ">
+									<input type="text" name="model" value="<?php echo "$model";?>">
 								</li>
 								<li>
 									<label for="">Precio</label>
-									<input type="text" name="price" value=" <?php echo "$price";?> ">
+									<input type="text" name="price" value="<?php echo "$price";?>">
 								</li>
 								<li>
 									<label >Tipo </label>
@@ -266,14 +256,16 @@ if ($is_driver=='t') {
 								</li>
 								<li>
 									<label >Imagen </label>
-									<img src=" <?php echo "$image"; ?> "/>
-									<label id="file_label" for="uploadBtn">Selecciona una foto</label>
+									<img src="<?php echo "$image"; ?>"/>
+									<label class="file_label" for="uploadBtn">Selecciona una foto</label>
 									<input id="uploadBtn" type="file" name="file" accept="image/*"/>
 								</li>
 							</ul>
 							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
+							<button id="delete-button" type="button" name="button" >Eliminar Vehículo</button>
 							<button type="submit" name="button" >Guardar</button>
 						</form>
+
 <?php
 }
 ?>
@@ -373,11 +365,11 @@ if  ($numFilas_routes!=0)
 		        <p>
 		          Escribe y selecciona una parada.
 		        </p>
-		        <input type="text" class="paradas" id="buscar" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" id="buscar2" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" id="buscar3" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" id="buscar4" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" id="buscar5" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
+		        <input type="text" class="paradas" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
 		        <select name="spots" >
 		          <option value="1">1 cupo</option>
 		          <option value="2">2 cupos</option>
@@ -387,6 +379,19 @@ if  ($numFilas_routes!=0)
 		        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
 		        <button type="submit" >Crear</button>
 	      </form>
+		 <form id="delete_transport_form" action="../Php/deleteTransport.php" method="post">
+			 <span>¿Estás seguro que deseas eliminar este vehículo? Toda la información relacionada a este también se eliminará.</span>
+			 <input type="text" disabled name="license_plate" hidden value="<?php echo "$license_plate";?>">
+			 <button type="submit" name="button" >Sí, eliminar</button>
+			 <button id="cancel-delete" type="button" name="button" >No, cancelar</button>
+		 </form>
+			 <!--formulario para subir la imagen-->
+			 <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
+				 <img id="big_image" src="<?php echo $rute_img;?>"  />
+				 <label class="file_label" for="uploadBtn">Selecciona una foto</label>
+				 <input id="uploadBtn" type="file"  name="file" accept="image/*" required/>
+				 <button type="submit" name="button">Subir</button>
+			 </form>
     </div>
 </body>
 </html>

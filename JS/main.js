@@ -44,10 +44,12 @@ $(document).ready(function () {
 	//crear recorrido sesionopen.php
 	$("#btn-add").click(function(){
 		$("#addRouteBox").fadeIn();
+		$("#addRoute").show();
 		$('#timepicker').lolliclock({autoclose:true});
 	});
 	$("#closeAddRoute").click(function(){
 		$("#addRouteBox").fadeOut();
+		$("#addRoute").hide();
 	});
 
 	//agregar transporte userprofile.php
@@ -61,25 +63,59 @@ $(document).ready(function () {
 	});
 	//input file transport image userprofile.php
 	$("#uploadBtn").change(function(){
-		$("#file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
+		$(".file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
 
 	});
-	//agregar ruta userprofile.php
+	//agregar paradas userprofile.php
 	$("#add-route-user").click(function(){
 		$("#addRouteBox").fadeIn();
+		$("#addRoute").show();
 	});
 	$("#closeAddRoute").click(function(){
 		$("#addRouteBox").fadeOut();
+		$("#addRoute").hide();
 	});
+	$("#addRouteBox").click(function(){
+		$("#addRouteBox").fadeOut();
+		$("#addRoute").hide();
+	});
+	$("#addRoute").click(function(){
+ 	    event.stopPropagation();
+     });
+	//eliminar transporte userprofile.php
+	$("#delete-button").click(function(){
+		$("#addRouteBox").fadeIn();
+		$("#delete_transport_form").show();
+	});
+	$("#addRouteBox").click(function(){
+		$("#addRouteBox").fadeOut();
+		$("#delete_transport_form").hide();
+	});
+	$("#cancel-delete").click(function(){
+		$("#addRouteBox").fadeOut();
+		$("#delete_transport_form").hide();
+	});
+	$("#delete_transport_form").click(function(){
+ 	    event.stopPropagation();
+     });
+
 
 	//cambiar imagen userprofile.php
 	$("#little_img").click(function(){
-		$("#image_box").css("display", "inline-block");
-		$("#profile_Image").fadeIn();
+		$("#addRouteBox").fadeIn();
+		$("#profile_Image").show();
 	});
 	$("#cancel_img").click(function(){
-		$("#image_box").fadeOut();
+		$("#addRouteBox").fadeOut();
+		$("#profile_Image").hide();
 	});
+	$("#addRouteBox").click(function(){
+		$("#addRouteBox").fadeOut();
+		$("#profile_Image").hide();
+	});
+	$("#profile_Image").click(function(){
+ 	    event.stopPropagation();
+     });
 
 	//ventana modal sesionopen.php
     $(".open-modal").click(function(){
@@ -94,33 +130,10 @@ $(document).ready(function () {
 
 	//busqueda de paradas en userProfile.php
 		$( function() {
-		 $( "#buscar" ).autocomplete({
-			 source: '../Php/json_stops.php'
-		 });
-		} );
-
-		$( function() {
-			 $( "#buscar2" ).autocomplete({
+			 $( ".paradas" ).autocomplete({
 				 source: '../Php/json_stops.php'
 			 });
-		} );
-
-		$( function() {
-			 $( "#buscar3" ).autocomplete({
-				 source: '../Php/json_stops.php'
-			 });
-		 } );
-
-		$( function() {
-			 $( "#buscar4" ).autocomplete({
-				 source: '../Php/json_stops.php'
-			 });
-		} );
-		$( function() {
-			 $( "#buscar5" ).autocomplete({
-				 source: '../Php/json_stops.php'
-			 });
-		 } );
+		});
 
 });
 

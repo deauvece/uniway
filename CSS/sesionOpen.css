@@ -638,17 +638,6 @@ body{
 		cursor: pointer;
 	}
 
-	#image_box {
-		display: none;
-		background-color: lightgrey;
-		background: rgba(0, 0, 0, 0.4);
-		position: absolute;
-		left: 0;
-		top: 0;
-		height: 260%;
-		width: 100%;
-		z-index: 2;
-	}
 	#profile_Image {
 		height: 350px;
 		width: 300px;
@@ -687,7 +676,7 @@ body{
 			color: black;
 			background-color: #E4E4E4;
 			cursor: pointer;
-			font-size: 100%;
+			font-size: 90%;
 			border-radius: 3px;
 			border-top-right-radius: 0px;
 			border-bottom-right-radius: 0px;
@@ -702,23 +691,12 @@ body{
 			background-color: #009999;
 			color: white;
 			cursor: pointer;
-			font-size: 100%;
+			font-size: 90%;
 			border-radius: 3px;
 			border-width: 0px;
 			margin-top: 20px;
 			border-top-left-radius: 0px;
 			border-bottom-left-radius: 0px;
-		}
-		#profile_Image #cancel_img {
-			color: black;
-			position: fixed;
-			margin: 0px;
-			top: 95px;
-			left: 800px;
-			border-width: 0px;
-			font-size: 130%;
-			font-weight: bold;
-			background: rgba(0, 0, 0, 0.0);
 		}
 
 	.generalInfo .options-left-section ul {
@@ -772,7 +750,7 @@ body{
 	z-index: 2;
 }
 #addRoute {
-	display: block;
+	display: none;
 	margin-left: auto;
 	margin-right: auto;
      margin-top:150px;
@@ -1054,6 +1032,42 @@ body{
 		.transportInfo form {
 			display: none;
 		}
+		#delete_transport_form {
+			border-radius: 3px;
+			display: none;
+			position: fixed;
+			top: 200px;
+			left: 35%;
+			background-color: white;
+			width:350px;
+			height: 210px;
+		}
+			#delete_transport_form span{
+				display: block;
+				text-align: center;
+				height: 80px;
+				padding: 15px;
+				padding-top: 25px;
+			}
+			#delete_transport_form button{
+				cursor: pointer;
+				border-radius: 3px;
+				margin-top: 4px;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				width: 80%;
+				border: 3px solid #009999;
+				color: white;
+				padding: 5px 0px;
+				background-color: #009999;
+				box-shadow: 0px 0px 0px;
+			}
+			#delete_transport_form button:nth-child(3){
+				background-color: #B72C2C;
+				border: 3px solid #B72C2C;
+			}
+
 		#form-update-transport {
 			display: block;
 		}
@@ -1126,7 +1140,7 @@ body{
 			  display: block;
 			  width: 420px;
 		  }
-		  #file_label {
+		  .file_label {
 			  text-align: center;
 			  cursor: pointer;
 			  display: block;
