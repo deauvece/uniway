@@ -128,6 +128,7 @@ $university_acr=$_SESSION['user_university_acr'];
 		<!--recomended section (right)-->
 		<section class="news">
 			<span class="title" >Seccion de noticias</span>
+			<img src="../Imagenes/news.png" width="100%" />
 		</section>
 		<!--ads section (right)-->
 		<section class="ads">
