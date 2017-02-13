@@ -82,6 +82,17 @@ $(document).ready(function () {
 	$("#addRoute").click(function(){
  	    event.stopPropagation();
      });
+
+	/*$("#num_stops").change(function(){
+		var num = $(this).val();
+		$("input").remove(".paradas");
+		var cont=0;
+		for (var i = 1; i <= num ; i++) {
+			$("#spots-select").before( "<input type='text' class='paradas ui-autocomplete-input' name='stop"+i+"' placeholder='Ingresa una parada' autocomplete='off' required >" );
+		}
+	});*/
+
+
 	//eliminar transporte userprofile.php
 	$("#delete-button").click(function(){
 		$("#addRouteBox").fadeIn();

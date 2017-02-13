@@ -144,11 +144,11 @@ if ($is_driver=='t') {
 						<ul>
 							<li>
 								<label for="">Placa</label>
-								<input type="text" placeholder="xxxnnn ( Sin guiones )" name="license_plate" >
+								<input type="text" placeholder="xxxnnn ( Sin guiones )" name="license_plate" required>
 							</li>
 							<li>
 								<label for="">Tipo de vehiculo</label>
-								<select name="type">
+								<select name="type" required>
 									<option value="Carro">Carro</option>
 									<option value="Moto">Moto</option>
 									<option value="Camioneta">Camioneta</option>
@@ -172,7 +172,7 @@ if ($is_driver=='t') {
 							</li>
 							<li>
 								<label for="">Precio</label>
-								<input type="text" placeholder="Se recomienda un valor de 2000 COP" name="price">
+								<input type="text" required placeholder="Se recomienda un valor de 2000 COP" name="price">
 							</li>
 							<li>
 								<label for="">Wi-fi</label>
@@ -312,7 +312,7 @@ if  ($numFilas_routes!=0)
 }else { echo "no hay rutas disponibles";  }
 ?>
    <div class="box-button">
-	   <button class="userAddRutes" id="add-route-user" onclick="crearRuta()" type="button" name="button">Agregar</button>
+	   <button class="userAddRutes" id="add-route-user"  type="button" name="button">Agregar</button>
    </div>
 </div>
 
@@ -361,27 +361,34 @@ if  ($numFilas_routes!=0)
 
     <div id="addRouteBox">
 	      <form action="../Php/addRoute.php" method="post" id="addRoute">
-		        <button type="button" id="closeAddRoute" onclick="crearRuta()" > X </button>
+		        <button type="button" id="closeAddRoute"  > X </button>
 		        <p>
 		          Escribe y selecciona una parada.
 		        </p>
+			   <select id="num_stops" name="num_stops" >
+			          <option value="2">2 paradas</option>
+			          <option value="3">3 paradas</option>
+			          <option value="4">4 paradas</option>
+					<option value="5" selected>5 paradas</option>
+		        </select>
 		        <input type="text" class="paradas" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
 		        <input type="text" class="paradas" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
 		        <input type="text" class="paradas" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
 		        <input type="text" class="paradas" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
 		        <input type="text" class="paradas" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <select name="spots" >
-		          <option value="1">1 cupo</option>
-		          <option value="2">2 cupos</option>
-		          <option value="3">3 cupos</option>
-		          <option value="4" selected >4 cupos</option>
+		        <select id="spots-select" name="spots" >
+			          <option value="1">1 cupo</option>
+			          <option value="2">2 cupos</option>
+			          <option value="3">3 cupos</option>
+			          <option value="4" selected >4 cupos</option>
 		        </select>
 		        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
 		        <button type="submit" >Crear</button>
 	      </form>
 		 <form id="delete_transport_form" action="../Php/deleteTransport.php" method="post">
 			 <span>¿Estás seguro que deseas eliminar este vehículo? Toda la información relacionada a este también se eliminará.</span>
-			 <input type="text" disabled name="license_plate" hidden value="<?php echo "$license_plate";?>">
+			 <input type="text" hidden name="id_user"  value="<?php echo "$idu";?>">
+			 <input type="text" hidden name="license_plate"  value="<?php echo "$license_plate";?>">
 			 <button type="submit" name="button" >Sí, eliminar</button>
 			 <button id="cancel-delete" type="button" name="button" >No, cancelar</button>
 		 </form>

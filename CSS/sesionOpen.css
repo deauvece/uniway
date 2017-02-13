@@ -753,7 +753,7 @@ body{
 	display: none;
 	margin-left: auto;
 	margin-right: auto;
-     margin-top:150px;
+     margin-top:100px;
 	padding: 0px;
 	padding-bottom: 10px;
 	background: rgba(255, 0, 0, 1);
@@ -1063,7 +1063,7 @@ body{
 				background-color: #009999;
 				box-shadow: 0px 0px 0px;
 			}
-			#delete_transport_form button:nth-child(3){
+			#delete_transport_form button:nth-child(4){
 				background-color: #B72C2C;
 				border: 3px solid #B72C2C;
 			}
