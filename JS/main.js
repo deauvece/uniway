@@ -84,6 +84,9 @@ $(document).ready(function () {
 	$("#addRoute").click(function(){
  	    event.stopPropagation();
      });
+	$('.paradas').keyup(function(){
+		$(this).val($(this).val().toUpperCase());
+	});
 
 	/*$("#num_stops").change(function(){
 		var num = $(this).val();

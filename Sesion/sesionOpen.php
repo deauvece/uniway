@@ -31,6 +31,7 @@ $university_acr=$_SESSION['user_university_acr'];
 		<script src="../JS/jquery-3.1.1.min.js"></script>
 		<script src="../JS/jquery-ui/jquery-ui.js"></script>
 		<script src="../JS/main.js"></script>
+		<script src="../JS/ways_query.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.structure.css">
@@ -155,7 +156,7 @@ $university_acr=$_SESSION['user_university_acr'];
 
 		<section class="find">
 			<button id="btn-find" type="button" name="button"> <img src="../Imagenes/search.png" alt="" /></button>
-			<input class="search" type="text" name="name" placeholder="Busca una ruta!">
+			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta!">
 		</section>
 
 
@@ -232,6 +233,9 @@ if  ($numFilas_routes!=0)
 
 				<button type="submit" >Crear</button>
 			</form>
+		</div>
+		<div id="ways_query_results" style="text-align:center">
+
 		</div>
 <?php
 //Hace la consulta de todos los recorridos disponibles
