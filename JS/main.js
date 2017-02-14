@@ -64,7 +64,9 @@ $(document).ready(function () {
 	//input file transport image userprofile.php
 	$("#uploadBtn").change(function(){
 		$(".file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
-
+	});
+	$("#uploadBtn2").change(function(){
+		$(".file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
 	});
 	//agregar paradas userprofile.php
 	$("#add-route-user").click(function(){

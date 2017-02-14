@@ -75,7 +75,7 @@ if ($is_driver=='t') {
 				</a>
 			</section>
 			<section class="generalInfo">
-				<img id="little_img" onclick="subirImagen()" src="<?php echo $rute_img;?>"/>
+				<img id="little_img" src="<?php echo $rute_img;?>"/>
 				<section class="options-left-section">
 					<ul>
 						<li><span></span>Rutas</li>
@@ -392,13 +392,13 @@ if  ($numFilas_routes!=0)
 			 <button type="submit" name="button" >Sí, eliminar</button>
 			 <button id="cancel-delete" type="button" name="button" >No, cancelar</button>
 		 </form>
-			 <!--formulario para subir la imagen-->
-			 <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
-				 <img id="big_image" src="<?php echo $rute_img;?>"  />
-				 <label class="file_label" for="uploadBtn">Selecciona una foto</label>
-				 <input id="uploadBtn" type="file"  name="file" accept="image/*" required/>
-				 <button type="submit" name="button">Subir</button>
-			 </form>
+		 <!--formulario para subir la imagen-->
+		 <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
+			 <img id="big_image" src="<?php echo $rute_img;?>"  />
+			 <label class="file_label" for="uploadBtn2">Selecciona una foto</label>
+			 <input id="uploadBtn2" type="file" name="file2" accept="image/*"/>
+			 <button type="submit">Subir</button>
+		 </form>
     </div>
 </body>
 </html>
