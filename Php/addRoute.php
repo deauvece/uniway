@@ -6,9 +6,9 @@ extract($_POST);
 
 
 //creacion del caracter aleatorio de tamaño CINCOO
-function generateRandomString($length = 10) {
+function generateRandomString($length = 12) {
     //solo letras del alfabeto
-    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
@@ -45,7 +45,8 @@ for ($i=0; $i < 5 ; $i++) {
   $vector_STP_1=pg_fetch_array($result_id_stop_1);
   $id_stp_1=$vector_STP_1['id_stop'];
   //insersion en la tabla compuesta
-  $sql_routes_stops_1="INSERT INTO route_stop (id_route,id_stop) VALUES ('$id_route','$id_stp_1')";
+  $status="sleep";
+  $sql_routes_stops_1="INSERT INTO route_stop (id_route,id_stop,status) VALUES ('$id_route','$id_stp_1','$status')";
   $result_insert_1= pg_query($conn, $sql_routes_stops_1);
 }
 ?>
