@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	$("#search-input").keyup(function() {
+	$("#search-input").on("keyup",function() {
 		$("div").remove(".publicaciones");
 		$.ajax({
 			    url: '../Php/json_ways_query.php',
@@ -20,11 +20,10 @@ $(document).ready(function(){
 					var ways_id=[array.way1,array.way2,array.way3,array.way4,array.way5,array.way6,array.way7,array.way8,array.way9,array.way10];
 					var routes=[array.ruta1,array.ruta2,array.ruta3,array.ruta4,array.ruta5,array.ruta6,array.ruta7,array.ruta8,array.ruta9,array.ruta10];
 					for (var i = 0; i < array.num_results; i++) {
-						$("#ways_query_results").after("<div class='publicaciones'><img class='open-modal' src='"+profile_images[i]+"' alt='"+id_users[i]+"'></img><span class='cupo'>"+spots[i]+" cupos.</span><a href=''><span class='name'>"+names[i]+"</span></a><span class='time'>"+hours[i]+"</span><span class='ruta'> - Cañaveral / UIS</span><span class='comentario'>"+comments[i]+"</span><div class='botones'><button id='btn-pedirCupo' type='button' name='button'>Pedir cupo</button><button id='btn-verRuta' type='button' name='button'>Ver ruta</button></div></div>");
-
+						$("#pub-box").append("<div class='publicaciones'><img class='open-modal' src='"+profile_images[i]+"' alt='"+id_users[i]+"' ></img><span class='cupo'>"+spots[i]+" cupos.</span><a href=''><span class='name'>"+names[i]+"</span></a><span class='time'>"+hours[i]+"</span><span class='ruta'> - Cañaveral / UIS</span><span class='comentario'>"+comments[i]+"</span><div class='botones'><button id='btn-pedirCupo' type='button' name='button'>Pedir cupo</button><button id='btn-verRuta' type='button' name='button'>Ver ruta</button></div></div>");
 					}
 			    }
-    			});
+			});
 	});
 
 

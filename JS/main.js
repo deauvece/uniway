@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
 	//json user query
-	$(".open-modal").click(function(){
+
+	$("#pub-box").on('click','img',function(){
 		$.ajax({
 			url: '../Php/json_user_query.php',
 			type: 'get',
@@ -19,6 +20,8 @@ $(document).ready(function () {
 		});
 
 	});
+
+
 
 
 
@@ -84,18 +87,16 @@ $(document).ready(function () {
 	$("#addRoute").click(function(){
  	    event.stopPropagation();
      });
-	$('.paradas').keyup(function(){
-		$(this).val($(this).val().toUpperCase());
-	});
 
-	/*$("#num_stops").change(function(){
+
+	$("#num_stops").change(function(){
 		var num = $(this).val();
 		$("input").remove(".paradas");
 		var cont=0;
 		for (var i = 1; i <= num ; i++) {
 			$("#spots-select").before( "<input type='text' class='paradas ui-autocomplete-input' name='stop"+i+"' placeholder='Ingresa una parada' autocomplete='off' required >" );
 		}
-	});*/
+	});
 
 
 	//eliminar transporte userprofile.php
@@ -134,9 +135,11 @@ $(document).ready(function () {
      });
 
 	//ventana modal sesionopen.php
-    $(".open-modal").click(function(){
+    $("#pub-box").on("click","img",function(){
 	    $(".modal-box").fadeIn("fast");
     });
+
+
     $("#modal-box").click(function(){
 	    $(".modal-box").fadeOut("fast");
     });
@@ -145,11 +148,14 @@ $(document).ready(function () {
     });
 
 	//busqueda de paradas en userProfile.php
-		$( function() {
-			 $( ".paradas" ).autocomplete({
-				 source: '../Php/json_stops.php'
-			 });
-		});
+			$("#addRoute").on("keyup","input",function(){
+				$( ".paradas" ).autocomplete({
+					source: '../Php/json_stops.php'
+				});
+				$('.paradas').keyup(function(){
+					$(this).val($(this).val().toUpperCase());
+				});
+			});
 
 });
 

@@ -237,6 +237,7 @@ if  ($numFilas_routes!=0)
 		<div id="ways_query_results" style="text-align:center">
 
 		</div>
+		<section id="pub-box">
 <?php
 //Hace la consulta de todos los recorridos disponibles
 $sql_ways="SELECT * FROM ways ";
@@ -270,7 +271,8 @@ if  ($numFilas_ways!=0)
 			$hour=$vector_goto['hour'];
 			$comentario=$vector_goto['comment'];
 ?>
-			<div class="publicaciones" onclick='cerrarMenu();'>
+
+				<div class="publicaciones" onclick='cerrarMenu();'>
 					<img class="open-modal"  src="<?php echo $profile_image_user; ?>" alt="<?php echo $id_user_w; ?>" />
 					<span class="cupo">
 						<?php echo $spots; ?> cupos.
@@ -299,10 +301,12 @@ if  ($numFilas_ways!=0)
 						<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
 						<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
 					</div>
-			</div>
-<?php
-}}//cierra las llaves del while e if
-?>
+				</div>
+				<?php
+			}}//cierra las llaves del while e if
+			?>
+		</section>
+
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
 			<div class="encb">
