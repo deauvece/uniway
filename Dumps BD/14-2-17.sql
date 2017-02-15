@@ -9,20 +9,6 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET search_path = public, pg_catalog;
 
 --
@@ -110,7 +96,8 @@ CREATE TABLE route_stop (
     id_route text,
     id_stop text,
     creation_date timestamp with time zone DEFAULT now(),
-    edition_date timestamp with time zone DEFAULT now()
+    edition_date timestamp with time zone DEFAULT now(),
+    status text NOT NULL
 );
 
 
@@ -330,39 +317,29 @@ COPY qualifications (id_qualif, score, creation_date, edition_date, id_user) FRO
 -- Name: route_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('route_id_seq', 6, true);
+SELECT pg_catalog.setval('route_id_seq', 10, true);
 
 
 --
 -- Data for Name: route_stop; Type: TABLE DATA; Schema: public; Owner: deauvece
 --
 
-COPY route_stop (id_route, id_stop, creation_date, edition_date) FROM stdin;
-R2	STOP1	2016-10-18 19:06:35.828091-05	2016-10-18 19:06:35.828091-05
-R2	STOP14	2016-10-18 19:06:35.883638-05	2016-10-18 19:06:35.883638-05
-R2	STOP35	2016-10-18 19:06:35.893701-05	2016-10-18 19:06:35.893701-05
-R2	STOP4	2016-10-18 19:06:35.905617-05	2016-10-18 19:06:35.905617-05
-R2	STOP2	2016-10-18 19:06:35.91683-05	2016-10-18 19:06:35.91683-05
-R3	STOP30	2016-11-14 17:41:03.351663-05	2016-11-14 17:41:03.351663-05
-R3	STOP3	2016-11-14 17:41:03.36295-05	2016-11-14 17:41:03.36295-05
-R3	STOP14	2016-11-14 17:41:03.3738-05	2016-11-14 17:41:03.3738-05
-R3	STOP13	2016-11-14 17:41:03.385035-05	2016-11-14 17:41:03.385035-05
-R3	STOP2	2016-11-14 17:41:03.396458-05	2016-11-14 17:41:03.396458-05
-R4	STOP31	2017-01-22 20:49:53.833546-05	2017-01-22 20:49:53.833546-05
-R4	STOP3	2017-01-22 20:49:53.84438-05	2017-01-22 20:49:53.84438-05
-R4	STOP1	2017-01-22 20:49:53.854621-05	2017-01-22 20:49:53.854621-05
-R4	STOP14	2017-01-22 20:49:53.866015-05	2017-01-22 20:49:53.866015-05
-R4	STOP15	2017-01-22 20:49:53.876828-05	2017-01-22 20:49:53.876828-05
-R5	STOP15	2017-01-22 20:56:09.455352-05	2017-01-22 20:56:09.455352-05
-R5	STOP5	2017-01-22 20:56:09.466554-05	2017-01-22 20:56:09.466554-05
-R5	STOP7	2017-01-22 20:56:09.477689-05	2017-01-22 20:56:09.477689-05
-R5	STOP14	2017-01-22 20:56:09.489213-05	2017-01-22 20:56:09.489213-05
-R5	STOP2	2017-01-22 20:56:09.500039-05	2017-01-22 20:56:09.500039-05
-R6	STOP21	2017-02-09 13:53:34.498365-05	2017-02-09 13:53:34.498365-05
-R6	STOP37	2017-02-09 13:53:34.508345-05	2017-02-09 13:53:34.508345-05
-R6	STOP12	2017-02-09 13:53:34.520865-05	2017-02-09 13:53:34.520865-05
-R6	STOP28	2017-02-09 13:53:34.531839-05	2017-02-09 13:53:34.531839-05
-R6	STOP2	2017-02-09 13:53:34.542643-05	2017-02-09 13:53:34.542643-05
+COPY route_stop (id_route, id_stop, creation_date, edition_date, status) FROM stdin;
+R8	STOP2	2017-02-14 18:30:34.108692-05	2017-02-14 18:30:34.108692-05	active
+R8	STOP1	2017-02-14 18:30:34.120243-05	2017-02-14 18:30:34.120243-05	active
+R8	STOP27	2017-02-14 18:30:34.130264-05	2017-02-14 18:30:34.130264-05	active
+R8	STOP13	2017-02-14 18:30:34.141305-05	2017-02-14 18:30:34.141305-05	active
+R8	STOP5	2017-02-14 18:30:34.153187-05	2017-02-14 18:30:34.153187-05	active
+R9	STOP2	2017-02-14 18:40:56.740844-05	2017-02-14 18:40:56.740844-05	active
+R9	STOP1	2017-02-14 18:40:56.978415-05	2017-02-14 18:40:56.978415-05	active
+R9	STOP21	2017-02-14 18:40:56.99221-05	2017-02-14 18:40:56.99221-05	active
+R9	STOP13	2017-02-14 18:40:57.003284-05	2017-02-14 18:40:57.003284-05	active
+R9	STOP5	2017-02-14 18:40:57.013935-05	2017-02-14 18:40:57.013935-05	active
+R10	STOP2	2017-02-14 20:22:12.61585-05	2017-02-14 20:22:12.61585-05	active
+R10	STOP4	2017-02-14 20:22:12.626431-05	2017-02-14 20:22:12.626431-05	active
+R10	STOP28	2017-02-14 20:22:12.63666-05	2017-02-14 20:22:12.63666-05	active
+R10	STOP32	2017-02-14 20:22:12.649037-05	2017-02-14 20:22:12.649037-05	active
+R10	STOP6	2017-02-14 20:22:12.65972-05	2017-02-14 20:22:12.65972-05	active
 \.
 
 
@@ -371,11 +348,9 @@ R6	STOP2	2017-02-09 13:53:34.542643-05	2017-02-09 13:53:34.542643-05
 --
 
 COPY routes (id_route, spots, creation_date, edition_date, id_user, rand) FROM stdin;
-R2	4	2016-10-18 19:06:35.307153-05	2016-10-18 19:06:35.307153-05	USR12	qywDNxRmVj
-R3	4	2016-11-14 17:41:02.723551-05	2016-11-14 17:41:02.723551-05	USR12	bxsmjPzbpZ
-R4	2	2017-01-22 20:49:53.568456-05	2017-01-22 20:49:53.568456-05	USR12	XGKYNPXebr
-R5	2	2017-01-22 20:56:09.4113-05	2017-01-22 20:56:09.4113-05	USR15	OuiwPErvGP
-R6	2	2017-02-09 13:53:34.436121-05	2017-02-09 13:53:34.436121-05	USR16	TfeZoMPyaq
+R8	4	2017-02-14 18:30:34.045711-05	2017-02-14 18:30:34.045711-05	USR15	xofdEOqne3a7
+R9	4	2017-02-14 18:40:56.577092-05	2017-02-14 18:40:56.577092-05	USR12	WLUFk5cGm8la
+R10	4	2017-02-14 20:22:12.573188-05	2017-02-14 20:22:12.573188-05	USR16	XIkRKzvtowwy
 \.
 
 
@@ -437,8 +412,6 @@ STOP38	ACROPOLIS	No hay descripcion	2016-10-15 22:35:05.479084-05	2016-10-15 22:
 --
 
 COPY transports (license_plate, model, air_conditioner, wifi, price, creation_date, edition_date, id_user, image, type) FROM stdin;
-CTE124	         Spar gt modelo 2015         	t	t	2500	2017-02-12 18:19:05.054028-05	2017-02-12 18:19:05.054028-05	USR15	../Imagenes/transportImages/transport_image_USR15.jpeg	Camioneta
-fge123	Spar gt modelo 2015	f	t	2500	2017-02-12 16:28:47.088489-05	2017-02-12 16:28:47.088489-05	USR12		Carro
 \.
 
 
@@ -471,9 +444,9 @@ SELECT pg_catalog.setval('user_id_seq', 16, true);
 --
 
 COPY users (id_user, names, last_names, phone, sex, email, password, is_driver, id_u, is_admin, is_verified, creation_date, edition_date, profile_image) FROM stdin;
-USR16	 Sergio Andres	Martinez L	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	f	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg
-USR12	Daniel	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	t	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg
-USR15	 Carlos Andres 	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	t	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg
+USR15	  Carlos Andres  	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	f	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg
+USR16	  Sergio Andres 	Martinez Lizarazo	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	f	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg
+USR12	Daniel	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	f	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg
 \.
 
 
@@ -482,11 +455,9 @@ USR15	 Carlos Andres 	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnI
 --
 
 COPY usr_routes (id_user, id_route, creation_date, edition_date) FROM stdin;
-USR12	R2	2016-10-18 19:06:35.772075-05	2016-10-18 19:06:35.772075-05
-USR12	R3	2016-11-14 17:41:03.340624-05	2016-11-14 17:41:03.340624-05
-USR12	R4	2017-01-22 20:49:53.692299-05	2017-01-22 20:49:53.692299-05
-USR15	R5	2017-01-22 20:56:09.444341-05	2017-01-22 20:56:09.444341-05
-USR16	R6	2017-02-09 13:53:34.48725-05	2017-02-09 13:53:34.48725-05
+USR15	R8	2017-02-14 18:30:34.097068-05	2017-02-14 18:30:34.097068-05
+USR12	R9	2017-02-14 18:40:56.627143-05	2017-02-14 18:40:56.627143-05
+USR16	R10	2017-02-14 20:22:12.603445-05	2017-02-14 20:22:12.603445-05
 \.
 
 
@@ -494,7 +465,7 @@ USR16	R6	2017-02-09 13:53:34.48725-05	2017-02-09 13:53:34.48725-05
 -- Name: way_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('way_id_seq', 27, true);
+SELECT pg_catalog.setval('way_id_seq', 34, true);
 
 
 --
@@ -502,16 +473,9 @@ SELECT pg_catalog.setval('way_id_seq', 27, true);
 --
 
 COPY ways (id_way, hour, creation_date, edition_date, id_user, id_route, spots, touniversity, comment) FROM stdin;
-WAY18		2017-02-09 13:47:16.319547-05	2017-02-09 13:47:16.319547-05	USR12	R2	2	false	Prueba del widget de la hora
-WAY19		2017-02-09 13:48:02.712617-05	2017-02-09 13:48:02.712617-05	USR12	R3	4	true	el widget de lahora funciona pero toda cambiarle el atributoa la base de datosssssssssssssssssssssssssssssss
-WAY20		2017-02-09 13:49:17.588754-05	2017-02-09 13:49:17.588754-05	USR15	R5	2	false	Salgo por la novena hasta real de minas
-WAY21		2017-02-09 13:49:43.881293-05	2017-02-09 13:49:43.881293-05	USR15	R5	3	true	Esta plataforma es la mejor que he visto en mi vida, muy buena
-WAY22		2017-02-09 13:50:02.359181-05	2017-02-09 13:50:02.359181-05	USR15	R5	3	false	Solo tengo esta ruta :(
-WAY23		2017-02-09 13:50:32.892475-05	2017-02-09 13:50:32.892475-05	USR12	R2	3	false	yo tengo demasiadas rutas para ofrecer, todos los dias 
-WAY24		2017-02-09 13:50:52.953973-05	2017-02-09 13:50:52.953973-05	USR12	R2	3	false	Se puede hacer mucho spam, toca controlar esto en la plataforma
-WAY25		2017-02-09 13:51:19.16424-05	2017-02-09 13:51:19.16424-05	USR12	R4	2	false	Toca crear mas usuarios
-WAY26		2017-02-09 14:06:59.590449-05	2017-02-09 14:06:59.590449-05	USR16	R6	3	false	asdasdasd
-WAY27		2017-02-09 14:08:27.536104-05	2017-02-09 14:08:27.536104-05	USR16	R6	3	false	Ultima prueba
+WAY32	12:31 PM	2017-02-14 18:36:45.190638-05	2017-02-14 18:36:45.190638-05	USR15	R8	3	false	segunda prueba
+WAY33	12:15 PM	2017-02-14 18:49:02.56115-05	2017-02-14 18:49:02.56115-05	USR12	R9	1	false	tercera prueba final
+WAY34	12:30 PM	2017-02-14 20:22:55.375067-05	2017-02-14 20:22:55.375067-05	USR16	R10	2	false	saliendo ya mismo jeje
 \.
 
 
