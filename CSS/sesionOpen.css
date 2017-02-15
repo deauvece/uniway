@@ -312,6 +312,7 @@ body{
 		display: block;
 	}
 	.publicaciones .ruta {
+		display: block;
 		color: #009999;
 	}
 	.publicaciones .comentario {
@@ -707,14 +708,15 @@ body{
 		padding-left: 60px;
 		margin-top: 50px;
 	}
+	.generalInfo .options-left-section ul a {
+		text-decoration: none;
+		color: white;
+	}
 		.generalInfo .options-left-section ul li {
 			padding-top: 15px;
 			height: 30px;
 		}
-		.generalInfo .options-left-section ul li a {
-			text-decoration: none;
-			color: white;
-		}
+
 		.generalInfo .options-left-section ul li:hover {
 			color: #009999;
 			font-weight: bold;
@@ -1194,35 +1196,22 @@ body{
 			margin: 15px;
 			border-radius: 5px;
 		}
+		.userRutes span {
+			display: block;
+			float: left;
+			clear: both;
+			width: 100%;
+			padding: 12px 0px;
+			color: white;
+			/*background-color: #002A2A;*/
+			background-color: #009999;
+			font-size: 80%;
+			margin-bottom: 1px;
+			cursor: pointer;
+		}
 		.userRutes span:nth-child(1){
 			border-top-left-radius: 5px;
 			border-top-right-radius: 5px;
-		}
-		.userRutes img {
-			height: 25px;
-		}
-		.userRutes button {
-			width: 90%;
-			height: 35px;
-			border-width: 1px;
-			cursor: pointer;
-			outline: none;
-			margin-top: 35px;
-			background-color: #002A2A;
-			color: white;
-		}
-		.userRutes button:hover {
-			background-color: darkgrey;
-			color: black;
-		}
-		.userRutes span {
-			font-size: 70%;
-			padding: 12px;
-			background-color: #002A2A;
-			color: white;
-			display:block;
-			margin-bottom: 1px;
-			cursor: pointer;
 		}
 
 		/*		RUTAS DEL USUARIO		*/

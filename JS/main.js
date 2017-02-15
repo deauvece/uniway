@@ -21,7 +21,18 @@ $(document).ready(function () {
 
 	});
 
-
+	//scroll efect on userprofile.php
+	$('a[href^="#"]').on('click',function (e) {
+	    var target = this.hash;
+	    var $target = $(target);
+	    $('html, body').stop().animate(
+		    {'scrollTop': $target.offset().top},
+		    900,
+		    'swing',
+		    function () {
+	        		window.location.hash = target;
+			});
+	});
 
 
 

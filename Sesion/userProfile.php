@@ -78,11 +78,11 @@ if ($is_driver=='t') {
 				<img id="little_img" src="<?php echo $rute_img;?>"/>
 				<section class="options-left-section">
 					<ul>
-						<li><span></span>Rutas</li>
-						<li><span></span>Comentarios</li>
-						<li><span></span>Información básica</li>
-						<li><span></span>Transporte</li>
-						<li><span></span>Verificar cuenta</li>
+						<a href="#basicInfo"><li><span></span>Información básica</li></a>
+						<a href="#transportInfo"><li><span></span>Transporte</li></a>
+						<a href="#userRutesBox"><li <?php if ($is_driver=='f') { echo " style='display:none'";} ?>><span></span>Rutas</li></a>
+							<a href="#qualificationsBox"><li><span></span>Comentarios</li></a>
+						<a href="#basicInfo"><li><span></span>Verificar cuenta</li></a>
 						<li>
 							<span></span><a href="../Php/logout.php">Cerrar sesión</a>
 						</li>
@@ -92,7 +92,7 @@ if ($is_driver=='t') {
 		</section>
 
 		<div class="big_container">
-			<div class="basicInfo">
+			<div class="basicInfo" id="basicInfo">
 				<div class="title">
 					informacion básica
 					<span>Cambia las configuraciones básicas de tu cuenta.</span>
@@ -128,7 +128,7 @@ if ($is_driver=='t') {
 					<button type="submit" name="button" >Guardar</button>
 				</form>
 			</div>
-			<div class="transportInfo">
+			<div class="transportInfo" id="transportInfo">
 				<div class="title">
 					Transporte
 					<span>Agrega información de un vehiculo para compartir tus rutas con los demás usuarios.</span>
@@ -275,7 +275,7 @@ if ($is_driver=='t') {
 
 
 
-<div class="userRutesBox">
+<div class="userRutesBox" id="userRutesBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?> >
 	<div class="title">
 		Rutas
 		<span>Crea y elimina las rutas de tus recorridos.</span>
@@ -303,8 +303,7 @@ if  ($numFilas_routes!=0)
 			while($vector_allstops=pg_fetch_array($result_allstops))
 				{
 				  $nameStop=$vector_allstops['name'];
-				  ?><span class="stop"><?php echo $nameStop; ?>
-				  </span><?php
+				  ?><span class="stop"><?php echo $nameStop; ?></span><?php
 				}
 		}
 		echo "</div>";
@@ -318,7 +317,7 @@ if  ($numFilas_routes!=0)
 
 
 			<!--calificaciones del usuario-->
-			<div class="qualificationsBox">
+			<div class="qualificationsBox" id="qualificationsBox">
 				<div class="title">
 					Comentarios y calificaciones
 					<span>Comentarios y calificaciones que otros usuarios te han hecho.</span>

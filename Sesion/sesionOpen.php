@@ -152,7 +152,7 @@ $university_acr=$_SESSION['user_university_acr'];
 
 
 		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
-		<button id="btn-add" type="button" name="button">+</button>
+		<button id="btn-add" <?php if ($is_driver=='f') { echo "style='display:none'";} ?> type="button" name="button">+</button>
 
 		<section class="find">
 			<button id="btn-find" type="button" name="button"> <img src="../Imagenes/search.png" alt="" /></button>
@@ -160,7 +160,7 @@ $university_acr=$_SESSION['user_university_acr'];
 		</section>
 
 
-		<div id="addRouteBox">
+		<div id="addRouteBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?>>
 			<form  action="../Php/addWay.php" method="post" id="addRoute">
 				<button type="button" id="closeAddRoute" > X </button>
 				<p>
@@ -292,7 +292,7 @@ if  ($numFilas_ways!=0)
 						?>
 					</span>
 					<span class="ruta" >
-						- Cañaveral / UIS
+						Cañaveral - Fosunab - Paralela - CRA 27 - UIS
 					</span>
 					<span class="comentario">
 						<?php echo $comentario;?>
