@@ -30,6 +30,7 @@
 
 		    //university name and acornym query
 		    $id_university=$vector['id_u'];
+		    $_SESSION['user_id_university']=$id_university;
 		    $sql11="SELECT * FROM universities WHERE id_u='$id_university'";
 		    $result11 = pg_query($conn, $sql11);
 		    $vectorUniversity11=pg_fetch_array($result11);

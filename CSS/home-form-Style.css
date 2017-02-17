@@ -3,6 +3,20 @@ body{
 	margin:0px;
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
+/*=====scrollbarr=========*/
+	::-webkit-scrollbar{
+	  width: 12px;  /* for vertical scrollbars */
+	  height: 12px; /* for horizontal scrollbars */
+	}
+
+	::-webkit-scrollbar-track{
+	  background: rgba(0, 0, 0, 0.1);
+	}
+
+	::-webkit-scrollbar-thumb{
+	  background: rgba(0, 0, 0, 0.5);
+	}
+/*=====scrollbarr=========*/
 /*===============================Boton ir arriba===============================*/
 .ir-arriba {
 	display: none;
@@ -18,8 +32,8 @@ nav {
 	top: 0px;
 	z-index: 1;
 	padding-top:15px;
-	height: 55px;
-	font-size: 75%;
+	height: 75px;
+	font-size: 110%;
 	background-color: white;
 	width: 100%;
 	text-align: right;
@@ -46,12 +60,11 @@ nav {
 			display: inline;
 		}
 		nav .sinmenu li a {
-      		color :black;
-			font-weight: bolder;
+      		color :#404045;
 			display: inline;
 			padding: 10px;
 			text-decoration: none;
-			text-transform: uppercase;
+
 		}
 	#login {
 		background-color: #b72c2c;
@@ -120,7 +133,7 @@ nav {
 		#logo {
 			position: fixed;
 			z-index: 2;
-			top: -10px;
+			top: 0px;
 			left:30px;
 			background-color: rgba(0, 0, 0, 0);
 			height: 60px;
@@ -195,31 +208,27 @@ nav {
 header {
 	font-family: 'Lato', sans-serif;
 	min-height: 400px;
-	background-image: url("../Imagenes/cover.jpg");
+	background-image: url("../Imagenes/pruebashadow.jpg");
 	padding-top: 250px;
 	text-align: center;
-	box-shadow: inset 0px 0px 20px 0px;
-	text-shadow: 0px 0px 2px #000000;
 
 }
 	header h2 {
-		float: left;
-		margin-top: 250px;
-		margin-left: 30px;
+
+		margin: 60px auto 30px auto;
 		color: white;
-		text-transform: uppercase;
 		font-weight: bolder;
-		font-size: 300%;
+		font-size: 400%;
 	}
 	header p{
-		float: left;
-		clear: both;
+
+		text-align: justify;
 		display: block;
-		margin-left: 30px;
-		margin-top: -30px;
+		margin: -20px auto 0 auto;
 		color:  white;
 		font-weight: bolder;
 		font-size: 150%;
+		width: 550px;
 	}
 
 /*================================MISION Y VISION===============================*/
@@ -567,7 +576,7 @@ footer {
 			color: white;
 			cursor: pointer;
 			border-radius: 3px;
-			background-color: #006666;
+			background-color: #B72C2C;
 			text-decoration: none;
 			padding: 20px;
 		}

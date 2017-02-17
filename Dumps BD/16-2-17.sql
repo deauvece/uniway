@@ -9,6 +9,20 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
 SET search_path = public, pg_catalog;
 
 --
@@ -118,6 +132,61 @@ CREATE TABLE routes (
 
 
 ALTER TABLE public.routes OWNER TO deauvece;
+
+--
+-- Name: status_feed; Type: TABLE; Schema: public; Owner: deauvece; Tablespace: 
+--
+
+CREATE TABLE status_feed (
+    id_status text NOT NULL,
+    random_string text NOT NULL,
+    university text
+);
+
+
+ALTER TABLE public.status_feed OWNER TO deauvece;
+
+--
+-- Name: status_feed_id_status_seq; Type: SEQUENCE; Schema: public; Owner: deauvece
+--
+
+CREATE SEQUENCE status_feed_id_status_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.status_feed_id_status_seq OWNER TO deauvece;
+
+--
+-- Name: status_feed_id_status_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deauvece
+--
+
+ALTER SEQUENCE status_feed_id_status_seq OWNED BY status_feed.id_status;
+
+
+--
+-- Name: status_feed_random_string_seq; Type: SEQUENCE; Schema: public; Owner: deauvece
+--
+
+CREATE SEQUENCE status_feed_random_string_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.status_feed_random_string_seq OWNER TO deauvece;
+
+--
+-- Name: status_feed_random_string_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deauvece
+--
+
+ALTER SEQUENCE status_feed_random_string_seq OWNED BY status_feed.random_string;
+
 
 --
 -- Name: stop_id_seq; Type: SEQUENCE; Schema: public; Owner: deauvece
@@ -277,7 +346,8 @@ CREATE TABLE ways (
     id_route text NOT NULL,
     spots text,
     touniversity text,
-    comment text
+    comment text,
+    id_u text NOT NULL
 );
 
 
@@ -317,7 +387,7 @@ COPY qualifications (id_qualif, score, creation_date, edition_date, id_user) FRO
 -- Name: route_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('route_id_seq', 10, true);
+SELECT pg_catalog.setval('route_id_seq', 12, true);
 
 
 --
@@ -325,21 +395,24 @@ SELECT pg_catalog.setval('route_id_seq', 10, true);
 --
 
 COPY route_stop (id_route, id_stop, creation_date, edition_date, status) FROM stdin;
+R12	STOP1	2017-02-15 10:31:11.032034-05	2017-02-15 10:31:11.032034-05	sleep
+R12	STOP5	2017-02-15 10:31:11.041842-05	2017-02-15 10:31:11.041842-05	sleep
+R12	STOP2	2017-02-15 10:31:11.05407-05	2017-02-15 10:31:11.05407-05	sleep
 R8	STOP2	2017-02-14 18:30:34.108692-05	2017-02-14 18:30:34.108692-05	active
 R8	STOP1	2017-02-14 18:30:34.120243-05	2017-02-14 18:30:34.120243-05	active
 R8	STOP27	2017-02-14 18:30:34.130264-05	2017-02-14 18:30:34.130264-05	active
 R8	STOP13	2017-02-14 18:30:34.141305-05	2017-02-14 18:30:34.141305-05	active
 R8	STOP5	2017-02-14 18:30:34.153187-05	2017-02-14 18:30:34.153187-05	active
-R9	STOP2	2017-02-14 18:40:56.740844-05	2017-02-14 18:40:56.740844-05	active
-R9	STOP1	2017-02-14 18:40:56.978415-05	2017-02-14 18:40:56.978415-05	active
-R9	STOP21	2017-02-14 18:40:56.99221-05	2017-02-14 18:40:56.99221-05	active
-R9	STOP13	2017-02-14 18:40:57.003284-05	2017-02-14 18:40:57.003284-05	active
-R9	STOP5	2017-02-14 18:40:57.013935-05	2017-02-14 18:40:57.013935-05	active
 R10	STOP2	2017-02-14 20:22:12.61585-05	2017-02-14 20:22:12.61585-05	active
 R10	STOP4	2017-02-14 20:22:12.626431-05	2017-02-14 20:22:12.626431-05	active
 R10	STOP28	2017-02-14 20:22:12.63666-05	2017-02-14 20:22:12.63666-05	active
 R10	STOP32	2017-02-14 20:22:12.649037-05	2017-02-14 20:22:12.649037-05	active
 R10	STOP6	2017-02-14 20:22:12.65972-05	2017-02-14 20:22:12.65972-05	active
+R9	STOP2	2017-02-14 18:40:56.740844-05	2017-02-14 18:40:56.740844-05	active
+R9	STOP1	2017-02-14 18:40:56.978415-05	2017-02-14 18:40:56.978415-05	active
+R9	STOP21	2017-02-14 18:40:56.99221-05	2017-02-14 18:40:56.99221-05	active
+R9	STOP13	2017-02-14 18:40:57.003284-05	2017-02-14 18:40:57.003284-05	active
+R9	STOP5	2017-02-14 18:40:57.013935-05	2017-02-14 18:40:57.013935-05	active
 \.
 
 
@@ -351,7 +424,32 @@ COPY routes (id_route, spots, creation_date, edition_date, id_user, rand) FROM s
 R8	4	2017-02-14 18:30:34.045711-05	2017-02-14 18:30:34.045711-05	USR15	xofdEOqne3a7
 R9	4	2017-02-14 18:40:56.577092-05	2017-02-14 18:40:56.577092-05	USR12	WLUFk5cGm8la
 R10	4	2017-02-14 20:22:12.573188-05	2017-02-14 20:22:12.573188-05	USR16	XIkRKzvtowwy
+R12	2	2017-02-15 10:31:10.989329-05	2017-02-15 10:31:10.989329-05	USR16	VRCYCgTjjjFs
 \.
+
+
+--
+-- Data for Name: status_feed; Type: TABLE DATA; Schema: public; Owner: deauvece
+--
+
+COPY status_feed (id_status, random_string, university) FROM stdin;
+U2	37W9jvzSoyTv429lwA43	UNAB
+U1	O9Uf63tU3178Iz52xHVG	UIS
+\.
+
+
+--
+-- Name: status_feed_id_status_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
+--
+
+SELECT pg_catalog.setval('status_feed_id_status_seq', 1, false);
+
+
+--
+-- Name: status_feed_random_string_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
+--
+
+SELECT pg_catalog.setval('status_feed_random_string_seq', 1, false);
 
 
 --
@@ -412,6 +510,8 @@ STOP38	ACROPOLIS	No hay descripcion	2016-10-15 22:35:05.479084-05	2016-10-15 22:
 --
 
 COPY transports (license_plate, model, air_conditioner, wifi, price, creation_date, edition_date, id_user, image, type) FROM stdin;
+CTE124	nissan 123	t	t	2000	2017-02-15 12:08:10.290535-05	2017-02-15 12:08:10.290535-05	USR16	../Imagenes/transportImages/transport_image_USR16.jpeg	Moto
+ccc444	nissan 123	t	t	2000	2017-02-15 18:46:39.298514-05	2017-02-15 18:46:39.298514-05	USR15	../Imagenes/transportImages/transport_image_USR15.jpeg	Van
 \.
 
 
@@ -436,7 +536,7 @@ SELECT pg_catalog.setval('university_id_seq', 2, true);
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('user_id_seq', 16, true);
+SELECT pg_catalog.setval('user_id_seq', 17, true);
 
 
 --
@@ -444,8 +544,9 @@ SELECT pg_catalog.setval('user_id_seq', 16, true);
 --
 
 COPY users (id_user, names, last_names, phone, sex, email, password, is_driver, id_u, is_admin, is_verified, creation_date, edition_date, profile_image) FROM stdin;
-USR15	  Carlos Andres  	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	f	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg
-USR16	  Sergio Andres 	Martinez Lizarazo	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	f	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg
+USR16	  Sergio Andres 	Martinez Lizarazo	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	t	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg
+USR15	  Carlos Andres  	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	t	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg
+USR17	Lizeth Paola	Parra B	3189875648	F	lizethparra@gmail.com	$2y$10$I0tq4.cYwq1Zx33KDlCgHeJliIUzX7UQyvyXlT9sJviNDgW1apSK.	f	U2	t	f	2017-02-16 17:50:41.331999-05	2017-02-16 17:50:41.331999-05	../Imagenes/profileImages/upload/perfil.png
 USR12	Daniel	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	f	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg
 \.
 
@@ -458,6 +559,7 @@ COPY usr_routes (id_user, id_route, creation_date, edition_date) FROM stdin;
 USR15	R8	2017-02-14 18:30:34.097068-05	2017-02-14 18:30:34.097068-05
 USR12	R9	2017-02-14 18:40:56.627143-05	2017-02-14 18:40:56.627143-05
 USR16	R10	2017-02-14 20:22:12.603445-05	2017-02-14 20:22:12.603445-05
+USR16	R12	2017-02-15 10:31:11.020891-05	2017-02-15 10:31:11.020891-05
 \.
 
 
@@ -465,17 +567,16 @@ USR16	R10	2017-02-14 20:22:12.603445-05	2017-02-14 20:22:12.603445-05
 -- Name: way_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('way_id_seq', 34, true);
+SELECT pg_catalog.setval('way_id_seq', 50, true);
 
 
 --
 -- Data for Name: ways; Type: TABLE DATA; Schema: public; Owner: deauvece
 --
 
-COPY ways (id_way, hour, creation_date, edition_date, id_user, id_route, spots, touniversity, comment) FROM stdin;
-WAY32	12:31 PM	2017-02-14 18:36:45.190638-05	2017-02-14 18:36:45.190638-05	USR15	R8	3	false	segunda prueba
-WAY33	12:15 PM	2017-02-14 18:49:02.56115-05	2017-02-14 18:49:02.56115-05	USR12	R9	1	false	tercera prueba final
-WAY34	12:30 PM	2017-02-14 20:22:55.375067-05	2017-02-14 20:22:55.375067-05	USR16	R10	2	false	saliendo ya mismo jeje
+COPY ways (id_way, hour, creation_date, edition_date, id_user, id_route, spots, touniversity, comment, id_u) FROM stdin;
+WAY49	12:01 PM	2017-02-16 19:11:16.548108-05	2017-02-16 19:11:16.548108-05	USR15	R8	3	false	sdasdasd	U1
+WAY50	12:14 PM	2017-02-16 19:29:19.205255-05	2017-02-16 19:29:19.205255-05	USR16	R10	3	false	asdasdasdasdasd	U1
 \.
 
 
@@ -501,6 +602,14 @@ ALTER TABLE ONLY qualifications
 
 ALTER TABLE ONLY routes
     ADD CONSTRAINT routes_pkey PRIMARY KEY (id_route);
+
+
+--
+-- Name: status_feed_pkey; Type: CONSTRAINT; Schema: public; Owner: deauvece; Tablespace: 
+--
+
+ALTER TABLE ONLY status_feed
+    ADD CONSTRAINT status_feed_pkey PRIMARY KEY (id_status);
 
 
 --
@@ -629,6 +738,14 @@ ALTER TABLE ONLY usr_routes
 
 ALTER TABLE ONLY ways
     ADD CONSTRAINT ways_id_route_fkey FOREIGN KEY (id_route) REFERENCES routes(id_route) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: ways_id_u_fkey; Type: FK CONSTRAINT; Schema: public; Owner: deauvece
+--
+
+ALTER TABLE ONLY ways
+    ADD CONSTRAINT ways_id_u_fkey FOREIGN KEY (id_u) REFERENCES universities(id_u) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

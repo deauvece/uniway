@@ -1,7 +1,33 @@
 $(document).ready(function () {
+	//CHECK FOR WAYS UPDATES
+	function check(){
+
+		$.ajax({
+			url: '../Php/json_check_status.php',
+			type: 'get',
+			data: {
+				rdn_string: $("#status_feed").attr("value"),
+				id_uni: $("#status_feed").attr("class")
+			},
+			dataType: 'json',
+			success: function(array){
+				if (array.update=="true") {
+					$("#new-updates").fadeIn();
+					clearInterval(interval);
+				}
+				console.log(array.update);
+			}
+		});
+	}
+	//1000 = 1 segundo
+	var interval = setInterval(check, 5000);
+
+	//update page when there's new updates
+	$("#new-updates").click(function(){
+		location.reload();
+	});
 
 	//json user query
-
 	$("#pub-box").on('click','img',function(){
 		$.ajax({
 			url: '../Php/json_user_query.php',
@@ -99,7 +125,7 @@ $(document).ready(function () {
  	    event.stopPropagation();
      });
 
-
+	//numero de paradas variables en userprofile -- creacion de rutas
 	$("#num_stops").change(function(){
 		var num = $(this).val();
 		$("input").remove(".paradas");

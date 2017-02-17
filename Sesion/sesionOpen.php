@@ -15,6 +15,7 @@ $is_verified=$_SESSION['is_verified'];
 $university=$_SESSION['user_university'];
 $rute_img=$_SESSION['profile_image'];
 $university_acr=$_SESSION['user_university_acr'];
+$id_university=$_SESSION['user_id_university'];
 
 ?>
 <!DOCTYPE html>
@@ -27,17 +28,11 @@ $university_acr=$_SESSION['user_university_acr'];
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
-
-		<script src="../JS/jquery-3.1.1.min.js"></script>
-		<script src="../JS/jquery-ui/jquery-ui.js"></script>
-		<script src="../JS/main.js"></script>
-		<script src="../JS/ways_query.js"></script>
-
+		<!--jquery-->
 		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.structure.css">
 		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.theme.css">
-
-		<script src="../JS/lolliclock.js"></script>
+		<!--timepicker-->
 		<link rel="stylesheet" type="text/css" href="../JS/lolliclock.css">
 
 
@@ -97,7 +92,7 @@ $university_acr=$_SESSION['user_university_acr'];
 
 		<!--options section (left)-->
 		<section class="options">
-			<img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/>
+			<a href="sesionOpen.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
 			<a href="userProfile.php?idu=myProfile">
 				<img src="<?php echo $rute_img;?>" alt="" />
 			</a>
@@ -107,7 +102,7 @@ $university_acr=$_SESSION['user_university_acr'];
 			<div class="other-options">
 				<ul class="lista">
 					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
-					<a href="#"><li><span></span><img src="../Imagenes/ruta.png" class="icono" alt="iconos" /> Rutas creadas     4</li></a>
+					<a href="#"  <?php if ($is_driver=='f') { echo "style='display:none'";} ?> ><li><span></span><img src="../Imagenes/ruta.png" class="icono" alt="iconos" /> Rutas creadas     4</li></a>
 					<a href="#"><li><span></span><img src="../Imagenes/mensaje.png" class="icono" alt="iconos" /> Mensajes   8</li></a>
 					<a href="../Php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
@@ -167,6 +162,7 @@ $university_acr=$_SESSION['user_university_acr'];
 					Publica un recorrido.
 				</p>
 				<input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
+				<input type="hidden" name="id_u"  value="<?php echo $id_university; ?>">
 				<span id="commentTitle" >Selecciona una de tus rutas:</span>
 <?php
 //consulta las rutas del usuario y las muestra como opcion
@@ -234,13 +230,11 @@ if  ($numFilas_routes!=0)
 				<button type="submit" >Crear</button>
 			</form>
 		</div>
-		<div id="ways_query_results" style="text-align:center">
-
-		</div>
+		<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
 		<section id="pub-box">
 <?php
 //Hace la consulta de todos los recorridos disponibles
-$sql_ways="SELECT * FROM ways ";
+$sql_ways="SELECT * FROM ways WHERE id_u='$id_university'";
 $result_ways= pg_query($conn, $sql_ways);
 $numFilas_ways = pg_num_rows($result_ways);
 $cont_ways=1;
@@ -272,7 +266,7 @@ if  ($numFilas_ways!=0)
 			$comentario=$vector_goto['comment'];
 ?>
 
-				<div class="publicaciones" onclick='cerrarMenu();'>
+				<div class="publicaciones" class="p-before" onclick='cerrarMenu();'>
 					<img class="open-modal"  src="<?php echo $profile_image_user; ?>" alt="<?php echo $id_user_w; ?>" />
 					<span class="cupo">
 						<?php echo $spots; ?> cupos.
@@ -291,22 +285,49 @@ if  ($numFilas_ways!=0)
 						}
 						?>
 					</span>
-					<span class="ruta" >
-						Cañaveral - Fosunab - Paralela - CRA 27 - UIS
-					</span>
 					<span class="comentario">
 						<?php echo $comentario;?>
 					</span>
 					<div class="botones">
-						<button id="btn-pedirCupo" type="button" name="button">Pedir cupo</button>
-						<button id="btn-verRuta" type="button" name="button">Ver ruta</button>
+						<button id="btn-pedirCupo" type="button">Pedir cupo</button>
+						<?php
+						 	if ($id_user_w==$idu) {
+								echo "<form action='../Php/deleteWay.php' method='post'>";
+								echo "<input type='text' hidden name='id_way'  value='$id_way'>";
+								echo "<button id='btn-eliminar' type='submit'>Eliminar</button>";
+								echo "</form>";
+						 	}
+						 ?>
 					</div>
 				</div>
+				<span class='ruta' style='display:none' >
 				<?php
-			}}//cierra las llaves del while e if
-			?>
+					//busqueda de las paradas
+					$sql="SELECT id_stop FROM route_stop WHERE id_route='$id_route'";
+					$result= pg_query($conn, $sql);
+					while ($vect=pg_fetch_array($result)) {
+						$id_stop=$vect['id_stop'];
+						$sql0="SELECT name FROM stops WHERE id_stop='$id_stop'";
+						$result0= pg_query($conn, $sql0);
+						while ($vect0=pg_fetch_array($result0)) {
+							$nameStop=$vect0['name'];
+							echo "$nameStop";
+							echo " &nbsp; &nbsp;";
+						}
+					}
+				 ?>
+				 </span>
+			<?php
+		}}//cierra las llaves del while e if
+		?>
 		</section>
-
+		<?php
+			$sql_random="SELECT random_string FROM status_feed WHERE id_status='$id_university' ";
+			$result_random= pg_query($conn, $sql_random);
+			$vector_random=pg_fetch_array($result_random);
+			$rdnString=$vector_random['random_string'];
+		?>
+		<input id='status_feed' type='button' hidden class='<?php echo "$id_university"; ?>' value='<?php echo "$rdnString"; ?>'>
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
 			<div class="encb">
@@ -340,7 +361,8 @@ if  ($numFilas_ways!=0)
 					<li>Comentarios</li>
 				</ul>
 				<div class="transport-info">
-
+					<label for="">Placas</label>
+					<span>XXX-974</span>
 				</div>
 				<div class="routes-info">
 
@@ -351,5 +373,10 @@ if  ($numFilas_ways!=0)
 			</div>
 		</section>
 	</div>
+	<script src="../JS/jquery-3.1.1.min.js"></script>
+	<script src="../JS/jquery-ui/jquery-ui.js"></script>
+	<script src="../JS/main.js"></script>
+	<script src="../JS/ways_query.js"></script>
+	<script src="../JS/lolliclock.js"></script>
 	</body>
 </html>

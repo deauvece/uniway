@@ -13,6 +13,5 @@ $_SESSION['id_apellido_usuario']= $last_names;
 $_SESSION['user_phone']= $phone;
 $_SESSION['user_email']= $email;
 
+header("location:../Sesion/userProfile.php?idu=myProfile");
 ?>
-<!--vuelve a la pagina anterior-->
-<script type="text/javascript">window.history.go(-1);</script>
