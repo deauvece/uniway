@@ -3,6 +3,7 @@ error_reporting(0);
 include("../Php/functions.php");
 $conn=conectarse();
 $stop_query=$_GET['stop_query'];
+$id_uni=$_GET['id_uni'];
 
 //Busca una parada para el texto introducido
 $sql1="SELECT id_stop FROM stops WHERE name LIKE '$stop_query%' ";
@@ -22,7 +23,8 @@ while ($vector2=pg_fetch_array($result2))
 	for ($i=0; $i < $size_result_routes ; $i++) {
 		//Busca un recorrido que tenga la ruta
 		$query=$result_routes[$i];
-		$sql3="SELECT id_way FROM ways WHERE id_route='".$query."' ";
+
+		$sql3="SELECT * FROM ways WHERE id_route='$query' AND id_u='$id_uni' ORDER BY id_way DESC LIMIT 30 ";
 		$result3 = pg_query($conn, $sql3);
 		while ($vector3=pg_fetch_array($result3))
 			{
@@ -46,9 +48,10 @@ while ($vector2=pg_fetch_array($result2))
 		'num_results' => $size_result_ways,
 		'textsended' => "$stop_query"
 	);
-	for ($i=0; $i < $size_result_ways ; $i++) {
-		$query=$result_way[$i];
-		$sql3="SELECT * FROM ways WHERE id_way='".$query."' ";
+	$size2=$size_result_ways-1;
+	for ($i=0; $i < $size_result_ways  ; $i++) {
+		$query=$result_way[$size2];
+		$sql3="SELECT * FROM ways WHERE id_way='$query' ";
 		$result3 = pg_query($conn, $sql3);
 		while ($vector3=pg_fetch_array($result3))
 			{
@@ -67,6 +70,7 @@ while ($vector2=pg_fetch_array($result2))
 					$array[$names[$i]]=$userName." ".$userLastName;
 					$array[$profile_images[$i]]=$vector11['profile_image'];
 			}
+			$size2--;
 	}
 
 

@@ -15,7 +15,6 @@ $(document).ready(function () {
 					$("#new-updates").fadeIn();
 					clearInterval(interval);
 				}
-				console.log(array.update);
 			}
 		});
 	}
@@ -194,6 +193,33 @@ $(document).ready(function () {
 				});
 			});
 
+			//menu opciones userProfile.php
+			$("#bmenu").click(function(){
+				$(".left-section").fadeToggle();
+			});
+			$(".big_container").click(function(){
+				var w =$( window ).width();
+				if (w<800) {
+					$(".left-section").fadeOut();
+				}
+			});
+			$(".left-section").click(function(){
+		 	    event.stopPropagation();
+		     });
+			//menu opciones sesionOpen.php
+			$("#bmenuw").click(function(){
+				$(".options").fadeToggle();
+			});
+			$("#pub-box").click(function(){
+				var w =$( window ).width();
+				if (w<800) {
+					$(".options").fadeOut();
+				}
+
+			});
+			$(".options").click(function(){
+			    event.stopPropagation();
+			});
 });
 
 

@@ -11,11 +11,13 @@ $(document).ready(function(){
 			$("div").remove(".ruta-n");
 			$(".publicaciones").show();
 		}else{
+			var id_user= $("#id_user_json").attr("value");
 			$.ajax({
 				url: '../Php/json_ways_query.php',
 				type: 'get',
 				data: {
-					stop_query: $("#search-input").val().toUpperCase()
+					stop_query: $("#search-input").val().toUpperCase(),
+					id_uni: $("#status_feed").attr("class"),
 				},
 				dataType: 'json',
 				success: function(array){
@@ -29,7 +31,18 @@ $(document).ready(function(){
 					var ways_id=[array.way1,array.way2,array.way3,array.way4,array.way5,array.way6,array.way7,array.way8,array.way9,array.way10];
 					var routes=[array.ruta1,array.ruta2,array.ruta3,array.ruta4,array.ruta5,array.ruta6,array.ruta7,array.ruta8,array.ruta9,array.ruta10];
 					for (var i = 0; i < array.num_results; i++) {
-						$("#pub-box").append("<div class='publicaciones-n' ><img class='open-modal' src='"+profile_images[i]+"' alt='"+id_users[i]+"' ></img><span class='cupo'>"+spots[i]+" cupos.</span><a href=''><span class='name'>"+names[i]+"</span></a><span class='time'>"+hours[i]+"</span><span class='comentario'>"+comments[i]+"</span><div class='botones'><button id='btn-pedirCupo' type='button' name='button'>Pedir cupo</button></div></div><span style='display:none' class='ruta-n' >Cañaveral - Fosunab - Paralela - CRA 27 - UIS</span>");
+						var text0;
+						if (toUniversity[i]=='true') {
+							text0 = "En la universidad a las ";
+						}else{
+							text0 = "Saliendo de la universidad a las ";
+						}
+						if (id_users[i]==id_user) {
+							button = "<button id='btn-eliminar' type='submit'>Eliminar</button>";
+						}else{
+							button = "<button id='btn-pedirCupo' type='button' name='button'>Pedir cupo</button>";
+						}
+						$("#pub-box").append("<div class='publicaciones-n' ><img class='open-modal' src='"+profile_images[i]+"' alt='"+id_users[i]+"' ></img><span class='cupo'>"+spots[i]+" cupos.</span><a href=''><span class='name'>"+names[i]+"</span></a><span class='time'>"+text0+hours[i]+"</span><span class='comentario'>"+comments[i]+"</span><div class='botones'>"+button+"</div></div><span style='display:none' class='ruta-n' >Cañaveral - Fosunab - Paralela - CRA 27 - UIS</span>");
 					}
 				}
 			});

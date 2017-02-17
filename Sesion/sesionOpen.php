@@ -39,55 +39,11 @@ $id_university=$_SESSION['user_id_university'];
 
 	</head>
 	<body>
-		<a name="inicio"></a>
-		<!--Nav bar-->
-		<nav class="navFeed" >
-			<div class="left">
-				<img src="../Imagenes/logo-name.png" alt="logo"/>
-			</div>
-			<div class="center">
-				<a href="#inicio">
-					<img src="../Imagenes/logo-only.png" alt="logo"/>
-				</a>
-			</div>
-			<!--Menu responsive-->
+		<nav id="nav_feed">
 			<ul>
-				<li>
-					<input type="checkbox" name="name" id="btn" onclick='menuDesplegable()' >
-					<div class="label">
-						<label for="btn"> <img src="../Imagenes/menu1.png" alt="menu-ham" height="50" width="50" /> </label>
-					</div>
-					<ul class="sinmenu" >
-						<li>
-							<a href="userProfile.php?idu=myProfile">
-								<img 	src="<?php echo $rute_img;?>" alt="" />
-							</a>
-							<span> <?php echo $name; ?></span>
-						</li>
-						<li>
-							<a href="userProfile.php?idu=myProfile">Configuracion</a>
-						</li>
-						<li>
-							<a href="#">Mensajes</a>
-						</li>
-						<li>
-							<a href="#">Contacto</a>
-						</li>
-						<li>
-							<a href="#">Ayuda</a>
-						</li>
-						<li>
-							<a href="../Php/logout.php">Cerrar sesión</a>
-						</li>
-					</ul>
-				</li>
+				<li><a href="sesionOpen.php"><img src="../Imagenes/logo-name-white.png" alt="logo"/></a></li>
+				<img id="bmenuw" src="../Imagenes/bmenuw.png" width="30px" />
 			</ul>
-			<!--fin menu responsive-->
-			<div class="right">
-				<a href="userProfile.php?idu=myProfile">
-				<img src="../Imagenes/config.png" alt="settings" />
-				</a>
-			</div>
 		</nav>
 
 		<!--options section (left)-->
@@ -161,7 +117,7 @@ $id_university=$_SESSION['user_id_university'];
 				<p>
 					Publica un recorrido.
 				</p>
-				<input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
+				<input id="id_user_json" type="hidden" name="id_user"  value="<?php echo $idu; ?>">
 				<input type="hidden" name="id_u"  value="<?php echo $id_university; ?>">
 				<span id="commentTitle" >Selecciona una de tus rutas:</span>
 <?php
@@ -233,8 +189,9 @@ if  ($numFilas_routes!=0)
 		<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
 		<section id="pub-box">
 <?php
-//Hace la consulta de todos los recorridos disponibles
-$sql_ways="SELECT * FROM ways WHERE id_u='$id_university'";
+
+//consulta los datos de los ultimos 30 recorridos de la universidad guardados en waysArray
+$sql_ways="SELECT * FROM ways WHERE id_u='$id_university' ORDER BY id_way DESC LIMIT 30";
 $result_ways= pg_query($conn, $sql_ways);
 $numFilas_ways = pg_num_rows($result_ways);
 $cont_ways=1;
@@ -289,14 +246,15 @@ if  ($numFilas_ways!=0)
 						<?php echo $comentario;?>
 					</span>
 					<div class="botones">
-						<button id="btn-pedirCupo" type="button">Pedir cupo</button>
 						<?php
 						 	if ($id_user_w==$idu) {
 								echo "<form action='../Php/deleteWay.php' method='post'>";
 								echo "<input type='text' hidden name='id_way'  value='$id_way'>";
 								echo "<button id='btn-eliminar' type='submit'>Eliminar</button>";
 								echo "</form>";
-						 	}
+						 	}else{
+								echo "<button id='btn-pedirCupo' type='button'>Pedir cupo</button>";
+							}
 						 ?>
 					</div>
 				</div>

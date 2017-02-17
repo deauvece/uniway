@@ -66,6 +66,7 @@ if ($is_driver=='t') {
 				<li> <a href="sesionOpen.php">Ir atrás</a></li>
 				<li> <span>/ Configuración de usuario</span></li>
 			</ul>
+			<img id="bmenu" src="../Imagenes/bmenu.png" width="30px" />
 		</nav>
 		<section class="left-section" >
 			<section class="logo-section" >
