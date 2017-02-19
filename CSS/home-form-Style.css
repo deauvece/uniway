@@ -48,6 +48,8 @@ nav {
 		list-style-type: none;
 	}
 	nav img {
+		width: 45px;
+		height: 45px;
 		display: none;
 	}
 	nav .sinmenu {
@@ -76,6 +78,7 @@ nav {
 		#login a {
 			color: white;
 		}
+
 	#login-form {
 		z-index: 2;
 		display: none;
@@ -142,7 +145,6 @@ nav {
 			padding-left: 10px;
 			border-radius: 3px;
 			cursor: pointer;
-
 		}
 		#logo a  {
 			z-index: 2;
@@ -156,15 +158,20 @@ nav {
 		}
 
 
-@media (max-width:1024px){
+@media (max-width:800px){
+	#login {
+		background-color: #232626;
+		padding: 5px;
+		border-radius: 0px;
+		box-shadow:  none;
+	}
 	nav .sinmenu  {
+		display: none;
 		float: right;
 		width: 210px;
-		display: block;
 		height: 1000px;
-		margin-top: 50px;
+		margin-top: 60px;
 		text-align: left;
-		transform: translateX(200%);
     		background-color: #232626;
 		position: relative;
 		z-index: inherit;
@@ -178,17 +185,24 @@ nav {
 		display: block;
                 color:white;
 	}
-	#btn:checked ~ .sinmenu {
-		transition: all 0.3s;
-		transform: translateX(0%);
-	}
 	nav img {
 		position: absolute;
-		top: 40px;
-		right: 15px;
+		top: 50px;
+		right: 20px;
 		margin-top: -30px;
 		margin-bottom: 20px;
 		display: block;
+	}
+}
+
+@media (max-width:400px){
+	#logo{
+		padding: 0px;
+		padding-top: 20px;
+		width: 200px;
+	}
+	#logo a img{
+		height: 35px;
 	}
 }
 @media (max-width:355px){
@@ -299,7 +313,7 @@ header {
 		display: block;
 		margin:125px auto 0 auto;
 		background-color: white;
-		width: 40%;
+		width: 50%;
 	}
 	.contact-form form {
 		margin-top: -25px;
@@ -511,6 +525,44 @@ header {
 		padding: 20px 0px;
 		text-align: center;
 	}
+@media (max-width:630px) {
+	header h2 {
+		width: 90%;
+		margin: 60px auto 30px auto;
+		color: white;
+		font-weight: bolder;
+		font-size: 200%;
+	}
+	header p{
+		text-align: justify;
+		display: block;
+		margin: -20px auto 0 auto;
+		color:  white;
+		font-weight: bolder;
+		font-size: 110%;
+		width: 70%;
+		padding: 0px;
+	}
+	.contenedorM .columnas  .col {
+		cursor: pointer;
+		border-radius: 5px;
+		position: relative;
+		background-color: white;
+		display: inline-block;
+		height: 330px;
+		width: 320px;
+		margin: 30px 25px;
+	}
+	.contenedorM .columnas .col img {
+		width: 100%;
+		height: 130px;
+	}
+	.contact-form {
+		width: 80%;
+		padding: 5px;
+		padding-bottom: 20px;
+	}
+}
 @media (max-width:430px) {
 	.contenedorContact {
 		background-color: white;
@@ -518,6 +570,17 @@ header {
 	.register {
 		margin-left: -20px;
 		width: auto;
+	}
+	.contenedorM{
+		padding: 0px;
+		padding-top: 10px;
+	}
+	.contenedorM .columnas  .col {
+		margin: 30px 0px;
+	}
+	.contenedorM h2  {
+		padding-left: 15px;
+		padding-right: 15px;
 	}
 }
 @media (max-width:390px) {

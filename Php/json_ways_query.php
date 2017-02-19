@@ -6,7 +6,7 @@ $stop_query=$_GET['stop_query'];
 $id_uni=$_GET['id_uni'];
 
 //Busca una parada para el texto introducido
-$sql1="SELECT id_stop FROM stops WHERE name LIKE '$stop_query%' ";
+$sql1="SELECT id_stop FROM stops WHERE name LIKE '%$stop_query%' ";
 $result1 = pg_query($conn, $sql1);
 $vector=pg_fetch_array($result1);
 $result_stop=$vector['id_stop'];

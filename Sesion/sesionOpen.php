@@ -107,7 +107,7 @@ $id_university=$_SESSION['user_id_university'];
 
 		<section class="find">
 			<button id="btn-find" type="button" name="button"> <img src="../Imagenes/search.png" alt="" /></button>
-			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta!">
+			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta!" autocomplete="off">
 		</section>
 
 
@@ -223,7 +223,7 @@ if  ($numFilas_ways!=0)
 			$comentario=$vector_goto['comment'];
 ?>
 
-				<div class="publicaciones" class="p-before" onclick='cerrarMenu();'>
+				<div class="publicaciones" class="p-before">
 					<img class="open-modal"  src="<?php echo $profile_image_user; ?>" alt="<?php echo $id_user_w; ?>" />
 					<span class="cupo">
 						<?php echo $spots; ?> cupos.
@@ -289,46 +289,133 @@ if  ($numFilas_ways!=0)
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
 			<div class="encb">
-				<img id="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
+				<img id="user_img_query" class="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
 				<div class="block">
 					<label for="user_name_query">Nombre</label>
-					<span id="user_name_query">Nombre usuario</span>
+					<span id="user_name_query" class="user_name_query">Nombre usuario</span>
 				</div>
 				<div class="block">
 					<label for="user_university_query">Universidad</label>
-					<span id="user_university_query" >Universidad UIS</span>
+					<span id="user_university_query" class="user_university_query" >Universidad UIS</span>
 				</div>
 				<div class="block">
 					<label for="user_score">Calificacion</label>
-					<span id="user_score">4.5</span>
+					<span id="user_score" class="user_score">4.5</span>
 				</div>
 				<div class="block">
 					<label for="user_email_query">Correo</label>
-					<span id="user_email_query">correo@ejemplo.com</span>
+					<span id="user_email_query" class="user_email_query">correo@ejemplo.com</span>
 				</div>
 				<div class="block">
 					<label for="user_phone_query">telefono</label>
-					<span id="user_phone_query">3183524157</span>
+					<span id="user_phone_query" class="user_phone_query">3183524157</span>
 				</div>
-
 			</div>
 			<div class="info-usr">
 				<ul>
-					<li><span class="li_underline"></span>Vehículo</li>
-					<li>Rutas</li>
-					<li>Comentarios</li>
+					<li id="data_option" class="info_options" value="data_info" >Datos</li>
+					<li class="info_options" value="transport_info" ><span class='li_underline'></span>Vehículo</li>
+					<li class="info_options" value="routes_info" >Rutas</li>
+					<li class="info_options" value="comments_info" >Comentarios</li>
 				</ul>
-				<div class="transport-info">
-					<label for="">Placas</label>
-					<span>XXX-974</span>
-				</div>
-				<div class="routes-info">
+				<div class="data_info">
+					<div class="encb2">
+						<div class="block">
+							<label for="user_name_query">Nombre</label>
+							<span id="user_name_query" class="user_name_query">Nombre usuario</span>
+						</div>
+						<div class="block">
+							<label for="user_university_query">Universidad</label>
+							<span id="user_university_query" class="user_university_query" >Universidad UIS</span>
+						</div>
+						<div class="block">
+							<label for="user_score">Calificacion</label>
+							<span id="user_score" class="user_score">4.5</span>
+						</div>
+						<div class="block">
+							<label for="user_email_query">Correo</label>
+							<span id="user_email_query" class="user_email_query">correo@ejemplo.com</span>
+						</div>
+						<div class="block">
+							<label for="user_phone_query">telefono</label>
+							<span id="user_phone_query" class="user_phone_query">3183524157</span>
+						</div>
 
+					</div>
 				</div>
-				<div class="comments-info">
-
+				<div class="transport_info">
+					<div class="tr-box">
+						<label for="">Tipo</label>
+						<span>Carro</span>
+					</div>
+					<div class="tr-box">
+						<label for="">Modelo</label>
+						<span>Spark Gt año 2015 </span>
+					</div>
+					<div class="tr-box">
+						<label for="">Imagen</label>
+						<img src="../Imagenes/carro2.jpg" width="80%" />
+					</div>
+					<div class="tr-box">
+						<label for="">Placas</label>
+						<span>XXX-974</span>
+					</div>
+					<div class="tr-box">
+						<label for="">Wi-fi</label>
+						<span>No</span>
+					</div>
+					<div class="tr-box">
+						<label for="">Aire acondicionado</label>
+						<span>Si</span>
+					</div>
+				</div>
+				<div class="routes_info">
+					<div class="rts-box">
+						<span>Cañaveral</span>
+						<span>Paralela</span>
+						<span>El bosque</span>
+						<span>Carrera 27</span>
+						<span>UIS</span>
+					</div>
+					<div class="rts-box">
+						<span>Cañaveral</span>
+						<span>Paralela</span>
+						<span>El bosque</span>
+						<span>Carrera 27</span>
+						<span>UIS</span>
+					</div>
+					<div class="rts-box">
+						<span>Cañaveral</span>
+						<span>Paralela</span>
+						<span>El bosque</span>
+						<span>Carrera 27</span>
+						<span>UIS</span>
+					</div>
+				</div>
+				<div class="comments_info">
+					<div class="cm-box">
+						<img src="../Imagenes/user-real-2.jpg"  />
+						<label for="">Nathalia Acevedo</label>
+						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
+					</div>
+					<div class="cm-box">
+						<img src="../Imagenes/user-real-1.jpg"  />
+						<label for="">Nathalia Acevedo</label>
+						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
+					</div>
+					<div class="cm-box">
+						<img src="../Imagenes/user-real-4.jpg"  />
+						<label for="">Nathalia Acevedo</label>
+						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
+					</div>
+					<div class="cm-box">
+						<img src="../Imagenes/user-real-3.jpg"  />
+						<label for="">Nathalia Acevedo</label>
+						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
+					</div>
 				</div>
 			</div>
+			<img id="back" src="../Imagenes/left4.png" />
 		</section>
 	</div>
 	<script src="../JS/jquery-3.1.1.min.js"></script>

@@ -1,25 +1,5 @@
 $(document).ready(function () {
-	//CHECK FOR WAYS UPDATES
-	function check(){
 
-		$.ajax({
-			url: '../Php/json_check_status.php',
-			type: 'get',
-			data: {
-				rdn_string: $("#status_feed").attr("value"),
-				id_uni: $("#status_feed").attr("class")
-			},
-			dataType: 'json',
-			success: function(array){
-				if (array.update=="true") {
-					$("#new-updates").fadeIn();
-					clearInterval(interval);
-				}
-			}
-		});
-	}
-	//1000 = 1 segundo
-	var interval = setInterval(check, 5000);
 
 	//update page when there's new updates
 	$("#new-updates").click(function(){
@@ -36,11 +16,11 @@ $(document).ready(function () {
 			},
 			dataType: 'json',
 			success: function(array){
-				$("#user_img_query").attr("src", array.profile_image);
-				$("#user_name_query").text(array.full_name);
-				$("#user_university_query").text(array.university_acr);
-				$("#user_email_query").text(array.email);
-				$("#user_phone_query").text(array.phone);
+				$(".user_img_query").attr("src", array.profile_image);
+				$(".user_name_query").text(array.full_name);
+				$(".user_university_query").text(array.university_acr);
+				$(".user_email_query").text(array.email);
+				$(".user_phone_query").text(array.phone);
 			}
 		});
 
@@ -62,16 +42,14 @@ $(document).ready(function () {
 
 
 	//login user home.html
-	var bin=0;
-		$("#login").click(function(){
-			if (bin==0) {
-				$("#login-form ").fadeIn();
-				bin=1;
-			}else{
-				$("#login-form ").fadeOut();
-				bin=0;
-			}
-		});
+	$("#login").click(function(){
+		var w =$( window ).width();
+		if (w > 800) {
+			$("#login-form").fadeToggle("fast");
+		}else{
+			window.location="login-user.php";
+		}
+	});
 	//contact-form home.html
 	$("#contact-modal").click(function(){
 		$("#contact-box").fadeIn();
@@ -174,13 +152,14 @@ $(document).ready(function () {
     $("#pub-box").on("click","img",function(){
 	    $(".modal-box").fadeIn("fast");
     });
-
-
     $("#modal-box").click(function(){
 	    $(".modal-box").fadeOut("fast");
     });
     $("#modal-window").click(function(){
 	    event.stopPropagation();
+    });
+    $("#back").click(function() {
+	    $(".modal-box").fadeOut("fast");
     });
 
 	//busqueda de paradas en userProfile.php
@@ -220,24 +199,48 @@ $(document).ready(function () {
 			$(".options").click(function(){
 			    event.stopPropagation();
 			});
+
+			$("#btn").click(function(){
+				$(".sinmenu").fadeToggle("fast");
+			});
+
+
+			//modal-window sesionOpen mostrar datos, rutas, comentarios, vehiculo
+			$(".info_options").click(function(){
+				var val = $(this).attr("value");
+				var options=["transport_info","routes_info","comments_info", "data_info"];
+				$("span").remove(".li_underline");
+					if (val== options[0]) {
+						$(".transport_info").show();
+						$(".routes_info").hide();
+						$(".comments_info").hide();
+						$(".data_info").hide();
+						$(this).html("<span class='li_underline'></span>Vehiculo");
+					}else {
+						if (val== options[1]) {
+							$(".transport_info").hide();
+							$(".routes_info").show();
+							$(".comments_info").hide();
+							$(".data_info").hide();
+							$(this).html("<span class='li_underline'></span>Rutas");
+						}else {
+							if (val== options[2]) {
+								$(".transport_info").hide();
+								$(".routes_info").hide();
+								$(".comments_info").show();
+								$(".data_info").hide();
+								$(this).html("<span class='li_underline'></span>Comentarios");
+							}else {
+								if (val== options[3]) {
+									$(".transport_info").hide();
+									$(".routes_info").hide();
+									$(".comments_info").hide();
+									$(".data_info").show();
+									$(this).html("<span class='li_underline'></span>Datos");
+								}
+							}
+						}
+					}
+			});
+
 });
-
-
-
-
-
-//Amimaciones del menu desplegable SESION ABIERTA
-	//para que cuando se clickee fuera del menu tambien se oculte
-	function cerrarMenu() {
-		document.getElementsByClassName('sinmenu')[0].style.webkitTransform = 'translateX(200%)';
-	}
-	//la funcion para cuando se hace click en el boton
-	function menuDesplegable() {
-		if (document.getElementById('btn').checked) {
-			//get element by class devuelve un vector, se selecciona el primero en la posicion inicial 0
-			 document.getElementsByClassName('sinmenu')[0].style.webkitTransform = 'translateX(1%)';
-		}
-		else {
-			document.getElementsByClassName('sinmenu')[0].style.webkitTransform = 'translateX(200%)';
-		}
-	}

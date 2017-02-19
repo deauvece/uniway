@@ -269,14 +269,16 @@ body{
 		font-size: 100%;
 		display: block;
 	}
+	.botones{
+		padding-top: 5px;
+		height: 30px;
+	}
 	#btn-pedirCupo, #btn-eliminar {
 		width: 80px;
 		float: right;
 		padding: 5px;
 		color: gray;
 		background-color: #F1F1F1;
-		margin-right: -10px;
-		margin-top: 10px;
 		border-width: 0px;
 	}
 	 #btn-pedirCupo:hover, #btn-pedirCupo:focus, #btn-eliminar:hover, #btn-eliminar:focus  {
@@ -327,7 +329,6 @@ body{
 /*============================================MODAL WINDOW====================================================*/
 .modal-box {
 		display: none;
-		background-color: red;
 		background: rgba(0, 0, 0, 0.4);
 		position: fixed;
 		left: 0;
@@ -350,20 +351,28 @@ body{
 	}
 /*=====scrollbarr=========*/
 .modal-window {
-	position: fixed;
-	top: 75px;
-	left: 25%;
+	display: block;
+	margin: 100px auto 0px auto;
 	height: 500px;
 	width: 630px;
 	background-color: white;
 	border-radius: 5px;
 	box-shadow: 0 0 5px rgba(160,165,168,1);
 }
-	.modal-window .encb {
+	#back{
+		cursor: pointer;
+		display: block;
+		position: relative;
+		top: -98%;
+		left: 7px;
+		height: 25px;
+		width: 25px;
+	}
+	.modal-window .encb{
 		width: 300px;
 		float: left;
 	}
-	.encb .block {
+	.encb .block, .encb2 .block {
 		display: block;
 	}
 		.modal-window .encb img {
@@ -375,16 +384,16 @@ body{
 			width: 200px;
 			border-radius: 100px;
 		}
-		.modal-window .encb label {
+		.modal-window .encb label, .modal-window .encb2 label {
 			text-align: right;
 			display: inline-block;
 			font-size: 80%;
-			width: 110px;
+			width: 80px;
 		}
-		.modal-window .encb span {
+		.modal-window .encb span, .modal-window .encb2 span {
 			text-align: center;
 			display: inline-block;
-			margin-left: 10px;
+			margin-left: 5px;
 			font-weight: bold;
 			font-size: 90%;
 		}
@@ -400,9 +409,11 @@ body{
 		text-align: left;
 		height: 100%;
 		width: 320px;
-		overflow:hidden;
 		border-width: 1px;
 		border-color: black;
+	}
+	#data_option{
+		display: none;
 	}
 		.info-usr ul {
 			background-color: white;
@@ -430,6 +441,92 @@ body{
 			height: 2px;
 			width: 100%;
 			background-color: #009999;
+		}
+		.transport_info{
+			height: 92%;
+			overflow: auto;
+		}
+			.transport_info .tr-box{
+				display: block;
+				background-color: white;
+				margin: 5px;
+				min-height: 50px;
+				border: 1px solid #E2E2E2;
+			}
+			.transport_info .tr-box label{
+				display: block;
+				font-size: 90%;
+				font-weight: bold;
+				margin: 0px 0px 0px 7px;
+				padding-top: 7px;
+			}
+			.transport_info .tr-box span{
+				display: block;
+				text-align: center;
+				padding: 0px 10px 5px;
+			}
+			.transport_info .tr-box img{
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 15px 0px;
+			}
+		.routes_info{
+			display: none;
+			height: 90%;
+			overflow: auto;
+		}
+			.routes_info .rts-box {
+				border: 1px solid #D0D0D0;
+				display: block;
+				margin: 5px auto 10px;
+				width: 70%;
+				background-color: white;
+			}
+			.routes_info .rts-box span {
+				text-align: center;
+				display: block;
+				padding: 10px;
+				font-size: 80%;
+			}
+			.routes_info .rts-box span:last-child {
+				background-color: #EBEBEB;
+			}
+			.routes_info .rts-box span:hover {
+				cursor: pointer;
+
+			}
+
+		.comments_info{
+			display: none;
+			height: 90%;
+			overflow: auto;
+		}
+			.comments_info .cm-box{
+				background-color: white;
+				margin: 5px;
+				padding: 5px;
+				border: 1px solid #E2E2E2;
+				min-height: 60px;
+			}
+			.comments_info .cm-box img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: red;
+				float: left;
+				margin: 10px;
+			}
+			.comments_info .cm-box label {
+				display: block;
+				font-size: 90%;
+				padding-top: 5px;
+			}
+			.comments_info .cm-box span {
+				font-size: 85%;
+			}
+		.data_info{
+			display: none;
 		}
 
 /*============================================MODAL WINDOW====================================================*/
@@ -500,6 +597,96 @@ body{
 	.search {
 		width: 55%;
 	}
+	.ruta , .ruta-n {
+		font-size: 70%;
+	}
+}
+
+@media (max-width:650px) {
+	#back{
+		top: -108%;
+	}
+	#data_option{
+		display: inline-block;
+	}
+	.info-usr ul li {
+		width: 22%;
+	}
+	.data_info{
+		padding: 0px;
+		margin: 10px;
+		height: 80%;
+		background-color: white;
+	}
+	.encb2 .block{
+		height: 45px;
+		float: none;
+		display: block;
+		width: 97%;
+	}
+	.encb2 .block:nth-child(1) {
+		padding-top: 30px;
+	}
+	.encb2 .block label{
+		width: 25%;
+		font-size: 100%;
+	}
+	.encb2 .block span{
+		font-size: 100%;
+	}
+	.modal-window {
+		height: 100%;
+		width: 70%;
+		margin-top: 0px;
+		overflow: auto;
+	}
+	.modal-window .encb{
+		overflow: hidden;
+		height: 150px;
+		width: auto;
+		float: none;
+		margin: 0px;
+		padding-top: 3px;
+	}
+	.modal-window .info-usr {
+		float: none;
+		width: auto;
+	}
+	.modal-window .encb img {
+		background-color: red;
+		height: 100px;
+		width: 100px;
+	}
+}
+@media (max-width:550px) {
+	.modal-window {
+		width: 100%;
+	}
+	.encb2 .block label{
+		width: 100px;
+		padding: 0 4px;
+		font-size: 90%;
+	}
+}
+@media (max-width:500px) {
+	.encb2 .block{
+		height: 50px;
+	}
+	.encb2 .block label{
+		text-align: left;
+		float: none;
+		padding-left: 10px;
+		display: block;
+		width: 80px;
+	}
+	.encb2 .block span{
+		padding-top: 5px;
+		float: none;
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+
 }
 /*============================================RESPONSIVE FEED===============================================*/
 /*============================================END FEED STYLE================================================*/
@@ -913,6 +1100,9 @@ body{
 		border-bottom-width: 2px;
 		border-color: #E5E5E5;
 	}
+	.userRutesBox > .title{
+		background-color: white;
+	}
 	.basicInfo > .title span ,.userRutesBox > .title span , .qualificationsBox> .title span , .transportInfo > .title span{
 		display: block;
 		font-size: 75%;
@@ -1120,7 +1310,7 @@ body{
 			text-align: center;
 			box-shadow: 0 0 1px rgba(160,165,168,1);
 			margin-bottom: 20px;
-			background-color: white;
+			background-color: #F5F5F5;
 			border-radius: 3px;
 		}
 						/*boton agregar ruta*/
@@ -1143,13 +1333,13 @@ body{
 						/*boton agregar ruta*/
 		.userRutes {
 			display: inline-block;
-			padding:10px;
+			padding:5px;
 			width: 210px;
 			min-height: 200px;
-			background-color: #EBEEF0;
-			box-shadow: 0 0 1px;
+			background-color: white;
 			margin: 15px;
 			border-radius: 5px;
+			border: 1px solid #E2E2E2;
 		}
 		.userRutes span {
 			display: block;
@@ -1157,12 +1347,13 @@ body{
 			clear: both;
 			width: 100%;
 			padding: 12px 0px;
-			color: white;
-			/*background-color: #002A2A;*/
-			background-color: #009999;
+			color: black;
+			background-color: white;
 			font-size: 80%;
-			margin-bottom: 1px;
 			cursor: pointer;
+		}
+		.userRutes span:hover {
+			background-color: #EBEBEB;
 		}
 		.userRutes span:nth-child(1){
 			border-top-left-radius: 5px;

@@ -57,6 +57,27 @@ $(document).ready(function(){
 		$(".ruta-n").hide();
 		$(this).next().slideDown(100);
 	});
+	//CHECK FOR WAYS UPDATES
+	function check(){
+
+		$.ajax({
+			url: '../Php/json_check_status.php',
+			type: 'get',
+			data: {
+				rdn_string: $("#status_feed").attr("value"),
+				id_uni: $("#status_feed").attr("class")
+			},
+			dataType: 'json',
+			success: function(array){
+				if (array.update=="true") {
+					$("#new-updates").fadeIn();
+					clearInterval(interval);
+				}
+			}
+		});
+	}
+	//1000 = 1 segundo
+	var interval = setInterval(check, 5000);
 
 
 });

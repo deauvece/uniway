@@ -22,9 +22,10 @@ if (!$file) {
 	$result_img = pg_query($conn,$sql1_update);
 }else{
 	$idu=$id_user;
-	$cad = "transport_image_".$idu; 
+	$cad = "transport_image_".$idu;
 	$tamano = $_FILES[ 'file' ][ 'size' ]; // Leemos el tamaño del fichero en bytes
 	$tamaño_max="2000000"; // Tamaño maximo permitido son 2 megabytes
+	if ($tamano!=0) {
 	if( $tamano < $tamaño_max){ // Comprovamos el tamaño
 		 $destino = '../Imagenes/transportImages' ; // Carpeta donde se guardara
 		 $sep=explode('image/',$_FILES['file']['type']); // Separamos image/
@@ -42,6 +43,8 @@ if (!$file) {
 	}else {
 	    echo "El archivo supera el peso permitido.";/* Si supera el tamaño de permitido lo decimos*/
 	  }
+  }
+header("location:../Sesion/userProfile.php?idu=myProfile");
 }
 
 ?>
