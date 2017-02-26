@@ -12,12 +12,14 @@ $(document).ready(function(){
 			$(".publicaciones").show();
 		}else{
 			var id_user= $("#id_user_json").attr("value");
+			//para comprobar si el usuario ya está en otro recorrido
+			var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo
 			$.ajax({
 				url: '../Php/json_ways_query.php',
 				type: 'get',
 				data: {
 					stop_query: $("#search-input").val().toUpperCase(),
-					id_uni: $("#status_feed").attr("class"),
+					id_uni: $("#status_feed").attr("class")
 				},
 				dataType: 'json',
 				success: function(array){
@@ -38,9 +40,13 @@ $(document).ready(function(){
 							text0 = "Saliendo de la universidad a las ";
 						}
 						if (id_users[i]==id_user) {
-							button = "<button id='btn-eliminar' type='submit'>Eliminar</button>";
+							button = "<a href='group-chat.php?id_way="+ways_id[i]+"'><button class='btn-eliminar' type='button'>Ver</button></a>";
 						}else{
-							button = "<button id='btn-pedirCupo' type='button' name='button'>Pedir cupo</button>";
+							if (id_way_usr==ways_id[i]) {
+								button = "<a href='group-chat.php?id_way="+ways_id[i]+"'><button class='btn-eliminar' type='button'>Ver</button></a>";
+							}else {
+								button = "<button id='btn-pedirCupo' class='btn-pedirCupo' type='button' name='button'>Pedir cupo</button>";
+							}
 						}
 						$("#pub-box").append("<div class='publicaciones-n' ><img class='open-modal' src='"+profile_images[i]+"' alt='"+id_users[i]+"' ></img><span class='cupo'>"+spots[i]+" cupos.</span><a href=''><span class='name'>"+names[i]+"</span></a><span class='time'>"+text0+hours[i]+"</span><span class='comentario'>"+comments[i]+"</span><div class='botones'>"+button+"</div></div><span style='display:none' class='ruta-n' >Cañaveral - Fosunab - Paralela - CRA 27 - UIS</span>");
 					}

@@ -17,7 +17,7 @@
 	<ul >
 		<li>
 			<a href="home.html">
-				<img src="Imagenes/logo-name-white.png" height="40" id="nombre" />
+				<img src="Imagenes/logo-name-white.png" width="150" id="nombre" />
 			</a>
 		</li>
 	</ul>

@@ -3,8 +3,25 @@
 include("functions.php");
 $conn=conectarse();
 extract($_POST);
-$sql="INSERT INTO ways (hour,id_user,id_route,spots,touniversity,comment,id_u) VALUES ('$timepicker','$id_user','$id_ruta','$spots','$touniversity','$comment','$id_u')";
+
+//true=> usuario activo
+$status_user="true";
+$sql3="UPDATE users SET status_way='$status_user' WHERE id_user='$id_user'";
+$result3 = pg_query($conn, $sql3);
+
+$sql="INSERT INTO ways (hour,id_user,id_route,spots,touniversity,comment,id_u,max_spots) VALUES ('$timepicker','$id_user','$id_ruta','$spots','$touniversity','$comment','$id_u','$spots')";
 $result = pg_query($conn, $sql);
+
+//lo agrega a usr_ways
+$sql4="SELECT * FROM ways WHERE id_user='$id_user'";
+$result4 = pg_query($conn,$sql4);
+$vector4=pg_fetch_array($result4);
+$id_way_this = $vector4['id_way'];
+
+$sql00="INSERT INTO usr_ways (id_user,id_way) VALUES ('$id_user','$id_way_this')";
+$result00 = pg_query($conn, $sql00);
+
+
 //para identificar que la ruta del recorrido se encuentra en alguna publicacion
 $status="active";
 $sql2="UPDATE route_stop SET status='$status' WHERE id_route='$id_ruta'  ";

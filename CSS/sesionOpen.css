@@ -273,7 +273,7 @@ body{
 		padding-top: 5px;
 		height: 30px;
 	}
-	#btn-pedirCupo, #btn-eliminar {
+	.btn-pedirCupo, .btn-eliminar {
 		width: 80px;
 		float: right;
 		padding: 5px;
@@ -281,7 +281,7 @@ body{
 		background-color: #F1F1F1;
 		border-width: 0px;
 	}
-	 #btn-pedirCupo:hover, #btn-pedirCupo:focus, #btn-eliminar:hover, #btn-eliminar:focus  {
+	 .btn-pedirCupo:hover, .btn-pedirCupo:focus, .btn-eliminar:hover, .btn-eliminar:focus  {
 		cursor: pointer;
 		color: #006161;
 		outline-color: #006161;
@@ -352,8 +352,8 @@ body{
 /*=====scrollbarr=========*/
 .modal-window {
 	display: block;
-	margin: 100px auto 0px auto;
-	height: 500px;
+	margin: 40px auto 0px auto;
+	height: 550px;
 	width: 630px;
 	background-color: white;
 	border-radius: 5px;
@@ -529,6 +529,30 @@ body{
 			display: none;
 		}
 
+		.error_way{
+			display: none;
+			text-align: center;
+			margin: 150px auto auto auto;
+			background-color: white;
+			width: 300px;
+			padding: 10px;
+			min-height: 100px;
+		}
+		.error_way span{
+			padding-top: 10px;
+			padding-bottom: 40px;
+			display: block;
+		}
+		.error_way button{
+			display: block;
+			width: 100%;
+			background-color: #009999;
+			color: white;
+			border-width: 0px;
+			border-radius: 3px;
+			padding: 5px 0px;
+			cursor: pointer;
+		}
 /*============================================MODAL WINDOW====================================================*/
 
 /*============================================RESPONSIVE FEED===============================================*/
@@ -922,6 +946,9 @@ body{
 	margin-right: auto;
 	cursor: pointer;
 }
+#addRoute .rutaXBox select{
+	width: 88%;
+}
 #addRoute input {
 	outline: none;
 	border-width: 0px;
@@ -1087,6 +1114,19 @@ body{
 
 	}
 /*============================================FORM ADD ROUTES STYLE==============================================*/
+	.update-done{
+		position: fixed;
+		bottom: 40px;
+		left: 40%;
+		display: block;
+		width: 200px;
+		text-align: center;
+		padding: 5px;
+		border-radius: 15px;
+		background-color: #009999;
+		color: white;
+		cursor: pointer;
+	}
 	/*     titulos   */
 	.basicInfo > .title , .userRutesBox > .title , .qualificationsBox> .title , .transportInfo > .title{
 		text-align: left;
@@ -1165,9 +1205,10 @@ body{
 				font-size: 100%;
 				border-radius: 3px;
 				border-width: 0px;
-				margin-right: 40px;
+				margin-right: 20px;
 				margin-bottom: 15px;
 			}
+
 		/*   Transporte*/
 		.transportInfo {
 			margin-top: 20px;
@@ -1267,17 +1308,11 @@ body{
 		  }
 		  .basicInfo select, .transportInfo select {
 		  	display: block;
-		  	margin-left: auto;
-		  	margin-right: auto;
 		  	margin-bottom: 20px;
 		  	border-width: 0px;
-		  	background-color:#F3F3F3;
-		  }
-
-		  .basicInfo select , .transportInfo select{
-			  width: 335px;
-			  padding: 15px;
-			  background-color: #F3F3F3;
+			width: 335px;
+			padding: 15px;
+			background-color: #F3F3F3;
 		  }
 		  .transportInfo select{
 			  margin-top: 5px;
@@ -1298,10 +1333,44 @@ body{
 			  color: white;
 			  padding: 10px;
 			  background-color: #009999;
-			  border-bottom-right-radius: 5px;
-			  border-bottom-left-radius: 5px;
 		  }
 		/*   Transporte*/
+
+		.security{
+			text-align: left;
+		}
+		.security h4{
+			padding-top: 15px;
+			padding-left: 25px;
+		}
+		.security > span {
+			display: block;
+			margin-left: 25px;
+			margin-right: 25px;
+			margin-top: -15px;
+			padding-bottom: 20px;
+			font-size: 95%;
+		}
+		.security ul{
+			list-style-type: none;
+			padding: 0px;
+		}
+		.security ul li:nth-child(2n){
+			margin-left: 30px;
+		}
+		.security ul li{
+			margin-left: 30px;
+			display: block;
+			width: 100%;
+		}
+		.security ul li span {
+			display: inline-block;
+			width: 50%;
+		}
+		.security ul li input[type="checkbox"] {
+			display: inline-block;
+			height: 20px;
+		}
 
 
 
@@ -1438,6 +1507,25 @@ body{
 		left:400px;
 	}
 
+	.security ul li:nth-child(2n){
+		margin-left: 30px;
+	}
+	.security ul li{
+		margin-left: 30px;
+		display: block;
+		width: 100%;
+	}
+	.security ul li span {
+		display: inline-block;
+		width: 70%;
+	}
+	.security ul li input[type="checkbox"] {
+		display: inline-block;
+		height: 20px;
+		width: 20px;
+		margin: 0px;
+	}
+
 }
 @media (max-width:850px) {
 	.transportInfo img,.transportInfo ul li .file_label {
@@ -1527,6 +1615,221 @@ body{
 
 /*============================================RESPONSIVE PROFILE PAGE=========================================*/
 /*============================================PROFILE STYLE===================================================*/
+
+
+/*============================================CHAT-GROUP STYLE===================================================*/
+.nav-chat {
+	color: white;
+}
+.nav-chat a {
+	text-decoration: none;
+	color: white;
+}
+	.nav-chat ul{
+		text-align: right;
+		list-style: none;
+		padding: 5px 150px 0px 0px;
+		margin: 0px;
+		background-color: #232626;
+		height: 55px;
+	}
+	.nav-chat ul li{
+		min-width: 90px;
+		display: inline-block;
+	}
+	.nav-chat img {
+		position: relative;
+		top: 10px;
+		left: -10px;
+		height: 30px;
+		width: 30px;
+		border-radius: 15px;
+	}
+	#logo-chat{
+		position: absolute;
+		top: 10px;
+		left: 100px;
+		height: 40px;
+	}
+.container-chat{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	width: 1100px;
+	height: 610px;
+}
+	.container-chat .people {
+		overflow: auto;
+		display: block;
+		float: left;
+		width: 310px;
+		height: 100%;
+		border: 0px solid #E2E2E2;
+		border-right-width: 1px;
+		border-left-width: 1px;
+	}
+		.people .title-usr {
+			display: block;
+			background-color: white;
+			color: black;
+			font-weight: bold;
+			font-size: 80%;
+			padding: 10px 3px 10px 10px;
+			border: 0px solid #E2E2E2;
+			border-top-width: 1px;
+		}
+		.people .cond-group{
+			margin-top: 5px;
+			margin-right: 5px;
+			text-align: center;
+			width: 35px;
+			padding: 2px;
+			display: block;
+			color: #009999;
+			background-color: white;
+			font-size: 80%;
+			float: right;
+			border-radius: 3px;
+			border: 1px solid #009999;
+		}
+		.people .usr-box{
+			margin: 1px 0px;
+			min-height: 50px;
+			padding: 5px;
+			padding-left: 10px;
+			padding-top: 10px;
+			cursor: pointer;
+		}
+		.people .usr-box:hover{
+			background-color: #F3F3F3;
+		}
+			.people .usr-box img{
+				float: left;
+				margin-right: 15px;
+				height: 46px;
+				width: 46px;
+				border-radius: 23px;
+			}
+			.people .usr-box span{
+				display: block;
+				position: relative;
+				top: 10px;
+				font-size: 95%;
+			}
+			.people .delete-usr-cht,.people .delete-group-usr-cht,.people .out-usr-cht{
+				display: none;
+				padding: 3px 0px;
+				text-align: center;
+				font-size: 80%;
+				color: white;
+				background-color: #009999;
+			}
+			.people .out-usr-cht{
+			}
+			.people .delete-group-usr-cht{
+				cursor: pointer;
+				background-color: #B72C2C;
+				display: block;
+			}
+	.container-chat .cht-box {
+		display: block;
+		height: 100%;
+		overflow: hidden;
+	}
+		.cht-box .content-cht {
+			display: block;
+			height: 90%;
+			background-color: white;
+			overflow: auto;
+			border: 0px solid #E2E2E2;
+			border-bottom-width: 1px;
+		}
+		.cht-box .input-cht {
+			display: block;
+			height: 10%;
+		}
+			.cht-box .input-cht textarea {
+				font-size: 105%;
+				display: block;
+				margin: 0px;
+				border-width: 0px;
+				width: 80%;
+				height: 100%;
+				outline: none;
+				padding-top: 20px;
+				padding-left: 20px;
+				resize: none;
+			}
+		.content-cht .comment-center{
+			background-color: #D1D4D7;
+			display: block;
+			margin: 5px auto;
+			width: 35%;
+			text-align: center;
+			font-size: 90%;
+			padding: 2px;
+			border-radius: 5px;
+
+		}
+		.content-cht .comment-left , .content-cht .comment-right  {
+			background-color: white;
+			display: block;
+			text-align: left;
+		}
+		 .content-cht .comment-right{
+			 text-align: right;
+		 }
+			.comment-left .box, .comment-right .box{
+				display: inline-block;
+				background-color: #EBEEF0;
+				padding: 10px;
+				margin: 5px;
+				border-radius: 5px;
+			}
+			.comment-right .box{
+				text-align: left;
+				background-color: #009999;
+				color: white;
+			}
+			.comment-left .box .name-coment, .comment-right .box .name-coment{
+				display: block;
+				font-size: 80%;
+				font-weight: bold;
+				padding-bottom: 3px;
+			}
+
+	/*modal box- group chat page*/
+	.msg-out, .delete-way{
+		border-radius: 5px;
+		background-color: white;
+		display: block;
+		margin: 250px auto auto auto;
+		width: 320px;
+		padding-bottom: 10px;
+
+	}
+	.msg-out span , .delete-way span {
+		text-align: center;
+		display: block;
+		padding: 20px 0px 10px;
+		margin-bottom: 20px;
+	}
+	.msg-out button , .delete-way button{
+		display: block;
+		width: 80%;
+		background-color: #009999;
+		color: white;
+		border-radius: 2px;
+		margin: auto auto 5px auto;
+		border-width: 0px;
+		padding: 5px 0px;
+		cursor: pointer;
+	}
+	form > .yes-confirm{
+		background-color: #B72C2C;
+	}
+/*============================================CHAT-GROUP STYLE===================================================*/
 
 /*============================================MAINTENANCE STYLE===================================================*/
 .maintenance {

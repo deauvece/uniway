@@ -299,11 +299,22 @@ CREATE TABLE users (
     is_verified boolean DEFAULT false,
     creation_date timestamp with time zone DEFAULT now(),
     edition_date timestamp with time zone DEFAULT now(),
-    profile_image text
+    profile_image text,
+    phone_public boolean DEFAULT false,
+    email_public boolean DEFAULT true,
+    license_plate_public boolean DEFAULT false,
+    status_way text DEFAULT false
 );
 
 
 ALTER TABLE public.users OWNER TO deauvece;
+
+--
+-- Name: COLUMN users.status_way; Type: COMMENT; Schema: public; Owner: deauvece
+--
+
+COMMENT ON COLUMN users.status_way IS 'false==inactive';
+
 
 --
 -- Name: usr_routes; Type: TABLE; Schema: public; Owner: deauvece; Tablespace: 
@@ -318,6 +329,20 @@ CREATE TABLE usr_routes (
 
 
 ALTER TABLE public.usr_routes OWNER TO deauvece;
+
+--
+-- Name: usr_ways; Type: TABLE; Schema: public; Owner: deauvece; Tablespace: 
+--
+
+CREATE TABLE usr_ways (
+    id_user text,
+    id_way text,
+    creation_date timestamp with time zone DEFAULT now(),
+    edition_date timestamp with time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.usr_ways OWNER TO deauvece;
 
 --
 -- Name: way_id_seq; Type: SEQUENCE; Schema: public; Owner: deauvece
@@ -347,7 +372,8 @@ CREATE TABLE ways (
     spots text,
     touniversity text,
     comment text,
-    id_u text NOT NULL
+    id_u text NOT NULL,
+    max_spots text
 );
 
 
@@ -387,7 +413,7 @@ COPY qualifications (id_qualif, score, creation_date, edition_date, id_user) FRO
 -- Name: route_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('route_id_seq', 12, true);
+SELECT pg_catalog.setval('route_id_seq', 15, true);
 
 
 --
@@ -398,21 +424,33 @@ COPY route_stop (id_route, id_stop, creation_date, edition_date, status) FROM st
 R12	STOP1	2017-02-15 10:31:11.032034-05	2017-02-15 10:31:11.032034-05	sleep
 R12	STOP5	2017-02-15 10:31:11.041842-05	2017-02-15 10:31:11.041842-05	sleep
 R12	STOP2	2017-02-15 10:31:11.05407-05	2017-02-15 10:31:11.05407-05	sleep
-R8	STOP2	2017-02-14 18:30:34.108692-05	2017-02-14 18:30:34.108692-05	active
-R8	STOP1	2017-02-14 18:30:34.120243-05	2017-02-14 18:30:34.120243-05	active
-R8	STOP27	2017-02-14 18:30:34.130264-05	2017-02-14 18:30:34.130264-05	active
-R8	STOP13	2017-02-14 18:30:34.141305-05	2017-02-14 18:30:34.141305-05	active
-R8	STOP5	2017-02-14 18:30:34.153187-05	2017-02-14 18:30:34.153187-05	active
-R10	STOP2	2017-02-14 20:22:12.61585-05	2017-02-14 20:22:12.61585-05	active
-R10	STOP4	2017-02-14 20:22:12.626431-05	2017-02-14 20:22:12.626431-05	active
-R10	STOP28	2017-02-14 20:22:12.63666-05	2017-02-14 20:22:12.63666-05	active
-R10	STOP32	2017-02-14 20:22:12.649037-05	2017-02-14 20:22:12.649037-05	active
-R10	STOP6	2017-02-14 20:22:12.65972-05	2017-02-14 20:22:12.65972-05	active
 R9	STOP2	2017-02-14 18:40:56.740844-05	2017-02-14 18:40:56.740844-05	active
 R9	STOP1	2017-02-14 18:40:56.978415-05	2017-02-14 18:40:56.978415-05	active
 R9	STOP21	2017-02-14 18:40:56.99221-05	2017-02-14 18:40:56.99221-05	active
 R9	STOP13	2017-02-14 18:40:57.003284-05	2017-02-14 18:40:57.003284-05	active
 R9	STOP5	2017-02-14 18:40:57.013935-05	2017-02-14 18:40:57.013935-05	active
+R8	STOP2	2017-02-14 18:30:34.108692-05	2017-02-14 18:30:34.108692-05	active
+R8	STOP1	2017-02-14 18:30:34.120243-05	2017-02-14 18:30:34.120243-05	active
+R8	STOP27	2017-02-14 18:30:34.130264-05	2017-02-14 18:30:34.130264-05	active
+R8	STOP13	2017-02-14 18:30:34.141305-05	2017-02-14 18:30:34.141305-05	active
+R8	STOP5	2017-02-14 18:30:34.153187-05	2017-02-14 18:30:34.153187-05	active
+R13	STOP14	2017-02-18 19:12:38.269017-05	2017-02-18 19:12:38.269017-05	sleep
+R13	STOP35	2017-02-18 19:12:38.323062-05	2017-02-18 19:12:38.323062-05	sleep
+R13	STOP16	2017-02-18 19:12:38.334708-05	2017-02-18 19:12:38.334708-05	sleep
+R13	STOP2	2017-02-18 19:12:38.344956-05	2017-02-18 19:12:38.344956-05	sleep
+R14	STOP2	2017-02-18 19:14:26.950849-05	2017-02-18 19:14:26.950849-05	active
+R14	STOP4	2017-02-18 19:14:26.960611-05	2017-02-18 19:14:26.960611-05	active
+R14	STOP3	2017-02-18 19:14:26.971811-05	2017-02-18 19:14:26.971811-05	active
+R14	STOP27	2017-02-18 19:14:26.982974-05	2017-02-18 19:14:26.982974-05	active
+R14	STOP22	2017-02-18 19:14:26.995557-05	2017-02-18 19:14:26.995557-05	active
+R10	STOP2	2017-02-14 20:22:12.61585-05	2017-02-14 20:22:12.61585-05	active
+R10	STOP4	2017-02-14 20:22:12.626431-05	2017-02-14 20:22:12.626431-05	active
+R10	STOP28	2017-02-14 20:22:12.63666-05	2017-02-14 20:22:12.63666-05	active
+R10	STOP32	2017-02-14 20:22:12.649037-05	2017-02-14 20:22:12.649037-05	active
+R10	STOP6	2017-02-14 20:22:12.65972-05	2017-02-14 20:22:12.65972-05	active
+R15	STOP2	2017-02-19 13:40:55.397598-05	2017-02-19 13:40:55.397598-05	sleep
+R15	STOP12	2017-02-19 13:40:55.453156-05	2017-02-19 13:40:55.453156-05	sleep
+R15	STOP8	2017-02-19 13:40:55.464064-05	2017-02-19 13:40:55.464064-05	sleep
 \.
 
 
@@ -425,6 +463,9 @@ R8	4	2017-02-14 18:30:34.045711-05	2017-02-14 18:30:34.045711-05	USR15	xofdEOqne
 R9	4	2017-02-14 18:40:56.577092-05	2017-02-14 18:40:56.577092-05	USR12	WLUFk5cGm8la
 R10	4	2017-02-14 20:22:12.573188-05	2017-02-14 20:22:12.573188-05	USR16	XIkRKzvtowwy
 R12	2	2017-02-15 10:31:10.989329-05	2017-02-15 10:31:10.989329-05	USR16	VRCYCgTjjjFs
+R13	4	2017-02-18 19:12:37.570712-05	2017-02-18 19:12:37.570712-05	USR15	weDyLHWN27jI
+R14	4	2017-02-18 19:14:26.903548-05	2017-02-18 19:14:26.903548-05	USR15	L7yr580udeAY
+R15	4	2017-02-19 13:40:55.289658-05	2017-02-19 13:40:55.289658-05	USR12	C9wkltGfR5VO
 \.
 
 
@@ -434,7 +475,7 @@ R12	2	2017-02-15 10:31:10.989329-05	2017-02-15 10:31:10.989329-05	USR16	VRCYCgTj
 
 COPY status_feed (id_status, random_string, university) FROM stdin;
 U2	37W9jvzSoyTv429lwA43	UNAB
-U1	O9Uf63tU3178Iz52xHVG	UIS
+U1	tCfeedR67Mi6kfgHSxGG	UIS
 \.
 
 
@@ -511,7 +552,8 @@ STOP38	ACROPOLIS	No hay descripcion	2016-10-15 22:35:05.479084-05	2016-10-15 22:
 
 COPY transports (license_plate, model, air_conditioner, wifi, price, creation_date, edition_date, id_user, image, type) FROM stdin;
 CTE124	nissan 123	t	t	2000	2017-02-15 12:08:10.290535-05	2017-02-15 12:08:10.290535-05	USR16	../Imagenes/transportImages/transport_image_USR16.jpeg	Moto
-ccc444	nissan 123	t	t	2000	2017-02-15 18:46:39.298514-05	2017-02-15 18:46:39.298514-05	USR15	../Imagenes/transportImages/transport_image_USR15.jpeg	Van
+ccc444	nissan 123	t	t	2000	2017-02-15 18:46:39.298514-05	2017-02-15 18:46:39.298514-05	USR15	../Imagenes/transportImages/transport_image_USR15.jpeg	Camioneta
+fge123	nissan 123	t	f	2000	2017-02-18 19:21:04.855342-05	2017-02-18 19:21:04.855342-05	USR12	\N	Carro
 \.
 
 
@@ -543,11 +585,11 @@ SELECT pg_catalog.setval('user_id_seq', 17, true);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: deauvece
 --
 
-COPY users (id_user, names, last_names, phone, sex, email, password, is_driver, id_u, is_admin, is_verified, creation_date, edition_date, profile_image) FROM stdin;
-USR16	  Sergio Andres 	Martinez Lizarazo	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	t	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg
-USR15	  Carlos Andres  	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	t	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg
-USR17	Lizeth Paola	Parra B	3189875648	F	lizethparra@gmail.com	$2y$10$I0tq4.cYwq1Zx33KDlCgHeJliIUzX7UQyvyXlT9sJviNDgW1apSK.	f	U2	t	f	2017-02-16 17:50:41.331999-05	2017-02-16 17:50:41.331999-05	../Imagenes/profileImages/upload/perfil.png
-USR12	Daniel	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	f	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg
+COPY users (id_user, names, last_names, phone, sex, email, password, is_driver, id_u, is_admin, is_verified, creation_date, edition_date, profile_image, phone_public, email_public, license_plate_public, status_way) FROM stdin;
+USR17	Lizeth Paola	Parra B	3189875648	F	lizethparra@gmail.com	$2y$10$I0tq4.cYwq1Zx33KDlCgHeJliIUzX7UQyvyXlT9sJviNDgW1apSK.	f	U2	t	f	2017-02-16 17:50:41.331999-05	2017-02-16 17:50:41.331999-05	../Imagenes/profileImages/upload/perfil.png	f	t	f	false
+USR12	Daniel 	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	t	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg	f	f	f	true
+USR16	  Sergio Andres 	Martinez Lizarazo	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	t	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg	f	t	f	true
+USR15	Carlos Andres    	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	t	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg	f	f	f	true
 \.
 
 
@@ -560,6 +602,20 @@ USR15	R8	2017-02-14 18:30:34.097068-05	2017-02-14 18:30:34.097068-05
 USR12	R9	2017-02-14 18:40:56.627143-05	2017-02-14 18:40:56.627143-05
 USR16	R10	2017-02-14 20:22:12.603445-05	2017-02-14 20:22:12.603445-05
 USR16	R12	2017-02-15 10:31:11.020891-05	2017-02-15 10:31:11.020891-05
+USR15	R13	2017-02-18 19:12:38.256658-05	2017-02-18 19:12:38.256658-05
+USR15	R14	2017-02-18 19:14:26.938798-05	2017-02-18 19:14:26.938798-05
+USR12	R15	2017-02-19 13:40:55.342198-05	2017-02-19 13:40:55.342198-05
+\.
+
+
+--
+-- Data for Name: usr_ways; Type: TABLE DATA; Schema: public; Owner: deauvece
+--
+
+COPY usr_ways (id_user, id_way, creation_date, edition_date) FROM stdin;
+USR12	WAY61	2017-02-26 11:33:12.777079-05	2017-02-26 11:33:12.777079-05
+USR16	WAY61	2017-02-26 15:20:37.236035-05	2017-02-26 15:20:37.236035-05
+USR15	WAY61	2017-02-26 17:32:05.519991-05	2017-02-26 17:32:05.519991-05
 \.
 
 
@@ -567,16 +623,15 @@ USR16	R12	2017-02-15 10:31:11.020891-05	2017-02-15 10:31:11.020891-05
 -- Name: way_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('way_id_seq', 50, true);
+SELECT pg_catalog.setval('way_id_seq', 61, true);
 
 
 --
 -- Data for Name: ways; Type: TABLE DATA; Schema: public; Owner: deauvece
 --
 
-COPY ways (id_way, hour, creation_date, edition_date, id_user, id_route, spots, touniversity, comment, id_u) FROM stdin;
-WAY49	12:01 PM	2017-02-16 19:11:16.548108-05	2017-02-16 19:11:16.548108-05	USR15	R8	3	false	sdasdasd	U1
-WAY50	12:14 PM	2017-02-16 19:29:19.205255-05	2017-02-16 19:29:19.205255-05	USR16	R10	3	false	asdasdasdasdasd	U1
+COPY ways (id_way, hour, creation_date, edition_date, id_user, id_route, spots, touniversity, comment, id_u, max_spots) FROM stdin;
+WAY61	6:04 AM	2017-02-26 11:33:12.721091-05	2017-02-26 11:33:12.721091-05	USR12	R9	1	false	haoplalfa prueba numero dos	U1	4
 \.
 
 
@@ -730,6 +785,22 @@ ALTER TABLE ONLY usr_routes
 
 ALTER TABLE ONLY usr_routes
     ADD CONSTRAINT usr_routes_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id_user) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: usr_ways_id_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: deauvece
+--
+
+ALTER TABLE ONLY usr_ways
+    ADD CONSTRAINT usr_ways_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id_user) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: usr_ways_id_way_fkey; Type: FK CONSTRAINT; Schema: public; Owner: deauvece
+--
+
+ALTER TABLE ONLY usr_ways
+    ADD CONSTRAINT usr_ways_id_way_fkey FOREIGN KEY (id_way) REFERENCES ways(id_way) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

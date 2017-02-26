@@ -27,6 +27,9 @@
 		    $_SESSION['profile_image']= $vector['profile_image'];
               $_SESSION['activo'] = true;
               $_SESSION['admin'] = $vector['is_admin'];
+		    $_SESSION['email_public'] = $vector['email_public'];
+		    $_SESSION['phone_public'] = $vector['phone_public'];
+		    $_SESSION['license_plate_public'] = $vector['license_plate_public'];
 
 		    //university name and acornym query
 		    $id_university=$vector['id_u'];

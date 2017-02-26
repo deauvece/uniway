@@ -6,13 +6,13 @@ $stop_query=$_GET['stop_query'];
 $id_uni=$_GET['id_uni'];
 
 //Busca una parada para el texto introducido
-$sql1="SELECT id_stop FROM stops WHERE name LIKE '%$stop_query%' ";
+$sql1="SELECT id_stop FROM stops WHERE name LIKE '$stop_query%' ";
 $result1 = pg_query($conn, $sql1);
 $vector=pg_fetch_array($result1);
 $result_stop=$vector['id_stop'];
 
 //Busca una ruta que tenga la parada y esté activa
-$sql2="SELECT id_route FROM route_stop WHERE id_stop='".$result_stop."' AND status='active' ";
+$sql2="SELECT id_route FROM route_stop WHERE id_stop='$result_stop' AND status='active' ";
 $result2 = pg_query($conn, $sql2);
 while ($vector2=pg_fetch_array($result2))
      {

@@ -37,7 +37,7 @@ if (!$file) {
 			echo "El archivo supera el peso permitido.";/* Si supera el tamaño de permitido lo decimos*/
 		}
 	}
-	header("location:../Sesion/userProfile.php?idu=myProfile");
+	header("location:../Sesion/userProfile.php?idu=myProfile&update=done");
 }
 
 ?>

@@ -25,6 +25,10 @@ $university=$_SESSION['user_university'];
 $university_acr=$_SESSION['user_university_acr'];
 $rute_img=$_SESSION['profile_image'];
 
+$email_public=$_SESSION['email_public'];
+$phone_public=$_SESSION['phone_public'];
+$license_plate_public=$_SESSION['license_plate_public'];
+
 if ($is_driver=='t') {
 	$sql11="SELECT * FROM transports WHERE id_user='$idu'";
 	$result11 = pg_query($conn, $sql11);
@@ -102,7 +106,7 @@ if ($is_driver=='t') {
 					<ul>
 						<li>
 							<label for="">Nombres</label>
-							<input type="text" name="names" value=" <?php echo "$name"; ?> ">
+							<input type="text" name="names" value="<?php echo "$name"; ?>">
 						</li>
 						<li>
 							<label for="">Apellidos</label>
@@ -126,6 +130,29 @@ if ($is_driver=='t') {
 						</li>
 						<input type="text" name="id_user" hidden value="<?php echo "$idu"; ?>">
 					</ul>
+					<div class="security">
+						
+						<h4>Visibildiad de los datos</h4>
+						<span>
+							Esta configuración solo afecta la visibildad de los datos para los usuarios que no están compartiendo algún vehiculo contigo.
+						</span>
+						<ul>
+							<li>
+								<span>Mantener mi direccion de correo electronico privado</span>
+								<input type="checkbox" value="f" name="email_public" <?php if ($email_public=="f") {	echo "checked";	}	?>  >
+							</li>
+							<li>
+								<span>Mantener mi direccion de numero de telefono privado </span>
+								<input type="checkbox" value="f" name="phone_public"  <?php if ($phone_public=="f") {	echo "checked";	}	?>  >
+							</li>
+							<?php if ($is_driver=="t") {  ?>
+								<li>
+									<span>Mantener las placas de mi vehiculo privadas</span>
+									<input type="checkbox" value="f" name="license_plate_public" <?php if ($license_plate_public=="f") {	echo "checked";	}	?> >
+								</li>
+							<?php  }	?>
+						</ul>
+					</div>
 					<button type="submit" name="button" >Guardar</button>
 				</form>
 			</div>
@@ -400,5 +427,10 @@ if  ($numFilas_routes!=0)
 			 <button type="submit">Subir</button>
 		 </form>
     </div>
+    <?php if (isset($_GET["update"])=="done"){ ?>
+	    <div class="update-done">
+	    		Se han hecho los cambios
+	    </div>
+    <?php  }  ?>
 </body>
 </html>

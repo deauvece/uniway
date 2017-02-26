@@ -17,6 +17,18 @@ $rute_img=$_SESSION['profile_image'];
 $university_acr=$_SESSION['user_university_acr'];
 $id_university=$_SESSION['user_id_university'];
 
+$sql00="SELECT * FROM users WHERE id_user='$idu'";
+$result00=pg_query($conn, $sql00);
+$vector00=pg_fetch_array($result00);
+$status_usr=$vector00['status_way'];
+if ($status_usr=="true") {
+	//true=>activo
+	//Busca el recorrido que pidio
+	$sql10="SELECT id_way FROM usr_ways WHERE id_user='$idu'";
+	$result10=pg_query($conn, $sql10);
+	$vector10=pg_fetch_array($result10);
+	$way_usr_active=$vector10['id_way'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,7 +64,7 @@ $id_university=$_SESSION['user_id_university'];
 			<a href="userProfile.php?idu=myProfile">
 				<img src="<?php echo $rute_img;?>" alt="" />
 			</a>
-			<span class="nombre"><?php echo $full_name; ?></span>
+			<br>
 			<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
 
 			<div class="other-options">
@@ -67,9 +79,9 @@ $id_university=$_SESSION['user_id_university'];
 			<hr color="#161717" >
 			<div class="other-options">
 				<ul class="lista">
-					<li><span></span>Conectar con facebook </li>
-					<li><span></span>Recomendar a un amigo</li>
-					<li><span></span>Estadisticas</li>
+					<li><span></span>Agregar paradas</li>
+					<li><span></span>Buscar usuario</li>
+					<!--<li><span></span>Estadisticas</li>-->
 					<li><span></span>Contacto</li>
 					<li><span></span>Ayuda</li>
 				</ul>
@@ -103,7 +115,7 @@ $id_university=$_SESSION['user_id_university'];
 
 
 		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
-		<button id="btn-add" <?php if ($is_driver=='f') { echo "style='display:none'";} ?> type="button" name="button">+</button>
+		<button id="btn-add" <?php if ($is_driver=='f' || $status_usr=="true") { echo "style='display:none'";} ?> type="button" name="button">+</button>
 
 		<section class="find">
 			<button id="btn-find" type="button" name="button"> <img src="../Imagenes/search.png" alt="" /></button>
@@ -248,12 +260,13 @@ if  ($numFilas_ways!=0)
 					<div class="botones">
 						<?php
 						 	if ($id_user_w==$idu) {
-								echo "<form action='../Php/deleteWay.php' method='post'>";
-								echo "<input type='text' hidden name='id_way'  value='$id_way'>";
-								echo "<button id='btn-eliminar' type='submit'>Eliminar</button>";
-								echo "</form>";
+								echo "<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Ver</button></a>";
 						 	}else{
-								echo "<button id='btn-pedirCupo' type='button'>Pedir cupo</button>";
+								if ($status_usr=="true" && $id_way==$way_usr_active) {
+									echo "<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Ver</button></a>";
+								}else{
+									echo "<button id='btn-pedirCupo' data-way='$id_way' data-usr='$idu' class='btn-pedirCupo' type='button'>Pedir cupo</button>";
+								}
 							}
 						 ?>
 					</div>
@@ -345,52 +358,35 @@ if  ($numFilas_ways!=0)
 				</div>
 				<div class="transport_info">
 					<div class="tr-box">
-						<label for="">Tipo</label>
-						<span>Carro</span>
+						<label for="user_transport_type">Tipo</label>
+						<span id="user_transport_type" ></span>
 					</div>
 					<div class="tr-box">
-						<label for="">Modelo</label>
-						<span>Spark Gt año 2015 </span>
+						<label for="user_transport_model">Modelo</label>
+						<span id="user_transport_model" ></span>
 					</div>
 					<div class="tr-box">
-						<label for="">Imagen</label>
-						<img src="../Imagenes/carro2.jpg" width="80%" />
+						<label for="user_transport_image">Imagen</label>
+						<img id="user_transport_image" src="" width="80%" />
 					</div>
 					<div class="tr-box">
-						<label for="">Placas</label>
-						<span>XXX-974</span>
+						<label for="user_transport_license_plate">Placas</label>
+						<span id="user_transport_license_plate" ></span>
 					</div>
 					<div class="tr-box">
-						<label for="">Wi-fi</label>
-						<span>No</span>
+						<label for="user_transport_price">Precio</label>
+						<span id="user_transport_price" ></span>
 					</div>
 					<div class="tr-box">
-						<label for="">Aire acondicionado</label>
-						<span>Si</span>
+						<label for="user_transport_wifi">Wi-fi</label>
+						<span id="user_transport_wifi" ></span>
+					</div>
+					<div class="tr-box">
+						<label for="user_transport_air_conditioner">Aire acondicionado</label>
+						<span id="user_transport_air_conditioner" ></span>
 					</div>
 				</div>
 				<div class="routes_info">
-					<div class="rts-box">
-						<span>Cañaveral</span>
-						<span>Paralela</span>
-						<span>El bosque</span>
-						<span>Carrera 27</span>
-						<span>UIS</span>
-					</div>
-					<div class="rts-box">
-						<span>Cañaveral</span>
-						<span>Paralela</span>
-						<span>El bosque</span>
-						<span>Carrera 27</span>
-						<span>UIS</span>
-					</div>
-					<div class="rts-box">
-						<span>Cañaveral</span>
-						<span>Paralela</span>
-						<span>El bosque</span>
-						<span>Carrera 27</span>
-						<span>UIS</span>
-					</div>
 				</div>
 				<div class="comments_info">
 					<div class="cm-box">
@@ -417,7 +413,12 @@ if  ($numFilas_ways!=0)
 			</div>
 			<img id="back" src="../Imagenes/left4.png" />
 		</section>
+		<div class="error_way">
+			<span></span>
+			<button type="button">Vale</button>
+		</div>
 	</div>
+	<input type="hidden" id="way_usr_active" value="<?php echo $way_usr_active; ?>">
 	<script src="../JS/jquery-3.1.1.min.js"></script>
 	<script src="../JS/jquery-ui/jquery-ui.js"></script>
 	<script src="../JS/main.js"></script>
