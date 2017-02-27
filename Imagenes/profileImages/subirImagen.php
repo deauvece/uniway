@@ -1,5 +1,5 @@
 <?php
-include("../../Php/functions.php");
+include("../../php/functions.php");
 $conn=conectarse();
 extract($_POST);
 //ide del usuario para el nombre de la imagen a subir
@@ -24,7 +24,7 @@ if (!$file) {
 				$sql1_update= "UPDATE users SET profile_image='$ruta' WHERE id_user='".$idu."' ";
 				$result_img = pg_query($conn,$sql1_update);
 				move_uploaded_file ( $_FILES [ 'file2' ][ 'tmp_name' ], "$destino/$cad.$tipo");  // Subimos el archivo
-				header("location:../../Sesion/userProfile.php?idu=myProfile");
+				header("location:../../sesion/userProfile.php?idu=myProfile");
 			}else {
 				echo "el tipo de archivo no es de los permitidos";/* Si no es el tipo permitido lo decimos*/
 			}
@@ -32,7 +32,7 @@ if (!$file) {
 			echo "El archivo supera el peso permitido.";/* Si supera el tamaño de permitido lo decimos*/
 		}
 	}
-	header("location:../../Sesion/userProfile.php?idu=myProfile");
+	header("location:../../sesion/userProfile.php?idu=myProfile");
 }
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-include("../Php/functions.php"); //check the user type
+include("../php/functions.php"); //check the user type
 checkLogin();
 $conn=conectarse();
 
@@ -43,15 +43,15 @@ if ($id_way_thisGroup){
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
-		<link rel="stylesheet" type="text/css" href="../CSS/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
-		<script src="../JS/jquery-3.1.1.min.js"></script>
-		<script src="../JS/jquery-ui/jquery-ui.js"></script>
-		<script src="../JS/group-chat.js"></script>
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.structure.css">
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.theme.css">
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<script src="../js/jquery-ui/jquery-ui.js"></script>
+		<script src="../js/group-chat.js"></script>
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.structure.css">
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
 	</head>
 	<body >
 		<a href="sesionOpen.php"><img id="logo-chat" src="../Imagenes/logo-name-white.png" /></a>
@@ -165,7 +165,7 @@ if ($id_way_thisGroup){
 		<div class="modal-box" id="modal-box">
 			<div class="msg-out">
 				<span>¿Estás seguro que deseas salir del grupo?</span>
-				<form action="../Php/delete-user-way.php" method="post">
+				<form action="../php/delete-user-way.php" method="post">
 					<input type="hidden" name="id_way" value="<?php echo $id_way_thisGroup ?>">
 					<input type="hidden" name="id_user" value="<?php echo $idu ?>">
 					<button class="yes-confirm" type="submit">Si</button>
@@ -177,7 +177,7 @@ if ($id_way_thisGroup){
 					¿Estás seguro que deseas eliminar el grupo? Ten encuenta
 					que se eliminaran todos los datos relacionados a este.
 				</span>
-				<form action="../Php/deleteWay.php" method="post">
+				<form action="../php/deleteWay.php" method="post">
 					<input type="hidden" name="id_way" value="<?php echo $id_way_thisGroup ?>">
 					<button class="yes-confirm" type="submit">Si</button>
 				</form>

@@ -1,5 +1,5 @@
 <?php
-include("../Php/functions.php"); //check the user type
+include("../php/functions.php"); //check the user type
 checkLogin();
 $conn=conectarse();
 //datos de usuario
@@ -36,16 +36,16 @@ if ($status_usr=="true") {
 		<title>Uniway</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="../CSS/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 		<!--jquery-->
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.structure.css">
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.theme.css">
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.structure.css">
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
 		<!--timepicker-->
-		<link rel="stylesheet" type="text/css" href="../JS/lolliclock.css">
+		<link rel="stylesheet" type="text/css" href="../js/lolliclock.css">
 
 
 
@@ -72,7 +72,7 @@ if ($status_usr=="true") {
 					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
 					<a href="#"  <?php if ($is_driver=='f') { echo "style='display:none'";} ?> ><li><span></span><img src="../Imagenes/ruta.png" class="icono" alt="iconos" /> Rutas creadas     4</li></a>
 					<a href="#"><li><span></span><img src="../Imagenes/mensaje.png" class="icono" alt="iconos" /> Mensajes   8</li></a>
-					<a href="../Php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
+					<a href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
 			</div>
 			<!--buscar otra manera para el hr-->
@@ -124,7 +124,7 @@ if ($status_usr=="true") {
 
 
 		<div id="addRouteBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?>>
-			<form  action="../Php/addWay.php" method="post" id="addRoute">
+			<form  action="../php/addWay.php" method="post" id="addRoute">
 				<button type="button" id="closeAddRoute" > X </button>
 				<p>
 					Publica un recorrido.
@@ -419,10 +419,10 @@ if  ($numFilas_ways!=0)
 		</div>
 	</div>
 	<input type="hidden" id="way_usr_active" value="<?php echo $way_usr_active; ?>">
-	<script src="../JS/jquery-3.1.1.min.js"></script>
-	<script src="../JS/jquery-ui/jquery-ui.js"></script>
-	<script src="../JS/main.js"></script>
-	<script src="../JS/ways_query.js"></script>
-	<script src="../JS/lolliclock.js"></script>
+	<script src="../js/jquery-3.1.1.min.js"></script>
+	<script src="../js/jquery-ui/jquery-ui.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/ways_query.js"></script>
+	<script src="../js/lolliclock.js"></script>
 	</body>
 </html>

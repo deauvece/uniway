@@ -9,7 +9,7 @@
 			<title>Uniway</title>
                         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<meta name="viewport" content="width=device-width,initial-scale=1.0">
-			<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
+			<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
 		</head>
 		
 		<body>

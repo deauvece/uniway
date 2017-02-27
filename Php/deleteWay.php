@@ -8,5 +8,5 @@ extract($_POST);
 $sql="DELETE FROM ways WHERE id_way='$id_way'";
 $result = pg_query($conn, $sql);
 
-header("location:../Sesion/sesionOpen.php");
+header("location:../sesion/sesionOpen.php");
 ?>

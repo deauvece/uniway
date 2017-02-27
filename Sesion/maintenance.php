@@ -15,7 +15,7 @@
 		<title>Uniway</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="../CSS/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 	</head>
 	<body>
@@ -39,7 +39,7 @@
 					</div>
 					<ul class="sinmenu" >
 						<li>
-							<a href="../Php/logout.php">Cerrar sesión</a>
+							<a href="../php/logout.php">Cerrar sesión</a>
 						</li>
 					</ul>
 				</li>
@@ -57,9 +57,9 @@
       <p class="content">
         Lo sentimos <?php echo $nombre; ?> la plataforma está en desarrollo, ten paciencia muy pronto estará lista!
       </p>
-      <a href="../Php/logout.php">Cerrar sesión</a>
+      <a href="../php/logout.php">Cerrar sesión</a>
     </section>
 
-		<script type="text/javascript" src="../JS/main.js"  ></script>
+		<script type="text/javascript" src="../js/main.js"  ></script>
 	</body>
 </html>
