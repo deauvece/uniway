@@ -16,7 +16,7 @@
 <nav class="simple-nav">
 	<ul >
 		<li>
-			<a href="home.html">
+			<a href="index.html">
 				<img src="Imagenes/logo-name-white.png" width="150" id="nombre" />
 			</a>
 		</li>

@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="login">
 			<form  action="php/login.php" method="POST" >
-				<a href="home.html">
+				<a href="index.html">
 					<img class="loginImg" src="Imagenes/logo.png" width="175" /><br><br>
 				</a>
 				<hr>

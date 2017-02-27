@@ -312,7 +312,7 @@ $(document).ready(function () {
 				window.location="login-user.php";
 			}
 		});
-		//contact-form home.html
+		//contact-form index.html
 		$("#contact-modal").click(function(){
 			$("#contact-box").fadeIn();
 		});
