@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,7 +44,7 @@
 <!--MISIONYVISION-->
 <section class="contenedorContact">
 		<div class="register">
-			<form autocomplete="off" action="Php/register.php" method="POST" >
+			<form autocomplete="off" action="register-test.php" method="POST" >
 					<p>
 						Ingresa tus datos y has parte de esta gran comunidad!
 					</p>
@@ -86,14 +91,7 @@
 
 					<input autocomplete="off" type="password" id="pass1" name="password" placeholder="Contraseña"  required>
 					<!-- <input type="text" id="pass2" name="confirmPassword" placeholder="Confirma tu contraseña" required > -->
-					<div class="g-recaptcha"  data-size="normal" data-sitekey="6LdlABcUAAAAAONiTJxjYQNxI9o5k6OHxuBBjftB"></div>
-					<?php
-					  //Error de captcha
-						if (isset($_GET["error_captcha"])=="y")
-						{
-							echo "<span class='error'>Para terminar el registro debes completar el captcha.</span>";
-						}
-					?>
+					<div class="g-recaptcha" data-sitekey="6LdlABcUAAAAAONiTJxjYQNxI9o5k6OHxuBBjftB"></div>
 					<input type="submit" value="Crear cuenta">
 			</form>
 

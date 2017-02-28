@@ -359,12 +359,14 @@ header {
 
 /*=============================LOGIN - INICIAR SESION============================*/
 .contenedorContact {
+	display: block;
 	min-height: 576px;
 	background-color: white;
 	color: white;
 	padding: 40px 10px 10px 10px;
 	text-align: center;
 }
+
 
 
 .contenedorContact .container .login {
@@ -376,6 +378,7 @@ header {
 	margin-right: auto;
 	width: 350px;
 }
+
 	.contenedorContact .container .login input {
 		border-width: 0px;
 		background-color:#F3F3F3;
@@ -409,7 +412,23 @@ header {
 		font-size: 90%;
 		color: grey;
 	}
+	@media (max-width:400px) {
+			.contenedorContact .container .login {
+				padding: 0px;
+				width: 100%;
+			}.contenedorContact .container .login input {
+				display: block;
+				width: 90%;
+			}
+	}
 /*=============================REGISTER -REGISTRO USUARIO============================*/
+.g-recaptcha{
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
+
+}
 .account-login ul {
 	margin-top: 60px;
 	height: 50px;
@@ -448,14 +467,15 @@ header {
 .contenedorContact .register {
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
 	color: black;
-	padding: 20px;
 	margin-top: -40px;
-	background-color: white;
-	border-radius: 5px;
-	display: inline-block;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
 }
 .register p {
-	font-size: 135%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 110%;
 	width: 330px;
 }
 
@@ -524,12 +544,19 @@ header {
 		background-color: #002A2A;
 	}
 	.termycon {
+		font-size: 90%;
 		display: block;
 		margin: -30px auto 10px;
 		width: 300px;
-		padding: 20px 0px;
+		padding: 20px 10px;
 		text-align: center;
 	}
+@media (max-width:320px) {
+	.termycon {
+		width: auto;
+	}
+}
+
 @media (max-width:630px) {
 	header h2 {
 		width: 90%;
@@ -591,9 +618,16 @@ header {
 @media (max-width:390px) {
 
 	.contenedorContact  .register {
-		padding: 20px;
+		padding: 0px;
 	}
-	.register input , .register p {
+	.register p {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		width: 90%;
+		font-size: 95%;
+	}
+	.register input{
 		width: 250px;
 	}
 	.register select , .register input[type="submit"]  {
@@ -601,20 +635,6 @@ header {
 	}
 	.sex label {
 		width: 80px;
-	}
-}
-@media (max-width:380px) {
-	.register input {
-		width: 210px;
-	}
-	.register p {
-		width: 240px;
-	}
-	.register select , .register input[type="submit"]  {
-		width: 240px;
-	}
-	.sex label {
-		width: 60px;
 	}
 }
 /*=============================FOOTER============================*/

@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
+
 </head>
 
 <body>
