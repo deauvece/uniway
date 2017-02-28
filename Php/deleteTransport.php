@@ -14,5 +14,5 @@ $result2 = pg_query($conn, $sql2);
 
 session_start();
 $_SESSION['is_driver']= "f";
-header("location:../Sesion/userProfile.php?idu=myProfile");
+header("location:../sesion/userProfile.php?idu=myProfile");
 ?>

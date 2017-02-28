@@ -9,7 +9,7 @@
 			<title>Uniway</title>
                         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<meta name="viewport" content="width=device-width,initial-scale=1.0">
-			<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
+			<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
 		</head>
 		
 		<body>
@@ -24,7 +24,7 @@
 					</div>
 					<ul class="sinmenu" >
 						<li>
-							<a href="home.html">Inicio</a>
+							<a href="index.html">Inicio</a>
 						</li>
 						<li>
 							<a href="dataBase.html">Data Base</a>
@@ -33,7 +33,7 @@
 							<a href="contacto.html">Contacto</a>
 						</li>
 						<li>
-							<a href="home.html#misionyvision">Quienes somos</a>
+							<a href="index.html#misionyvision">Quienes somos</a>
 						</li>
 						<li>
 							<a href="fail.html">Cómo funciona</a>
@@ -47,7 +47,7 @@
 		</nav>
 		<!--LOGOOO-->
 		<div id="logo">
-			<a href="home.html">
+			<a href="index.html">
 			<img src="Imagenes/logo-only.png" height="50" />
 			<img src="Imagenes/logo-name.png" height="40" id="nombre" />
 			</a>
@@ -65,7 +65,7 @@
 				</h3>
 				<br><br><br><br>
 				<div id="btn-inicio">
-					<a href="home.html">Inicio</a>
+					<a href="index.html">Inicio</a>
 				</div>
 			</div>
 		

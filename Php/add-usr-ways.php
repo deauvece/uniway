@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-include("../Php/functions.php");
+include("../php/functions.php");
 $conn=conectarse();
 $id_user_q=$_GET['id_user_q'];
 $id_way_q=$_GET['id_way_q'];

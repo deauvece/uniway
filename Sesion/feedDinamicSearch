@@ -38,7 +38,7 @@
   	ini_set('display_errors', 1);
 
         //se hace la conexion con la base de datos
-        include("../Php/conec.php");
+        include("../php/conec.php");
         $conn=conectarse();
 
         //Variable de búsqueda

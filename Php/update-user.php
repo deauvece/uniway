@@ -33,5 +33,5 @@ $_SESSION['email_public']= $email_public;
 $_SESSION['phone_public']= $phone_public;
 $_SESSION['license_plate_public']= $license_plate_public;
 
-header("location:../Sesion/userProfile.php?idu=myProfile&update=done");
+header("location:../sesion/userProfile.php?idu=myProfile&update=done");
 ?>

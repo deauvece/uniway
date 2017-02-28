@@ -41,9 +41,9 @@
 		    $_SESSION['user_university']= $vectorUniversity11["name"];
 
               if($vector['is_admin']=='t') {
-                header("location:../Sesion/sesionOpen.php");
+                header("location:../sesion/sesionOpen.php");
               }else {
-                header("location:../Sesion/maintenance.php");
+                header("location:../sesion/maintenance.php");
               }
             }
           }

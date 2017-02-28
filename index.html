@@ -4,15 +4,15 @@
 	<title>Uniway</title>
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<link rel="stylesheet" href="CSS/home-form-Style.css">
+	<link rel="stylesheet" href="css/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<!--jquery-->
-	<script src="JS/jquery-3.1.1.min.js"></script>
-	<script src="JS/jquery-ui/jquery-ui.js"></script>
-	<script src="JS/main.js"></script>
-	<link rel="stylesheet" type="text/css" href="JS/jquery-ui/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="JS/jquery-ui/jquery-ui.structure.css">
-	<link rel="stylesheet" type="text/css" href="JS/jquery-ui/jquery-ui.theme.css">
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.js"></script>
+	<script src="js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.structure.css">
+	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.theme.css">
 	<!--Fuente texto-->
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -48,7 +48,7 @@
 		</li>
 	</ul>
 </nav>
-<form id="login-form"  action="Php/login.php" method="POST" >
+<form id="login-form"  action="php/login.php" method="POST" >
 	<img src="Imagenes/logo-name.png" />
 	<input type="email" name="correo" placeholder="Correo electrónico" required>
 	<input type="password" name="contrasena" placeholder="Contraseña" required>
@@ -62,7 +62,7 @@
 </form>
 <!--LOGOOO-->
 <div id="logo">
-	<a href="home.html">
+	<a href="index.html">
 	<img src="Imagenes/logo-only.png" />
 	<img src="Imagenes/logo-name.png" />
 	</a>
@@ -130,7 +130,7 @@
 <div id="contact-box" class="contact-box">
 	<div class="contact-form">
 		<span id="close-contact-form">x</span>
-		<form  action="Php/uploader.php" method="POST" >
+		<form  action="php/uploader.php" method="POST" >
 			<label for="nombre-contact">Nombre</label>
 			<input id="nombre-contact" type="text" name="nombre"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
 			<label for="email-contact">Direccion de correo electronico</label>

@@ -17,7 +17,7 @@ $(document).ready(function () {
 		$("#pub-box").on('click','.btn-pedirCupo',function(){
 			var way = $(this).attr("data-way");
 			$.ajax({
-				url: '../Php/add-usr-ways.php',
+				url: '../php/add-usr-ways.php',
 				type: 'get',
 				data: {
 					id_user_q: $(this).attr("data-usr"),
@@ -26,7 +26,7 @@ $(document).ready(function () {
 				dataType: 'json',
 				success: function(array){
 					if (array.state=="yes") {
-						var url="../Sesion/group-chat.php?id_way="+way;
+						var url="../sesion/group-chat.php?id_way="+way;
 						window.location=url;
 					}else {
 						$(".modal-window").hide();
@@ -77,7 +77,7 @@ $(document).ready(function () {
 		//json user data query
 		$("#pub-box").on('click','img',function(){
 			$.ajax({
-				url: '../Php/json_user_query.php',
+				url: '../php/json_user_query.php',
 				type: 'get',
 				data: {
 					id_user_query: $(this).attr("alt")
@@ -282,7 +282,7 @@ $(document).ready(function () {
 			//busqueda de paradas
 			$("#addRoute").on("keyup","input",function(){
 				$( ".paradas" ).autocomplete({
-					source: '../Php/json_stops.php'
+					source: '../php/json_stops.php'
 				});
 				$('.paradas').keyup(function(){
 					$(this).val($(this).val().toUpperCase());
@@ -312,7 +312,7 @@ $(document).ready(function () {
 				window.location="login-user.php";
 			}
 		});
-		//contact-form home.html
+		//contact-form index.html
 		$("#contact-modal").click(function(){
 			$("#contact-box").fadeIn();
 		});

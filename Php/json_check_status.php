@@ -1,6 +1,6 @@
 <?php
 	error_reporting(0);
-	include("../Php/functions.php");
+	include("../php/functions.php");
 	$conn=conectarse();
 	$rdn_string_0=$_GET['rdn_string'];
 	$id_uni=$_GET['id_uni'];

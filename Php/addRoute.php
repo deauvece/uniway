@@ -49,5 +49,5 @@ for ($i=0; $i < 5 ; $i++) {
   $sql_routes_stops_1="INSERT INTO route_stop (id_route,id_stop,status) VALUES ('$id_route','$id_stp_1','$status')";
   $result_insert_1= pg_query($conn, $sql_routes_stops_1);
 }
-header("location:../Sesion/userProfile.php?idu=myProfile");
+header("location:../sesion/userProfile.php?idu=myProfile");
 ?>

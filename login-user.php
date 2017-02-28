@@ -4,7 +4,7 @@
 	<title>Uniway / Inicia sesión</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
+	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 
 </head>
@@ -14,8 +14,8 @@
 
 	<div class="container">
 		<div class="login">
-			<form  action="Php/login.php" method="POST" >
-				<a href="home.html">
+			<form  action="php/login.php" method="POST" >
+				<a href="index.html">
 					<img class="loginImg" src="Imagenes/logo.png" width="175" /><br><br>
 				</a>
 				<hr>

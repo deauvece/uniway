@@ -4,7 +4,7 @@
 	<title>Uniway</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="CSS/home-form-Style.css">
+	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -18,7 +18,7 @@
 <nav class="simple-nav">
 	<ul >
 		<li>
-			<a href="home.html">
+			<a href="index.html">
 				<img src="Imagenes/logo-name-white.png" width="150" id="nombre" />
 			</a>
 		</li>
@@ -39,7 +39,7 @@
 <!--MISIONYVISION-->
 <section class="contenedorContact">
 		<div class="register">
-			<form autocomplete="off" action="Php/register.php" method="POST" >
+			<form autocomplete="off" action="php/register.php" method="POST" >
 					<p>
 						Ingresa tus datos y has parte de esta gran comunidad!
 					</p>
@@ -56,7 +56,7 @@
 					<select name="id_u"  required>
 					<option value="">Elige tu universidad</option>
 						<?PHP
-						include("Php/functions.php");
+						include("php/functions.php");
 						$conn=conectarse();
 						$sql1="SELECT * FROM universities";
 						$result = pg_query($conn,$sql1);

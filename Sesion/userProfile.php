@@ -3,7 +3,7 @@
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
-include("../Php/functions.php"); //check the user type
+include("../php/functions.php"); //check the user type
 checkLogin();
 
 //consulta del id para obtener todos los datos
@@ -51,17 +51,17 @@ if ($is_driver=='t') {
 		<title>Uniway / Perfil</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="../CSS/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 
-		<script src="../JS/jquery-3.1.1.min.js"></script>
-		<script src="../JS/jquery-ui/jquery-ui.js"></script>
-		<script src="../JS/main.js"></script>
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.structure.css">
-		<link rel="stylesheet" type="text/css" href="../JS/jquery-ui/jquery-ui.theme.css">
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<script src="../js/jquery-ui/jquery-ui.js"></script>
+		<script src="../js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.structure.css">
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
 
 	</head>
 	<body>
@@ -89,7 +89,7 @@ if ($is_driver=='t') {
 							<a href="#qualificationsBox"><li><span></span>Comentarios</li></a>
 						<a href="#basicInfo"><li><span></span>Verificar cuenta</li></a>
 						<li>
-							<span></span><a href="../Php/logout.php">Cerrar sesión</a>
+							<span></span><a href="../php/logout.php">Cerrar sesión</a>
 						</li>
 					</ul>
 				</section>
@@ -102,7 +102,7 @@ if ($is_driver=='t') {
 					informacion básica
 					<span>Cambia las configuraciones básicas de tu cuenta.</span>
 				</div>
-				<form action="../Php/update-user.php" method="post">
+				<form action="../php/update-user.php" method="post">
 					<ul>
 						<li>
 							<label for="">Nombres</label>
@@ -167,7 +167,7 @@ if ($is_driver=='t') {
 					<div class="add-transport-box">
 						<button type="button" id="btn-transp"  name="button" >Agregar</button>
 					</div>
-					<form id="transport-box" action="../Php/addTransport.php" method="post" enctype="multipart/form-data">
+					<form id="transport-box" action="../php/addTransport.php" method="post" enctype="multipart/form-data">
 						<input type="text" name="id_user" hidden value="<?php echo "$idu";?>">
 						<ul>
 							<li>
@@ -226,7 +226,7 @@ if ($is_driver=='t') {
 					}else{
 						//Muestra la informacion del transporte
 						?>
-						<form id="form-update-transport" action="../Php/update-transport.php" method="post" enctype="multipart/form-data">
+						<form id="form-update-transport" action="../php/update-transport.php" method="post" enctype="multipart/form-data">
 							<ul>
 								<li>
 									<label for="">Placas</label>
@@ -387,7 +387,7 @@ if  ($numFilas_routes!=0)
 
 
     <div id="addRouteBox">
-	      <form action="../Php/addRoute.php" method="post" id="addRoute">
+	      <form action="../php/addRoute.php" method="post" id="addRoute">
 		        <button type="button" id="closeAddRoute"  > X </button>
 		        <p>
 		          Escribe y selecciona una parada.
@@ -412,7 +412,7 @@ if  ($numFilas_routes!=0)
 		        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
 		        <button type="submit" >Crear</button>
 	      </form>
-		 <form id="delete_transport_form" action="../Php/deleteTransport.php" method="post">
+		 <form id="delete_transport_form" action="../php/deleteTransport.php" method="post">
 			 <span>¿Estás seguro que deseas eliminar este vehículo? Toda la información relacionada a este también se eliminará.</span>
 			 <input type="text" hidden name="id_user"  value="<?php echo "$idu";?>">
 			 <input type="text" hidden name="license_plate"  value="<?php echo "$license_plate";?>">

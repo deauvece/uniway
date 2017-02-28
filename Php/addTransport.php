@@ -36,7 +36,7 @@ if (!$file) {
 			$sql1_update= "UPDATE transports SET image='$ruta' WHERE license_plate='".$license_plate."' ";
 			$result_img = pg_query($conn,$sql1_update);
 			move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], "$destino/$cad.$tipo");  // Subimos el archivo
-			header("location:../Sesion/userProfile.php?idu=myProfile");
+			header("location:../sesion/userProfile.php?idu=myProfile");
 		 }else {
 		   echo "el tipo de archivo no es de los permitidos";/* Si no es el tipo permitido lo decimos*/
 		 }
@@ -44,7 +44,7 @@ if (!$file) {
 	    echo "El archivo supera el peso permitido.";/* Si supera el tamaño de permitido lo decimos*/
 	  }
   }
-header("location:../Sesion/userProfile.php?idu=myProfile");
+header("location:../sesion/userProfile.php?idu=myProfile");
 }
 
 ?>
