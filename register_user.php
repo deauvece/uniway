@@ -8,8 +8,6 @@
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<!--captcha google-->
-	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -43,16 +41,17 @@
 					<p>
 						Ingresa tus datos y has parte de esta gran comunidad!
 					</p>
-					<input type="text" name="names" placeholder="Nombres" required/>
-					<input type="text" name="last_names" placeholder="Apellidos" required>
-					<input type="tel" name="phone" placeholder="Numero celular" required>
+					<input type="text" name="names" placeholder="Nombres" pattern="[a-zA-Z\s]+" required title="Solo letras mayusculas y minusculas"/>
+					<input type="text" name="last_names" placeholder="Apellidos" pattern="[a-zA-Z\s]+" required title="Solo letras mayusculas y minusculas">
+					<input type="tel" name="phone" placeholder="Numero celular" pattern="[0-9]{10,}" required title="Minimo 10 caracteres numericos">
+					<!--
 					<div class="sex">
-						<!--M(masculino) F(femenino)-->
 							<input type="radio" id="radio_h" name="sex" value="M" required>
 							<label for="radio_h">Hombre</label>
 							<input type="radio" id="radio_m" name="sex" value="F">
 							<label for="radio_m">Mujer</label>
 					</div>
+					-->
 					<select name="id_u"  required>
 					<option value="">Elige tu universidad</option>
 						<?PHP
@@ -85,6 +84,8 @@
 					?>
 
 					<input autocomplete="off" type="password" id="pass1" name="password" placeholder="Contraseña"  required>
+					<input type="password" id="pass2" placeholder="Confirma la contraseña" required>
+					<span id="message" ></span>
 					<!-- <input type="text" id="pass2" name="confirmPassword" placeholder="Confirma tu contraseña" required > -->
 					<div class="g-recaptcha"  data-size="normal" data-sitekey="6LdlABcUAAAAAONiTJxjYQNxI9o5k6OHxuBBjftB"></div>
 					<?php
@@ -108,4 +109,26 @@
 	<p>Uniway &copy;2017. All Rights Reserved.<p>
 </section>
 </body>
+<!--captcha google-->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#pass1').keyup(function() {
+		var pswd = $(this).val();
+		if (pswd.length < 8) {
+			$('#message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
+		}else {
+			$('#message').html("");
+		}
+	});
+	$('#pass2').keyup(function() {
+		if ($('#pass1').val() != $('#pass2').val()) {
+			$('#message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+		}else {
+			$('#message').html("");
+		}
+	});
+});
+</script>
 </html>

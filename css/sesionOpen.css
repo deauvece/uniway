@@ -338,7 +338,7 @@ body{
 }
 /*=====scrollbarr=========*/
 	::-webkit-scrollbar{
-	  width: 12px;  /* for vertical scrollbars */
+	  width: 8px;  /* for vertical scrollbars */
 	  height: 12px; /* for horizontal scrollbars */
 	}
 
@@ -1658,6 +1658,7 @@ body{
 	background-color: white;
 	width: 1100px;
 	height: 610px;
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
 	.container-chat .people {
 		overflow: auto;
@@ -1760,6 +1761,7 @@ body{
 				padding-top: 20px;
 				padding-left: 20px;
 				resize: none;
+				font-family: 'Fira Sans Extra Condensed', sans-serif;
 			}
 		.content-cht .comment-center{
 			background-color: #D1D4D7;
@@ -1776,6 +1778,7 @@ body{
 			background-color: white;
 			display: block;
 			text-align: left;
+
 		}
 		 .content-cht .comment-right{
 			 text-align: right;
@@ -1786,6 +1789,7 @@ body{
 				padding: 10px;
 				margin: 5px;
 				border-radius: 5px;
+				max-width: 500px;
 			}
 			.comment-right .box{
 				text-align: left;
@@ -1797,6 +1801,10 @@ body{
 				font-size: 80%;
 				font-weight: bold;
 				padding-bottom: 3px;
+			}
+			.comment-left .box .content-coment, .comment-right .box .content-coment{
+
+				word-wrap: break-word;
 			}
 
 	/*modal box- group chat page*/

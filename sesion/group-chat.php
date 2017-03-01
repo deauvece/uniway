@@ -101,63 +101,28 @@ if ($id_way_thisGroup){
 			</section>
 			<section class="cht-box" >
 				<div class="content-cht">
-					<div class="comment-left">
-						<div class="box">
-							<span class="name-coment">Sergio Leo Alvarez </span>
-							<span class="content-coment" >Hola muchachos como están?</span>
-						</div>
-					</div>
-					<div class="comment-left">
-						<div class="box">
-							<span class="name-coment">Sergio Leo Alvarez </span>
-							<span class="content-coment" >Cambio de lugar, los espero en el parqueadero frente a industrial</span>
-						</div>
-					</div>
-					<div class="comment-right">
-						<div class="box">
-							<span class="name-coment">Yo</span>
-							<span class="content-coment" >Breve menores</span>
-						</div>
-					</div>
-					<div class="comment-left">
-						<div class="box">
-							<span class="name-coment">Raúl Calderón</span>
-							<span class="content-coment" >Ole creo que ya no puedo ir, srry baai</span>
-						</div>
-					</div>
+					<?php
+						$sql22="SELECT * FROM comments WHERE id_way='$id_way_thisGroup'";
+						$result22=pg_query($conn, $sql22);
+						while ($vector22=pg_fetch_array($result22)) {
+							$name_user_comment=$vector22['name_user'];
+							$user_comment=$vector22['body'];
+								?>
+								<div <?php if ($name_user_comment==$name) {echo "class='comment-right'";}else{echo "class='comment-left'";} ?>>
+									<div class="box">
+										<span class="name-coment"><?php echo $name_user_comment ?></span>
+										<span class="content-coment" ><?php echo $user_comment ?></span>
+									</div>
+								</div>
+								<?php
+						}
+					?>
 					<div class="comment-center">
-						Raul Caldeŕon ha salido del grupo
-					</div>
-					<div class="comment-left">
-						<div class="box">
-							<span class="name-coment">Sergio Leo Alvarez </span>
-							<span class="content-coment" >Hola muchachos como están?</span>
-						</div>
-					</div>
-					<div class="comment-left">
-						<div class="box">
-							<span class="name-coment">Sergio Leo Alvarez </span>
-							<span class="content-coment" >Cambio de lugar, los espero en el parqueadero frente a industrial</span>
-						</div>
-					</div>
-					<div class="comment-right">
-						<div class="box">
-							<span class="name-coment">Yo</span>
-							<span class="content-coment" >Breve menores</span>
-						</div>
-					</div>
-					<div class="comment-left">
-						<div class="box">
-							<span class="name-coment">Raúl Calderón</span>
-							<span class="content-coment" >Ole creo que ya no puedo ir, srry baai</span>
-						</div>
-					</div>
-					<div class="comment-center">
-						Raul Caldeŕon ha salido del grupo
+						Todos han salido del grupo
 					</div>
 				</div>
 				<div class="input-cht">
-					<textarea name="name"  placeholder="Escribe un mensaje..." ></textarea>
+					<textarea id="textarea-inpt" autofocus data-name-user="<?php echo $name ?>" data-way="<?php echo $id_way_thisGroup ?>" placeholder="Escribe un mensaje..." ></textarea>
 				</div>
 
 			</section>

@@ -422,6 +422,13 @@ header {
 			}
 	}
 /*=============================REGISTER -REGISTRO USUARIO============================*/
+#message{
+	font: 90%;
+	display: block;
+	text-align: center;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
 .g-recaptcha{
 	display: inline-block;
 	margin-right: auto;

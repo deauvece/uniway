@@ -50,7 +50,7 @@ SET default_with_oids = false;
 CREATE TABLE comments (
     id_comm text DEFAULT ('COM'::text || nextval('comment_id_seq'::regclass)) NOT NULL,
     body text NOT NULL,
-    id_user text NOT NULL,
+    name_user text NOT NULL,
     creation_date timestamp with time zone DEFAULT now(),
     edition_date timestamp with time zone DEFAULT now(),
     id_way text NOT NULL
@@ -290,7 +290,7 @@ CREATE TABLE users (
     names text NOT NULL,
     last_names text NOT NULL,
     phone text NOT NULL,
-    sex character(1) NOT NULL,
+    sex character(1),
     email text NOT NULL,
     password text NOT NULL,
     is_driver boolean DEFAULT false,
@@ -383,14 +383,29 @@ ALTER TABLE public.ways OWNER TO deauvece;
 -- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('comment_id_seq', 1, true);
+SELECT pg_catalog.setval('comment_id_seq', 16, true);
 
 
 --
 -- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: deauvece
 --
 
-COPY comments (id_comm, body, id_user, creation_date, edition_date, id_way) FROM stdin;
+COPY comments (id_comm, body, name_user, creation_date, edition_date, id_way) FROM stdin;
+COM2	Hola buenas tardes	Cesar	2017-02-28 11:35:44.74879-05	2017-02-28 11:35:44.74879-05	WAY61
+COM3	Hola agus	Daniel 	2017-02-28 11:37:55.607496-05	2017-02-28 11:37:55.607496-05	WAY61
+COM4	polvora	Daniel 	2017-02-28 11:39:51.431373-05	2017-02-28 11:39:51.431373-05	WAY61
+COM5	hola que mas jajaja	Cesar	2017-02-28 11:40:19.394274-05	2017-02-28 11:40:19.394274-05	WAY61
+COM6	uy sano casi me dejan, los odio, la calificacion maximo va  aser de 3 lol	  Sergio Andres 	2017-02-28 11:41:00.695019-05	2017-02-28 11:41:00.695019-05	WAY61
+COM7	a hacer* srry	  Sergio Andres 	2017-02-28 11:41:12.669614-05	2017-02-28 11:41:12.669614-05	WAY61
+COM8	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiiiuuuudaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	  Sergio Andres 	2017-02-28 11:41:36.922932-05	2017-02-28 11:41:36.922932-05	WAY61
+COM9	kyc perro	  Sergio Andres 	2017-02-28 11:44:30.912183-05	2017-02-28 11:44:30.912183-05	WAY61
+COM10	a ser *	  Sergio Andres 	2017-02-28 11:47:55.079802-05	2017-02-28 11:47:55.079802-05	WAY61
+COM11	jajaja sisas	  Sergio Andres 	2017-02-28 11:48:13.487012-05	2017-02-28 11:48:13.487012-05	WAY61
+COM12	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aa a aaaaaaaaaaaaaa aaa	Cesar	2017-02-28 11:53:17.649169-05	2017-02-28 11:53:17.649169-05	WAY61
+COM13	AAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aa  a aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa a a a	Cesar	2017-02-28 11:53:34.779249-05	2017-02-28 11:53:34.779249-05	WAY61
+COM14	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	Cesar	2017-02-28 11:57:41.760281-05	2017-02-28 11:57:41.760281-05	WAY61
+COM15	holaaaaa hola hola hola	Cesar	2017-02-28 14:28:28.521897-05	2017-02-28 14:28:28.521897-05	WAY61
+COM16	hola te pido cupo	Daniel 	2017-02-28 19:08:05.026874-05	2017-02-28 19:08:05.026874-05	WAY61
 \.
 
 
@@ -421,23 +436,23 @@ SELECT pg_catalog.setval('route_id_seq', 15, true);
 --
 
 COPY route_stop (id_route, id_stop, creation_date, edition_date, status) FROM stdin;
-R12	STOP1	2017-02-15 10:31:11.032034-05	2017-02-15 10:31:11.032034-05	sleep
-R12	STOP5	2017-02-15 10:31:11.041842-05	2017-02-15 10:31:11.041842-05	sleep
-R12	STOP2	2017-02-15 10:31:11.05407-05	2017-02-15 10:31:11.05407-05	sleep
 R9	STOP2	2017-02-14 18:40:56.740844-05	2017-02-14 18:40:56.740844-05	active
 R9	STOP1	2017-02-14 18:40:56.978415-05	2017-02-14 18:40:56.978415-05	active
 R9	STOP21	2017-02-14 18:40:56.99221-05	2017-02-14 18:40:56.99221-05	active
 R9	STOP13	2017-02-14 18:40:57.003284-05	2017-02-14 18:40:57.003284-05	active
 R9	STOP5	2017-02-14 18:40:57.013935-05	2017-02-14 18:40:57.013935-05	active
+R13	STOP14	2017-02-18 19:12:38.269017-05	2017-02-18 19:12:38.269017-05	active
+R13	STOP35	2017-02-18 19:12:38.323062-05	2017-02-18 19:12:38.323062-05	active
+R13	STOP16	2017-02-18 19:12:38.334708-05	2017-02-18 19:12:38.334708-05	active
+R13	STOP2	2017-02-18 19:12:38.344956-05	2017-02-18 19:12:38.344956-05	active
+R12	STOP1	2017-02-15 10:31:11.032034-05	2017-02-15 10:31:11.032034-05	active
+R12	STOP5	2017-02-15 10:31:11.041842-05	2017-02-15 10:31:11.041842-05	active
+R12	STOP2	2017-02-15 10:31:11.05407-05	2017-02-15 10:31:11.05407-05	active
 R8	STOP2	2017-02-14 18:30:34.108692-05	2017-02-14 18:30:34.108692-05	active
 R8	STOP1	2017-02-14 18:30:34.120243-05	2017-02-14 18:30:34.120243-05	active
 R8	STOP27	2017-02-14 18:30:34.130264-05	2017-02-14 18:30:34.130264-05	active
 R8	STOP13	2017-02-14 18:30:34.141305-05	2017-02-14 18:30:34.141305-05	active
 R8	STOP5	2017-02-14 18:30:34.153187-05	2017-02-14 18:30:34.153187-05	active
-R13	STOP14	2017-02-18 19:12:38.269017-05	2017-02-18 19:12:38.269017-05	sleep
-R13	STOP35	2017-02-18 19:12:38.323062-05	2017-02-18 19:12:38.323062-05	sleep
-R13	STOP16	2017-02-18 19:12:38.334708-05	2017-02-18 19:12:38.334708-05	sleep
-R13	STOP2	2017-02-18 19:12:38.344956-05	2017-02-18 19:12:38.344956-05	sleep
 R14	STOP2	2017-02-18 19:14:26.950849-05	2017-02-18 19:14:26.950849-05	active
 R14	STOP4	2017-02-18 19:14:26.960611-05	2017-02-18 19:14:26.960611-05	active
 R14	STOP3	2017-02-18 19:14:26.971811-05	2017-02-18 19:14:26.971811-05	active
@@ -475,7 +490,7 @@ R15	4	2017-02-19 13:40:55.289658-05	2017-02-19 13:40:55.289658-05	USR12	C9wkltGf
 
 COPY status_feed (id_status, random_string, university) FROM stdin;
 U2	37W9jvzSoyTv429lwA43	UNAB
-U1	tCfeedR67Mi6kfgHSxGG	UIS
+U1	pjxGexO0yrHfcLsPs5dl	UIS
 \.
 
 
@@ -578,7 +593,7 @@ SELECT pg_catalog.setval('university_id_seq', 2, true);
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('user_id_seq', 17, true);
+SELECT pg_catalog.setval('user_id_seq', 18, true);
 
 
 --
@@ -587,9 +602,10 @@ SELECT pg_catalog.setval('user_id_seq', 17, true);
 
 COPY users (id_user, names, last_names, phone, sex, email, password, is_driver, id_u, is_admin, is_verified, creation_date, edition_date, profile_image, phone_public, email_public, license_plate_public, status_way) FROM stdin;
 USR17	Lizeth Paola	Parra B	3189875648	F	lizethparra@gmail.com	$2y$10$I0tq4.cYwq1Zx33KDlCgHeJliIUzX7UQyvyXlT9sJviNDgW1apSK.	f	U2	t	f	2017-02-16 17:50:41.331999-05	2017-02-16 17:50:41.331999-05	../Imagenes/profileImages/upload/perfil.png	f	t	f	false
-USR12	Daniel 	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	t	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg	f	f	f	true
 USR16	  Sergio Andres 	Martinez Lizarazo	3183224822	M	sergio@gmail.com	$2y$10$1eneHrySGvCV7EPhf3ML9OxoNnVmJV8aSD3oKqQZ0t0ZwUXUPmVn.	t	U1	t	f	2017-02-09 13:52:09.641601-05	2017-02-09 13:52:09.641601-05	../Imagenes/profileImages/upload/profile_USR16.jpeg	f	t	f	true
+USR12	Daniel 	Vega	3183524052	M	deauvece@gmail.com	$2y$10$fvZKIDGDOkyNeqxTtNtjR.V3wr6iO0ESGbHRRG87uw9Srhz/Hh8eW	t	U1	t	f	2016-10-08 21:41:41.015576-05	2016-10-08 21:41:41.015576-05	../Imagenes/profileImages/upload/profile_USR12.jpeg	f	f	f	true
 USR15	Carlos Andres    	Marquez Rodrigez	3186687123	M	marquez@gmail.com	$2y$10$AnIzW82TWMGywVN8x5Xl8OVnhO6USPgjRAQhW57y.Q/nZMnLTSupG	t	U1	t	f	2017-01-22 20:53:48.76822-05	2017-01-22 20:53:48.76822-05	../Imagenes/profileImages/upload/profile_USR15.jpeg	f	f	f	true
+USR18	Cesar	Herrera	3189475842	\N	cesar@gmail.com	$2y$10$/vf0BK.ZdoP2cuNrsmzsk.b9hSIm.VbSUOk1VaiGWxaU0h1J3L.hC	f	U1	t	f	2017-02-27 23:00:47.186732-05	2017-02-27 23:00:47.186732-05	../Imagenes/profileImages/upload/perfil.png	f	t	f	true
 \.
 
 
@@ -614,8 +630,8 @@ USR12	R15	2017-02-19 13:40:55.342198-05	2017-02-19 13:40:55.342198-05
 
 COPY usr_ways (id_user, id_way, creation_date, edition_date) FROM stdin;
 USR12	WAY61	2017-02-26 11:33:12.777079-05	2017-02-26 11:33:12.777079-05
-USR16	WAY61	2017-02-26 15:20:37.236035-05	2017-02-26 15:20:37.236035-05
-USR15	WAY61	2017-02-26 17:32:05.519991-05	2017-02-26 17:32:05.519991-05
+USR15	WAY62	2017-02-28 10:34:40.675088-05	2017-02-28 10:34:40.675088-05
+USR18	WAY61	2017-02-28 10:36:20.730941-05	2017-02-28 10:36:20.730941-05
 \.
 
 
@@ -623,7 +639,7 @@ USR15	WAY61	2017-02-26 17:32:05.519991-05	2017-02-26 17:32:05.519991-05
 -- Name: way_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deauvece
 --
 
-SELECT pg_catalog.setval('way_id_seq', 61, true);
+SELECT pg_catalog.setval('way_id_seq', 63, true);
 
 
 --
@@ -631,7 +647,8 @@ SELECT pg_catalog.setval('way_id_seq', 61, true);
 --
 
 COPY ways (id_way, hour, creation_date, edition_date, id_user, id_route, spots, touniversity, comment, id_u, max_spots) FROM stdin;
-WAY61	6:04 AM	2017-02-26 11:33:12.721091-05	2017-02-26 11:33:12.721091-05	USR12	R9	1	false	haoplalfa prueba numero dos	U1	4
+WAY62	12:21 AM	2017-02-28 10:34:40.485911-05	2017-02-28 10:34:40.485911-05	USR15	R13	4	true	Hola, prieba numero 3 lol lml	U1	4
+WAY61	6:04 AM	2017-02-26 11:33:12.721091-05	2017-02-26 11:33:12.721091-05	USR12	R9	2	false	haoplalfa prueba numero dos	U1	4
 \.
 
 
@@ -705,14 +722,6 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY ways
     ADD CONSTRAINT ways_pkey PRIMARY KEY (id_way);
-
-
---
--- Name: comments_id_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: deauvece
---
-
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT comments_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id_user) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

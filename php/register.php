@@ -46,8 +46,8 @@ if ($response != null && $response->success) {
 			  $encrpt_pswd= password_hash($password,PASSWORD_DEFAULT);
 			  //imagen predeterminada de perfil
 			  $profile_image="../Imagenes/profileImages/upload/perfil.png";
-			  $sql3="INSERT INTO users ( names, last_names, phone, sex, email, password, id_u,profile_image)
-			  VALUES ('$names', '$last_names', '$phone', '$sex', '$email', '$encrpt_pswd', '$id_u', '$profile_image')";
+			  $sql3="INSERT INTO users ( names, last_names, phone, email, password, id_u,profile_image)
+			  VALUES ('$names', '$last_names', '$phone', '$email', '$encrpt_pswd', '$id_u', '$profile_image')";
 			  $result = pg_query($conn, $sql3);
 			  header("location:../login-user.php");
 			}
