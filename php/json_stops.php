@@ -3,8 +3,10 @@ class Ajax {
   public $buscador;
 
   public function Buscar($a){
+    $b=strtoupper($a);
+    $this->buscador = $b;
+    
     //se hace la conexion con la base de datos
-    $this->buscador = $a;
     include("../php/functions.php");
     $conn=conectarse();
     $sql1="SELECT * FROM stops WHERE name LIKE '%$this->buscador%' ";

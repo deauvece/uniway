@@ -1,16 +1,27 @@
 $(document).ready(function(){
 
 	$("#search-input").on("keyup",function() {
+		var sizeResult = $("#search-input").val().length;
+		if (sizeResult==0) {
+			$(".no-results").css("display","none");
+			$("div").remove(".publicaciones-n");
+			$("span").remove(".ruta-n");
+			$(".publicaciones").show();
+			$(".ruta").show();
+		}else{
+			$(this).autocomplete({
+				source: '../php/json_stops.php'
+			});
+		}
+	});
+	$("#search-input").keypress(function (e) {
+	var sizeResult = $("#search-input").val().length;
+	if (e.which == 13 && sizeResult!=0 ) {
+		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
 		$(".ruta").hide();
 		$("div").remove(".publicaciones-n");
 		$("span").remove(".ruta-n");
-		var sizeResult = $("#search-input").val().length;
-		if (sizeResult==0) {
-			$("div").remove(".publicaciones-n");
-			$("div").remove(".ruta-n");
-			$(".publicaciones").show();
-		}else{
 			var id_user= $("#id_user_json").attr("value");
 			//para comprobar si el usuario ya está en otro recorrido
 			var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo
@@ -32,37 +43,51 @@ $(document).ready(function(){
 					var toUniversity=[array.toUni1,array.toUni2,array.toUni3,array.toUni4,array.toUni5,array.toUni6,array.toUni7,array.toUni8,array.toUni9,array.toUni10];
 					var ways_id=[array.way1,array.way2,array.way3,array.way4,array.way5,array.way6,array.way7,array.way8,array.way9,array.way10];
 					var routes=[array.ruta1,array.ruta2,array.ruta3,array.ruta4,array.ruta5,array.ruta6,array.ruta7,array.ruta8,array.ruta9,array.ruta10];
-					for (var i = 0; i < array.num_results; i++) {
-						var text0;
-						if (toUniversity[i]=='true') {
-							text0 = "En la universidad a las ";
-						}else{
-							text0 = "Saliendo de la universidad a las ";
-						}
-						if (id_users[i]==id_user) {
-							button = "<a href='group-chat.php?id_way="+ways_id[i]+"'><button class='btn-eliminar' type='button'>Ver</button></a>";
-						}else{
-							if (id_way_usr==ways_id[i]) {
-								button = "<a href='group-chat.php?id_way="+ways_id[i]+"'><button class='btn-eliminar' type='button'>Ver</button></a>";
-							}else {
-								button = "<button id='btn-pedirCupo' class='btn-pedirCupo' type='button' name='button'>Pedir cupo</button>";
+					var stops_way=[array.stop11,array.stop12,array.stop13,array.stop14,array.stop15,array.stop21,array.stop22,array.stop23,array.stop24,array.stop25,
+								array.stop31,array.stop32,array.stop33,array.stop34,array.stop35,array.stop41,array.stop42,array.stop43,array.stop44,array.stop45,array.stop51,array.stop52,array.stop53,array.stop54,array.stop55,
+								array.stop61,array.stop62,array.stop63,array.stop64,array.stop65,array.stop71,array.stop72,array.stop73,array.stop74,array.stop75,
+								array.stop81,array.stop82,array.stop83,array.stop84,array.stop85,array.stop91,array.stop92,array.stop93,array.stop94,array.stop95,array.stop101,array.stop102,array.stop103,array.stop104,array.stop105];
+
+					if (array.num_results!=0) {
+						$(".no-results").css("display","none");
+						// var j Para el conteo de las distintaas Paradas
+						var j=0;
+						for (var i = 0; i < array.num_results; i++) {
+							var text0;
+							if (toUniversity[i]=='true') {
+								text0 = "En la universidad a las ";
+							}else{
+								text0 = "Saliendo de la universidad a las ";
 							}
+							if (id_users[i]==id_user) {
+								button = "<a href='group-chat.php?id_way="+ways_id[i]+"'><button class='btn-eliminar' type='button'>Ver</button></a>";
+							}else{
+								if (id_way_usr==ways_id[i]) {
+									button = "<a href='group-chat.php?id_way="+ways_id[i]+"'><button class='btn-eliminar' type='button'>Ver</button></a>";
+								}else {
+									button = "<button id='btn-pedirCupo' class='btn-pedirCupo' type='button' name='button'>Pedir cupo</button>";
+								}
+							}
+							$("#pub-box").append("<div class='publicaciones-n' ><img class='open-modal' src='"+profile_Imagenes[i]+"' alt='"+id_users[i]+"' ></img><span class='cupo'>"+spots[i]+" cupos.</span><a href=''><span class='name'>"+names[i]+"</span></a><span class='time'>"+text0+hours[i]+"</span><span class='comentario'>"+comments[i]+"</span><div class='botones'>"+button+"</div><div class='rt-title'>Paradas</div></div><span class='ruta-n'>"+stops_way[j+0]+"&nbsp;&nbsp;&nbsp;"+stops_way[j+1]+"&nbsp;&nbsp;&nbsp;"+stops_way[j+2]+"&nbsp;&nbsp;&nbsp;"+stops_way[j+3]+"&nbsp;&nbsp;&nbsp;"+stops_way[j+4]+"</span>");
+							j=j+5;
 						}
-						$("#pub-box").append("<div class='publicaciones-n' ><img class='open-modal' src='"+profile_Imagenes[i]+"' alt='"+id_users[i]+"' ></img><span class='cupo'>"+spots[i]+" cupos.</span><a href=''><span class='name'>"+names[i]+"</span></a><span class='time'>"+text0+hours[i]+"</span><span class='comentario'>"+comments[i]+"</span><div class='botones'>"+button+"</div></div><span style='display:none' class='ruta-n' >Cañaveral - Fosunab - Paralela - CRA 27 - UIS</span>");
+
+					}else{
+						$(".no-results").css("display","block");
 					}
 				}
 			});
+
 		}
 	});
-
-	$("#pub-box").on("click",".publicaciones",function() {
+	/*$("#pub-box").on("click",".publicaciones",function() {
 		$(".ruta").hide();
 		$(this).next().slideDown(100);
 	});
 	$("#pub-box").on("click",".publicaciones-n",function() {
 		$(".ruta-n").hide();
 		$(this).next().slideDown(100);
-	});
+	});*/
 	//CHECK FOR WAYS UPDATES
 	function check(){
 
@@ -77,6 +102,7 @@ $(document).ready(function(){
 			success: function(array){
 				if (array.update=="true") {
 					$("#new-updates").fadeIn();
+					$(document).attr("title", "Uniway (1)");
 					clearInterval(interval);
 				}
 			}

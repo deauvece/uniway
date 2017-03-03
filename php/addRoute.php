@@ -32,11 +32,11 @@ $result_user_routes= pg_query($conn, $sql_user_routes);
 
 //creacion de la relacion ruta-paradas
 //$vector_stops=[$stop1,$stop2,$stop3,$stop4,$stop5];
-$vector_stops[0]=$stop1;
-$vector_stops[1]=$stop2;
-$vector_stops[2]=$stop3;
-$vector_stops[3]=$stop4;
-$vector_stops[4]=$stop5;
+$vector_stops[0]=strtoupper($stop1);
+$vector_stops[1]=strtoupper($stop2);
+$vector_stops[2]=strtoupper($stop3);
+$vector_stops[3]=strtoupper($stop4);
+$vector_stops[4]=strtoupper($stop5);
 //POR AHORA SON CINCO PARADAS OBLIGATORIAS
 for ($i=0; $i < 5 ; $i++) {
   //busqueda del id de la parada

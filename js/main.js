@@ -284,9 +284,6 @@ $(document).ready(function () {
 				$( ".paradas" ).autocomplete({
 					source: '../php/json_stops.php'
 				});
-				$('.paradas').keyup(function(){
-					$(this).val($(this).val().toUpperCase());
-				});
 			});
 
 			//menu opciones

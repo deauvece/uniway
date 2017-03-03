@@ -21,6 +21,9 @@ $id_way_this = $vector4['id_way'];
 $sql00="INSERT INTO usr_ways (id_user,id_way) VALUES ('$id_user','$id_way_this')";
 $result00 = pg_query($conn, $sql00);
 
+//agrega el primer comentario
+$sql9="INSERT INTO comments (body,name_user,id_way,id_user) VALUES ('Bienvenidos','Uniway','$id_way_this','none')";
+$result9 = pg_query($conn, $sql9);
 
 //para identificar que la ruta del recorrido se encuentra en alguna publicacion
 $status="active";
@@ -43,6 +46,8 @@ function generateRandomString($length = 20) {
 $rand=generateRandomString();
 $sql22="UPDATE status_feed SET random_string='$rand' WHERE id_status='$id_u'  ";
 $result2 = pg_query($conn, $sql22);
+
+
 
 header("location:../sesion/sesionOpen.php");
 ?>

@@ -118,8 +118,8 @@ if ($status_usr=="true") {
 		<button id="btn-add" <?php if ($is_driver=='f' || $status_usr=="true") { echo "style='display:none'";} ?> type="button" name="button">+</button>
 
 		<section class="find">
-			<button id="btn-find" type="button" name="button"> <img src="../Imagenes/search.png" alt="" /></button>
-			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta!" autocomplete="off">
+			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta!" autocomplete="off" autofocus>
+			<img src="../Imagenes/search.png" alt="" />
 		</section>
 
 
@@ -200,6 +200,7 @@ if  ($numFilas_routes!=0)
 		</div>
 		<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
 		<section id="pub-box">
+		<span class="no-results">No hay resultados</span>
 <?php
 
 //consulta los datos de los ultimos 30 recorridos de la universidad guardados en waysArray
@@ -270,8 +271,12 @@ if  ($numFilas_ways!=0)
 							}
 						 ?>
 					</div>
+					<div class="rt-title">
+						Paradas
+					</div>
 				</div>
-				<span class='ruta' style='display:none' >
+				<!--<span class='ruta' style='display:none' >-->
+				<span class='ruta' >
 				<?php
 					//busqueda de las paradas
 					$sql="SELECT id_stop FROM route_stop WHERE id_route='$id_route'";
@@ -282,7 +287,9 @@ if  ($numFilas_ways!=0)
 						$result0= pg_query($conn, $sql0);
 						while ($vect0=pg_fetch_array($result0)) {
 							$nameStop=$vect0['name'];
+							echo "<span>";
 							echo "$nameStop";
+							echo "</span>";
 							echo " &nbsp; &nbsp;";
 						}
 					}
