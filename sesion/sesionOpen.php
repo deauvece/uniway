@@ -70,8 +70,7 @@ if ($status_usr=="true") {
 			<div class="other-options">
 				<ul class="lista">
 					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
-					<a href="#"  <?php if ($is_driver=='f') { echo "style='display:none'";} ?> ><li><span></span><img src="../Imagenes/ruta.png" class="icono" alt="iconos" /> Rutas creadas     4</li></a>
-					<a href="#"><li><span></span><img src="../Imagenes/mensaje.png" class="icono" alt="iconos" /> Mensajes   8</li></a>
+					<?php if ($status_usr=="true") { echo "<a href='group-chat.php?id_way=$way_usr_active'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' /> Mensajes (1)</li></a>";} ?>
 					<a href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
 			</div>
@@ -81,7 +80,6 @@ if ($status_usr=="true") {
 				<ul class="lista">
 					<li><span></span>Agregar paradas</li>
 					<li><span></span>Buscar usuario</li>
-					<!--<li><span></span>Estadisticas</li>-->
 					<li><span></span>Contacto</li>
 					<li><span></span>Ayuda</li>
 				</ul>
@@ -119,7 +117,7 @@ if ($status_usr=="true") {
 
 		<section class="find">
 			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta!" autocomplete="off" autofocus>
-			<img src="../Imagenes/search.png" alt="" />
+			<img id="search_image" src="../Imagenes/search.png" alt="" />
 		</section>
 
 
@@ -183,7 +181,7 @@ if  ($numFilas_routes!=0)
 					<option value="4" selected >4 cupos</option>
 				</select>
 				<span id="commentTitle" >Selecciona una hora:</span>
-				<input id="timepicker" type="text" name="timepicker" required>
+				<input id="timepicker" type="text" name="timepicker" autocomplete="off" required>
 
 				<div class="finish_start">
 					<span>El recorrido comienza o termina en la universidad</span>
@@ -193,7 +191,7 @@ if  ($numFilas_routes!=0)
 							<label id="finish_l" for="finish"></label>
 				</div>
 				<span id="commentTitle" >Informacion adicional:</span>
-				<textarea name="comment" rows="3" cols="31"></textarea>
+				<textarea name="comment" rows="3" cols="31" required></textarea>
 
 				<button type="submit" >Crear</button>
 			</form>

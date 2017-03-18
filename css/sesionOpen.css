@@ -15,6 +15,7 @@ body{
 	background-color: #232626;
 	width: 100%;
 	height: 60px;
+	z-index: 3;
 }
 #nav_feed ul {
 	margin-top: 0px;
@@ -46,14 +47,13 @@ body{
 /*============================================LEFT SIDE=====================================================*/
 .options {
 	display: block;
-	position: fixed;
+	position: absolute;
 	margin: 0px;
 	margin-top: -10px;
 	background-color: #232626;
 	color: white;
-	float: left;
 	width: 19%;
-	height: 100%;
+	height: 150%;
 	text-align: center;
 	}
 	.options .editar {
@@ -358,6 +358,7 @@ body{
 		top: 0;
 		height: 260%;
 		width: 100%;
+		z-index: 3;
 }
 /*=====scrollbarr=========*/
 	::-webkit-scrollbar{
@@ -749,6 +750,7 @@ body{
 .navProfile {
 	width: 100%;
 	position: absolute;
+	z-index: 2;
 }
 .navProfile #bmenu {
 	display: none;
@@ -794,9 +796,11 @@ body{
 /*============================================BIG CONTAINER=================================================*/
 /*============================================GENERAL INFO STYLE==============================================*/
 .left-section {
+
 	position: fixed;
 	background-color: #232626;
 	width: 275px;
+	z-index: 3;
 	height: 100%;
 	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
@@ -839,7 +843,7 @@ body{
 		border-radius: 5px;
 		top: 100px;
 		left:500px;
-		z-index: 1;
+		z-index: 2;
 	}
 		#profile_Image  input{
 			display: block;
@@ -939,7 +943,7 @@ body{
 	top: 0;
 	height: 260%;
 	width: 100%;
-	z-index: 2;
+	z-index: 3;
 }
 #addRoute {
 	display: none;
@@ -1191,12 +1195,12 @@ body{
 				text-align: left;
 			}
 			.basicInfo ul li , .transportInfo ul li {
-				width: 30%;
+				width: 45%;
 				display: inline-block;
 				margin-bottom: 15px;
 			}
 			.basicInfo ul li:nth-child(2n), .transportInfo ul li:nth-child(2n) {
-				margin-left: 20%;
+				margin-left: 5%;
 			}
 			.basicInfo ul li label , .transportInfo ul li label {
 				font-weight: lighter;
@@ -1205,7 +1209,7 @@ body{
 			}
 			.basicInfo ul li input, .transportInfo ul li input {
 				display: block;
-				width: 400px;
+				width: 90%;
 				height: 27px;
 				border-width: 0px;
 				border-style:  solid;
@@ -1213,6 +1217,8 @@ body{
 				border-color: #E5E5E5;
 				background-color:  white;
 				padding-left: 20px;
+				margin-left: auto;
+				margin-right: auto;
 				transition: all 0.2s;
 				font-size: 110%;
 			}
@@ -1335,7 +1341,9 @@ body{
 		  	display: block;
 		  	margin-bottom: 20px;
 		  	border-width: 0px;
-			width: 335px;
+			margin-left: auto;
+			margin-right: auto;
+			width: 95%;
 			padding: 15px;
 			background-color: #F3F3F3;
 		  }
@@ -1390,11 +1398,12 @@ body{
 		}
 		.security ul li span {
 			display: inline-block;
-			width: 50%;
+			width: 45%;
 		}
 		.security ul li input[type="checkbox"] {
 			display: inline-block;
 			height: 20px;
+			width: 20px;
 		}
 
 
@@ -1662,6 +1671,16 @@ body{
 		min-width: 90px;
 		display: inline-block;
 	}
+	#info-button{
+		display: none;
+		height: 30px;
+		width: 30px;
+		top: 15px;
+		right: 15px;
+		position: absolute;
+		top: 15px;
+		right: 15px;
+	}
 	.nav-chat img {
 		position: relative;
 		top: 10px;
@@ -1771,6 +1790,14 @@ body{
 		height: 100%;
 		overflow: hidden;
 	}
+		#send-button{
+			display: inline-block;
+			float: right;
+			margin-right: 5%;
+			margin-top: 15px;
+			cursor: pointer;
+			height: 25px;
+		}
 		.cht-box .content-cht {
 			background-color: #EBEEF0;
 			display: block;
@@ -1785,7 +1812,7 @@ body{
 		}
 			.cht-box .input-cht textarea {
 				font-size: 105%;
-				display: block;
+				display: inline-block;
 				margin: 0px;
 				border-width: 0px;
 				width: 80%;
@@ -1795,6 +1822,7 @@ body{
 				padding-left: 20px;
 				resize: none;
 				font-family: 'Fira Sans Extra Condensed', sans-serif;
+				background-color: white;
 			}
 		.content-cht .comment-center{
 			background-color: #D1D4D7;
@@ -1876,6 +1904,68 @@ body{
 	}
 	form > .yes-confirm{
 		background-color: #B72C2C;
+	}
+	@media (max-width:350px) {
+		.container-chat .people {
+			width: 100%;
+		}
+	}
+	@media (max-width:600px) {
+		.nav-chat ul a span{
+			display: none;
+		}
+		.nav-chat ul li{
+			min-width: 40px;
+		}
+	}
+	@media (max-width:950px) {
+		.container-chat .people {
+			display: none;
+			background-color: white;
+			border-right-width: 0px;
+			position: fixed;
+			top: 55px;
+			left: 0px;
+		}
+		.people .title-usr {
+			border-width: 0px;
+		}
+		.nav-chat ul {
+			background-color: white;
+			padding-right: 50px;
+		}
+		.nav-chat ul a{
+			color: black;
+		}
+		.nav-chat ul a:nth-child(2){
+			display: none;
+		}
+		#info-button{
+			display:block;
+		}
+		#logo-chat {
+			content:url("../Imagenes/logo-name.png");
+		}
+	}
+	@media (max-width:500px) {
+		.comment-right .box{
+			margin-right: 2px;
+		}
+		.comment-left .box {
+			margin-left: 2px;
+		}
+		.comment-left .box, .comment-right .box{
+			max-width: 290px;
+		}
+
+	}
+	@media (max-width:450px) {
+			#logo-chat{
+				position: absolute;
+				top: 20px;
+				left: 50px;
+				height: 25px;
+			}
 	}
 /*============================================CHAT-GROUP STYLE===================================================*/
 

@@ -40,7 +40,7 @@ $(document).ready(function () {
 		});
 		//error window
 		$(".error_way").click(function(){
-			event.stopPropagation();
+			return false;
 		});
 		$(".error_way button").click(function(){
 			location.reload();
@@ -54,7 +54,7 @@ $(document).ready(function () {
 		    $(".modal-box").fadeOut("fast");
 	    });
 	    $("#modal-window").click(function(){
-		    event.stopPropagation();
+		    return false;
 	    });
 	    $("#back").click(function() {
 		    $(".modal-box").fadeOut("fast");
@@ -73,6 +73,23 @@ $(document).ready(function () {
 		$("#closeAddRoute").click(function(){
 			$("#addRouteBox").fadeOut();
 			$("#addRoute").hide();
+		});
+		$("#addRoute").click(function(event){
+if (event.stopPropagation){
+       event.stopPropagation();
+   }
+   else if(window.event){
+      window.event.cancelBubble=true;
+   }
+		});
+
+		$("#addRoute").click(function(event){
+if (event.stopPropagation){
+       event.stopImmediatePropagation();
+   }
+   else if(window.event){
+      window.event.cancelBubble=true;
+   }
 		});
 		//json user data query
 		$("#pub-box").on('click','img',function(){
@@ -152,9 +169,7 @@ $(document).ready(function () {
 			}
 
 		});
-		$(".options").click(function(){
-		    event.stopPropagation();
-		});
+
 
 		$("#btn").click(function(){
 			$(".sinmenu").fadeToggle("fast");
@@ -233,7 +248,7 @@ $(document).ready(function () {
 				$("#addRoute").hide();
 			});
 			$("#addRoute").click(function(){
-		 	    event.stopPropagation();
+		 	    return false;
 		     });
 
 			//numero de paradas variables
@@ -260,7 +275,7 @@ $(document).ready(function () {
 				$("#delete_transport_form").hide();
 			});
 			$("#delete_transport_form").click(function(){
-		 	    event.stopPropagation();
+		 	    return false;
 		     });
 
 			//cambiar imagen de usuario
@@ -277,7 +292,7 @@ $(document).ready(function () {
 				$("#profile_Image").hide();
 			});
 			$("#profile_Image").click(function(){
-		 	    event.stopPropagation();
+		 	    return false;
 		     });
 			//busqueda de paradas
 			$("#addRoute").on("keyup","input",function(){
@@ -296,9 +311,6 @@ $(document).ready(function () {
 					$(".left-section").fadeOut();
 				}
 			});
-			$(".left-section").click(function(){
-		 	    event.stopPropagation();
-		     });
 	/*Funciones home page ---------------------------------------------------------------------------------*/
 		//login user
 		$("#login").click(function(){

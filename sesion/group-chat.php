@@ -45,6 +45,7 @@ if ($id_way_thisGroup){
 		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
+
 		<script src="../js/jquery-3.1.1.min.js"></script>
 		<script src="../js/jquery-ui/jquery-ui.js"></script>
 		<script src="../js/group-chat.js"></script>
@@ -60,9 +61,10 @@ if ($id_way_thisGroup){
 				<a href="sesionOpen.php"><li>Inicio</li></a>
 			</ul>
 		</nav>
+		<img id="info-button" src="../Imagenes/info.png"/>
 		<div class="container-chat">
 			<section class="people" >
-				<span class="title-usr">Participantes</span>
+				<span class="title-usr">Miembros</span>
 				<?php
 					$sql10="SELECT * FROM usr_ways WHERE id_way='$id_way_thisGroup'";
 					$result10=pg_query($conn, $sql10);
@@ -130,6 +132,7 @@ if ($id_way_thisGroup){
 					?>
 				</div>
 				<div class="input-cht">
+					<img id="send-button" src="../Imagenes/send.png"/>
 					<textarea id="textarea-inpt" autofocus data-name-user="<?php echo $name ?>" data-way="<?php echo $id_way_thisGroup ?>" data-idu="<?php echo $idu ?>" placeholder="Escribe un mensaje..." ></textarea>
 				</div>
 

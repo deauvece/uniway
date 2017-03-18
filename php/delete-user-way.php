@@ -4,6 +4,16 @@ include("functions.php");
 $conn=conectarse();
 extract($_POST);
 
+//notifica la salida del usuario al grupo
+$sql0="SELECT * FROM users WHERE id_user='$id_user'";
+$result0 = pg_query($conn, $sql0);
+$vector0=pg_fetch_array($result0);
+$name_usr=$vector0['names'];
+
+$comm=$name_usr." ha salido del grupo.";
+$sql4="INSERT INTO comments (body,name_user,id_way,id_user) VALUES ('$comm','Uniway','$id_way','none')";
+$result4 = pg_query($conn, $sql4);
+
 //elimina al usuario del grupo
 $sql="DELETE FROM usr_ways WHERE id_user='$id_user'";
 $result = pg_query($conn, $sql);

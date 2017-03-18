@@ -24,6 +24,7 @@ $sql0="SELECT * FROM users WHERE id_user='$id_user_q'";
 $result0=pg_query($conn, $sql0);
 $vector0=pg_fetch_array($result0);
 $status_usr=$vector0['status_way'];
+$name_usr=$vector0['names'];
 	//true=>usuario ya está activo
 if ($status_usr=="true") {
 	$status="no";
@@ -44,6 +45,10 @@ if ($status=="yes") {
 	//lo agrega al grupo del recorrido
 	$sql3="INSERT INTO usr_ways (id_user,id_way) VALUES ('$id_user_q','$id_way_q')";
 	$result3 = pg_query($conn, $sql3);
+	//notifica la entrada del usuario
+	$comm=$name_usr." se ha unido al grupo.";
+	$sql4="INSERT INTO comments (body,name_user,id_way,id_user) VALUES ('$comm','Uniway','$id_way_q','none')";
+	$result4 = pg_query($conn, $sql4);
 }
 
 

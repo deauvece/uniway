@@ -67,7 +67,7 @@ if ($is_driver=='t') {
 	<body>
 		<nav class="navProfile" >
 			<ul>
-				<li> <a href="sesionOpen.php">Ir atrás</a></li>
+				<li> <a href="sesionOpen.php">Inicio</a></li>
 				<li> <span>/ Configuración de usuario</span></li>
 			</ul>
 			<img id="bmenu" src="../Imagenes/bmenu.png" width="30px" />
@@ -117,10 +117,6 @@ if ($is_driver=='t') {
 							<input type="text" disabled name="name" value="<?php echo "$university"; ?>">
 						</li>
 						<li>
-							<label for="">Sexo</label>
-							<input type="text" name="sex" value="<?php echo "$sex"; ?>">
-						</li>
-						<li>
 							<label for="">Telefono</label>
 							<input type="text" name="phone" value="<?php echo "$phone"; ?>">
 						</li>
@@ -128,10 +124,17 @@ if ($is_driver=='t') {
 							<label for="">Correo</label>
 							<input type="text" name="email" value="<?php echo "$email"; ?>">
 						</li>
+						<li>
+							<label for="">Sexo</label>
+							<select name="sex">
+								<option value="M" <?php if ($sex=="M"){echo "selected";} ?> >Masculino</option>
+								<option value="F" <?php if ($sex=="F"){echo "selected";} ?> >Femenino</option>
+							</select>
+						</li>
 						<input type="text" name="id_user" hidden value="<?php echo "$idu"; ?>">
 					</ul>
 					<div class="security">
-						
+
 						<h4>Visibildiad de los datos</h4>
 						<span>
 							Esta configuración solo afecta la visibildad de los datos para los usuarios que no están compartiendo algún vehiculo contigo.
@@ -200,7 +203,7 @@ if ($is_driver=='t') {
 							</li>
 							<li>
 								<label for="">Precio</label>
-								<input type="text" required placeholder="Se recomienda un valor de 2000 COP" name="price">
+								<input type="text" required placeholder="Se recomienda un valor de 2000" name="price">
 							</li>
 							<li>
 								<label for="">Wi-fi</label>
