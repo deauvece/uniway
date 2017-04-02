@@ -20,14 +20,8 @@
 
 <body>
 <a name="inicio"></a>
-<!--BOTON IR ARRIBA-->
-<span class="ir-arriba">
-	<a href="#inicio">
-		<img src="Imagenes/up.png">
-	</a>
-</span>
 <!--BARRA DE NAVEGACION-->
-<nav>
+<nav class="home-nav">
 	<ul>
 		<li>
 			<input type="checkbox" name="name" id="btn">
@@ -130,19 +124,23 @@
 <div id="contact-box" class="contact-box">
 	<div class="contact-form">
 		<span id="close-contact-form">x</span>
-		<form  action="php/uploader.php" method="POST" >
+		<form  action="php/send_email.php" method="POST" >
 			<label for="nombre-contact">Nombre</label>
-			<input id="nombre-contact" type="text" name="nombre"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
+			<input id="nombre-contact" type="text" name="name-user"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
+
 			<label for="email-contact">Direccion de correo electronico</label>
-			<input id="email-contact" type="email" name="Correo"  required>
+			<input id="email-contact" type="email" name="email"  required>
+
 			<label for="asunto-contact">Asunto</label>
-			<input id="asunto-contact" type="text" name="Asunto"  pattern="[a-zA-Z\s]{4,25}" required>
+			<input id="asunto-contact" type="text" name="subject"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
+
 			<label for="content-contact">Mensaje</label>
-			<textarea id="content-contact" name="comentario" rows="3" cols="10" required pattern="[A-Z0-9\s]{4,250}" ></textarea>
+			<textarea id="content-contact" name="content" rows="3" cols="10" required pattern="[A-Z0-9\s]{4,250}" ></textarea>
 			<input class="enviarCorreo" type="submit" name="submit" value="Enviar">
 		</form>
 	</div>
 </div>
+<span class="email_send">Mensaje enviado!</span>
 
 <!--COPYRIGHT-->
 <section class="copyright">

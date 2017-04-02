@@ -40,11 +40,12 @@
 		    $_SESSION['user_university_acr']= $vectorUniversity11["acronym"];
 		    $_SESSION['user_university']= $vectorUniversity11["name"];
 
-              if($vector['is_admin']=='t') {
-                header("location:../sesion/sesionOpen.php");
+		    header("location:../sesion/sesionOpen.php");
+              /*if($vector['is_admin']=='t') {
               }else {
                 header("location:../sesion/maintenance.php");
-              }
+		 }*/
+
             }
           }
 

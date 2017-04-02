@@ -23,7 +23,12 @@ $id_university=$_SESSION['id_university'];
 $is_verified=$_SESSION['is_verified'];
 $university=$_SESSION['user_university'];
 $university_acr=$_SESSION['user_university_acr'];
-$rute_img=$_SESSION['profile_image'];
+
+#Para actualizar rápido de la imagen de perfil
+$sql111="SELECT profile_image FROM users WHERE id_user='$idu'";
+$result111 = pg_query($conn, $sql111);
+$prof_img=pg_fetch_array($result111);
+$rute_img=$prof_img['profile_image'];
 
 $email_public=$_SESSION['email_public'];
 $phone_public=$_SESSION['phone_public'];
@@ -33,7 +38,6 @@ if ($is_driver=='t') {
 	$sql11="SELECT * FROM transports WHERE id_user='$idu'";
 	$result11 = pg_query($conn, $sql11);
 	$vectorTransport=pg_fetch_array($result11);
-
 	$license_plate=$vectorTransport['license_plate'];
 	$model=$vectorTransport['model'];
 	$air_conditioner=$vectorTransport['air_conditioner'];
@@ -84,10 +88,10 @@ if ($is_driver=='t') {
 				<section class="options-left-section">
 					<ul>
 						<a href="#basicInfo"><li><span></span>Información básica</li></a>
+						<a href="#verif_info"><li><span></span>Verificar cuenta</li></a>
 						<a href="#transportInfo"><li><span></span>Transporte</li></a>
 						<a href="#userRutesBox"><li <?php if ($is_driver=='f') { echo " style='display:none'";} ?>><span></span>Rutas</li></a>
-							<a href="#qualificationsBox"><li><span></span>Comentarios</li></a>
-						<a href="#basicInfo"><li><span></span>Verificar cuenta</li></a>
+						<a href="#qualificationsBox"><li><span></span>Comentarios</li></a>
 						<li>
 							<span></span><a href="../php/logout.php">Cerrar sesión</a>
 						</li>
@@ -158,6 +162,70 @@ if ($is_driver=='t') {
 					</div>
 					<button type="submit" name="button" >Guardar</button>
 				</form>
+			</div>
+			<div class="transportInfo" id="verif_info" >
+				<div class="title">
+					Verificar correo institucional
+					<span>Al verificar tu cuenta de correo institucional mejoras tu credibilidad ante toda la comunidad y aumenta la seguridad de la plataforma evitando que personas ajenas a tu universidad presten el servicio.</span>
+				</div>
+				<div class="verif_info">
+				<?php
+				//si recibe el token => ya ha hecho el proceso para verificar el correo institucional
+					if (isset($_GET["tkn"])){
+						$tkn=$_GET["tkn"];
+						//comprueba el tkn
+						$rand=$_SESSION['tkn1_user_verif'];
+						$rand2=$_SESSION['tkn2_user_verif'];
+						$verif_tkn=$rand*$rand2*$rand2;
+						if ($tkn==$verif_tkn) {
+							//cambia is verified en la base de datos
+							$sql00="UPDATE users SET  is_verified='t' WHERE id_user='$idu'  ";
+							$result00 = pg_query($conn, $sql00);
+							//cambia is verified en los datos de sesion
+							$_SESSION['is_verified']='t';
+							$is_verified='t';
+							?>
+							<p>Felicitaciones el proceso de verficicación de correo institucional se ha hecho correctamente.</p>
+							<?php
+						}else{
+							?>
+							<p>El proceso de autenticación del token para la verificación del correo institucional no se ha realizado correctamente, por favor contacte a un administrador.</p>
+							<?php
+						}
+					}
+
+				//muestra el estado del usuario (verificado o no)
+					if ($is_verified=="t") {
+						//muestra la verificación de correo
+						?>
+						<div class="verfied-user">
+							Correo institucional verificado!
+						</div>
+						<?php
+					}else{
+						//si no está verificado muestra el formulario para verificarse
+						?>
+							<form action="../php/verif-institutional.php" method="post">
+								<label for="inst-email">Escribe tu correo institucional</label>
+								<input id="inst-email" type="email" name="institutional_email" required>
+								<?php
+								if ( isset($_GET["vr"]) ){
+									$var=$_GET["vr"];
+									if ($var=="fal") {
+										echo "<span style='color:#B72C2C' >El correo institucional introducido no está dentro de los soportados por la plataforma</span>";
+									}else{
+										echo "<span>Se ha enviado un mensaje de verificacion al correo introducido!.</span>";
+									}
+								}else{
+									echo "<span>Se enviara un mensaje al correo introducido con un enlace para verificar.</span>";
+								}
+								 ?>
+								<button type="submit" name="button" >Verificar</button>
+							</form>
+					<?php
+					}
+					?>
+			</div>
 			</div>
 			<div class="transportInfo" id="transportInfo">
 				<div class="title">
@@ -287,8 +355,9 @@ if ($is_driver=='t') {
 								</li>
 								<li>
 									<label >Imagen </label>
+									<?php if (!$image){ $image="../Imagenes/transportImages/default.png";}?>
 									<img src="<?php echo "$image"; ?>"/>
-									<label class="file_label" for="uploadBtn">Selecciona una foto</label>
+									<label class="file_label" for="uploadBtn" style='background-color:#B72C2C' >Selecciona una foto</label>
 									<input id="uploadBtn" type="file" name="file" accept="image/*"/>
 								</li>
 							</ul>
@@ -309,7 +378,7 @@ if ($is_driver=='t') {
 <div class="userRutesBox" id="userRutesBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?> >
 	<div class="title">
 		Rutas
-		<span>Crea y elimina las rutas de tus recorridos.</span>
+		<span>Crea y elimina las rutas de tus recorridos. Ten en cuenta que si eliminas una ruta que pertenece a una <b>publicación</b> ésta tambien se eliminará.</span>
 	</div>
 <?php
 //selecciono todas las rutas del usuario
@@ -322,6 +391,7 @@ if  ($numFilas_routes!=0)
       {
 		?> <div class="userRutes"> <?php
 		$id_ruta= $vector_routes['id_route'];
+		echo "<span class='del_route' data-id='$id_ruta' >ELIMINAR</span>";
 		//selecciono todas las paradas de esa ruta
 		$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
 		$result_stops = pg_query($conn, $sql_stops);
@@ -425,7 +495,7 @@ if  ($numFilas_routes!=0)
 		 <!--formulario para subir la imagen-->
 		 <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
 			 <img id="big_image" src="<?php echo $rute_img;?>"  />
-			 <label class="file_label" for="uploadBtn2">Selecciona una foto</label>
+			 <label class="file_label" for="uploadBtn2" style='background-color:#B72C2C' >Selecciona una foto</label>
 			 <input id="uploadBtn2" type="file" name="file2" accept="image/*"/>
 			 <button type="submit">Subir</button>
 		 </form>

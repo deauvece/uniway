@@ -8,10 +8,10 @@ function checkLogin() {
 	  $last_name = $_SESSION['id_apellido_usuario'] ;
 	  $full_name= $name ." ". $last_name;
 	}
-	if ($_SESSION['admin']=='f') {
+	/*if ($_SESSION['admin']=='f') {
 	  header("location:maintenance.php");
 	  exit();
-	}
+  }*/
 }
 function conectarse()
 {

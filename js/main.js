@@ -106,6 +106,17 @@ if (event.stopPropagation){
 					$(".user_university_query").text(array.university_acr);
 					$(".user_email_query").text(array.email);
 					$(".user_phone_query").text(array.phone);
+					//verified user
+					$(".user_verified_query").text(array.is_verified);
+						if (array.is_verified=='t') {
+							$(".user_img_query").attr("style","");
+							$(".user_status_query").attr("style","color:#007272");
+							$(".user_status_query").text("Usuario verificado");
+						}else{
+							$(".user_img_query").attr("style","border: 2px solid #B72C2C");
+							$(".user_status_query").attr("style","color:#B72C2C");
+							$(".user_status_query").text("Usuario no verificado");
+						}
 					//transport
 					$("#user_transport_type").text(array.tipo);
 					$("#user_transport_model").text(array.model);
@@ -217,6 +228,8 @@ if (event.stopPropagation){
 			$(this).remove();
 		});
 	/*Funciones userProfile.php ---------------------------------------------------------------------------*/
+		//cerrar mensaje cambios hechos update
+		$(".update-done").delay( 1500 ).fadeOut( 400 );
 		//agregar transporte
 		$("#btn-transp").click(function(){
 			$("#btn-transp").css("display", "none");
@@ -292,7 +305,7 @@ if (event.stopPropagation){
 				$("#profile_Image").hide();
 			});
 			$("#profile_Image").click(function(){
-		 	    return false;
+		 	    event.stopPropagation();
 		     });
 			//busqueda de paradas
 			$("#addRoute").on("keyup","input",function(){
@@ -311,7 +324,43 @@ if (event.stopPropagation){
 					$(".left-section").fadeOut();
 				}
 			});
+
+			//eliminar rutas
+			$(".del_route").on("click", function(){
+				var id_route = $(this).attr("data-id");
+				$(this).parent().fadeOut("fast");
+
+				$.ajax({
+					url: '../php/deleteRoute.php',
+					type: 'get',
+					data: {
+						id_route: $(this).attr("data-id")
+					},
+					dataType: 'json',
+					success: function(){
+						alert("Se ha eliminado la ruta satisfactoriamente");
+					}
+				});
+
+			});
 	/*Funciones home page ---------------------------------------------------------------------------------*/
+		//confirma correo enviado
+		var pathname = window.location.href;
+	 	if (pathname=="http://uniway.heliohost.org/?email=true"  || pathname=="http://localhost/Uniway/uniway/index.html?eml=true") {
+			$(".email_send").fadeIn().delay(1500).fadeOut();
+		}
+		//cambia la barra de navegacion
+		$(window).scroll(function (event) {
+		    var scroll = $(window).scrollTop();
+		    if (scroll>30) {
+			    $(".home-nav ").height(55);
+			    $(".sinmenu > li ").height(55);
+			    $("#logo img").height(25);
+		    }else {
+		    		$(".home-nav ").height(75);
+				$("#logo img").height(40);
+		    }
+		});
 		//login user
 		$("#login").click(function(){
 			var w =$( window ).width();

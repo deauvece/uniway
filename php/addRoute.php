@@ -1,9 +1,9 @@
 <?PHP
 // llamar la funciones
+error_reporting(0);
 include("functions.php");
 $conn=conectarse();
 extract($_POST);
-
 
 //creacion del caracter aleatorio de tamaño CINCOO
 function generateRandomString($length = 12) {

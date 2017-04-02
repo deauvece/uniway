@@ -13,9 +13,15 @@ $is_driver=$_SESSION['is_driver'];
 $id_university=$_SESSION['id_university'];
 $is_verified=$_SESSION['is_verified'];
 $university=$_SESSION['user_university'];
-$rute_img=$_SESSION['profile_image'];
 $university_acr=$_SESSION['user_university_acr'];
 $id_university=$_SESSION['user_id_university'];
+
+#Para actualizar rápido de la imagen de perfil
+$sql111="SELECT profile_image FROM users WHERE id_user='$idu'";
+$result111 = pg_query($conn, $sql111);
+$prof_img=pg_fetch_array($result111);
+$rute_img=$prof_img['profile_image'];
+
 
 $sql00="SELECT * FROM users WHERE id_user='$idu'";
 $result00=pg_query($conn, $sql00);
@@ -70,7 +76,7 @@ if ($status_usr=="true") {
 			<div class="other-options">
 				<ul class="lista">
 					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
-					<?php if ($status_usr=="true") { echo "<a href='group-chat.php?id_way=$way_usr_active'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' /> Mensajes (1)</li></a>";} ?>
+					<?php if ($status_usr=="true") { echo "<a href='group-chat.php?id_way=$way_usr_active'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' /> Conversación</li></a>";} ?>
 					<a href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
 			</div>
@@ -235,7 +241,7 @@ if  ($numFilas_ways!=0)
 ?>
 
 				<div class="publicaciones" class="p-before">
-					<img class="open-modal"  src="<?php echo $profile_image_user; ?>" alt="<?php echo $id_user_w; ?>" />
+					<img class="open-modal"   src="<?php echo $profile_image_user; ?>" alt="<?php echo $id_user_w; ?>" />
 					<span class="cupo">
 						<?php echo $spots; ?> cupos.
 					</span>
@@ -307,10 +313,14 @@ if  ($numFilas_ways!=0)
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
 			<div class="encb">
-				<img id="user_img_query" class="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
+				<img id="user_img_query" style="border: 2px solid #B72C2C" class="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
 				<div class="block">
 					<label for="user_name_query">Nombre</label>
 					<span id="user_name_query" class="user_name_query">Nombre usuario</span>
+				</div>
+				<div class="block">
+					<label for="user_status_query">Estado</label>
+					<span id="user_status_query" class="user_status_query" style="color:#B72C2C"  >Usuario no verificado</span>
 				</div>
 				<div class="block">
 					<label for="user_university_query">Universidad</label>
@@ -341,6 +351,10 @@ if  ($numFilas_ways!=0)
 						<div class="block">
 							<label for="user_name_query">Nombre</label>
 							<span id="user_name_query" class="user_name_query">Nombre usuario</span>
+						</div>
+						<div class="block">
+							<label for="user_status_query">Estado</label>
+							<span id="user_status_query" class="user_status_query" style="color:#B72C2C"  >Usuario no verificado</span>
 						</div>
 						<div class="block">
 							<label for="user_university_query">Universidad</label>
