@@ -1,6 +1,13 @@
 <?php
+
+//Consulta los datos de usuario
+
 error_reporting(0);
 include("../php/functions.php");
+session_start();
+$idu=$_SESSION['id_usuario'];
+
+
 
 $id_user_query=$_GET['id_user_query'];
 $conn=conectarse();
@@ -18,6 +25,7 @@ $id_u = $vector['id_u'];
 $is_verified = $vector['is_verified'];
 $profile_image = $vector['profile_image'];
 $email_public = $vector['email_public'];
+$status_usr = $vector['status_way'];
 
 if ($email_public=="f") {
 	$email="No disponible";
@@ -68,6 +76,11 @@ while ($vector2=pg_fetch_array($result2))
 $size_result_routes=count($result_routes);
 
 
+$sql20="SELECT * FROM usr_ways WHERE id_user='$id_user_query'";
+$result20 = pg_query($conn, $sql20);
+$vector20=pg_fetch_array($result20);
+$way_active=$vector20['id_way'];
+
 $array = array(
 	'full_name' => "$full_name",
 	'phone' => "$phone",
@@ -85,7 +98,9 @@ $array = array(
 	'price' => "$price",
 	'tipo' => "$type",
 	'image' => "$image",
-	'num_routes' => "$size_result_routes"
+	'num_routes' => "$size_result_routes",
+	'way_active' => "$way_active",
+	'usr_active' => "$status_usr"
 );
 
 
@@ -106,12 +121,51 @@ for ($i=0; $i < $size_result_routes ; $i++) {
 		$sql4="SELECT name FROM stops WHERE id_stop='$query_stop'";
 		$result4 = pg_query($conn, $sql4);
 		$vector4=pg_fetch_array($result4);
-		$array[$ar_stops[$n]]=$vector4['name'];
+		$nameStop=$vector4['name'];
+		$nameStop_vec=explode(",",$nameStop);
+		$array[$ar_stops[$n]]=$nameStop_vec[0];
 		$n++;
 	}
 	//libera el array
 	unset($result_stops);
 }
+
+
+//comentarios sobre el usuario
+$text="";
+$summ=0;
+$sql_cm="SELECT * FROM qualifications WHERE id_user='$id_user_query'";
+$restul_cm=pg_query($conn,$sql_cm);
+$num_result = pg_num_rows($restul_cm);
+if ($num_result!=0) {
+	while($vector_cm=pg_fetch_array($restul_cm))
+	{
+		$id_user_make=$vector_cm['id_user_make'];
+		$id_user_rec=$vector_cm['id_user'];
+		$sql_us="SELECT * FROM users WHERE id_user='$id_user_make'";
+		$restul_us=pg_query($conn,$sql_us);
+		$vector_us=pg_fetch_array($restul_us);
+		$name_us=$vector_us['names'];
+		$last_name_us=$vector_us['last_names'];
+		$full_name_us=$name_us." ".$last_name_us;
+		$image_us=$vector_us['profile_image'];
+		$score=$vector_cm['score'];
+		$summ=$summ+$score;
+		$comment=$vector_cm['comment'];
+		if ($idu==$id_user_make) {
+			$btn_del="<button id='del-cm-btn' data-usr='$id_user_rec' data-usr-make='$idu'>Eliminar</button>";
+		}else{
+			$btn_del="";
+		}
+		$text=$text."<div class='cm-box'><img src='".$image_us."'  /><label for=''>".$full_name_us." -  <span id='comm-score'>".$score."</span></label><span>".$comment."</span>".$btn_del."</div>";
+		$array['comments_html']=$text;
+
+	}
+}else{
+	$num_result=1;
+	$array['comments_html']="<div id='no_cm' class='cm-box' style='font-size:80%;text-align:center'>No hay comentarios.</div>";
+}
+$array['score_user']=$summ/$num_result;
 
 echo json_encode($array);
 ?>

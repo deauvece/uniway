@@ -27,9 +27,9 @@
 	<li>
 		¿Ya tienes una cuenta?
 	</li>
-	<li id="login">
-		<a href="login-user.php">Iniciar Sesión</a>
-	</li>
+	<a href="login-user.php">
+		<li id="login">Iniciar Sesión</li>
+	</a>
 </ul>
 </section>
 

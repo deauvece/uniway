@@ -1,4 +1,8 @@
 <?php
+
+	//Consulta si hay cambios en los comentarios de una conversación (CHAT)
+
+
 	error_reporting(0);
 	include("../php/functions.php");
 	$conn=conectarse();

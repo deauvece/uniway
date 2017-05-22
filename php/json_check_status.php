@@ -1,4 +1,8 @@
 <?php
+
+	//Consulta actualizaciones en las publicaciones de la universidad del usuario
+
+
 	error_reporting(0);
 	include("../php/functions.php");
 	$conn=conectarse();

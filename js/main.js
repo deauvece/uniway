@@ -1,6 +1,49 @@
+var placeSearch, autocomplete;
+var componentForm = {
+street_number: 'short_name',
+route: 'long_name',
+locality: 'long_name',
+administrative_area_level_1: 'short_name',
+country: 'long_name',
+postal_code: 'short_name'
+};
+function initAutocomplete() {
+	var options = {
+	componentRestrictions: {country: "col"}
+	};
+	//FORM-USERPROFILE
+	autocomplete = new google.maps.places.Autocomplete(
+	  ($('.new-add > #stop1')[0]),options
+	);
+	autocomplete2 = new google.maps.places.Autocomplete(
+	  ($('.new-add > #stop2')[0]),options
+	);
+	autocomplete3 = new google.maps.places.Autocomplete(
+	  ($('.new-add > #stop3')[0]),options
+	);
+	autocomplete4 = new google.maps.places.Autocomplete(
+	  ($('.new-add > #stop4')[0]),options
+	);
+	autocomplete5 = new google.maps.places.Autocomplete(
+	  ($('.new-add > #stop5')[0]),options
+  );
+	//FEED-SESIONOPEN
+	autocomplete = new google.maps.places.Autocomplete(
+	  (document.getElementById('search-input')),options
+  );
+
+}
 $(document).ready(function () {
 	/*Funciones generales ----------------------------------------------------------------------------*/
+
+	//fade in effect userProfile
+	$(".options-left-section ul a").on("click",function(){
+		var name_id= $(this).attr("href");
+		$(".big_container > div").hide();
+		$(name_id).slideDown();
+	});
 	//scroll efect
+	/*
 	$('a[href^="#"]').on('click',function (e) {
 		var target = this.hash;
 		var $target = $(target);
@@ -12,31 +55,25 @@ $(document).ready(function () {
 				window.location.hash = target;
 			});
 		});
+	*/
 
 	/*Funciones sesionOpen.php ----------------------------------------------------------------------------*/
-		$("#pub-box").on('click','.btn-pedirCupo',function(){
-			var way = $(this).attr("data-way");
-			$.ajax({
-				url: '../php/add-usr-ways.php',
-				type: 'get',
-				data: {
-					id_user_q: $(this).attr("data-usr"),
-					id_way_q: $(this).attr("data-way")
-				},
-				dataType: 'json',
-				success: function(array){
-					if (array.state=="yes") {
-						var url="../sesion/group-chat.php?id_way="+way;
-						window.location=url;
-					}else {
-						$(".modal-window").hide();
-						$(".modal-box").fadeIn("fast");
-						$(".error_way span").text(array.message);
-						$(".error_way").fadeIn();
-					}
-				}
-			});
+		$(".comments_info .add_comment label").on("click",function(){
+			$(".comments_info .add_comment label").css({backgroundColor:"#F5F5F5",color:"black"});
+			$(this).css({backgroundColor:"#009999",color:"white"});
+		});
 
+		$(".comments_info .add_comment textarea").on("focus",function(){
+			$(".comments_info .add_comment button").fadeIn("slow");
+			$(".score-box").fadeIn();
+		});
+		$("#modal-window-route").click(function(event){
+			if (event.stopPropagation){
+				  event.stopImmediatePropagation();
+			   }
+			   else if(window.event){
+				 window.event.cancelBubble=true;
+			   }
 		});
 		//error window
 		$(".error_way").click(function(){
@@ -46,26 +83,39 @@ $(document).ready(function () {
 			location.reload();
 		});
 
-		//ventana modal sesionopen.php
+		//ventana modal sesionopen.php USERS
 	    $("#pub-box").on("click","img",function(){
-		    $(".modal-box").fadeIn("fast");
+		    $(".modal-box").fadeToggle("fast");
+		    $(".modal-window").fadeToggle("fast");
 	    });
-	    $("#modal-box").click(function(){
+
+	    //cierra las ventanas
+	    $("#modal-box").click(function() {
 		    $(".modal-box").fadeOut("fast");
+		    $(".modal-window").fadeOut("fast");
+		    $("#modal-window-route").fadeOut("fast");
 	    });
-	    $("#modal-window").click(function(){
-		    return false;
+	    $("#back2").click(function() {
+		    $(".modal-box").fadeOut("fast");
+		    $(".modal-window").fadeOut("fast");
+		    $("#modal-window-route").fadeOut("fast");
 	    });
 	    $("#back").click(function() {
 		    $(".modal-box").fadeOut("fast");
+		    $(".modal-window").fadeOut("fast");
+		    $("#modal-window-route").fadeOut("fast");
 	    });
+	    $("#modal-window").click(function(){
+		    event.stopPropagation();
+	    });
+
 
 		//update page when there's new updates
 		$("#new-updates").click(function(){
 			location.reload();
 		});
 		//crear recorrido
-		$("#btn-add").click(function(){
+		$(".dinamic_button").on("click","#btn-add",function(){
 			$("#addRouteBox").fadeIn();
 			$("#addRoute").show();
 			$('#timepicker').lolliclock({autoclose:true});
@@ -75,99 +125,20 @@ $(document).ready(function () {
 			$("#addRoute").hide();
 		});
 		$("#addRoute").click(function(event){
-if (event.stopPropagation){
-       event.stopPropagation();
-   }
-   else if(window.event){
-      window.event.cancelBubble=true;
-   }
+			if (event.stopPropagation){
+			       event.stopPropagation();
+			   }
+			   else if(window.event){
+			      window.event.cancelBubble=true;
+			   }
 		});
-
 		$("#addRoute").click(function(event){
-if (event.stopPropagation){
-       event.stopImmediatePropagation();
-   }
-   else if(window.event){
-      window.event.cancelBubble=true;
-   }
-		});
-		//json user data query
-		$("#pub-box").on('click','img',function(){
-			$.ajax({
-				url: '../php/json_user_query.php',
-				type: 'get',
-				data: {
-					id_user_query: $(this).attr("alt")
-				},
-				dataType: 'json',
-				success: function(array){
-					$(".user_img_query").attr("src", array.profile_image);
-					$(".user_name_query").text(array.full_name);
-					$(".user_university_query").text(array.university_acr);
-					$(".user_email_query").text(array.email);
-					$(".user_phone_query").text(array.phone);
-					//verified user
-					$(".user_verified_query").text(array.is_verified);
-						if (array.is_verified=='t') {
-							$(".user_img_query").attr("style","");
-							$(".user_status_query").attr("style","color:#007272");
-							$(".user_status_query").text("Usuario verificado");
-						}else{
-							$(".user_img_query").attr("style","border: 2px solid #B72C2C");
-							$(".user_status_query").attr("style","color:#B72C2C");
-							$(".user_status_query").text("Usuario no verificado");
-						}
-					//transport
-					$("#user_transport_type").text(array.tipo);
-					$("#user_transport_model").text(array.model);
-					$("#user_transport_license_plate").text(array.license_plate);
-					if (array.wifi=="f") {
-						$("#user_transport_wifi").text("No");
-					}else{
-						$("#user_transport_wifi").text("Si");
-					}
-					if (array.air_conditioner=="f") {
-						$("#user_transport_air_conditioner").text("No");
-					}else{
-						$("#user_transport_air_conditioner").text("Si");
-					}
-					if (!array.image) {
-						$("#user_transport_image").attr("src", "../Imagenes/transportImages/default.png");
-					}else {
-						$("#user_transport_image").attr("src", array.image);
-					}
-					$("#user_transport_price").text(array.price);
-					//rutas del usuario
-					$("div").remove(".rts-box");
-					var ar_span=[array.stop11,array.stop12,array.stop13,array.stop14,array.stop15,array.stop21,array.stop22,array.stop23,array.stop24,array.stop25,array.stop31,array.stop32,array.stop33,array.stop34,array.stop35,array.stop41,array.stop42,array.stop43,array.stop44,array.stop45,array.stop51,array.stop52,array.stop53,array.stop54,array.stop55];
-					var k=0;
-					for (var i = 0; i < array.num_routes; i++) {
-						if (ar_span[k]) {
-							var span1="<span>"+ar_span[k]+"</span>";
-							k++;
-						}else {	var span1="";  k++;}
-						if (ar_span[k]) {
-							var span2="<span>"+ar_span[k]+"</span>";
-							k++;
-						}else {	var span2=""; k++;}
-						if (ar_span[k]) {
-							var span3="<span>"+ar_span[k]+"</span>";
-							k++;
-						}else {   var span3=""; k++;}
-						if (ar_span[k]) {
-							var span4="<span>"+ar_span[k]+"</span>";
-							k++;
-						}else {	var span4=""; k++;}
-						if (ar_span[k]) {
-							var span5="<span>"+ar_span[k]+"</span>";
-							k++;
-						}else {	var span5="";  k++;}
-						var text ="<div class='rts-box'>"+span1+span2+span3+span4+span5+"</div>";
-						$(".routes_info").append(text);
-					}
-				}
-			});
-
+			if (event.stopPropagation){
+			       event.stopImmediatePropagation();
+			   }
+			   else if(window.event){
+			      window.event.cancelBubble=true;
+			   }
 		});
 		//menu opciones
 		$("#bmenuw").click(function(){
@@ -178,16 +149,12 @@ if (event.stopPropagation){
 			if (w<800) {
 				$(".options").fadeOut();
 			}
-
 		});
-
-
 		$("#btn").click(function(){
 			$(".sinmenu").fadeToggle("fast");
 		});
 
-
-		//modal-window  mostrar datos, rutas, comentarios, vehiculo
+		//RESPONSIVE EN LA VENTANA MODAL
 		$(".info_options").click(function(){
 			var val = $(this).attr("value");
 			var options=["transport_info","routes_info","comments_info", "data_info"];
@@ -224,11 +191,15 @@ if (event.stopPropagation){
 					}
 				}
 		});
+
+
+
+	/*Funciones userProfile.php ---------------------------------------------------------------------------*/
+
+		//cerrar mensaje cambios hecho update
 		$(".update-done").click(function() {
 			$(this).remove();
 		});
-	/*Funciones userProfile.php ---------------------------------------------------------------------------*/
-		//cerrar mensaje cambios hechos update
 		$(".update-done").delay( 1500 ).fadeOut( 400 );
 		//agregar transporte
 		$("#btn-transp").click(function(){
@@ -240,109 +211,125 @@ if (event.stopPropagation){
 			$("#transport-box").slideUp();
 		});
 
-			//input file transport image
-			$("#uploadBtn").change(function(){
-				$(".file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
-			});
-			$("#uploadBtn2").change(function(){
-				$(".file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
-			});
-			//agregar rutas
-			$("#add-route-user").click(function(){
-				$("#addRouteBox").fadeIn();
-				$("#addRoute").show();
-			});
-			$("#closeAddRoute").click(function(){
-				$("#addRouteBox").fadeOut();
-				$("#addRoute").hide();
-			});
-			$("#addRouteBox").click(function(){
-				$("#addRouteBox").fadeOut();
-				$("#addRoute").hide();
-			});
-			$("#addRoute").click(function(){
-		 	    return false;
-		     });
+		//input file transport image
+		$("#uploadBtn").change(function(){
+			$(".file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
+		});
+		$("#uploadBtn2").change(function(){
+			$(".file_label").text( $(this).val().replace(/.*(\/|\\)/, '') );
+		});
+		//numero de paradas variables
+		$("#num_stops").change(function(){
+			var num = $(this).val();
+			$("input").remove(".paradas");
+			var cont=0;
+			for (var i = 1; i <= num ; i++) {
+				$("#spots-select").before( "<input type='text' class='paradas ui-autocomplete-input' name='stop"+i+"' placeholder='Ingresa una parada' autocomplete='off' required />" );
+			}
+		});
 
-			//numero de paradas variables
-			$("#num_stops").change(function(){
-				var num = $(this).val();
-				$("input").remove(".paradas");
-				var cont=0;
-				for (var i = 1; i <= num ; i++) {
-					$("#spots-select").before( "<input type='text' class='paradas ui-autocomplete-input' name='stop"+i+"' placeholder='Ingresa una parada' autocomplete='off' required >" );
-				}
-			});
+		//eliminar transporte de usuario
+		$("#delete-button").click(function(){
+			$("#addRouteBox").fadeIn();
+			$("#delete_transport_form").show();
+		});
+		$("#addRouteBox").click(function(){
+			$("#addRouteBox").fadeOut();
+			$("#delete_transport_form").hide();
+		});
+		$("#cancel-delete").click(function(){
+			$("#addRouteBox").fadeOut();
+			$("#delete_transport_form").hide();
+		});
+		$("#delete_transport_form").click(function(){
+	 	    return false;
+	     });
 
-			//eliminar transporte de usuario
-			$("#delete-button").click(function(){
-				$("#addRouteBox").fadeIn();
-				$("#delete_transport_form").show();
-			});
-			$("#addRouteBox").click(function(){
-				$("#addRouteBox").fadeOut();
-				$("#delete_transport_form").hide();
-			});
-			$("#cancel-delete").click(function(){
-				$("#addRouteBox").fadeOut();
-				$("#delete_transport_form").hide();
-			});
-			$("#delete_transport_form").click(function(){
-		 	    return false;
-		     });
+		//cambiar imagen de usuario
+		$("#little_img").click(function(){
+			$("#addRouteBox").fadeIn();
+			$("#profile_Image").show();
+		});
+		$("#cancel_img").click(function(){
+			$("#addRouteBox").fadeOut();
+			$("#profile_Image").hide();
+		});
+		$("#addRouteBox").click(function(){
+			$("#addRouteBox").fadeOut();
+			$("#profile_Image").hide();
+		});
+		$("#profile_Image").click(function(){
+	 	    event.stopPropagation();
+	     });
 
-			//cambiar imagen de usuario
-			$("#little_img").click(function(){
-				$("#addRouteBox").fadeIn();
-				$("#profile_Image").show();
-			});
-			$("#cancel_img").click(function(){
-				$("#addRouteBox").fadeOut();
-				$("#profile_Image").hide();
-			});
-			$("#addRouteBox").click(function(){
-				$("#addRouteBox").fadeOut();
-				$("#profile_Image").hide();
-			});
-			$("#profile_Image").click(function(){
-		 	    event.stopPropagation();
-		     });
-			//busqueda de paradas
-			$("#addRoute").on("keyup","input",function(){
-				$( ".paradas" ).autocomplete({
-					source: '../php/json_stops.php'
-				});
-			});
 
-			//menu opciones
-			$("#bmenu").click(function(){
-				$(".left-section").fadeToggle();
-			});
-			$(".big_container").click(function(){
-				var w =$( window ).width();
-				if (w<800) {
-					$(".left-section").fadeOut();
-				}
-			});
+		//menu opciones
+		$("#bmenu").click(function(){
+			$(".left-section").fadeToggle();
+		});
+		$(".big_container").click(function(){
+			var w =$( window ).width();
+			if (w<800) {
+				$(".left-section").fadeOut();
+			}
+		});
 
-			//eliminar rutas
-			$(".del_route").on("click", function(){
-				var id_route = $(this).attr("data-id");
-				$(this).parent().fadeOut("fast");
+		//agregar rutas
+		$("#add-route-user").click(function(){
+			$(".new-add").slideToggle();
+			$(this).hide();
+			$("#add-route-user2").show();
+			$(".error-del").text("");
+		});
+		//eliminar paradas
+		/*$("#hide_stp_1").on("click",function(){
+			$("#stop1").fadeOut();
+			$(this).hide();
+		});
+		$("#hide_stp_2").on("click",function(){
+			$("#stop2").fadeOut();
+			$(this).hide();
+		});*/
+		$("#hide_stp_3").on("click",function(){
+			$("#stop3").attr("required", false);
+			$("#stop3").fadeOut();
+			$(this).remove();
+		});
+		$("#hide_stp_4").on("click",function(){
+			$("#stop4").attr("required", false);
+			$("#stop4").fadeOut();
+			$(this).remove();
+		});
+		$("#hide_stp_5").on("click",function(){
+			$("#stop5").attr("required", false);
+			$("#stop5").fadeOut();
+			$(this).remove();
+		});
 
-				$.ajax({
-					url: '../php/deleteRoute.php',
-					type: 'get',
-					data: {
-						id_route: $(this).attr("data-id")
-					},
-					dataType: 'json',
-					success: function(){
-						alert("Se ha eliminado la ruta satisfactoriamente");
+		//eliminar rutas
+		$(".del_route").on("click", function(){
+			var route = $(this);
+
+			$.ajax({
+				url: '../php/deleteRoute.php',
+				type: 'get',
+				data: {
+					id_route: $(this).attr("data-id")
+				},
+				dataType: 'json',
+				success: function(array){
+					if(array.val=="success"){
+						route.parent().fadeOut("fast");
+						$(".error-del").text("Se ha eliminado la ruta.");
+					}else{
+						$(".error-del").text("La ruta existe actualmente en una publicación y no se puede eliminar.");
 					}
-				});
-
+				}
 			});
+
+		});
+
+
 	/*Funciones home page ---------------------------------------------------------------------------------*/
 		//confirma correo enviado
 		var pathname = window.location.href;
@@ -353,12 +340,20 @@ if (event.stopPropagation){
 		$(window).scroll(function (event) {
 		    var scroll = $(window).scrollTop();
 		    if (scroll>30) {
-			    $(".home-nav ").height(55);
-			    $(".sinmenu > li ").height(55);
-			    $("#logo img").height(25);
+			    $(".home-nav").css("height","55px");
+			    $("#logo img").css("height","25px");
+			    $(".sinmenu").css("margin-top","-10px");
+			    $(".sinmenu").css({fontSize:"95%",});
+			    $("header h2").css({fontSize:"350%",});
+			    $("header p").css({fontSize:"120%",});
 		    }else {
-		    		$(".home-nav ").height(75);
-				$("#logo img").height(40);
+			    $(".home-nav").css("height","75px");
+			    $("#logo img").css("height","40px");
+			    $(".sinmenu").css("margin-top","10px");
+			    $(".sinmenu").css({fontSize:"100%",});
+			    $("header h2").css({fontSize:"400%",});
+			    $("header p").css({fontSize:"150%",});
+
 		    }
 		});
 		//login user

@@ -54,6 +54,7 @@ body{
 		display: none;
 	}
 	.home-nav .sinmenu {
+		transition: all 0.2s;
 		background-color: white;
 		padding-right: 70px;
 	}
@@ -73,8 +74,15 @@ body{
 		background-color: #b72c2c;
 		padding: 10px;
 		border-radius: 3px;
-		box-shadow:  2px 2px 2px 1px #444444;
 		cursor: pointer;
+		position: relative;
+		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
+		transition: all 0.2s;
+	}
+	#login:active{
+		top: 2px;
+		left: 2px;
+		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 	}
 		#login a {
 			color: white;
@@ -131,7 +139,15 @@ body{
 		padding: 10px;
 		width: 270px;
 		cursor: pointer;
-		box-shadow:  2px 2px 2px 1px #444444;
+		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
+		transition: all 0.2s;
+		outline: none;
+		position: relative;
+	}
+	#login-form button:active{
+		top: 2px;
+		left: 2px;
+		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 	}
 /*=================================LOGO====================================*/
 		#logo {
@@ -153,9 +169,11 @@ body{
 		}
 		#logo a img {
 			height: 40px;
+			transition: all 0.2s;
 		}
 		#logo a img:nth-child(2){
 			padding-top: 10px;
+
 		}
 
 
@@ -223,23 +241,22 @@ body{
 /*==========================HEADER====================================*/
 header {
 	font-family: 'Lato', sans-serif;
-	min-height: 400px;
 	background-image: url("../Imagenes/pruebashadow.jpg");
-	padding-top: 250px;
-	text-align: center;
-	background-repeat: no-repeat;
-    background-attachment: fixed;
-
+	background-size: cover;
+	display: flex;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
 }
 	header h2 {
-
+		transition: all 0.2s;
 		margin: 60px auto 30px auto;
 		color: white;
 		font-weight: bolder;
 		font-size: 400%;
 	}
 	header p{
-
+		transition: all 0.2s;
 		text-align: justify;
 		display: block;
 		margin: -20px auto 0 auto;
@@ -320,7 +337,6 @@ header {
 		width: 50%;
 	}
 	.contact-form form {
-		margin-top: -25px;
 	}
 	.contact-form label {
 		margin-left: 9%;
@@ -348,15 +364,23 @@ header {
 		padding: 10px;
 		background-color: #b72c2c;
 		width: 82%;
+		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
+		transition: all 0.4s;
+		outline: none;
+		position: relative;
+	}
+	.contact-form input[type="submit"]:active{
+		top: 2px;
+		left: 2px;
+		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 	}
 	#close-contact-form {
 		cursor: pointer;
 		color: white;
 		font-weight: bold;
-		font-size: 200%;
-		position: relative;
-		top: -30px;
-		left: 106%;
+		height: 25px;
+		width: 25px;
+		display: block;
 	}
 	.email_send{
 		display: none;
@@ -412,7 +436,16 @@ header {
 		margin-bottom: 10px;
 		width: 97%;
 		cursor: pointer;
+		position: relative;
+		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
+		transition: all 0.2s;
 	}
+		.contenedorContact .container .login .botonLogin:active{
+			top: 2px;
+			left: 2px;
+			box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
+		}
+		
 	.contenedorContact .error {
 		margin-top: -5px;
 		margin-bottom: 10px;
@@ -468,11 +501,15 @@ header {
 .account-login ul li:nth-child(2) {
 	margin-left: 20px;
 }
-.account-login ul li a {
+.account-login a {
+	color: white;
 	text-decoration: none;
 }
 .simple-nav {
 	position: absolute;
+	top: 0px;
+	display: block;
+	width: 100%;
 	background-color: #921E1E;
 	z-index: 0;
 	padding-top: 0px;
@@ -480,11 +517,12 @@ header {
 	box-shadow: 0px 0px 0px;
 }
 .simple-nav ul {
+
 	padding: 0px;
 }
 .simple-nav img {
 	display: block;
-	margin: -5px auto 10px auto;
+	margin: -20px auto 10px auto;
 	height: 40px;
 	width: 150px;
 }
@@ -588,9 +626,9 @@ header {
 		color: white;
 		font-weight: bolder;
 		font-size: 200%;
+		text-align: center;
 	}
 	header p{
-		text-align: justify;
 		display: block;
 		margin: -20px auto 0 auto;
 		color:  white;
@@ -617,6 +655,10 @@ header {
 		width: 80%;
 		padding: 5px;
 		padding-bottom: 20px;
+	}
+	#close-contact-form{
+		top: 0px;
+		left: 0px;
 	}
 }
 @media (max-width:430px) {
@@ -691,7 +733,16 @@ footer {
 			background-color: #B72C2C;
 			text-decoration: none;
 			padding: 20px;
+			box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
+			transition: all 0.4s;
+			outline: none;
+			position: relative;
 		}
+			footer .contenido a:active{
+				top: 2px;
+				left: 2px;
+				box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
+			}
 	footer .social {
 		height: 300px;
 		padding: 30px;
@@ -721,7 +772,6 @@ footer {
 	}
 
 }
-
 .copyright {
 	text-align: center;
 	color: white;

@@ -1,4 +1,7 @@
 <?php
+
+	//Consulta los comentarios de la conversación (CHAT)
+
 	error_reporting(0);
 	include("../php/functions.php");
 	$conn=conectarse();

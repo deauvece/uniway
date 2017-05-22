@@ -59,10 +59,6 @@ if ($is_driver=='t') {
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
-
-		<script src="../js/jquery-3.1.1.min.js"></script>
-		<script src="../js/jquery-ui/jquery-ui.js"></script>
-		<script src="../js/main.js"></script>
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.structure.css">
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
@@ -365,145 +361,132 @@ if ($is_driver=='t') {
 							<button id="delete-button" type="button" name="button" >Eliminar Vehículo</button>
 							<button type="submit" name="button" >Guardar</button>
 						</form>
-
-<?php
-}
-?>
-
+			<?php
+			}
+			?>
 			</div>
 
-
-
-
-<div class="userRutesBox" id="userRutesBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?> >
-	<div class="title">
-		Rutas
-		<span>Crea y elimina las rutas de tus recorridos. Ten en cuenta que si eliminas una ruta que pertenece a una <b>publicación</b> ésta tambien se eliminará.</span>
-	</div>
-<?php
-//selecciono todas las rutas del usuario
-$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
-$result_routes = pg_query($conn, $sql_routes);
-$numFilas_routes = pg_num_rows($result_routes);
-if  ($numFilas_routes!=0)
- {
-      while($vector_routes=pg_fetch_array($result_routes))
-      {
-		?> <div class="userRutes"> <?php
-		$id_ruta= $vector_routes['id_route'];
-		echo "<span class='del_route' data-id='$id_ruta' >ELIMINAR</span>";
-		//selecciono todas las paradas de esa ruta
-		$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
-		$result_stops = pg_query($conn, $sql_stops);
-		while($vector_stops=pg_fetch_array($result_stops))
-		{
-			$id_parada=$vector_stops['id_stop'];
-			//selecciono el nombre de cada parada
-			$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
-			$result_allstops = pg_query($conn, $sql_allstops);
-			while($vector_allstops=pg_fetch_array($result_allstops))
-				{
-				  $nameStop=$vector_allstops['name'];
-				  ?><span class="stop"><?php echo $nameStop; ?></span><?php
-				}
-		}
-		echo "</div>";
-	 }
-}else { echo "no hay rutas disponibles";  }
-?>
-   <div class="box-button">
-	   <button class="userAddRutes" id="add-route-user"  type="button" name="button">Agregar</button>
-   </div>
-</div>
-
-
-			<!--calificaciones del usuario-->
+			<div class="userRutesBox" id="userRutesBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?> >
+				<div class="title">
+					Rutas
+					<span>Crea y elimina las rutas de tus recorridos.</span>
+				</div>
+			<?php
+			//selecciono todas las rutas del usuario
+			$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+			$result_routes = pg_query($conn, $sql_routes);
+			$numFilas_routes = pg_num_rows($result_routes);
+			if  ($numFilas_routes!=0)
+			 {
+			      while($vector_routes=pg_fetch_array($result_routes))
+			      {
+					?> <div class="userRutes"> <?php
+					$id_ruta= $vector_routes['id_route'];
+					echo "<span class='del_route' data-id='$id_ruta' >ELIMINAR</span>";
+					//selecciono todas las paradas de esa ruta
+					$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
+					$result_stops = pg_query($conn, $sql_stops);
+					while($vector_stops=pg_fetch_array($result_stops))
+					{
+						$id_parada=$vector_stops['id_stop'];
+						//selecciono el nombre de cada parada
+						$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
+						$result_allstops = pg_query($conn, $sql_allstops);
+						while($vector_allstops=pg_fetch_array($result_allstops))
+							{
+							  $nameStop=$vector_allstops['name'];
+							  $nameStop_vec=explode(",",$nameStop);
+							  ?><span class="stop"><?php echo $nameStop_vec[0]; ?></span><?php
+							}
+					}
+					echo "</div>";
+				 }
+			}else { echo "<p style='font-size:90%'>No hay rutas disponibles</p>";  }
+			?>
+				<form action="../php/addRoute.php" name="form_stops" method="post" id="addRoute2">
+					<div class="new-add">
+						<select class="firs-stop" name="stop1">
+							<option value="UIS - Cra. 27, Bucaramanga">Universidad industrial de santander (UIS), Sede principal</option>
+							<option value="Facultad de Salud - Universidad Industrial de Santander">Universidad industrial de santander (UIS), Salud</option>
+							<option value="Unab - Calle 42, Bucaramanga">Universidad Autónoma de Bucaramanga (UNAB), Cabecera</option>
+							<option value="FOSUNAB, Floridablanca - Santander">Universidad Autónoma de Bucaramanga (UNAB), Salud</option>
+						</select>
+						<input type="text" class="paradas2" id="stop2" name="stop2" placeholder="Busca una parada" autocomplete="off" required />
+						<button id="hide_stp_2" class="hide_stop" type="button">x</button>
+						<input type="text" class="paradas2" id="stop3" name="stop3" placeholder="Busca una parada" autocomplete="off" required />
+						<button id="hide_stp_3" class="hide_stop" type="button">x</button>
+						<input type="text" class="paradas2" id="stop4" name="stop4" placeholder="Busca una parada" autocomplete="off" required />
+						<button id="hide_stp_4" class="hide_stop" type="button">x</button>
+						<input type="text" class="paradas2" id="stop5" name="stop5" placeholder="Busca una parada" autocomplete="off" required />
+						<button id="hide_stp_5" class="hide_stop" type="button">x</button>
+						<input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
+					</div>
+					<button class="userAddRutes" id="add-route-user2"  type="submit" name="button">Enviar</button>
+				</form>
+				<span class="error-del"></span>
+				<div class="box-button">
+				   <button class="userAddRutes" id="add-route-user"  type="button" name="button">Agregar ruta</button>
+				</div>
+			</div>
 			<div class="qualificationsBox" id="qualificationsBox">
 				<div class="title">
 					Comentarios y calificaciones
 					<span>Comentarios y calificaciones que otros usuarios te han hecho.</span>
 				</div>
-				<div class="qualifications">
-					<span class="number">4,7</span>
-					<img src="../Imagenes/perfil.png"/>
-					<span class="name">Julian Andres Perez</span>
-					<span class="comment">Muy buena conductora, siempre llega a tiempo</span>
-				</div>
-				<div class="qualifications">
-					<span class="number">5,0</span>
-					<img src="../Imagenes/perfil.png"/>
-					<span class="name">James Duarte</span>
-					<span class="comment">No sabe manejaaaaaaaaaaaaaaar</span>
-				</div>
-				<div class="qualifications">
-					<span class="number">4,5</span>
-					<img src="../Imagenes/perfil.png"/>
-					<span class="name">Ivonne Paola Hincapié Zárate</span>
-					<span class="comment">Re puntual</span>
-				</div>
-				<div class="qualifications">
-					<span class="number">4,7</span>
-					<img src="../Imagenes/perfil.png"/>
-					<span class="name">Santiago Rendon Patiño</span>
-					<span class="comment"></span>
-				</div>
-				<div class="qualifications">
-					<span class="number">1,0</span>
-					<img src="../Imagenes/perfil.png"/>
-					<span class="name">Javier Rueda</span>
-					<span class="comment">Pesimo servicio, nunca llegó.</span>
-				</div>
-			</div>
+				<?php
+					$sql_cm="SELECT * FROM qualifications WHERE id_user='$idu'";
+					$restul_cm=pg_query($conn,$sql_cm);
+					$num_result = pg_num_rows($restul_cm);
+					if ($num_result!=0) {
+						while($vector_cm=pg_fetch_array($restul_cm))
+						{
+							$id_user_make=$vector_cm['id_user_make'];
+							$sql_us="SELECT * FROM users WHERE id_user='$id_user_make'";
+							$restul_us=pg_query($conn,$sql_us);
+							$vector_us=pg_fetch_array($restul_us);
+							$name_us=$vector_us['names'];
+							$last_name_us=$vector_us['last_names'];
+							$full_name_us=$name_us." ".$last_name_us;
+							$image_us=$vector_us['profile_image'];
+							$score=$vector_cm['score'];
+							$comment=$vector_cm['comment'];
+							$text="<div class='qualifications'><span class='number'>".$score."</span><img src='".$image_us."'/><span class='name'>".$full_name_us."</span><span class='comment'>".$comment."</span></div>";
+							echo "$text";
 
+						}
+					}else{
+						echo "<div class='qualifications'>No hay comentarios.</div>";
+					}
+				?>
+			</div>
 		</div>
 
 
 
-    <div id="addRouteBox">
-	      <form action="../php/addRoute.php" method="post" id="addRoute">
-		        <button type="button" id="closeAddRoute"  > X </button>
-		        <p>
-		          Escribe y selecciona una parada.
-		        </p>
-			   <select id="num_stops" name="num_stops" >
-			          <option value="2">2 paradas</option>
-			          <option value="3">3 paradas</option>
-			          <option value="4">4 paradas</option>
-					<option value="5" selected>5 paradas</option>
-		        </select>
-		        <input type="text" class="paradas" name="stop1" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" name="stop2" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" name="stop3" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" name="stop4" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <input type="text" class="paradas" name="stop5" placeholder="Ingresa una parada" autocomplete="off" required >
-		        <select id="spots-select" name="spots" >
-			          <option value="1">1 cupo</option>
-			          <option value="2">2 cupos</option>
-			          <option value="3">3 cupos</option>
-			          <option value="4" selected >4 cupos</option>
-		        </select>
-		        <input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
-		        <button type="submit" >Crear</button>
-	      </form>
-		 <form id="delete_transport_form" action="../php/deleteTransport.php" method="post">
-			 <span>¿Estás seguro que deseas eliminar este vehículo? Toda la información relacionada a este también se eliminará.</span>
-			 <input type="text" hidden name="id_user"  value="<?php echo "$idu";?>">
-			 <input type="text" hidden name="license_plate"  value="<?php echo "$license_plate";?>">
-			 <button type="submit" name="button" >Sí, eliminar</button>
-			 <button id="cancel-delete" type="button" name="button" >No, cancelar</button>
-		 </form>
-		 <!--formulario para subir la imagen-->
-		 <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
-			 <img id="big_image" src="<?php echo $rute_img;?>"  />
-			 <label class="file_label" for="uploadBtn2" style='background-color:#B72C2C' >Selecciona una foto</label>
-			 <input id="uploadBtn2" type="file" name="file2" accept="image/*"/>
-			 <button type="submit">Subir</button>
-		 </form>
-    </div>
-    <?php if (isset($_GET["update"])=="done"){ ?>
-	    <div class="update-done">
-	    		Se han hecho los cambios
+	    <div id="addRouteBox">
+			 <form id="delete_transport_form" action="../php/deleteTransport.php" method="post">
+				 <span>¿Estás seguro que deseas eliminar este vehículo? Toda la información relacionada a este también se eliminará.</span>
+				 <input type="text" hidden name="id_user"  value="<?php echo "$idu";?>">
+				 <input type="text" hidden name="license_plate"  value="<?php echo "$license_plate";?>">
+				 <button type="submit" name="button" >Sí, eliminar</button>
+				 <button id="cancel-delete" type="button" name="button" >No, cancelar</button>
+			 </form>
+			 <!--formulario para subir la imagen-->
+			 <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
+				 <img id="big_image" src="<?php echo $rute_img;?>"  />
+				 <label class="file_label" for="uploadBtn2" style='background-color:#B72C2C' >Selecciona una foto</label>
+				 <input id="uploadBtn2" type="file" name="file2" accept="image/*"/>
+				 <button type="submit">Subir</button>
+			 </form>
 	    </div>
-    <?php  }  ?>
+	    <?php if (isset($_GET["update"])=="done"){ ?>
+		    <div class="update-done">
+		    		Se han hecho los cambios
+		    </div>
+	    <?php  }  ?>
 </body>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/jquery-ui/jquery-ui.js"></script>
+<script src="../js/main.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>
 </html>

@@ -6,27 +6,17 @@ $conn=conectarse();
 $idu=$_SESSION['id_usuario'];
 $name=$_SESSION['id_nombre_usuario'];
 $last_name=$_SESSION['id_apellido_usuario'];
-$phone=$_SESSION['user_phone'];
-$sex=$_SESSION['user_sex'];
-$email=$_SESSION['user_email'];
+$full_name=$name.$last_name;
 $is_driver=$_SESSION['is_driver'];
-$id_university=$_SESSION['id_university'];
-$is_verified=$_SESSION['is_verified'];
-$university=$_SESSION['user_university'];
-$university_acr=$_SESSION['user_university_acr'];
-$id_university=$_SESSION['user_id_university'];
-
-#Para actualizar rápido de la imagen de perfil
-$sql111="SELECT profile_image FROM users WHERE id_user='$idu'";
-$result111 = pg_query($conn, $sql111);
-$prof_img=pg_fetch_array($result111);
-$rute_img=$prof_img['profile_image'];
+$id_university=$_SESSION['id_university']; //name
+$id_university=$_SESSION['user_id_university'];//id
 
 
 $sql00="SELECT * FROM users WHERE id_user='$idu'";
 $result00=pg_query($conn, $sql00);
 $vector00=pg_fetch_array($result00);
 $status_usr=$vector00['status_way'];
+$us_img=$vector00['profile_image'];
 if ($status_usr=="true") {
 	//true=>activo
 	//Busca el recorrido que pidio
@@ -35,6 +25,13 @@ if ($status_usr=="true") {
 	$vector10=pg_fetch_array($result10);
 	$way_usr_active=$vector10['id_way'];
 }
+
+//Para el estado de actualizacion de las publicaiones
+$sql_random="SELECT random_string FROM status_feed WHERE id_status='$id_university' ";
+$result_random= pg_query($conn, $sql_random);
+$vector_random=pg_fetch_array($result_random);
+$rdnString=$vector_random['random_string'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,10 +49,8 @@ if ($status_usr=="true") {
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
 		<!--timepicker-->
 		<link rel="stylesheet" type="text/css" href="../js/lolliclock.css">
-
-
-
 	</head>
+
 	<body>
 		<nav id="nav_feed">
 			<ul>
@@ -68,23 +63,20 @@ if ($status_usr=="true") {
 		<section class="options">
 			<a href="sesionOpen.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
 			<a href="userProfile.php?idu=myProfile">
-				<img src="<?php echo $rute_img;?>" alt="" />
+				<img id="usr_img" src="" class="put_image_profile" />
 			</a>
 			<br>
 			<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
 
 			<div class="other-options">
 				<ul class="lista">
-					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion   4,5</li></a>
-					<?php if ($status_usr=="true") { echo "<a href='group-chat.php?id_way=$way_usr_active'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' /> Conversación</li></a>";} ?>
-					<a href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
+					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion &nbsp; &nbsp;<span id="score_usr"></span></li></a>
+					<a id="logout" href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
 			</div>
-			<!--buscar otra manera para el hr-->
 			<hr color="#161717" >
 			<div class="other-options">
 				<ul class="lista">
-					<li><span></span>Agregar paradas</li>
 					<li><span></span>Buscar usuario</li>
 					<li><span></span>Contacto</li>
 					<li><span></span>Ayuda</li>
@@ -95,12 +87,11 @@ if ($status_usr=="true") {
 
 		<!--recomended section (right)-->
 		<section class="news">
-			<span class="title" >Seccion de noticias</span>
 			<img src="../Imagenes/news.png" width="100%" />
 		</section>
 		<!--ads section (right)-->
 		<section class="ads">
-			<span class="copy" >©2016 Uniway</span>
+			<span class="copy" >©2017 Uniway</span>
 			<div class="links">
 				<a href="#">Sobre nosotros</a>
 				<a href="#">Ayuda</a>
@@ -115,14 +106,13 @@ if ($status_usr=="true") {
 				<a href="#">Cookies</a>
 			</div>
 		</section>
-
-
+		<section class="dinamic_button">
+		</section>
 
 		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
-		<button id="btn-add" <?php if ($is_driver=='f' || $status_usr=="true") { echo "style='display:none'";} ?> type="button" name="button">+</button>
 
 		<section class="find">
-			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta!" autocomplete="off" autofocus>
+			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta" autocomplete="off" autofocus>
 			<img id="search_image" src="../Imagenes/search.png" alt="" />
 		</section>
 
@@ -136,49 +126,50 @@ if ($status_usr=="true") {
 				<input id="id_user_json" type="hidden" name="id_user"  value="<?php echo $idu; ?>">
 				<input type="hidden" name="id_u"  value="<?php echo $id_university; ?>">
 				<span id="commentTitle" >Selecciona una de tus rutas:</span>
-<?php
-//consulta las rutas del usuario y las muestra como opcion
-$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
-$result_routes = pg_query($conn, $sql_routes);
-$numFilas_routes = pg_num_rows($result_routes);
-$contador=1;
-if  ($numFilas_routes!=0)
-{
-	while($vector_routes=pg_fetch_array($result_routes))
-	{
-		$id_ruta= $vector_routes['id_route'];
-		?>
-			<div class="rutaXBox">
-			<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
-			<label for="ruta<?php echo $contador; ?>"></label>
-			<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
-			<option value="" selected >Ruta <?php echo $contador; ?></option>
-		<?php
-		//se imprimen las paradas
-		$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
-		$result_stops = pg_query($conn, $sql_stops);
-		while($vector_stops=pg_fetch_array($result_stops))
-		{
-			$id_parada=$vector_stops['id_stop'];
-			//selecciono el nombre de cada parada
-			$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
-			$result_allstops = pg_query($conn, $sql_allstops);
-			while($vector_allstops=pg_fetch_array($result_allstops))
-			{
-				$nameStop=$vector_allstops['name'];
-				?><option value="<?php echo $nameStop; ?>" disabled ><?php echo $nameStop; ?></option><?php
-			}
-		}
-		?>
-		</select>
-		</div>
-		<?php
-		$contador=$contador + 1;
-	}
-}else{
-	echo "No hay rutas disponibles";
-}
-?>
+				<?php
+				//consulta las rutas del usuario y las muestra como opcion
+				$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+				$result_routes = pg_query($conn, $sql_routes);
+				$numFilas_routes = pg_num_rows($result_routes);
+				$contador=1;
+				if  ($numFilas_routes!=0)
+				{
+					while($vector_routes=pg_fetch_array($result_routes))
+					{
+						$id_ruta= $vector_routes['id_route'];
+						?>
+							<div class="rutaXBox">
+							<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
+							<label for="ruta<?php echo $contador; ?>"></label>
+							<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
+							<option value="" selected >Ruta <?php echo $contador; ?></option>
+						<?php
+						//se imprimen las paradas
+						$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
+						$result_stops = pg_query($conn, $sql_stops);
+						while($vector_stops=pg_fetch_array($result_stops))
+						{
+							$id_parada=$vector_stops['id_stop'];
+							//selecciono el nombre de cada parada
+							$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
+							$result_allstops = pg_query($conn, $sql_allstops);
+							while($vector_allstops=pg_fetch_array($result_allstops))
+							{
+								$nameStop=$vector_allstops['name'];
+								$nameStop_vec=explode(",",$nameStop);
+								?><option value="<?php echo $nameStop_vec[0]; ?>" disabled ><?php echo $nameStop_vec[0]; ?></option><?php
+							}
+						}
+						?>
+						</select>
+						</div>
+						<?php
+						$contador=$contador + 1;
+					}
+				}else{
+					echo "<p style='font-size:70%; text-align:center'>No tienes rutas disponibles <br> <a href='userProfile.php?idu=myProfile#userRutesBox'> CREAR</a> </p>";
+				}
+				?>
 				<span id="commentTitle" >Selecciona los cupos disponibles:</span>
 				<select name="spots" >
 					<option value="1">1 cupo</option>
@@ -191,127 +182,26 @@ if  ($numFilas_routes!=0)
 
 				<div class="finish_start">
 					<span>El recorrido comienza o termina en la universidad</span>
-						<input type="radio" id="start" name="touniversity" value="false" required>
+						<input type="radio" id="start" name="touniversity" value="false" required checked >
 							<label id="start_l" for="start"></label>
-						<input type="radio" id="finish" name="touniversity" value="true" required>
+						<input type="radio" id="finish" name="touniversity" value="true" required >
 							<label id="finish_l" for="finish"></label>
 				</div>
 				<span id="commentTitle" >Informacion adicional:</span>
 				<textarea name="comment" rows="3" cols="31" required></textarea>
 
-				<button type="submit" >Crear</button>
+				<button type="submit" <?php if($contador==1){echo "disabled";} ?> >Crear</button>
 			</form>
 		</div>
 		<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
 		<section id="pub-box">
-		<span class="no-results">No hay resultados</span>
-<?php
+			<span class="no-results">No hay resultados</span>
 
-//consulta los datos de los ultimos 30 recorridos de la universidad guardados en waysArray
-$sql_ways="SELECT * FROM ways WHERE id_u='$id_university' ORDER BY id_way DESC LIMIT 30";
-$result_ways= pg_query($conn, $sql_ways);
-$numFilas_ways = pg_num_rows($result_ways);
-$cont_ways=1;
-if  ($numFilas_ways!=0)
-	 {
-		while($vector_ways=pg_fetch_array($result_ways))
-		{
-			//datos de cada recorrido
-			$id_way=$vector_ways['id_way'];
-			$hour=$vector_ways['hour'];
-			$id_user_w=$vector_ways['id_user'];
-			$id_route=$vector_ways['id_route'];
-			$spots=$vector_ways['spots'];
-			$touniversity=$vector_ways['touniversity'];
-			//datos del usuario que publica
-			$sql1_name="SELECT names, last_names, profile_image FROM users WHERE id_user='$id_user_w'";
-			$result1_name = pg_query($conn, $sql1_name);
-			$vector_name=pg_fetch_array($result1_name);
-			$first_names=$vector_name['names'];
-			$last_names=$vector_name['last_names'];
-			$profile_image_user=$vector_name['profile_image'];
-			$full_name_user=$first_names." ".$last_names;
-			//datos del recorrido publicado
-			$sql1_goto="SELECT touniversity, hour, comment FROM ways WHERE id_way='$id_way'";
-			$result1_goto = pg_query($conn, $sql1_goto);
-			$vector_goto=pg_fetch_array($result1_goto);
-			$gotouniversity=$vector_goto['touniversity'];
-			$hour=$vector_goto['hour'];
-			$comentario=$vector_goto['comment'];
-?>
-
-				<div class="publicaciones" class="p-before">
-					<img class="open-modal"   src="<?php echo $profile_image_user; ?>" alt="<?php echo $id_user_w; ?>" />
-					<span class="cupo">
-						<?php echo $spots; ?> cupos.
-					</span>
-					<a href="#">
-						<span class="name">
-							<?php echo $full_name_user;?>
-						</span>
-					</a>
-					<span class="time">
-						<?php
-						if ($gotouniversity=="false") {
-							echo "Saliendo de la universidad a las ",$hour;
-						}else{
-							echo "En la universidad a las ",$hour;
-						}
-						?>
-					</span>
-					<span class="comentario">
-						<?php echo $comentario;?>
-					</span>
-					<div class="botones">
-						<?php
-						 	if ($id_user_w==$idu) {
-								echo "<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Ver</button></a>";
-						 	}else{
-								if ($status_usr=="true" && $id_way==$way_usr_active) {
-									echo "<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Ver</button></a>";
-								}else{
-									echo "<button id='btn-pedirCupo' data-way='$id_way' data-usr='$idu' class='btn-pedirCupo' type='button'>Pedir cupo</button>";
-								}
-							}
-						 ?>
-					</div>
-					<div class="rt-title">
-						Paradas
-					</div>
-				</div>
-				<!--<span class='ruta' style='display:none' >-->
-				<span class='ruta' >
-				<?php
-					//busqueda de las paradas
-					$sql="SELECT id_stop FROM route_stop WHERE id_route='$id_route'";
-					$result= pg_query($conn, $sql);
-					while ($vect=pg_fetch_array($result)) {
-						$id_stop=$vect['id_stop'];
-						$sql0="SELECT name FROM stops WHERE id_stop='$id_stop'";
-						$result0= pg_query($conn, $sql0);
-						while ($vect0=pg_fetch_array($result0)) {
-							$nameStop=$vect0['name'];
-							echo "<span>";
-							echo "$nameStop";
-							echo "</span>";
-							echo " &nbsp; &nbsp;";
-						}
-					}
-				 ?>
-				 </span>
-			<?php
-		}}//cierra las llaves del while e if
-		?>
 		</section>
-		<?php
-			$sql_random="SELECT random_string FROM status_feed WHERE id_status='$id_university' ";
-			$result_random= pg_query($conn, $sql_random);
-			$vector_random=pg_fetch_array($result_random);
-			$rdnString=$vector_random['random_string'];
-		?>
-		<input id='status_feed' type='button' hidden class='<?php echo "$id_university"; ?>' value='<?php echo "$rdnString"; ?>'>
+
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
+			<img id="back" src="../Imagenes/left4.png" />
 			<div class="encb">
 				<img id="user_img_query" style="border: 2px solid #B72C2C" class="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
 				<div class="block">
@@ -324,7 +214,7 @@ if  ($numFilas_ways!=0)
 				</div>
 				<div class="block">
 					<label for="user_university_query">Universidad</label>
-					<span id="user_university_query" class="user_university_query" >Universidad UIS</span>
+					<span id="user_university_query" class="user_university_query" >Universidad </span>
 				</div>
 				<div class="block">
 					<label for="user_score">Calificacion</label>
@@ -336,7 +226,7 @@ if  ($numFilas_ways!=0)
 				</div>
 				<div class="block">
 					<label for="user_phone_query">telefono</label>
-					<span id="user_phone_query" class="user_phone_query">3183524157</span>
+					<span id="user_phone_query" class="user_phone_query">3133333333</span>
 				</div>
 			</div>
 			<div class="info-usr">
@@ -358,7 +248,7 @@ if  ($numFilas_ways!=0)
 						</div>
 						<div class="block">
 							<label for="user_university_query">Universidad</label>
-							<span id="user_university_query" class="user_university_query" >Universidad UIS</span>
+							<span id="user_university_query" class="user_university_query" >Universidad </span>
 						</div>
 						<div class="block">
 							<label for="user_score">Calificacion</label>
@@ -370,12 +260,15 @@ if  ($numFilas_ways!=0)
 						</div>
 						<div class="block">
 							<label for="user_phone_query">telefono</label>
-							<span id="user_phone_query" class="user_phone_query">3183524157</span>
+							<span id="user_phone_query" class="user_phone_query">3133333333</span>
 						</div>
 
 					</div>
 				</div>
 				<div class="transport_info">
+					<div class="tr-box">
+						<img id="user_transport_image" src="" width="80%" />
+					</div>
 					<div class="tr-box">
 						<label for="user_transport_type">Tipo</label>
 						<span id="user_transport_type" ></span>
@@ -383,10 +276,6 @@ if  ($numFilas_ways!=0)
 					<div class="tr-box">
 						<label for="user_transport_model">Modelo</label>
 						<span id="user_transport_model" ></span>
-					</div>
-					<div class="tr-box">
-						<label for="user_transport_image">Imagen</label>
-						<img id="user_transport_image" src="" width="80%" />
 					</div>
 					<div class="tr-box">
 						<label for="user_transport_license_plate">Placas</label>
@@ -408,40 +297,58 @@ if  ($numFilas_ways!=0)
 				<div class="routes_info">
 				</div>
 				<div class="comments_info">
-					<div class="cm-box">
-						<img src="../Imagenes/user-real-2.jpg"  />
-						<label for="">Nathalia Acevedo</label>
-						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
-					</div>
-					<div class="cm-box">
-						<img src="../Imagenes/user-real-1.jpg"  />
-						<label for="">Nathalia Acevedo</label>
-						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
-					</div>
-					<div class="cm-box">
-						<img src="../Imagenes/user-real-4.jpg"  />
-						<label for="">Nathalia Acevedo</label>
-						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
-					</div>
-					<div class="cm-box">
-						<img src="../Imagenes/user-real-3.jpg"  />
-						<label for="">Nathalia Acevedo</label>
-						<span>Muy buen conductor! llega siempre a tiem asd onductor! siempr e  asasdasdasdasd asd a tiempo asdaas as das d asd as dasd</span>
-					</div>
+					<form class="add_comment" action="" method="post">
+						<textarea name="comment" placeholder="¿Ya has viajado con este usuario? Califícalo!" ></textarea>
+						<div class="score-box">
+							<label for="score1">1</label>
+								<input type="radio" name="score" id="score1" value="1"/>
+							<label for="score2">2</label>
+								<input type="radio" name="score" id="score2" value="2"/>
+							<label for="score3">3</label>
+								<input type="radio" name="score" id="score3" value="3"/>
+							<label for="score4">4</label>
+								<input type="radio" name="score" id="score4" value="4"/>
+							<label for="score5">5</label>
+								<input type="radio" name="score" id="score5" value="5"/>
+						</div>
+						<button id="send_comment" type="button" name="button">Enviar</button>
+						<input type="hidden" id="input_add_comment" data-usr="" data-usr-make=""/>
+					</form>
+					<div class="comm_fail"></div>
+					<div class="comment-box"></div>
 				</div>
 			</div>
-			<img id="back" src="../Imagenes/left4.png" />
 		</section>
 		<div class="error_way">
 			<span></span>
 			<button type="button">Vale</button>
 		</div>
+		<section id="modal-window-route">
+			<img id="back2" src="../Imagenes/left4.png" />
+			<div id="map">
+			</div>
+			<div class="cont-stops">
+				<p>Paradas</p>
+				<span id="stp1"></span>
+				<span id="stp2"></span>
+				<span id="stp3"></span>
+				<span id="stp4"></span>
+				<span id="stp5"></span>
+			</div>
+		</section>
 	</div>
+
+	<input type="hidden" id="id_usr" value="<?php echo $idu; ?>">
+	<input type="hidden" id="usr_name" value="<?php echo $full_name; ?>">
 	<input type="hidden" id="way_usr_active" value="<?php echo $way_usr_active; ?>">
+	<input type="hidden" id="us_img" value="<?php echo $us_img; ?>">
+	<input id='status_feed' type='button' hidden class='<?php echo "$id_university"; ?>' value='<?php echo "$rdnString"; ?>'>
+
 	<script src="../js/jquery-3.1.1.min.js"></script>
 	<script src="../js/jquery-ui/jquery-ui.js"></script>
 	<script src="../js/main.js"></script>
-	<script src="../js/ways_query.js"></script>
+	<script src="../js/controller_sesionOpen.js"></script>
 	<script src="../js/lolliclock.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>
 	</body>
 </html>
