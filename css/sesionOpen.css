@@ -46,22 +46,23 @@ body{
 
 /*============================================LEFT SIDE=====================================================*/
 .options {
-	display: block;
-	position: absolute;
-	margin: 0px;
-	margin-top: -10px;
-	background-color: #232626;
-	color: white;
-	width: 19%;
-	height: 150%;
-	text-align: center;
+		display: block;
+		position: absolute;
+		margin: 0px;
+		margin-top: -10px;
+		background-color: #232626;
+		color: white;
+		width: 19%;
+		height: 150%;
+		text-align: center;
+		z-index: 2;
 	}
 	.options .editar {
 		font-size: 80%;
 		display: block;
 		text-decoration: none;
 		color: #009999;
-		margin-bottom: 20px;
+		margin-top: -10px;
 	}
 		.options .editar:hover{
 			cursor: pointer;
@@ -101,13 +102,14 @@ body{
 		.lista li {
 			font-size: 90%;
 			padding: 10px;
-			margin-left: -30px;
+			margin-left: -40px;
+			cursor: pointer;
 		}
 			.lista li:hover {
-				color: #009999;
-				font-weight: bold;
-				cursor: pointer;
+				background-color: #161717;
+
 			}
+
 		.lista li .icono {
 			display: inline;
 			margin-right: 15px;
@@ -120,21 +122,21 @@ body{
 			color: white;
 		}
 
-		.lista li span:before {
-			margin-top: -7px;
-			background:#009999;
-			border: 3px solid #009999;
-			content: "";
-			display: inline-block;
-			width: 0px;
-			height: 30px;
-			position: absolute;
-			left: -10px;
+		#score_li{
+			text-align: center;
+			margin-left: -40px;
+			color: white;
+			background-color: #161717;
+			margin-bottom: 20px;
 		}
-		.lista li:hover > span:before {
-			left: 0px;
-			transition: all 0.2s;
+		#score_li .icono {
+			display: inline;
+			margin: auto;
+			border-radius: 0px;
+			height: 15px;
 		}
+
+
 
 /*============================================LEFT SIDE=====================================================*/
 
@@ -206,6 +208,19 @@ body{
 		#btn-add:hover {
 			background-color: #006E6E;
 		}
+	/*title style*/
+	#btn-see[data]:hover:after, #btn-add[data]:hover:after {
+	  content: attr(data);
+	  padding: 6px;
+	  color: white;
+	  font-size: 50%;
+	  position: absolute;
+	  left: -50px;
+	  bottom: 100%;
+	  white-space: nowrap;
+	  border-radius: 2px;
+	  background: rgba(0,0,0,0.6);
+	}
 
 #new-updates {
 	display: none;
@@ -436,13 +451,13 @@ body{
 			width: 180px;
 			border-radius: 100px;
 		}
-		.modal-window .encb label, .modal-window .encb2 label {
+		.modal-window .encb label{
 			text-align: right;
 			display: inline-block;
 			font-size: 70%;
 			width: 80px;
 		}
-		.modal-window .encb span, .modal-window .encb2 span {
+		.modal-window .encb span{
 			text-align: left;
 			display: inline-block;
 			max-width: 205px;
@@ -451,9 +466,41 @@ body{
 			font-weight: bold;
 			font-size: 80%;
 		}
+		.modal-window .encb2 label {
+			display: block;
+			width: auto;
+		}
+		.modal-window .encb2 span{
+			max-width: none;
+			display: block;
+		}
 		.modal-window .encb span:nth-child(2) {
 			padding-top: 30px;
 		}
+
+			.user_score{
+				text-align: center;
+				display: block;
+				margin: 20px auto -10px;
+			}
+			.encb .user_score > img , .encb2 .user_score > img{
+				display: inline-block;
+				height: 20px;
+				width: 20px;
+				margin: 0px;
+				padding: 0px;
+				border-radius: 100px;
+			}
+			.encb2 .user_score > img{
+				height: 30px;
+				width: 30px;
+			}
+			.encb2 .user_score{
+				padding: 10px;
+			}
+			.encb2 .user_score > span{
+				font-size: 120%;
+			}
 
 	.modal-window .info-usr {
 		background-color: #F5F5F5;
@@ -762,7 +809,7 @@ body{
 	#modal-window-route{
 		display: block;
 		width: auto;
-		height: 100%;
+		height: 100vh;
 		overflow: scroll;
 		margin: 0px auto;
 	}
@@ -770,7 +817,7 @@ body{
 @media (max-width: 420px) {
 	#map{
 		background-color: lightgray;
-		height: 500px;
+		height: 350px;
 	}
 }
 
@@ -796,7 +843,7 @@ body{
 	/*desaparece panel izquierdo y aparece en la barra .navFeed*/
 	.modal-window{
 		margin-top: 0px;
-		height: 100%;
+		height: 100vh;
 		width: 100%;
 	}
 	.modal-window .info-usr{
@@ -838,6 +885,9 @@ body{
 }
 
 @media (max-width:768px) {
+	.encb .user_score #user_score, .encb .user_score > img{
+		display: none;
+	}
 	#data_option{
 		display: inline-block;
 	}
@@ -859,12 +909,19 @@ body{
 	.encb2 .block:nth-child(1) {
 		padding-top: 30px;
 	}
+
 	.encb2 .block label{
 		width: 25%;
 		font-size: 100%;
 	}
 	.encb2 .block span{
+		display: block;
+		width: 100%;
 		font-size: 100%;
+	}
+	#user_score{
+		display: inline-block;
+		font-size: 150%;
 	}
 	.modal-window {
 		display: none;
@@ -1008,12 +1065,11 @@ body{
 /*============================================BIG CONTAINER=================================================*/
 /*============================================GENERAL INFO STYLE==============================================*/
 .left-section {
-
 	position: fixed;
 	background-color: #232626;
 	width: 275px;
 	z-index: 3;
-	height: 100%;
+	height: 100vh;
 	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 .logo-section {
@@ -1224,6 +1280,7 @@ body{
 	text-align: center;
 	outline: none;
 }
+
 .hide_stop{
 	border-width: 0px;
 	background-color: #B72C2C;
@@ -1992,6 +2049,12 @@ body{
 		left:150px;
 	}
 }
+@media (max-width:425px) {
+	.paradas2{
+		width: 85%;
+	}
+
+}
 @media (max-width:500px) {
 
 	.basicInfo button , .transportInfo button, .userAddRutes{
@@ -2085,6 +2148,15 @@ body{
 		top: 10px;
 		left: 100px;
 		height: 40px;
+	}
+	#back-chat{
+		display: none;
+		height: 25px;
+		width: 25px;
+		padding: 15px;
+		position: fixed;
+		top: 0px;
+		left: 0px;
 	}
 .container-chat{
 	display: block;
@@ -2243,11 +2315,11 @@ body{
 				border-radius: 5px;
 				min-width: 80px;
 				max-width: 500px;
+				color: #4B4B4B;
 			}
 			.comment-right .box{
 				text-align: left;
-				background-color: #009999;
-				color: white;
+				background-color: #CEFEA9;
 				margin-left: 5px;
 				margin-right: 70px;
 			}
@@ -2296,19 +2368,6 @@ body{
 	form > .yes-confirm{
 		background-color: #B72C2C;
 	}
-	@media (max-width:350px) {
-		.container-chat .people {
-			width: 100%;
-		}
-	}
-	@media (max-width:600px) {
-		.nav-chat ul a span{
-			display: none;
-		}
-		.nav-chat ul li{
-			min-width: 40px;
-		}
-	}
 	@media (max-width:950px) {
 		.container-chat .people {
 			display: none;
@@ -2322,11 +2381,11 @@ body{
 			border-width: 0px;
 		}
 		.nav-chat ul {
-			background-color: white;
 			padding-right: 50px;
 		}
 		.nav-chat ul a{
-			color: black;
+			margin-right: 20px;
+			color: white;
 		}
 		.nav-chat ul a:nth-child(2){
 			display: none;
@@ -2335,7 +2394,15 @@ body{
 			display:block;
 		}
 		#logo-chat {
-			content:url("../Imagenes/logo-name.png");
+			display: none;
+		}
+		#back-chat{
+			display: block;
+		}
+	}
+	@media (max-width:600px) {
+		.nav-chat ul li{
+			min-width: 40px;
 		}
 	}
 	@media (max-width:500px) {
@@ -2357,6 +2424,11 @@ body{
 				left: 50px;
 				height: 25px;
 			}
+	}
+	@media (max-width:350px) {
+		.container-chat .people {
+			width: 100%;
+		}
 	}
 /*============================================CHAT-GROUP STYLE===================================================*/
 

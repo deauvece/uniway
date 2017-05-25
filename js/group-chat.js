@@ -19,9 +19,8 @@ $(document).ready(function () {
 			  dataType: 'json',
 			  success: function(array){
 				  if (array.state=="iguales") {
-					  console.log("no hay comentarios");
 				  }else{
-					  console.log("Hay comentarios nuevos");
+					  console.log("New comments");
 					  var send="../php/json_get_comments.php?id_way="+idway+"&last_comment_id="+lastcommentid
 					  //$('.content-cht').load(send);
 					  $.ajax({ type: "GET",

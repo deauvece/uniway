@@ -54,7 +54,6 @@ body{
 		display: none;
 	}
 	.home-nav .sinmenu {
-		transition: all 0.2s;
 		background-color: white;
 		padding-right: 70px;
 	}
@@ -186,14 +185,15 @@ body{
 	}
 	.home-nav .sinmenu  {
 		display: none;
-		float: right;
 		width: 210px;
-		height: 1000px;
-		margin-top: 60px;
+		height: 100vh;
 		text-align: left;
     		background-color: #232626;
-		position: relative;
-		z-index: inherit;
+
+		position: absolute;
+		top: 80px;
+		right: 0px;
+
 	}
 	.home-nav .sinmenu li {
 		display: block;
@@ -445,7 +445,7 @@ header {
 			left: 2px;
 			box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 		}
-		
+
 	.contenedorContact .error {
 		margin-top: -5px;
 		margin-bottom: 10px;

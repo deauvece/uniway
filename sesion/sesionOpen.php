@@ -70,7 +70,7 @@ $rdnString=$vector_random['random_string'];
 
 			<div class="other-options">
 				<ul class="lista">
-					<a href="#"><li><span></span><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" />Puntuacion &nbsp; &nbsp;<span id="score_usr"></span></li></a>
+					<a href="#"><li id='score_li'><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" /> &nbsp; &nbsp;<span id="score_usr"></span></li></a>
 					<a id="logout" href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 				</ul>
 			</div>
@@ -204,6 +204,10 @@ $rdnString=$vector_random['random_string'];
 			<img id="back" src="../Imagenes/left4.png" />
 			<div class="encb">
 				<img id="user_img_query" style="border: 2px solid #B72C2C" class="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
+				<div class="user_score">
+					<span id="user_score" >4.5</span>
+					<img src="../Imagenes/puntuacion.png"/>
+				</div>
 				<div class="block">
 					<label for="user_name_query">Nombre</label>
 					<span id="user_name_query" class="user_name_query">Nombre usuario</span>
@@ -217,15 +221,11 @@ $rdnString=$vector_random['random_string'];
 					<span id="user_university_query" class="user_university_query" >Universidad </span>
 				</div>
 				<div class="block">
-					<label for="user_score">Calificacion</label>
-					<span id="user_score" class="user_score">4.5</span>
-				</div>
-				<div class="block">
 					<label for="user_email_query">Correo</label>
 					<span id="user_email_query" class="user_email_query">correo@ejemplo.com</span>
 				</div>
 				<div class="block">
-					<label for="user_phone_query">telefono</label>
+					<label for="user_phone_query">Telefono</label>
 					<span id="user_phone_query" class="user_phone_query">3133333333</span>
 				</div>
 			</div>
@@ -238,28 +238,28 @@ $rdnString=$vector_random['random_string'];
 				</ul>
 				<div class="data_info">
 					<div class="encb2">
-						<div class="block">
-							<label for="user_name_query">Nombre</label>
-							<span id="user_name_query" class="user_name_query">Nombre usuario</span>
+						<div class="user_score">
+							<span id="user_score">4.5</span>
+							<img src="../Imagenes/puntuacion.png"/>
 						</div>
 						<div class="block">
 							<label for="user_status_query">Estado</label>
 							<span id="user_status_query" class="user_status_query" style="color:#B72C2C"  >Usuario no verificado</span>
 						</div>
 						<div class="block">
-							<label for="user_university_query">Universidad</label>
-							<span id="user_university_query" class="user_university_query" >Universidad </span>
+							<label for="user_name_query">Nombre</label>
+							<span id="user_name_query" class="user_name_query">Nombre usuario</span>
 						</div>
 						<div class="block">
-							<label for="user_score">Calificacion</label>
-							<span id="user_score" class="user_score">4.5</span>
+							<label for="user_university_query">Universidad</label>
+							<span id="user_university_query" class="user_university_query" >Universidad </span>
 						</div>
 						<div class="block">
 							<label for="user_email_query">Correo</label>
 							<span id="user_email_query" class="user_email_query">correo@ejemplo.com</span>
 						</div>
 						<div class="block">
-							<label for="user_phone_query">telefono</label>
+							<label for="user_phone_query">Telefono</label>
 							<span id="user_phone_query" class="user_phone_query">3133333333</span>
 						</div>
 

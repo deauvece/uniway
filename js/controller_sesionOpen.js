@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
 	//CONSULTA LAS PARADAS DE UN DETEMRINADO RECORRIDO (WAY) SESIONOPEN
-	$(document).on("click", ".ruta, .ruta-n", function () {
+	//$(".ruta, .ruta-n").on("click", function () {
+	$(document).on('click touchstart', '.ruta, .ruta-n', function() {
+
 		var data= $(this).prev().attr("data-way");
 		$.ajax({
 			url: '../php/json_stops_query.php',
@@ -100,13 +102,13 @@ $(document).ready(function () {
 		success: function(array){
 			$(".put_image_profile").attr("src",array.profile_image)
 			if (array.usr_active=="true") {
-				$("#logout").before("<a href='group-chat.php?id_way="+array.way_active+"'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' /> Conversación</li></a>");
+				$("#logout").before("<a href='group-chat.php?id_way="+array.way_active+"'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' />Ver conversación</li></a>");
 			}
 			if (array.usr_active=="true") {
-				$(".dinamic_button").html("<a href='group-chat.php?id_way="+array.way_active+"' ><button style='background-color:#C74444' id='btn-see' type='button' name='button'><img height='25px' src='../Imagenes/group.png'  /></button></a>");
+				$(".dinamic_button").html("<a href='group-chat.php?id_way="+array.way_active+"' ><button  data='Ver conversación' style='background-color:#C74444' id='btn-see' type='button' name='button'><img height='25px' src='../Imagenes/group.png'  /></button></a>");
 			}else{
 				if (array.is_driver=="t") {
-					$(".dinamic_button").html("<button id='btn-add' type='button' name='button'>+</button>");
+					$(".dinamic_button").html("<button id='btn-add' type='button' name='button 'data='Crear recorrido' >+</button>");
 				}
 			}
 			var idu = $("#id_usr").val();
@@ -242,7 +244,7 @@ $(document).ready(function () {
 				$(".user_university_query").text(array.university_acr);
 				$(".user_email_query").text(array.email);
 				$(".user_phone_query").text(array.phone);
-				$(".user_score").text(array.score_user);
+				$(".user_score> span").text(array.score_user);
 				//verified user
 				$(".user_verified_query").text(array.is_verified);
 					if (array.is_verified=='t') {
@@ -314,8 +316,7 @@ $(document).ready(function () {
 	$("#search-input").keypress(function (e) {
 	var sizeResult = $("#search-input").val().length;
 	var search = $("#search-input").val().split(",");
-	var search_stop= search[0]
-	console.log(search_stop)
+	var search_stop= search[0];
 
 	if (e.which == 13 && sizeResult!=0 ) {
 		$(".no-results").css("display:none");
@@ -347,21 +348,23 @@ $(document).ready(function () {
 	});
 	//CONSULTA LAS PUBLICACIONES AL HACER CLICK EN LA IMAGEN
 	$("#search_image").on("click",function() {
-	var sizeResult = $("#search-input").val().length;
+		var sizeResult = $("#search-input").val().length;
+		var search = $("#search-input").val().split(",");
+		var search_stop= search[0];
 	if (sizeResult!=0 ) {
 		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
 		$(".ruta").hide();
 		$("div").remove(".publicaciones-n");
 		$("span").remove(".ruta-n");
-			var id_user= $("#id_user_json").attr("value");
+			var id_user= $("#id_usr").val();
 			//para comprobar si el usuario ya está en otro recorrido
 			var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo
 			$.ajax({
 				url: '../php/json_ways_query.php',
 				type: 'get',
 				data: {
-					stop_query: $("#search-input").val().toUpperCase(),
+					stop_query: search_stop,
 					id_uni: $("#status_feed").attr("class")
 				},
 				dataType: 'json',

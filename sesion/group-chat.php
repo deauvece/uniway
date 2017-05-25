@@ -54,14 +54,15 @@ if ($id_way_thisGroup){
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
 	</head>
 	<body >
+		<a href="sesionOpen.php"><img id="back-chat" src="../Imagenes/left4.png" /></a>
 		<a href="sesionOpen.php"><img id="logo-chat" src="../Imagenes/logo-name-white.png" /></a>
+		<img id="info-button" src="../Imagenes/info.png"/>
 		<nav class="nav-chat" >
 			<ul>
 				<a href="userProfile.php?idu=myProfile"><li><img src="<?php echo $rute_img ?>"/><span><?php echo $name; ?></span></li></a>
 				<a href="sesionOpen.php"><li>Inicio</li></a>
 			</ul>
 		</nav>
-		<img id="info-button" src="../Imagenes/info.png"/>
 		<div class="container-chat">
 			<section class="people" >
 				<span class="title-usr">Miembros</span>

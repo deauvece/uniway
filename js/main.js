@@ -142,16 +142,16 @@ $(document).ready(function () {
 		});
 		//menu opciones
 		$("#bmenuw").click(function(){
-			$(".options").fadeToggle();
+			$(".options").toggle();
 		});
 		$("#pub-box").click(function(){
 			var w =$( window ).width();
 			if (w<800) {
-				$(".options").fadeOut();
+				$(".options").hide();
 			}
 		});
 		$("#btn").click(function(){
-			$(".sinmenu").fadeToggle("fast");
+			$(".sinmenu").toggle("fast");
 		});
 
 		//RESPONSIVE EN LA VENTANA MODAL
@@ -265,12 +265,12 @@ $(document).ready(function () {
 
 		//menu opciones
 		$("#bmenu").click(function(){
-			$(".left-section").fadeToggle();
+			$(".left-section").toggle();
 		});
 		$(".big_container").click(function(){
 			var w =$( window ).width();
 			if (w<800) {
-				$(".left-section").fadeOut();
+				$(".left-section").hide();
 			}
 		});
 
@@ -340,19 +340,25 @@ $(document).ready(function () {
 		$(window).scroll(function (event) {
 		    var scroll = $(window).scrollTop();
 		    if (scroll>30) {
+			    var w =$( window ).width();
 			    $(".home-nav").css("height","55px");
 			    $("#logo img").css("height","25px");
 			    $(".sinmenu").css("margin-top","-10px");
-			    $(".sinmenu").css({fontSize:"95%",});
-			    $("header h2").css({fontSize:"350%",});
-			    $("header p").css({fontSize:"120%",});
+    				if (w > 800) {
+					$(".sinmenu").css({fontSize:"95%",});
+					$("header h2").css({fontSize:"350%",});
+					$("header p").css({fontSize:"120%",});
+				}
 		    }else {
+			    var w =$( window ).width();
 			    $(".home-nav").css("height","75px");
-			    $("#logo img").css("height","40px");
+			    $("#logo img").css("height","35px"); 
 			    $(".sinmenu").css("margin-top","10px");
-			    $(".sinmenu").css({fontSize:"100%",});
-			    $("header h2").css({fontSize:"400%",});
-			    $("header p").css({fontSize:"150%",});
+    				if (w > 800) {
+					$(".sinmenu").css({fontSize:"100%",});
+					$("header h2").css({fontSize:"400%",});
+					$("header p").css({fontSize:"150%",});
+				}
 
 		    }
 		});
