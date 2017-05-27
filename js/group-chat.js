@@ -13,24 +13,15 @@ $(document).ready(function () {
 			  url: '../php/json_check_comments.php',
 			  type: 'get',
 			  data: {
-				  id_way: $("#textarea-inpt").attr("data-way"),
-				  last_comment_id: $(".content-cht > div:last-child").attr("data-id")
+				  id_way:idway,
+				  last_comment_id: lastcommentid
 			  },
 			  dataType: 'json',
 			  success: function(array){
-				  if (array.state=="iguales") {
+				  if (array.state=="same") {
 				  }else{
-					  console.log("New comments");
-					  var send="../php/json_get_comments.php?id_way="+idway+"&last_comment_id="+lastcommentid
-					  //$('.content-cht').load(send);
-					  $.ajax({ type: "GET",
-						     url: send,
-						     success : function(text)
-						     {
-						         $('.content-cht').append(text);
-						     }
-						});
-						$('.content-cht').animate({"scrollTop": $('.content-cht')[0].scrollHeight}, "fast");
+					  $('.content-cht').append(array.cms);
+					  $('.content-cht').animate({"scrollTop": $('.content-cht')[0].scrollHeight}, "fast");
 				  }
 			  }
 		  });

@@ -107,7 +107,7 @@ if ($id_way_thisGroup){
 			<section class="cht-box" >
 				<div class="content-cht">
 					<?php
-						$sql22="SELECT * FROM comments WHERE id_way='$id_way_thisGroup'";
+						$sql22="SELECT * FROM comments WHERE id_way='$id_way_thisGroup' ORDER BY id_comm ";
 						$result22=pg_query($conn, $sql22);
 						while ($vector22=pg_fetch_array($result22)) {
 							$id_user_comment=$vector22['id_user'];

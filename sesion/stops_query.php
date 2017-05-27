@@ -1,7 +1,7 @@
 <?php
 include("../php/functions.php"); //check the user type
 checkLogin();
-$conn=conectarse();
+$conn=conectarse(); 
 //datos de usuario
 $idu=$_SESSION['id_usuario'];
 $name=$_SESSION['id_nombre_usuario'];
