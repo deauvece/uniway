@@ -9,6 +9,8 @@ $idu=$_SESSION['id_usuario'];
 
 
 
+
+
 $id_user_query=$_GET['id_user_query'];
 $conn=conectarse();
 $sql3="SELECT * FROM users WHERE id_user='$id_user_query'";

@@ -63,7 +63,8 @@ $rdnString=$vector_random['random_string'];
 		<section class="options">
 			<a href="sesionOpen.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
 			<a href="userProfile.php?idu=myProfile">
-				<img id="usr_img" src="" class="put_image_profile" />
+				<!--<img src="../Imagenes/load2.gif" alt="loading" class="load_img" />-->
+				<img id="usr_img" src="" title="Editar perfil" class="put_image_profile" alt="profile image" />
 			</a>
 			<br>
 			<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
@@ -112,7 +113,7 @@ $rdnString=$vector_random['random_string'];
 		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
 
 		<section class="find">
-			<input id="search-input" class="search" type="text" name="name" placeholder="Busca una ruta" autocomplete="off" autofocus>
+			<input id="search-input" class="search" type="text" name="name" placeholder="¿Para dónde vas?" autocomplete="off" autofocus>
 			<img id="search_image" src="../Imagenes/search.png" alt="" />
 		</section>
 
@@ -195,8 +196,6 @@ $rdnString=$vector_random['random_string'];
 		</div>
 		<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
 		<section id="pub-box">
-			<span class="no-results">No hay resultados</span>
-
 		</section>
 
 	<div id="modal-box" class="modal-box">

@@ -46,7 +46,7 @@ if ($id_uni && $stop_query) {
      }
 	$size_result_routes=count($result_routes);
 
-	$output="";
+	$output="<p class='result-txt'>Resultados de la busqueda.</p>";
 	for ($i=0; $i < $size_result_routes ; $i++) {
 		//Busca un recorrido que tenga la ruta
 		$query=$result_routes[$i];
@@ -99,7 +99,7 @@ if ($id_uni && $stop_query) {
 				$fin_stp=$all_stops[$cont_stop-1];
 				$output=$output."
 					<div class='publicaciones-n' data-way='$id_way' class='p-before'>
-					<img class='open-modal'   src=".$profile_image_user." alt=".$id_user_w." />
+					<img class='open-modal' title='Ver perfil'  src=".$profile_image_user." alt=".$id_user_w." />
 					<span class='cupo'>
 						".$spots." cupos.
 					</span>
@@ -134,8 +134,16 @@ if ($id_uni && $stop_query) {
 			}
 		}
 	}
+
+	//no results
+	$nr=1;
+	if ($output=="<p class='result-txt'>Resultados de la busqueda.</p>") {
+		$output=$output."<span class='no-results'>No hay resultados</span>";
+		$nr=0;
+	}
 	$array = array(
-	    'output' => "$output"
+	    'output' => "$output",
+	    'nr' => "$nr"
     );
 	echo json_encode($array);
 }else{
@@ -192,7 +200,7 @@ if ($id_uni && $stop_query) {
 
 				$output=$output."
 					<div class='publicaciones' data-way='$id_way' class='p-before'>
-					<img class='open-modal'   src=".$profile_image_user." alt=".$id_user_w." />
+					<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
 					<span class='cupo'>
 						".$spots." cupos.
 					</span>

@@ -69,6 +69,7 @@ $(document).ready(function () {
 			$("span").remove(".ruta-n");
 			$(".publicaciones").show();
 			$(".ruta").show();
+			$(".result-txt").remove();
 		}
 
 	});
@@ -314,6 +315,7 @@ $(document).ready(function () {
 
 	//CONSULTA LAS PUBLICACIONES AL PRESIONAR ENTER
 	$("#search-input").keypress(function (e) {
+
 	var sizeResult = $("#search-input").val().length;
 	var search = $("#search-input").val().split(",");
 	var search_stop= search[0];
@@ -324,6 +326,9 @@ $(document).ready(function () {
 		$(".ruta").hide();
 		$("div").remove(".publicaciones-n");
 		$("span").remove(".ruta-n");
+		$(".result-txt").remove();
+		$(".no-results").remove();
+
 			var id_user= $("#id_usr").val();
 			//para comprobar si el usuario ya está en otro recorrido
 			var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo
@@ -336,10 +341,10 @@ $(document).ready(function () {
 				},
 				dataType: 'json',
 				success: function(array){
-					if (array.output) {
+					if (array.nr==1) {
 						$("#pub-box").append(array.output);
 					}else{
-						$(".no-results").css("display","block");
+						$("#pub-box").append(array.output);
 					}
 				}
 			});
@@ -357,6 +362,10 @@ $(document).ready(function () {
 		$(".ruta").hide();
 		$("div").remove(".publicaciones-n");
 		$("span").remove(".ruta-n");
+		$(".result-txt").remove();
+		$(".no-results").remove();
+
+
 			var id_user= $("#id_usr").val();
 			//para comprobar si el usuario ya está en otro recorrido
 			var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo

@@ -339,44 +339,49 @@ $(document).ready(function () {
 		//cambia la barra de navegacion
 		$(window).scroll(function (event) {
 		    var scroll = $(window).scrollTop();
-		    if (scroll>30) {
+		    if (scroll>100) {
 			    var w =$( window ).width();
-			    $(".home-nav").css("height","55px");
-			    $("#logo img").css("height","25px");
-			    $(".sinmenu").css("margin-top","-10px");
+			    $(".sinmenu").css("margin-top","-5px");
     				if (w > 800) {
-					$(".sinmenu").css({fontSize:"95%",});
-					$("header h2").css({fontSize:"350%",});
-					$("header p").css({fontSize:"120%",});
+					$("#logo img").css("height","35px");
+					$(".home-nav").css({height:"55px",});
+					$("header h2").css({fontSize:"250%",});
 				}
 		    }else {
 			    var w =$( window ).width();
-			    $(".home-nav").css("height","75px");
-			    $("#logo img").css("height","35px"); 
+
 			    $(".sinmenu").css("margin-top","10px");
     				if (w > 800) {
-					$(".sinmenu").css({fontSize:"100%",});
-					$("header h2").css({fontSize:"400%",});
-					$("header p").css({fontSize:"150%",});
+					$("#logo a img").css("height","45px");
+					$(".home-nav").css({height:"70px",});
+					$("header h2").css({fontSize:"300%",});
 				}
 
 		    }
 		});
 		//login user
+		//contact-form index.html
 		$("#login").click(function(){
 			var w =$( window ).width();
 			if (w > 800) {
-				$("#login-form").fadeToggle("fast");
+				$("#contact-box").fadeIn();
+				$("#login-form").fadeIn().css("transform","translateY(450px)");
 			}else{
 				window.location="login-user.php";
 			}
 		});
-		//contact-form index.html
 		$("#contact-modal").click(function(){
 			$("#contact-box").fadeIn();
+			$(".contact-form").fadeIn().css("transform","translateY(-375px)");
+		});
+
+		$("#close-login-form").click(function(){
+			$("#login-form").fadeOut().css("transform","translateY(-450px)");
+			$("#contact-box").fadeOut();
 		});
 		$("#close-contact-form").click(function() {
 			$("#contact-box").fadeOut();
+			$(".contact-form").fadeOut().css("transform","translateY(375px)");
 		});
 
 });

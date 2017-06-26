@@ -50,7 +50,7 @@ body{
 		position: absolute;
 		margin: 0px;
 		margin-top: -10px;
-		background-color: #232626;
+		background-color: #161717;
 		color: white;
 		width: 19%;
 		height: 150%;
@@ -70,11 +70,14 @@ body{
 		}
 	.options img {
 		height: 120px;
-		border-radius: 60px;
+		border-radius: 50%;
 		display: block;
 		margin-top: 30px;
 		margin-left: auto;
 		margin-right: auto;
+	}
+	img.put_image_profile{
+		width: 120px;
 	}
 	.options #logo-nav {
 		border-radius: 0px;
@@ -126,8 +129,8 @@ body{
 			text-align: center;
 			margin-left: -40px;
 			color: white;
-			background-color: #161717;
 			margin-bottom: 20px;
+			background-color: #0F1010;
 		}
 		#score_li .icono {
 			display: inline;
@@ -143,35 +146,36 @@ body{
 /*============================================CENTER SIDE===================================================*/
 
 .find {
-	border-radius: 10px;
+	border-radius: 5px;
 	background-color: white;
 	padding: 10px;
 	display: block;
 	margin:10px 10px 10px 20%;
-	height: 45px;
+	height: 40px;
 	width: 55%;
 	box-shadow: 0 0 1px rgba(160,165,168,1);
 }
 
 	.search {
-		text-align: center;
-		background-color: white;
+		background-color: rgba(0, 0, 0, 0.0);;
 		display: block;
-		width: 100%;
+		width: 90%;
 		height: 100%;
 		margin: 0px -10px;
 		margin-left: 0px;
 		padding: 0px;
+		padding-left: 20px;
 		border-width:0;
-		font-size: 120%;
+		font-size: 95%;
+		color: rgba(0, 0, 0, 0.7);
 	}
 		.find img {
 			position: relative;
-			left: 93%;
-			top:-40px;
+			left: 94%;
+			top:-35px;
 			background-color: white;
-			height: 40px;
-			width: 40px;
+			height: 35px;
+			width: 35px;
 			cursor: pointer;
 		}
 		/*Para quitar el sombreado del input una vez se ha enfocado*/
@@ -238,13 +242,26 @@ body{
 }
 .no-results{
 	text-align: center;
-	display: none;
+	display: block;
+	font-size: 90%;
 	padding: 30px 10px;
 	margin:0px 10px 20px 20%;
 	width: 55%;
 	background-color: white;
 	border: 1px solid #E2E2E2;
-	border-radius: 4px;
+	border-radius: 5px;
+}
+.result-txt{
+	color: #007272;
+	background-color: white;
+	border-radius: 5px;
+	width: 55%;
+	padding: 10px;
+	margin:0px 10px 10px 20%;
+	display: inline-block;
+	font-size: 90%;
+	box-shadow: 0 0 1px rgba(160,165,168,1);
+
 }
 .publicaciones, .publicaciones-n {
 	padding: 10px;
@@ -259,21 +276,23 @@ body{
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
-	.publicaciones a , .publicaciones-n a{
-		text-decoration: none;
-		color: black;
-	}
 .publicaciones:hover , .publicaciones-n:hover {
 	background-color: #F5F8FA;
 	cursor: default;
 }
+	.publicaciones a , .publicaciones-n a{
+		text-decoration: none;
+		color: black;
+	}
 	.publicaciones img , .publicaciones-n img {
-		cursor: pointer;
-		border-radius: 35px;
+		width: 70px;
+		border-radius: 50%;
 		float: left;
 		margin: 10px 12px 35px 5px;
 		height: 70px;
+		cursor: pointer;
 	}
+
 	.publicaciones .ini-desti , .publicaciones-n .ini-desti {
 		display:block;
 		margin-top: 5px;
@@ -830,7 +849,7 @@ body{
 		display: none;
 	}
 	/*feed*/
-	.find , .publicaciones, .publicaciones-n , .ruta, .ruta-n,.no-results{
+	.find , .publicaciones, .publicaciones-n , .ruta, .ruta-n,.no-results,.result-txt{
 		width: 70%;
 		margin-left: 25%;
 	}
@@ -867,15 +886,12 @@ body{
 		margin-right: auto;
 		width: 95%;
 	}
-	.publicaciones, .publicaciones-n , .ruta , .ruta-n, .no-results {
+	.publicaciones, .publicaciones-n , .ruta , .ruta-n, .no-results,.result-txt {
 		margin-left: 0px;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
 		width: 95%;
-	}
-	.no-results{
-		display: none;
 	}
 	#back{
 		position: absolute;
@@ -984,17 +1000,14 @@ body{
 
 }
 @media (max-width:480px) {
-	.publicaciones , .publicaciones-n , .find , .ruta, .ruta-n{
-		width: 94%;
-	}
-	.publicaciones, .publicaciones-n {
+	.publicaciones , .publicaciones-n , .find , .ruta, .ruta-n,.result-txt{
 		width: 94%;
 	}
 	.publicaciones img , .publicaciones-n img{
 		width: 50px;
 		height: 50px;
 	}
-	.publicaciones .comentario, .publicaciones-n .comentario,.publicaciones .ini-desti , .publicaciones-n .ini-desti {
+	.publicaciones .comentario, .publicaciones-n .comentario,.publicaciones .ini-desti , .publicaciones-n .ini-desti{
 		margin-left: 65px;
 	}
 	.ruta , .ruta-n {

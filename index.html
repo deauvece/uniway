@@ -13,12 +13,12 @@
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.structure.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.theme.css">
-	<!--Fuente texto-->
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<!--FACEBOOK LOGIN-->
 </head>
 
 <body>
+
 <a name="inicio"></a>
 <!--BARRA DE NAVEGACION-->
 <nav class="home-nav">
@@ -33,6 +33,9 @@
 					<a href="#contact">Contacto</a>
 				</li>
 				<li>
+					<a href="#institutions">Instituciones</a>
+				</li>
+				<li>
 					<a href="register_user.php">Registrarse</a>
 				</li>
 				<li id="login">
@@ -42,23 +45,10 @@
 		</li>
 	</ul>
 </nav>
-<form id="login-form"  action="php/login.php" method="POST" >
-	<img src="Imagenes/logo-name.png" />
-	<input type="email" name="correo" placeholder="Correo electrónico" required>
-	<input type="password" name="contrasena" placeholder="Contraseña" required>
-	<button type="submit" name="button">Entrar</button>
-	<span><a href="">¿Has olvidado tu contraseña?</a></span>
-	<hr>
-	<span class="title">¿Todavia no tienes una cuenta? Regístrate!</span>
-	<a href="register_user.php">
-	<button type="button" name="button">Registrarse</button>
-	</a>
-</form>
 <!--LOGOOO-->
 <div id="logo">
 	<a href="index.html">
-	<img src="Imagenes/logo-only.png" />
-	<img src="Imagenes/logo-name.png" />
+	<img src="Imagenes/logo.png" />
 	</a>
 </div>
 
@@ -66,39 +56,50 @@
 <header>
 	<h2>Viaja seguro y rápido</h2>
 	<p>
-		La mejor plataforma para que puedas compartir tu carro con toda la comunidad universitaria.
+		Comparte tu carro con toda la comunidad universitaria.
 	</p>
 </header>
-<!--MISIONYVISION-->
-<a name="misionyvision"></a>
-<section class="contenedorM">
 
+<section class="contenedorM">
 	<h2>Pertenecer a esta comunidad te traerá muchas ventajas.</h2>
 	<div class="columnas">
 		<div class="col">
-			<img src="Imagenes/ahorra2.jpg" >
-			<h5>Ahorra</h5>
+			<img src="Imagenes/ahorra2.png" >
+			<h2>Ahorra</h2>
 			<p>
 				Al compartir tu vehiculo con la comunidad puedes generar un ingreso extra que te ayudará con los gastos de tu universidad. <br>
 				<br>
 			</p>
 		</div>
 		<div class="col">
-			<img src="Imagenes/confianza.jpg">
-			<h5>Confianza</h5>
+			<img src="Imagenes/confianza.png">
+			<h2>Confianza</h2>
 			<p>
 				Solo personas que pertenecen a tu comunidad universitaria pueden prestarte el servicio, no cualquier extraño con posibles malas intenciones.
 			</p>
 		</div>
 		<div class="col">
-			<img src="Imagenes/conoce.jpg">
-			<h5>Conoce</h5>
+			<img src="Imagenes/conoce.png">
+			<h2>Conoce</h2>
 			<p>
-				Conoce a toda la comunidad, profesores y compañeros, para crear y fortalecer vinculos sociales. <br>
-				<br>
+				Conoce a toda la comunidad, profesores y compañeros, para crear y fortalecer vinculos sociales. <br><br><br>
 			</p>
 		</div>
+		<div id="institutions">
+			<img id="map" src="Imagenes/map2.png" alt="" />
+			<h2>¿Quieres Uniway en tu institución?</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<h2>Instituciones para las que actualmente está disponible Uniway</h2>
+			<ul>
+				<li><img src="Imagenes/uis.png" alt="" /></li>
+				<li><img src="Imagenes/unab.png" alt="" /></li>
+				<li><img src="Imagenes/usta.png" alt="" /></li>
+				<li><img src="Imagenes/upb.gif" alt="" /></li>
+			</ul>
+
+		</div>
 	</div>
+
 </section>
 
 <!--FEEDBACK-->
@@ -123,7 +124,9 @@
 
 <div id="contact-box" class="contact-box">
 	<div class="contact-form">
-		<img id="close-contact-form" src="Imagenes/left4.png" />
+		<h2>
+			Contacto
+		</h2>
 		<form  action="php/send_email.php" method="POST" >
 			<label for="nombre-contact">Nombre</label>
 			<input id="nombre-contact" type="text" name="name-user"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
@@ -137,14 +140,42 @@
 			<label for="content-contact">Mensaje</label>
 			<textarea id="content-contact" name="content" rows="3" cols="10" required pattern="[A-Z0-9\s]{4,250}" ></textarea>
 			<input class="enviarCorreo" type="submit" name="submit" value="Enviar">
+			<input id="close-contact-form" type="button" name="name" value="Cancelar">
 		</form>
 	</div>
+	<form id="login-form"  action="php/login.php" method="POST" >
+		<div class="head">
+			<img src="Imagenes/logo-name-white.png" />
+		</div>
+		<input type="email" name="correo" placeholder="Correo electrónico" required>
+		<input type="password" name="contrasena" placeholder="Contraseña" required>
+		<button type="submit" name="button">Entrar</button>
+		<span><a href="">¿Has olvidado tu contraseña?</a></span>
+		<hr>
+		<a href="register_user.php">
+			<button type="button" name="button">Registrarse</button>
+		</a>
+		<button id="close-login-form" type="button" name="button">Cancelar</button>
+	</form>
 </div>
 <span class="email_send">Mensaje enviado!</span>
 
 <!--COPYRIGHT-->
 <section class="copyright">
-	<p>Uniway &copy;2017. All Rights Reserved.<p>
+	<p>Uniway &copy;2017. Todos los derechos reservados.<p>
 </section>
+<script type="text/javascript">
+$('a[href^="#"]').on('click',function (e) {
+	var target = this.hash;
+	var $target = $(target);
+	$('html, body').stop().animate(
+		{'scrollTop': $target.offset().top},
+		900,
+		'swing',
+		function () {
+			window.location.hash = target;
+		});
+	});
+</script>
 </body>
 </html>

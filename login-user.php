@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
-
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 		<div class="login">
 			<form  action="php/login.php" method="POST" >
 				<a href="index.html">
-					<img class="loginImg" src="Imagenes/logo.png" width="175" /><br><br>
+					<img class="loginImg" src="Imagenes/logo.png"  /><br><br>
 				</a>
 				<hr>
 				<span class="title">Inicia sesión</span>

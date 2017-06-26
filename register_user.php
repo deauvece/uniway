@@ -7,7 +7,6 @@
 	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 
 <body>
@@ -17,7 +16,7 @@
 	<ul >
 		<li>
 			<a href="index.html">
-				<img src="Imagenes/logo-name-white.png" width="150" id="nombre" />
+				<img src="Imagenes/logo-name-white.png" id="nombre" />
 			</a>
 		</li>
 	</ul>
@@ -35,7 +34,7 @@
 
 
 <!--MISIONYVISION-->
-<section class="contenedorContact">
+<section class="contenedorContact registerPage">
 		<div class="register">
 			<form autocomplete="off" action="php/register.php" method="POST" >
 					<p>
@@ -44,14 +43,6 @@
 					<input type="text" name="names" placeholder="Nombres" pattern="[a-zA-Z\s]+" required title="Solo letras mayusculas y minusculas"/>
 					<input type="text" name="last_names" placeholder="Apellidos" pattern="[a-zA-Z\s]+" required title="Solo letras mayusculas y minusculas">
 					<input type="tel" name="phone" placeholder="Numero celular" pattern="[0-9]{10,}" required title="Minimo 10 caracteres numericos">
-					<!--
-					<div class="sex">
-							<input type="radio" id="radio_h" name="sex" value="M" required>
-							<label for="radio_h">Hombre</label>
-							<input type="radio" id="radio_m" name="sex" value="F">
-							<label for="radio_m">Mujer</label>
-					</div>
-					-->
 					<select name="id_u"  required>
 					<option value="">Elige tu universidad</option>
 						<?PHP
