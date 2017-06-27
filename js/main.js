@@ -150,8 +150,18 @@ $(document).ready(function () {
 				$(".options").hide();
 			}
 		});
+		$(".sinmenu li a").click(function(){
+			$(".sinmenu").css("left","100%");
+		});
 		$("#btn").click(function(){
-			$(".sinmenu").toggle("fast");
+			var w =$( window ).width();
+			var left = $(".sinmenu").css("left");
+			w=w+"px";
+			if (left==w) {
+				$(".sinmenu").css("left","0%");
+			}else {
+				$(".sinmenu").css("left","100%");
+			}
 		});
 
 		//RESPONSIVE EN LA VENTANA MODAL
@@ -341,7 +351,6 @@ $(document).ready(function () {
 		    var scroll = $(window).scrollTop();
 		    if (scroll>100) {
 			    var w =$( window ).width();
-			    $(".sinmenu").css("margin-top","-5px");
     				if (w > 800) {
 					$("#logo img").css("height","35px");
 					$(".home-nav").css({height:"55px",});
@@ -349,8 +358,6 @@ $(document).ready(function () {
 				}
 		    }else {
 			    var w =$( window ).width();
-
-			    $(".sinmenu").css("margin-top","10px");
     				if (w > 800) {
 					$("#logo a img").css("height","45px");
 					$(".home-nav").css({height:"70px",});
@@ -383,5 +390,28 @@ $(document).ready(function () {
 			$("#contact-box").fadeOut();
 			$(".contact-form").fadeOut().css("transform","translateY(375px)");
 		});
+
+		/*Funciones reset password page ---------------------------------------------------------------------------------*/
+		$("#change_pass").click(function() {
+			$.ajax({
+				url: 'php/json_change_pass.php',
+				type: 'get',
+				data: {
+					change_pass_email: $("#change_pass_email").val()
+				},
+				dataType: 'json',
+				success: function(array){
+
+					if (array.response=="no_email") {
+						$("#change_pass_error").fadeIn("slow").text("Debes introducir una dirección de correo electrónico.")
+					}else if (array.response=="doesnt_exist") {
+						$("#change_pass_error").fadeIn("slow").text("Este correo no existe en nuestra base de datos.")
+					}else if (array.response=="success") {
+						$("#change_pass_error").fadeIn("slow").text("Hemos enviado las instrucciones a tu email, si no lo encuentras revisa en la carpeta de spam!")
+					}
+				}
+			});
+		});
+
 
 });

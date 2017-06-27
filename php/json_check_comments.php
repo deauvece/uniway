@@ -5,7 +5,7 @@
 	session_start();
 	//datos de usuario
 	$idu=$_SESSION['id_usuario'];
-	
+
 	error_reporting(0);
 	include("../php/functions.php");
 	$conn=conectarse();

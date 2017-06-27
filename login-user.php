@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Uniway / Inicia sesión</title>
+	<title>Uniway | Inicio de sesión</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
@@ -11,15 +11,12 @@
 
 <body>
 <section class="contenedorContact">
-
-	<div class="container">
+	<a href="index.html">
+		<img class="loginImg" src="Imagenes/logo.png"  /><br><br>
+	</a>
 		<div class="login">
+			<span class="title">Inicia sesión</span>
 			<form  action="php/login.php" method="POST" >
-				<a href="index.html">
-					<img class="loginImg" src="Imagenes/logo.png"  /><br><br>
-				</a>
-				<hr>
-				<span class="title">Inicia sesión</span>
 				<input type="email" name="correo" placeholder="Correo electrónico" required>
 				<input type="password" name="contrasena" placeholder="Contraseña" required>
 				<?php
@@ -41,15 +38,14 @@
 					}
 				?>
 				<input class="botonLogin" type="submit" name="submit" value="Entrar">
+				<span><a href="password_reset.php">¿Has olvidado tu contraseña?</a></span>
 			</form>
 			<hr>
-			<span class="title">¿Todavia no tienes una cuenta? Regístrate!</span>
+			<p>¿Todavia no tienes una cuenta? Regístrate!</p>
 			<a href="register_user.php">
 				<input class="botonLogin" type="submit" name="submit" value="Registrarse">
 			</a>
 		</div>
-	</div>
-
 </section>
 </body>
 </html>
