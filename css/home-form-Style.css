@@ -177,18 +177,16 @@ header {
 	background-image: url("../Imagenes/3.gif");
 	background-size: cover;
 	background-color: rgba(0, 0, 0, 0.3);
+	background-attachment: fixed;
 	display: flex;
-	height: 100vh;
+	height: 85vh;
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
-	position: fixed;
-	top: 0px;
-	z-index: -1;
-
+	transition: all 0.3s;
 }
 	header h2 {
-		transition: all 0.2s;
+		transition: all 0.6s;
 		margin: 60px auto 30px auto;
 		color: white;
 		font-weight: bolder;
@@ -196,7 +194,7 @@ header {
 	}
 	header p{
 		text-align: center;
-		transition: all 0.2s;
+		transition: all 0.6s;
 		display: block;
 		margin: -20px auto 0 auto;
 		color:  white;
@@ -249,7 +247,6 @@ header {
 	background-color: white;
 	min-height: 500px;
 	padding: 30px;
-	margin-top: 95vh;
 	text-align: center;
 }
 	.contenedorM h2{
@@ -262,7 +259,7 @@ header {
 				border-radius: 5px;
 				position: relative;
 				display: inline-block;
-				height: 300px;
+				min-height: 300px;
 				width: 280px;
 				margin: 30px 25px;
 			}
@@ -278,8 +275,9 @@ header {
 				font-size: 110%;
 			}
 			.contenedorM .columnas  .col img {
-				height: 140px;
-				width: 140px;
+				height: 190px;
+				width: 190px;
+				border-radius: 50%;
 			}
 
 }
@@ -306,7 +304,7 @@ header {
 		background-color: #E74C3C;
 		background-color: white;
 		width: 50%;
-		height: 400px;
+		min-height: 400px;
 		position: fixed;
 		top: 90vh;
 		left: 50%;
@@ -324,12 +322,19 @@ header {
 		background-color: #b72c2c;
 	}
 	.contact-form label {
-
 		margin-left: 9%;
 		font-size: 80%;
 		display: block;
 		margin-bottom: -4px;
 		margin-top: 10px;
+	}
+	/*error validate.js jquery*/
+	.contact-form label span{
+		display: block;
+		margin-top: -5px;
+		font-size: 90%;
+		font-weight: bold;
+		color: #921E1E;
 	}
 	.contact-form input , textarea {
 		background-color: #F3F3F3;
@@ -370,18 +375,19 @@ header {
 		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 	}
 	.email_send{
-		display: none;
+		display: block;
 		color: white;
 		text-align: center;
-		background-color: #b72c2c;
+		background-color: #007272;
 		padding: 10px;
-		border-radius: 5px;
-		width: 150px;
+		border-radius: 3px;
+		width: 250px;
 		position: fixed;
-		top: 85%;
+		bottom: -50px;
 		left: 50%;
-		margin-left: -75px;
+		margin-left: -125px;
 		cursor: pointer;
+		transition: all 0.9s;
 	}
 	footer {
 		background-color: #252525;
@@ -534,6 +540,15 @@ header {
 		color: #921E1E;
 		padding: 0 50px;
 	}
+	.erroremail{
+		display: block;
+		width: 80%;
+		margin-left: 9%;
+		display: block;
+		font-size: 70%;
+		font-weight: bold;
+		color: #921E1E;
+	}
 	.login > p {
 		display: block;
 		padding: 10px;
@@ -559,16 +574,17 @@ header {
 		height: 50px;
 		list-style-type: none;
 		text-align: right;
-		cursor: default;
 	}
 	.account-login ul li {
 		display: inline-block;
 		color: #616161;
 		margin-left: 20px;
 	}
-	.account-login a {
-		color: white;
+	.account-login ul > a{
 		text-decoration: none;
+	}
+	.account-login  ul a li {
+		color: white;
 	}
 .registerPage .register{
 	background-color: white;
@@ -604,6 +620,7 @@ header {
 		border-radius: 3px;
 		background-color: #B72C2C;
 		margin-top: 10px;
+		cursor: pointer;
 	}
 	#message{
 		font: 90%;

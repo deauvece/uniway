@@ -10,6 +10,7 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/jquery-ui/jquery-ui.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/validate.js"></script>
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.structure.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.theme.css">
@@ -122,22 +123,24 @@
 
 <div id="contact-box" class="contact-box">
 	<div class="contact-form">
-		<h2>
-			Contacto
-		</h2>
-		<form  action="php/send_email.php" method="POST" >
+		<form name="cont-form" action="">
+			<h2>
+				Contacto
+			</h2>
 			<label for="nombre-contact">Nombre</label>
-			<input id="nombre-contact" type="text" name="name-user"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
+			<input id="nombre-contact" type="text" name="name_user">
 
 			<label for="email-contact">Direccion de correo electronico</label>
-			<input id="email-contact" type="email" name="email"  required>
+			<input class="verif_email" id="email-contact" type="email" name="email">
+			<span class="erroremail"></span>
 
 			<label for="asunto-contact">Asunto</label>
-			<input id="asunto-contact" type="text" name="subject"  pattern="[a-zA-Z\s]{4,25}" title="No puede tener numeros, tamño entre 4 y 25" required>
+			<input id="asunto-contact" type="text" name="subject" >
 
 			<label for="content-contact">Mensaje</label>
-			<textarea id="content-contact" name="content" rows="3" cols="10" required pattern="[A-Z0-9\s]{4,250}" ></textarea>
-			<input class="enviarCorreo" type="submit" name="submit" value="Enviar">
+			<textarea id="content-contact" name="content" rows="3" cols="10" ></textarea>
+			
+			<input class="enviarCorreo submit-btn" type="submit" name="submit" value="Enviar">
 			<input id="close-contact-form" type="button" name="name" value="Cancelar">
 		</form>
 	</div>

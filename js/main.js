@@ -341,11 +341,118 @@ $(document).ready(function () {
 
 
 	/*Funciones home page ---------------------------------------------------------------------------------*/
-		//confirma correo enviado
-		var pathname = window.location.href;
-	 	if (pathname=="http://uniway.heliohost.org/?email=true"  || pathname=="http://localhost/Uniway/uniway/index.html?eml=true") {
-			$(".email_send").fadeIn().delay(1500).fadeOut();
-		}
+		//verifica validez de los email pagina de contacto
+		$(".verif_email").on("keyup",function(){
+			$.ajax({
+				url: 'php/json_email_validator.php',
+				type: 'get',
+				data: {
+					email: $(this).val()
+				},
+				dataType: 'json',
+				success: function(array){
+					if (array.isValid==false) {
+						$(".erroremail").text("La dirección de correo no es válida.");
+						$('.submit-btn').prop("disabled", true);
+					}else{
+						$(".erroremail").text("");
+						$('.submit-btn').prop("disabled", false);
+					}
+				}
+			});
+		});
+		//verifica validez de los email pagina de registro
+		$(".verif_email").on("keyup",function(){
+			$.ajax({
+				url: 'php/json_email_validator.php',
+				type: 'get',
+				data: {
+					email: $(this).val()
+				},
+				dataType: 'json',
+				success: function(array){
+					if (array.isValid==false) {
+						$(".erroremail").text("La dirección de correo no es válida.");
+						$('.submit-btn').prop("disabled", true);
+					}else{
+						$(".erroremail").text("");
+						$('.submit-btn').prop("disabled", false);
+					}
+				}
+			});
+		});
+		//envia correo de contacto
+		$(".enviarCorreo").on("click",function(){
+					  $("form[name='cont-form']").validate({
+					    rules: {
+					      name_user: {
+					        required: true,
+					        maxlength: 25,
+						   minlength: 4
+					   	 },
+					      subject: {
+					        required: true,
+					        maxlength: 35,
+						   minlength: 4
+					   	 },
+					      content: {
+					        required: true,
+					        maxlength: 250
+					      }
+					    },
+					    //mensajes de error
+					    messages: {
+					      name_user: {
+					        required: "<span class=''>Ingresa un nombre valido</span>",
+					        maxlength: "<span class=''>Tu nombre no puede tener mas de 25 caracteres</span>",
+						   minlength: "<span class=''>Tu nombre no puede tener menos de 4 caracteres</span>"
+					   	},
+					      subject:{
+					        required: "<span class=''>Ingresa un asunto valido</span>",
+					        maxlength: "<span class=''>El asunto no puede tener mas de 35 caracteres</span>",
+						   minlength: "<span class=''>El asunto no puede tener menos de 4 caracteres</span>"
+					   	},
+					      content: {
+					        required: "<span class=''>Ingresa un comentario</span>",
+					        maxlength: "<span class=''>Tu comentario no puede tener mas de 250 caracteres</span>"
+					      }
+					    },
+					    //submit
+					    submitHandler: function(form) {
+						    $.ajax({
+   			 				url: 'php/json_send_email.php',
+   			 				type: 'post',
+   			 				data: {
+   			 					email: $("#email-contact").val(),
+   			 					name: $("#nombre-contact").val(),
+   			 					subject: $("#asunto-contact").val(),
+   			 					content: $("#content-contact").val()
+   			 				},
+   			 				dataType: 'json',
+   			 				success: function(array){
+   			 					if (array.sended==false) {
+   			 						console.log("no enviado");
+   			 					}else{
+									$(".contact-form > h2, .contact-form input[type='submit'],.contact-form  input[type='button']").css({
+										backgroundColor: "#007272"
+									});
+									$(".contact-form").css({
+										transition:"all 1.5s",
+										transform:"translateY(-200vh)"
+									});
+									$("#contact-box").fadeOut("slow");
+									$(".email_send").fadeIn().css("transform","translateY(-50px)").delay(1500).fadeOut();
+									$("#email-contact").val("");
+									$("#nombre-contact").val("");
+									$("#asunto-contact").val("");
+									$("#content-contact").val("");
+   			 						console.log("enviado");
+   			 					}
+   			 				}
+   			 			});
+					    }
+					  });
+		});
 		//cambia la barra de navegacion
 		$(window).scroll(function (event) {
 		    var scroll = $(window).scrollTop();
@@ -354,41 +461,46 @@ $(document).ready(function () {
     				if (w > 800) {
 					$("#logo img").css("height","35px");
 					$(".home-nav").css({height:"55px",});
-					$("header h2").css({fontSize:"250%",});
+					$("header h2, header p").css({opacity:"0",});
 				}
 		    }else {
 			    var w =$( window ).width();
     				if (w > 800) {
 					$("#logo a img").css("height","45px");
 					$(".home-nav").css({height:"70px",});
-					$("header h2").css({fontSize:"300%",});
+					$("header h2, header p").css({opacity:"1",});
 				}
 
 		    }
 		});
 		//login user
 		//contact-form index.html
+		//open
 		$("#login").click(function(){
 			var w =$( window ).width();
 			if (w > 800) {
 				$("#contact-box").fadeIn();
-				$("#login-form").fadeIn().css("transform","translateY(450px)");
+				$("#login-form").fadeIn().css("transform","translateY(475px)");
 			}else{
 				window.location="login-user.php";
 			}
 		});
 		$("#contact-modal").click(function(){
 			$("#contact-box").fadeIn();
-			$(".contact-form").fadeIn().css("transform","translateY(-375px)");
+			$(".contact-form > h2, .contact-form input[type='submit'],.contact-form  input[type='button']").css({
+				backgroundColor: "#b72c2c"
+			});
+			$(".contact-form").fadeIn().css("transform","translateY(-400px)");
+		});
+		//close
+		$("#close-login-form").click(function(){
+			$("#login-form").fadeOut().css("transform","translateY(-475px)");
+			$("#contact-box").fadeOut();
 		});
 
-		$("#close-login-form").click(function(){
-			$("#login-form").fadeOut().css("transform","translateY(-450px)");
-			$("#contact-box").fadeOut();
-		});
 		$("#close-contact-form").click(function() {
 			$("#contact-box").fadeOut();
-			$(".contact-form").fadeOut().css("transform","translateY(375px)");
+			$(".contact-form").fadeOut().css("transform","translateY(400px)");
 		});
 
 		/*Funciones reset password page ---------------------------------------------------------------------------------*/

@@ -10,8 +10,14 @@
 
 	//envia correo de constancia al usuario
 	$mess="Haz enviado un correo de contacto a uniway, te estaremos respondiendo lo más pronto posible, si no enviaste ningun correo por favor haz caso omiso ha este mensaje. Att: admin uniway";
-	mail($email,"Contacto Uniway",$mess,"From: info@uniway.com");
+	$bool=mail($email,"Contacto Uniway",$mess,"From: info@uniway.com");
 
-	//redirecciona
-	header("location:../index.html?eml=true");
+	$sended=True;
+	if ($bool==False) {
+		$sended=False;
+	}
+	$array = array(
+		"sended"=>$sended
+	);
+	echo json_encode($array);
  ?>

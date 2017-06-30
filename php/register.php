@@ -7,7 +7,7 @@ require_once "recaptchalib.php";
 /*foreach ($_POST as $key => $value) {
 echo '<p><strong>' . $key.':</strong> '.$value.'</p>';
 }*/
-
+ 
 //clave secreta
 $secret = "6LdlABcUAAAAAN8n0ysKFiyhC9BkICAl_Ztw3oJh";
 //respuesta vacía
@@ -28,7 +28,7 @@ if ($response != null && $response->success) {
 			extract($_POST);
 			include("functions.php");
 			include("hash_pass.php");
-			$conn=conectarse(); 
+			$conn=conectarse();
 			//comprueba que no exista el correo electornico
 			$sql1="SELECT email FROM users";
 			$resultado = pg_query($conn,$sql1);

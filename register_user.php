@@ -21,18 +21,18 @@
 					¿Ya tienes una cuenta?
 				</li>
 
-				<li id="login">
-					<a href="login-user.php">Iniciar Sesión</a>
-				</li>
+				<a href="login-user.php">
+					<li id="login">Iniciar Sesión</li>
+				</a>
 			</ul>
 		</section>
 		<form class="register" autocomplete="off" action="php/register.php" method="POST" >
 				<p>
 					Ingresa tus datos y has parte de esta gran comunidad!
 				</p>
-				<input type="text" name="names" placeholder="Nombres" pattern="[a-zA-Z\s]+" required title="Solo letras mayusculas y minusculas"/>
-				<input type="text" name="last_names" placeholder="Apellidos" pattern="[a-zA-Z\s]+" required title="Solo letras mayusculas y minusculas">
-				<input type="tel" name="phone" placeholder="Numero celular" pattern="[0-9]{10,}" required title="Minimo 10 caracteres numericos">
+				<input type="text" name="names" placeholder="Nombres" pattern="[a-zA-Z\s]{4,25}" required title="Solo letras mayusculas y minusculas, entre 4 y 25 caracteres"/>
+				<input type="text" name="last_names" placeholder="Apellidos" pattern="[a-zA-Z\s]{4,25}" required title="Solo letras mayusculas y minusculas">
+				<input type="tel" name="phone" placeholder="Numero celular" pattern="[0-9]{10}" required title="Solo 10 caracteres numericos">
 				<select name="id_u"  required>
 				<option value="">Elige tu universidad</option>
 					<?PHP
@@ -53,7 +53,8 @@
 					?>
 
 				</select>
-				<input autocomplete="off" type="email" name="email" placeholder="Correo electrónico" required  >
+				<input autocomplete="off" class="verif_email" type="email" name="email" placeholder="Correo electrónico" required  >
+				<span class="error erroremail"></span>
 				<?php
 					//El correo ya existe
 					if (isset($_GET["emailerror"])=="true")
@@ -67,7 +68,6 @@
 				<input autocomplete="off" type="password" id="pass1" name="password" placeholder="Contraseña"  required>
 				<input type="password" id="pass2" placeholder="Confirma la contraseña" required>
 				<span id="message" ></span>
-				<!-- <input type="text" id="pass2" name="confirmPassword" placeholder="Confirma tu contraseña" required > -->
 				<div class="text-xs-center">
 					<div class="g-recaptcha" data-size="compact" data-sitekey="6LdlABcUAAAAAONiTJxjYQNxI9o5k6OHxuBBjftB"></div>
 				</div>
@@ -78,7 +78,7 @@
 						echo "<span class='error'>Para terminar el registro debes completar el captcha.</span>";
 					}
 				?>
-				<input type="submit" value="Crear cuenta">
+				<input class="submit-btn" type="submit" value="Crear cuenta">
 				<span class="termycon">
 					Al hacer click en "Crear cuenta", aceptas los Términos y las condiciones
 					de Uniway y la politica de privacidad.
@@ -94,21 +94,26 @@
 <!--captcha google-->
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/main.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#pass1').keyup(function() {
 		var pswd = $(this).val();
 		if (pswd.length < 8) {
 			$('#message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
+			$('.submit-btn').prop("disabled", true);
 		}else {
 			$('#message').html("");
+			$('.submit-btn').prop("disabled", false);
 		}
 	});
 	$('#pass2').keyup(function() {
 		if ($('#pass1').val() != $('#pass2').val()) {
 			$('#message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+			$('.submit-btn').prop("disabled", true);
 		}else {
 			$('#message').html("");
+			$('.submit-btn').prop("disabled", false);
 		}
 	});
 });
