@@ -52,152 +52,154 @@ $rdnString=$vector_random['random_string'];
 	</head>
 
 	<body>
-		<nav id="nav_feed">
-			<ul>
-				<li><a href="sesionOpen.php"><img src="../Imagenes/logo-name-white.png" alt="logo"/></a></li>
-				<img id="bmenuw" src="../Imagenes/bmenuw.png" width="30px" />
-			</ul>
-		</nav>
-
-		<!--options section (left)-->
-		<section class="options">
-			<a href="sesionOpen.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
-			<a href="userProfile.php?idu=myProfile">
-				<!--<img src="../Imagenes/load2.gif" alt="loading" class="load_img" />-->
-				<img id="usr_img" src="" title="Editar perfil" class="put_image_profile" alt="profile image" />
-			</a>
-			<br>
-			<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
-
-			<div class="other-options">
-				<ul class="lista">
-					<a href="#"><li id='score_li'><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" /> &nbsp; &nbsp;<span id="score_usr"></span></li></a>
-					<a id="logout" href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
-				</ul>
-			</div>
-			<hr color="#161717" >
-			<div class="other-options">
-				<ul class="lista">
-					<li><span></span>Buscar usuario</li>
-					<li><span></span>Contacto</li>
-					<li><span></span>Ayuda</li>
-				</ul>
-			</div>
-		</section>
-
-
-		<!--recomended section (right)-->
-		<section class="news">
-			<img src="../Imagenes/news.png" width="100%" />
-		</section>
-		<!--ads section (right)-->
-		<section class="ads">
-			<span class="copy" >©2017 Uniway</span>
-			<div class="links">
-				<a href="#">Sobre nosotros</a>
-				<a href="#">Ayuda</a>
-				<a href="#">Condiciones</a>
-				<a href="#">Privacidad</a>
-				<a href="#">Marca</a>
-				<a href="#">Blog</a>
-				<a href="#">Desarrolladores</a>
-				<a href="#">Multimedia</a>
-				<a href="#">Anuncios</a>
-				<a href="#">Empleos</a>
-				<a href="#">Cookies</a>
-			</div>
-		</section>
-		<section class="dinamic_button">
-		</section>
-
-		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
-
-		<section class="find">
-			<input id="search-input" class="search" type="text" name="name" placeholder="¿Para dónde vas?" autocomplete="off" autofocus>
-			<img id="search_image" src="../Imagenes/search.png" alt="" />
-		</section>
-
-
-		<div id="addRouteBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?>>
-			<form  action="../php/addWay.php" method="post" id="addRoute">
-				<button type="button" id="closeAddRoute" > X </button>
-				<p>
-					Publica un recorrido.
-				</p>
-				<input id="id_user_json" type="hidden" name="id_user"  value="<?php echo $idu; ?>">
-				<input type="hidden" name="id_u"  value="<?php echo $id_university; ?>">
-				<span id="commentTitle" >Selecciona una de tus rutas:</span>
-				<?php
-				//consulta las rutas del usuario y las muestra como opcion
-				$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
-				$result_routes = pg_query($conn, $sql_routes);
-				$numFilas_routes = pg_num_rows($result_routes);
-				$contador=1;
-				if  ($numFilas_routes!=0)
-				{
-					while($vector_routes=pg_fetch_array($result_routes))
-					{
-						$id_ruta= $vector_routes['id_route'];
-						?>
-							<div class="rutaXBox">
-							<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
-							<label for="ruta<?php echo $contador; ?>"></label>
-							<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
-							<option value="" selected >Ruta <?php echo $contador; ?></option>
-						<?php
-						//se imprimen las paradas
-						$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
-						$result_stops = pg_query($conn, $sql_stops);
-						while($vector_stops=pg_fetch_array($result_stops))
-						{
-							$id_parada=$vector_stops['id_stop'];
-							//selecciono el nombre de cada parada
-							$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
-							$result_allstops = pg_query($conn, $sql_allstops);
-							while($vector_allstops=pg_fetch_array($result_allstops))
-							{
-								$nameStop=$vector_allstops['name'];
-								$nameStop_vec=explode(",",$nameStop);
-								?><option value="<?php echo $nameStop_vec[0]; ?>" disabled ><?php echo $nameStop_vec[0]; ?></option><?php
-							}
-						}
-						?>
-						</select>
-						</div>
-						<?php
-						$contador=$contador + 1;
-					}
-				}else{
-					echo "<p style='font-size:70%; text-align:center'>No tienes rutas disponibles <br> <a href='userProfile.php?idu=myProfile#userRutesBox'> CREAR</a> </p>";
-				}
-				?>
-				<span id="commentTitle" >Selecciona los cupos disponibles:</span>
-				<select name="spots" >
-					<option value="1">1 cupo</option>
-					<option value="2">2 cupos</option>
-					<option value="3">3 cupos</option>
-					<option value="4" selected >4 cupos</option>
-				</select>
-				<span id="commentTitle" >Selecciona una hora:</span>
-				<input id="timepicker" type="text" name="timepicker" autocomplete="off" required>
-
-				<div class="finish_start">
-					<span>El recorrido comienza o termina en la universidad</span>
-						<input type="radio" id="start" name="touniversity" value="false" required checked >
-							<label id="start_l" for="start"></label>
-						<input type="radio" id="finish" name="touniversity" value="true" required >
-							<label id="finish_l" for="finish"></label>
+	<nav id="nav_feed">
+		<ul>
+			<li><a href="sesionOpen.php"><img src="../Imagenes/logo-name-white.png" alt="logo"/></a></li>
+			<img id="bmenuw" src="../Imagenes/bmenuw.png" width="30px" />
+		</ul>
+	</nav>
+	<div class="sesion_container">
+		<div class="sesion_container_1">
+			<section class="options">
+				<a href="sesionOpen.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
+				<a href="userProfile.php?idu=myProfile">
+					<img id="usr_img" src="" title="Editar perfil" class="put_image_profile" alt="profile image" />
+				</a>
+				<br>
+				<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
+				<!--options section (left)-->
+				<div class="other-options">
+					<ul class="lista">
+						<a href="#"><li id='score_li'><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" /> &nbsp; &nbsp;<span id="score_usr"></span></li></a>
+						<a id="logout" href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
+					</ul>
 				</div>
-				<span id="commentTitle" >Informacion adicional:</span>
-				<textarea name="comment" rows="3" cols="31" required></textarea>
-
-				<button type="submit" <?php if($contador==1){echo "disabled";} ?> >Crear</button>
-			</form>
+				<hr color="#161717" >
+				<div class="other-options">
+					<ul class="lista">
+						<li><span></span>Buscar usuario</li>
+						<li><span></span>Contacto</li>
+						<li><span></span>Ayuda</li>
+					</ul>
+				</div>
+			</section>
 		</div>
-		<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
-		<section id="pub-box">
-		</section>
 
+		<div class="sesion_container_2">
+		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
+			<section class="find">
+				<input id="search-input" class="search" type="text" name="name" placeholder="¿Para dónde vas?" autocomplete="off" autofocus>
+				<img id="search_image" src="../Imagenes/search.png" alt="" />
+			</section>
+			<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
+			<section id="pub-box">
+			</section>
+		</div>
+		<div class="sesion_container_3">
+			<section class="news">
+				<img src="../Imagenes/news.png" width="100%" />
+			</section>
+			<!--ads section (right)-->
+			<section class="ads">
+				<span class="copy" >©2017 Uniway</span>
+				<div class="links">
+					<a href="#">Sobre nosotros</a>
+					<a href="#">Ayuda</a>
+					<a href="#">Condiciones</a>
+					<a href="#">Privacidad</a>
+					<a href="#">Marca</a>
+					<a href="#">Blog</a>
+					<a href="#">Desarrolladores</a>
+					<a href="#">Multimedia</a>
+					<a href="#">Anuncios</a>
+					<a href="#">Empleos</a>
+					<a href="#">Cookies</a>
+				</div>
+			</section>
+
+		</div>
+
+	</div>
+
+	<section class="dinamic_button">
+	</section>
+
+	<div id="addRouteBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?>>
+		<form  action="../php/addWay.php" method="post" id="addRoute">
+			<button type="button" id="closeAddRoute" > X </button>
+			<p>
+				Publica un recorrido.
+			</p>
+			<input id="id_user_json" type="hidden" name="id_user"  value="<?php echo $idu; ?>">
+			<input type="hidden" name="id_u"  value="<?php echo $id_university; ?>">
+			<span id="commentTitle" >Selecciona una de tus rutas:</span>
+			<?php
+			//consulta las rutas del usuario y las muestra como opcion
+			$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+			$result_routes = pg_query($conn, $sql_routes);
+			$numFilas_routes = pg_num_rows($result_routes);
+			$contador=1;
+			if  ($numFilas_routes!=0)
+			{
+				while($vector_routes=pg_fetch_array($result_routes))
+				{
+					$id_ruta= $vector_routes['id_route'];
+					?>
+						<div class="rutaXBox">
+						<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
+						<label for="ruta<?php echo $contador; ?>"></label>
+						<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
+						<option value="" selected >Ruta <?php echo $contador; ?></option>
+					<?php
+					//se imprimen las paradas
+					$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
+					$result_stops = pg_query($conn, $sql_stops);
+					while($vector_stops=pg_fetch_array($result_stops))
+					{
+						$id_parada=$vector_stops['id_stop'];
+						//selecciono el nombre de cada parada
+						$sql_allstops="SELECT name FROM stops WHERE id_stop='$id_parada'";
+						$result_allstops = pg_query($conn, $sql_allstops);
+						while($vector_allstops=pg_fetch_array($result_allstops))
+						{
+							$nameStop=$vector_allstops['name'];
+							$nameStop_vec=explode(",",$nameStop);
+							?><option value="<?php echo $nameStop_vec[0]; ?>" disabled ><?php echo $nameStop_vec[0]; ?></option><?php
+						}
+					}
+					?>
+					</select>
+					</div>
+					<?php
+					$contador=$contador + 1;
+				}
+			}else{
+				echo "<p style='font-size:70%; text-align:center'>No tienes rutas disponibles <br> <a href='userProfile.php?idu=myProfile#userRutesBox'> CREAR</a> </p>";
+			}
+			?>
+			<span id="commentTitle" >Selecciona los cupos disponibles:</span>
+			<select name="spots" >
+				<option value="1">1 cupo</option>
+				<option value="2">2 cupos</option>
+				<option value="3">3 cupos</option>
+				<option value="4" selected >4 cupos</option>
+			</select>
+			<span id="commentTitle" >Selecciona una hora:</span>
+			<input id="timepicker" type="text" name="timepicker" autocomplete="off" required>
+
+			<div class="finish_start">
+				<span>El recorrido comienza o termina en la universidad</span>
+					<input type="radio" id="start" name="touniversity" value="false" required checked >
+						<label id="start_l" for="start"></label>
+					<input type="radio" id="finish" name="touniversity" value="true" required >
+						<label id="finish_l" for="finish"></label>
+			</div>
+			<span id="commentTitle" >Informacion adicional:</span>
+			<textarea name="comment" rows="3" cols="31" required></textarea>
+
+			<button type="submit" <?php if($contador==1){echo "disabled";} ?> >Crear</button>
+		</form>
+	</div>
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
 			<img id="back" src="../Imagenes/left4.png" />

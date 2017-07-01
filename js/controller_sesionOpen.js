@@ -4,7 +4,7 @@ $(document).ready(function () {
 	//$(".ruta, .ruta-n").on("click", function () {
 	$(document).on('click touchstart', '.ruta, .ruta-n', function() {
 
-		var data= $(this).prev().attr("data-way");
+		var data= $(this).parent().attr("data-way");
 		$.ajax({
 			url: '../php/json_stops_query.php',
 			type: 'get',
@@ -217,7 +217,7 @@ $(document).ready(function () {
 	});
 
 	//CONSULTA DATOS DE LOS USUARIOS EN LAS PUBLICACIONES (MODAL WINDOW-FEED)
-	$("#pub-box").on('click','img',function(){
+	$("#pub-box").on('click','.open-modal',function(){
 		//comment form
 		$(".comm_fail").hide();
 		$(".cm-box").hide();

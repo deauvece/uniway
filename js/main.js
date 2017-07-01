@@ -58,6 +58,28 @@ $(document).ready(function () {
 	*/
 
 	/*Funciones sesionOpen.php ----------------------------------------------------------------------------*/
+
+		//hover buttons
+		$("#pub-box").on({
+		    click: function () {
+			   $(this).css({
+				   backgroundColor:"rgba(0, 0, 0, 0.7)",
+				   color:"rgba(0, 0, 0, 0)",
+			   });
+			   $(".name,.time,.ini-desti,.comentario",this).hide();
+			   $(".ruta, .btn-pedirCupo, .btn-eliminar",this).show();
+		    },
+		    mouseleave: function () {
+			    $(this).css({
+ 				   backgroundColor:"white",
+ 				   color:"rgba(0, 0, 0, 1)",
+ 			   });
+			   $(".name,.time,.ini-desti,.comentario",this).show();
+			   $(".ruta, .btn-pedirCupo, .btn-eliminar",this).hide();
+		    }
+	    },".publicaciones, .publicaciones-n");
+
+
 		$(".comments_info .add_comment label").on("click",function(){
 			$(".comments_info .add_comment label").css({backgroundColor:"#F5F5F5",color:"black"});
 			$(this).css({backgroundColor:"#009999",color:"white"});
@@ -84,7 +106,7 @@ $(document).ready(function () {
 		});
 
 		//ventana modal sesionopen.php USERS
-	    $("#pub-box").on("click","img",function(){
+	    $("#pub-box").on("click",".open-modal",function(){
 		    $(".modal-box").fadeToggle("fast");
 		    $(".modal-window").fadeToggle("fast");
 	    });
@@ -142,13 +164,7 @@ $(document).ready(function () {
 		});
 		//menu opciones
 		$("#bmenuw").click(function(){
-			$(".options").toggle();
-		});
-		$("#pub-box").click(function(){
-			var w =$( window ).width();
-			if (w<800) {
-				$(".options").hide();
-			}
+			$(".sesion_container_1").fadeToggle();
 		});
 		$(".sinmenu li a").click(function(){
 			$(".sinmenu").css("left","100%");

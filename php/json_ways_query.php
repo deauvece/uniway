@@ -98,39 +98,41 @@ if ($id_uni && $stop_query) {
 				$inicio_stp=$all_stops[0];
 				$fin_stp=$all_stops[$cont_stop-1];
 				$output=$output."
-					<div class='publicaciones-n' data-way='$id_way' class='p-before'>
-					<img class='open-modal' title='Ver perfil'  src=".$profile_image_user." alt=".$id_user_w." />
-					<span class='cupo'>
-						".$spots." cupos.
-					</span>
-					<a href='#'>
-						<span class='name'>
+					<div class='publicaciones'  class='p-before'>
+					<div class='cont1' >
+							<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
+					</div>
+					<div  data-way='$id_way' class='cont2' >
+							<span class='name'>
 							".$full_name_user."
-						</span>
-					</a>
-					<span class='time'>";
-					$output=$output."Hora de salida:".$hour;
-					$output=$output."</span>";
-					$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
-					$output=$output."<span class='comentario'>".$comentario."</span>";
-					$output=$output."<div class='botones'>";
+							</span>
+							<span class='time'>";
+							$output=$output."Hora de salida:".$hour;
+							$output=$output."</span>";
+							$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
+							$output=$output."<span class='comentario'>".$comentario."</span>";
 
-					if ($id_user_w==$idu) {
-						$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Chat</button></a>";
-					}else{
-						if ($status_usr=="true" && $id_way==$way_usr_active) {
-							$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Ver</button></a>";
-						}else{
-							//"VER" SI YA ES LA PUBLICACION QUE SE PIDIÓ
-							if ($way_active==$id_way) {
-								$output=$output."<a href='group-chat.php?id_way=".$id_way."'><button  class='btn-eliminar' type='button'>Ver</button></a>";
+
+							if ($id_user_w==$idu) {
+								$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";
 							}else{
-								$output=$output."<button id='btn-pedirCupo' data-way='$id_way' data-usr='$idu' class='btn-pedirCupo' type='button'>Pedir cupo</button>";
+								if ($status_usr=="true" && $id_way==$way_usr_active) {
+									$output=$output."<a href='group-chat.php?id_way=$id_way'><button  class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";
+								}else{
+									//"VER" SI YA ES LA PUBLICACION QUE SE PIDIÓ
+									if ($way_active==$id_way) {
+										$output=$output."<a href='group-chat.php?id_way=".$id_way."'><button  class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";
+									}else{
+										$output=$output."<button id='btn-pedirCupo' data-way='$id_way' data-usr='$idu' class='btn-pedirCupo' type='button'><img src='../Imagenes/pedir.png'/></button>";
+									}
+								}
 							}
-						}
-					}
-					$output=$output."</div></div>";
-					$output=$output."<span class='ruta-n'>Ver mapa</span>";
+					$output=$output."<span class='ruta'><img src='../Imagenes/route.png'/> </span>
+					</div>
+					<div class='cont3' >
+					<span class='cupo'>".$spots."</span>
+					</div>
+					</div>";
 			}
 		}
 	}
@@ -197,41 +199,42 @@ if ($id_uni && $stop_query) {
 				}
 				$inicio_stp=$all_stops[0];
 				$fin_stp=$all_stops[$cont_stop-1];
-
 				$output=$output."
-					<div class='publicaciones' data-way='$id_way' class='p-before'>
-					<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
-					<span class='cupo'>
-						".$spots." cupos.
-					</span>
-					<a href='#'>
-						<span class='name'>
+					<div class='publicaciones'  class='p-before'>
+					<div class='cont1' >
+							<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
+					</div>
+					<div  data-way='$id_way' class='cont2' >
+							<span class='name'>
 							".$full_name_user."
-						</span>
-					</a>
-					<span class='time'>";
-					$output=$output."Hora de salida:".$hour;
-					$output=$output."</span>";
-					$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
-					$output=$output."<span class='comentario'>".$comentario."</span>";
-					$output=$output."<div class='botones'>";
+							</span>
+							<span class='time'>";
+							$output=$output."Hora de salida:".$hour;
+							$output=$output."</span>";
+							$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
+							$output=$output."<span class='comentario'>".$comentario."</span>";
 
-					if ($id_user_w==$idu) {
-						$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Chat</button></a>";
-					}else{
-						if ($status_usr=="true" && $id_way==$way_usr_active) {
-							$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'>Ver</button></a>";
-						}else{
-							//"VER" SI YA ES LA PUBLICACION QUE SE PIDIÓ
-							if ($way_active==$id_way) {
-								$output=$output."<a href='group-chat.php?id_way=".$id_way."'><button  class='btn-eliminar' type='button'>Ver</button></a>";
+
+							if ($id_user_w==$idu) {
+								$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";
 							}else{
-								$output=$output."<button id='btn-pedirCupo' data-way='$id_way' data-usr='$idu' class='btn-pedirCupo' type='button'>Pedir cupo</button>";
+								if ($status_usr=="true" && $id_way==$way_usr_active) {
+									$output=$output."<a href='group-chat.php?id_way=$id_way'><button  class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";
+								}else{
+									//"VER" SI YA ES LA PUBLICACION QUE SE PIDIÓ
+									if ($way_active==$id_way) {
+										$output=$output."<a href='group-chat.php?id_way=".$id_way."'><button  class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";
+									}else{
+										$output=$output."<button id='btn-pedirCupo' data-way='$id_way' data-usr='$idu' class='btn-pedirCupo' type='button'><img src='../Imagenes/pedir.png'/></button>";
+									}
+								}
 							}
-						}
-					}
-					$output=$output."</div></div>";
-					$output=$output."<span class='ruta'>Ver mapa</span>";
+					$output=$output."<span class='ruta'><img src='../Imagenes/route.png'/> </span>
+					</div>
+					<div class='cont3' >
+					<span class='cupo'>".$spots."</span>
+					</div>
+					</div>";
 
 			}}
 

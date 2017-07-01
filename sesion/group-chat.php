@@ -45,7 +45,6 @@ if ($id_way_thisGroup){
 		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
-
 		<script src="../js/jquery-3.1.1.min.js"></script>
 		<script src="../js/jquery-ui/jquery-ui.js"></script>
 		<script src="../js/group-chat.js"></script>
