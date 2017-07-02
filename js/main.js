@@ -41,6 +41,12 @@ $(document).ready(function () {
 		var name_id= $(this).attr("href");
 		$(".big_container > div").hide();
 		$(name_id).slideDown();
+
+		var w =$( window ).width();
+		if (w<800) {
+			$(".left-section").hide();
+		}
+
 	});
 	//scroll efect
 	/*
@@ -496,7 +502,7 @@ $(document).ready(function () {
 			var w =$( window ).width();
 			if (w > 800) {
 				$("#contact-box").fadeIn();
-				$("#login-form").fadeIn().css("transform","translateY(475px)");
+				$("#login-form").fadeIn().css("transform","translateY(450px)");
 			}else{
 				window.location="login-user.php";
 			}
@@ -510,7 +516,7 @@ $(document).ready(function () {
 		});
 		//close
 		$("#close-login-form").click(function(){
-			$("#login-form").fadeOut().css("transform","translateY(-475px)");
+			$("#login-form").fadeOut().css("transform","translateY(-450px)");
 			$("#contact-box").fadeOut();
 		});
 

@@ -132,7 +132,7 @@ $rdnString=$vector_random['random_string'];
 			</p>
 			<input id="id_user_json" type="hidden" name="id_user"  value="<?php echo $idu; ?>">
 			<input type="hidden" name="id_u"  value="<?php echo $id_university; ?>">
-			<span id="commentTitle" >Selecciona una de tus rutas:</span>
+			<span class="commentTitle" >Selecciona una de tus rutas:</span>
 			<?php
 			//consulta las rutas del usuario y las muestra como opcion
 			$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
@@ -177,24 +177,24 @@ $rdnString=$vector_random['random_string'];
 				echo "<p style='font-size:70%; text-align:center'>No tienes rutas disponibles <br> <a href='userProfile.php?idu=myProfile#userRutesBox'> CREAR</a> </p>";
 			}
 			?>
-			<span id="commentTitle" >Selecciona los cupos disponibles:</span>
+			<span class="commentTitle" >Selecciona los cupos disponibles:</span>
 			<select name="spots" >
 				<option value="1">1 cupo</option>
 				<option value="2">2 cupos</option>
 				<option value="3">3 cupos</option>
 				<option value="4" selected >4 cupos</option>
 			</select>
-			<span id="commentTitle" >Selecciona una hora:</span>
-			<input id="timepicker" type="text" name="timepicker" autocomplete="off" required>
+			<span class="commentTitle" >Selecciona una hora:</span>
+			<input id="timepicker" type="text" name="timepicker" autocomplete="off" required placeholder="Haz click">
 
 			<div class="finish_start">
 				<span>El recorrido comienza o termina en la universidad</span>
-					<input type="radio" id="start" name="touniversity" value="false" required checked >
-						<label id="start_l" for="start"></label>
-					<input type="radio" id="finish" name="touniversity" value="true" required >
-						<label id="finish_l" for="finish"></label>
+				<input type="radio" id="start" name="touniversity" value="false" required checked >
+					<label id="start_l" for="start"></label>
+				<input type="radio" id="finish" name="touniversity" value="true" required >
+					<label id="finish_l" for="finish"></label>
 			</div>
-			<span id="commentTitle" >Informacion adicional:</span>
+			<span class="commentTitle" >Informacion adicional:</span>
 			<textarea name="comment" rows="3" cols="31" required></textarea>
 
 			<button type="submit" <?php if($contador==1){echo "disabled";} ?> >Crear</button>

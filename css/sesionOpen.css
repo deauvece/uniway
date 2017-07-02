@@ -4,18 +4,32 @@ body{
 	margin: 0px;
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
-/*============================================START FEED STYLE==============================================*/
+/*=====scrollbarr=========*/
+	::-webkit-scrollbar{
+	  width: 8px;  /* for vertical scrollbars */
+	  height: 12px; /* for horizontal scrollbars */
+	}
 
-/*============================================NAV BAR=======================================================*/
+	::-webkit-scrollbar-track{
+	  background: rgba(0, 0, 0, 0.1);
+	}
+
+	::-webkit-scrollbar-thumb{
+	  background: rgba(0, 0, 0, 0.5);
+	}
+/*=====scrollbarr=========*/
+/*============================================sesionopen=======================================================*/
 
 #nav_feed{
 	display: none;
-	position: fixed;
-	top: 0px;
-	background-color: #232626;
+	background-color: #161717;
 	width: 100%;
 	height: 60px;
 	z-index: 3;
+	position: fixed;
+	top: 0px;
+	border: 0px solid gray;
+	border-bottom-width: 1px;
 }
 #nav_feed ul {
 	margin-top: 0px;
@@ -30,11 +44,11 @@ body{
 	text-decoration: none;
 }
 #nav_feed ul li a img {
-	padding: 7px;
-	padding-top: 12px;
 	height: 35px;
+	padding-top: 10px;
 }
 #bmenuw {
+	display: block;
 	height: 35px;
 	width: 35px;
 	position: fixed;
@@ -42,11 +56,8 @@ body{
 	right: 20px;
 	cursor: pointer;
 }
-
-/*============================================NAV BAR=======================================================*/
-
-
 .sesion_container{
+	margin-top: 10px;
 	display: flex;
 	min-height: 100vh;
 	justify-content: center;
@@ -157,17 +168,10 @@ body{
 			height: 15px;
 		}
 
-
-
-/*============================================LEFT SIDE=====================================================*/
-
-/*============================================CENTER SIDE===================================================*/
-
 .find {
 	display: block;
 	background-color: #F5F8FA;
 	height: 70px;
-	box-shadow: 0 0 1px rgba(160,165,168,1);
 	position: relative;
 	padding-left: 30px;
 	border-width: 0px;
@@ -222,7 +226,6 @@ body{
 		#btn-add:hover {
 			background-color: #006E6E;
 		}
-	/*title style*/
 	#btn-see[data]:hover:after, #btn-add[data]:hover:after {
 	  content: attr(data);
 	  padding: 6px;
@@ -421,16 +424,12 @@ body{
 		white-space: nowrap;
 		border-radius: 2px;
 	}
-/*============================================CENTER SIDE===================================================*/
-
-/*============================================RIGHT SIDE====================================================*/
 .news {
 	margin-top: 0px;
 	display: inline-block;
 	background: white;
-	padding: 5px;
+	padding: 10px 5px;
 	box-shadow: 0 0 1px rgba(160,165,168,1);
-	border-radius: 5px;
 }
 .news img {
 	border-radius: 5px;
@@ -439,13 +438,12 @@ body{
 .ads {
 	width: 100%;
 	text-align: center;
-	padding: 20px 0px 0px;
+	padding: 150px 10px;
+	box-sizing: border-box;
 	min-height: 200px;
-	margin-top: 15px;
 	background: white;
 	margin-right: 10px;
 	box-shadow: 0 0 1px rgba(160,165,168,1);
-	border-radius: 5px;
 }
 	.ads .copy {
 		font-size: 95%;
@@ -459,8 +457,197 @@ body{
 			text-decoration: underline;
 		}
 
-/*============================================RIGHT SIDE====================================================*/
-/*============================================MODAL WINDOW====================================================*/
+#addRouteBox {
+	display: none;
+	background-color: lightgrey;
+	background: rgba(0, 0, 0, 0.4);
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 260%;
+	width: 100%;
+	z-index: 3;
+}
+
+
+#addRoute {
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+     margin-top:50px;
+	padding: 0px;
+	padding-bottom: 10px;
+	background: rgba(255, 0, 0, 1);
+	background-color: white;
+	border-radius: 3px;
+	box-shadow: 0 0 10px;
+	width: 50%;
+	min-height: 300px;
+	position: relative;
+}
+#addRoute p {
+	background-color: #002A2A;
+	color: white;
+	padding: 15px 5px;
+	text-align: center;
+}
+#addRoute input {
+	text-align: center;
+	display: block;
+	outline: none;
+	padding: 10px 0px;
+	width: 90%;
+	margin: 0px auto;
+	border: 1px solid #E5E5E5;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+#addRoute > select {
+	text-align-last: center;
+	display: block;
+	width: 90%;
+	padding: 5px 0px;
+	border-width: 0px;
+	margin: 0px auto;
+}
+
+#addRoute button {
+	margin: 0px auto;
+	width: 90%;
+	color: white;
+	padding: 15px 0px;
+	display: block;
+	background-color: #002A2A;
+	border-width: 0px;
+	cursor: pointer;
+	outline: none;
+	text-transform: uppercase;
+}
+
+#addRoute #closeAddRoute {
+	background-color: #861212;
+	font-weight: bold;
+	width: 49px;
+	height: 49px;
+	padding: 0px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+/*Checked para sesionopen (formulario de crear un recorrido)*/
+#addRoute input[type="radio"] {
+	display: none;
+}
+#addRoute a{
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+#addRoute .rutaXBox{
+	display: flex;
+	margin: 5px auto;
+	height: 30px;
+	width: 90%;
+}
+#addRoute .rutaXBox select{
+	margin: 0px;
+	padding: 0px;
+	position: static;
+	height: 30px;
+	border-width: 0px;
+	width: 100%;
+}
+#addRoute label {
+	background-color: #E3E3E3;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
+	position: relative;
+	transition: all .2s
+}
+ #addRoute label:before {
+	background:#002A2A;
+	border: 3px solid #002A2A;
+	content: "";
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	top: 9px;
+	left: 9px;
+	transition: all .2s;
+}
+#addRoute  input[type="radio"]:checked + label:before{
+	background-color: #002A2A;
+	width: 23px;
+	height: 24px;
+	top: 0;
+	left: 0;
+}
+#addRoute .finish_start{
+	min-height: 51px;
+	display: block;
+	margin: 5px auto;
+	width: 90%;
+	padding: 0px;
+}
+.finish_start span {
+	background-color: white;
+	display: block;
+	padding: 3px;
+	font-size: 80%;
+	margin-bottom: 5px;
+}
+
+	#addRoute #start_l:before , #addRoute #finish_l:before  {
+		content: "Termina";
+		background-color: #C1C1C1;
+		border: none;
+		display: inline-block;
+		width: 1px;
+		height: 1px;
+		position: absolute;
+		top: 5px;
+		left: 45px;
+		transition: all .2s;
+	}
+
+	#addRoute #start_l:before{
+		content:"Comienza";
+		left: 30px;
+	}
+	#addRoute #start_l , #addRoute #finish_l  {
+		width: 50%;
+		margin-top: -5px;
+		float: right;
+		font-size: 80%;
+	}
+	#addRoute  #start:checked + label, #addRoute  #finish:checked + label, #addRoute  #start:checked + label:before, #addRoute  #finish:checked + label:before{
+		background-color: #002A2A;
+		color: white;
+	}
+	#addRoute  .commentTitle {
+		font-size: 75%;
+		display: block;
+		width: 90%;
+		margin: 5px auto;
+		padding: 0px 0px;
+	}
+	#addRoute textarea {
+		display: block;
+		border: none;
+		background-color: #E3E3E3;
+		margin: 0px auto;
+		resize: vertical;
+		min-height: 80px;
+		width: 90%;
+		margin-bottom: 10px;
+	}
+
+
+
 .modal-box {
 		display: none;
 		background: rgba(0, 0, 0, 0.4);
@@ -471,20 +658,6 @@ body{
 		width: 100%;
 		z-index: 3;
 }
-/*=====scrollbarr=========*/
-	::-webkit-scrollbar{
-	  width: 8px;  /* for vertical scrollbars */
-	  height: 12px; /* for horizontal scrollbars */
-	}
-
-	::-webkit-scrollbar-track{
-	  background: rgba(0, 0, 0, 0.1);
-	}
-
-	::-webkit-scrollbar-thumb{
-	  background: rgba(0, 0, 0, 0.5);
-	}
-/*=====scrollbarr=========*/
 .modal-window {
 	display: none;
 	margin: 40px auto 0px auto;
@@ -826,8 +999,6 @@ body{
 			padding: 5px 0px;
 			cursor: pointer;
 		}
-/*============================================MODAL WINDOW====================================================*/
-/*============================================MODAL WINDOW ROUTES====================================================*/
 #back2{
 	cursor: pointer;
 	display: block;
@@ -871,26 +1042,10 @@ body{
 	background-color: lightgray;
 	height: 400px;
 }
-@media (max-width: 800px) {
-	#modal-window-route{
-		display: block;
-		width: auto;
-		height: 100vh;
-		overflow: scroll;
-		margin: 0px auto;
-	}
-}
-@media (max-width: 420px) {
-	#map{
-		background-color: lightgray;
-		height: 350px;
-	}
-}
 
-/*============================================RESPONSIVE FEED===============================================*/
-/*responsiveeeeeeeeeeeeeeee*/
 
 @media (max-width: 1000px) {
+	/*sesionOpen*/
 	.sesion_container_3{
 		display: none;
 	}
@@ -901,9 +1056,20 @@ body{
 		width: 70%;
 	}
 }
-
 @media (max-width: 800px) {
-
+	#logo-nav{
+		display: none;
+	}
+	.options{
+		margin-top: 60px;
+	}
+	#modal-window-route{
+		display: block;
+		width: auto;
+		height: 100vh;
+		overflow: scroll;
+		margin: 0px auto;
+	}
 	.sesion_container_1{
 		display: none;
 		position: fixed;
@@ -936,8 +1102,8 @@ body{
 		left: 7px;
 	}
 }
-
 @media (max-width:768px) {
+	/*sesionOpen*/
 	.encb .user_score #user_score, .encb .user_score > img{
 		display: none;
 	}
@@ -1002,12 +1168,15 @@ body{
 	}
 }
 @media (max-width:600px) {
+	/*sesionOpen*/
 	.sesion_container_2{
 		padding: 0px;
 	}
 
 }
+
 @media (max-width:550px) {
+	/*sesionOpen*/
 	.modal-window {
 		width: 100%;
 	}
@@ -1059,28 +1228,9 @@ body{
 	}
 
 }
-@media (max-width:425px) {
-	.cont1, .cont3{
-		width: 60px;
-		padding: 0px 3px;
-	}
-	.publicaciones , .publicaciones-n{
-		font-size: 80%;
-	}
-	.btn-pedirCupo, .btn-eliminar {
-		font-size: 90%;
-	}
-	.btn-pedirCupo:after, .btn-eliminar:after {
-		top: 64px;
-	}
-	.cont2{
-		padding: 0px 10px;
-		box-sizing: border-box;
-	}
-
-}
 
 @media (max-width:500px) {
+	/*sesionOpen*/
 	.encb2 .block{
 		height: 50px;
 	}
@@ -1100,15 +1250,41 @@ body{
 	}
 
 }
-/*============================================RESPONSIVE FEED===============================================*/
-/*============================================END FEED STYLE================================================*/
+@media (max-width:425px) {
+	/*sesionOpen*/
+	.cont1, .cont3{
+		width: 60px;
+		padding: 0px 3px;
+	}
+	.publicaciones , .publicaciones-n{
+		font-size: 80%;
+	}
+	.btn-pedirCupo, .btn-eliminar {
+		font-size: 90%;
+	}
+	.btn-pedirCupo:after, .btn-eliminar:after {
+		top: 64px;
+	}
+	.cont2{
+		padding: 0px 10px;
+		box-sizing: border-box;
+	}
+
+}
+@media (max-width: 420px) {
+	/*sesionOpen*/
+	#map{
+		background-color: lightgray;
+		height: 350px;
+	}
+}
 
 
 
 
 
-/*============================================PROFILE STYLE===================================================*/
-/*============================================NAV BAR PROFILE=================================================*/
+
+/*============================================userProfile===================================================*/
 .navProfile {
 	width: 100%;
 	position: absolute;
@@ -1148,10 +1324,7 @@ body{
 		margin-left: 25px;
 	}
 
-/*============================================NAV BAR PROFILE=================================================*/
-/*============================================BIG CONTAINER=================================================*/
 .big_container{
-	/*padding izq es mayor por la barra lateral de 275px*/
 	padding: 40px;
 	padding-left: 315px;
 }
@@ -1161,11 +1334,9 @@ body{
 .big_container #basicInfo{
 	display: block;
 }
-/*============================================BIG CONTAINER=================================================*/
-/*============================================GENERAL INFO STYLE==============================================*/
 .left-section {
 	position: fixed;
-	background-color: #232626;
+	background-color: #161717;
 	width: 275px;
 	z-index: 3;
 	height: 100vh;
@@ -1183,7 +1354,6 @@ body{
 }
 
 .generalInfo {
-	background-color: #232626;
 	padding-top: 10px;
 	height: 50%;
 	color: white;
@@ -1295,58 +1465,9 @@ body{
 			transition: all 0.2s;
 		}
 
-
-
-/*============================================GENERAL INFO STYLE==============================================*/
-
-/*============================================FORM ADD ROUTES STYLE==============================================*/
-#addRouteBox {
-	display: none;
-	background-color: lightgrey;
-	background: rgba(0, 0, 0, 0.4);
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 260%;
-	width: 100%;
-	z-index: 3;
-}
 #add-route-user2{
 	display: none;
 	margin-top: 10px;
-}
-#addRoute {
-	display: none;
-	margin-left: auto;
-	margin-right: auto;
-     margin-top:50px;
-	padding: 0px;
-	padding-bottom: 10px;
-	background: rgba(255, 0, 0, 1);
-	background-color: white;
-	border-radius: 3px;
-	box-shadow: 0 0 10px;
-	width: 300px;
-	min-height: 300px;
-}
-#addRoute p {
-	background-color: #002A2A;
-	color: white;
-	padding: 15px 5px;
-	text-align: center;
-}
-#addRoute input , #addRoute button , #addRoute select{
-	padding: 5px;
-	text-align: center;
-	width: 260px;
-	display: block;
-	margin-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
-	cursor: pointer;
-}
-#addRoute .rutaXBox select{
-	width: 88%;
 }
 
 .new-add{
@@ -1392,176 +1513,6 @@ body{
 	cursor: pointer;
 	margin-left: -3px;
 }
-
-#addRoute input {
-	outline: none;
-	border-width: 0px;
-	border-bottom-width: 2px;
-	border-color: #E5E5E5;
-	background-color:  white;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	transition: all 0.2s;
-}
-		#addRoute input:focus{
-			border-color: #A5A5A5;
-			padding-top: 15px;
-			font-size: 90%;
-		}
-#addRoute select {
-	/*solo sirve para chrome , creo*/
-	text-align-last: center;
-	display: inline-block;
-	border-width: 0px;
-	background-color: #E3E3E3;
-	padding: 5px ;
-	margin-bottom: 20px;
-	margin-left: 15px;
-}
-
-#addRoute button , #addRoute select{
-	width: 270px;
-}
-#addRoute button {
-	color: white;
-	background-color: #002A2A;
-	border-width: 0px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	cursor: pointer;
-	outline: none;
-	text-transform: uppercase;
-}
-		#addRoute button:hover {
-			font-weight:  bold;
-		}
-
-#addRoute #closeAddRoute {
-	background-color: #861212;
-	font-weight: bold;
-	width: 25px;
-	height: 25px;
-	padding: 0px;
-	border-radius: 13px;
-	position: absolute;
-	margin-left: 285px;
-	margin-top: -13px;
-}
-
-/*Checked para sesionopen (formulario de crear un recorrido)*/
-#addRoute input[type="radio"] {
-	display: none;
-}
-#addRoute .rutaXBox{
-	display: block;
-	margin: 5px auto;
-	height: 30px;
-	width: 270px;
-	text-align: left;
-}
-#addRoute a{
-	text-decoration: none;
-	color: white;
-	font-weight: bold;
-}
-#addRoute label {
-	background-color: #E3E3E3;
-	display: inline-block;
-	height: 26px;
-	width: 26px;
-	cursor: pointer;
-	position: relative;
-	transition: all .2s
-}
- #addRoute label:before {
-	background:#002A2A;
-	border: 3px solid #002A2A;
-	content: "";
-	display: inline-block;
-	width: 6px;
-	height: 6px;
-	position: absolute;
-	top: 7px;
-	left: 7px;
-	transition: all .2s;
-}
-#addRoute  input[type="radio"]:checked + label:before{
-	background-color: #002A2A;
-	width: 20px;
-	height: 20px;
-	top: 0;
-	left: 0;
-}
-#addRoute .opt-routes{
-	position: relative;
-	top: -9px;
-	width: 240px;
-	margin: 0px;
-}
-#addRoute .finish_start{
-	display: block;
-	margin: 5px auto;
-	margin-bottom: 40px;
-	width: 270px;
-	background-color: #E3E3E3;
-}
-.finish_start span {
-	background-color: white;
-	display: block;
-	padding: 3px;
-	font-size: 80%;
-	margin-bottom: 5px;
-	font-weight: bold;
-}
-
-	#addRoute #start_l:before , #addRoute #finish_l:before  {
-		content: "Termina";
-		background-color: #C1C1C1;
-		border: none;
-		display: inline-block;
-		width: 6px;
-		height: 6px;
-		position: absolute;
-		top: 5px;
-		left: 45px;
-		transition: all .2s;
-	}
-
-	#addRoute #start_l:before{
-		content:"Comienza";
-		left: 30px;
-	}
-	#addRoute #start_l , #addRoute #finish_l  {
-		width: 135px;
-		margin-top: -5px;
-		float: right;
-		background-color: #E3E3E3;
-		font-size: 80%;
-	}
-	#addRoute #start_l{
-		float: left;
-	}
-	#addRoute  #start:checked + label, #addRoute  #finish:checked + label, #addRoute  #start:checked + label:before, #addRoute  #finish:checked + label:before{
-		background-color: #002A2A;
-		color: white;
-	}
-	#commentTitle {
-		font-size: 80%;
-		display: inline-block;
-		width: 270px;
-		margin-left: 15px;
-		font-weight: bold;
-	}
-	#addRoute textarea {
-		margin-bottom: 10px;
-		margin-top: -1px;
-		margin-left: 15px;
-		border: none;
-		background-color: #E3E3E3;
-		min-width: 266px;
-		max-width: 266px;
-
-	}
 	.error, .error-del{
 		margin-top: -5px;
 		margin-bottom: 10px;
@@ -1571,7 +1522,6 @@ body{
 		font-weight: bolder;
 		color: #921E1E;
 	}
-/*============================================FORM ADD ROUTES STYLE==============================================*/
 	.update-done{
 		position: fixed;
 		bottom: 40px;
@@ -2119,9 +2069,10 @@ body{
 }
 @media (max-width:800px) {
 	.left-section{
+		margin-top: 70px;
 		display: none;
 		z-index: 3;
-		width: 225px;
+		width: 320px;
 	}
 	.big_container{
 		padding-left: 40px;

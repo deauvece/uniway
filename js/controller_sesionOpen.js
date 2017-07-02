@@ -66,12 +66,9 @@ $(document).ready(function () {
 		if (sizeResult==0) {
 			$(".no-results").css("display","none");
 			$("div").remove(".publicaciones-n");
-			$("span").remove(".ruta-n");
 			$(".publicaciones").show();
-			$(".ruta").show();
 			$(".result-txt").remove();
 		}
-
 	});
 
 
@@ -323,9 +320,7 @@ $(document).ready(function () {
 	if (e.which == 13 && sizeResult!=0 ) {
 		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
-		$(".ruta").hide();
 		$("div").remove(".publicaciones-n");
-		$("span").remove(".ruta-n");
 		$(".result-txt").remove();
 		$(".no-results").remove();
 
@@ -359,9 +354,7 @@ $(document).ready(function () {
 	if (sizeResult!=0 ) {
 		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
-		$(".ruta").hide();
 		$("div").remove(".publicaciones-n");
-		$("span").remove(".ruta-n");
 		$(".result-txt").remove();
 		$(".no-results").remove();
 
