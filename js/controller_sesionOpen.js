@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
 	//CONSULTA LAS PARADAS DE UN DETEMRINADO RECORRIDO (WAY) SESIONOPEN
-	//$(".ruta, .ruta-n").on("click", function () {
-	$(document).on('click touchstart', '.ruta, .ruta-n', function() {
+	$(document).on('click touchstart', '.ruta', function() {
 
 		var data= $(this).parent().attr("data-way");
 		$.ajax({
@@ -65,7 +64,7 @@ $(document).ready(function () {
 		var sizeResult = $("#search-input").val().length;
 		if (sizeResult==0) {
 			$(".no-results").css("display","none");
-			$("div").remove(".publicaciones-n");
+			$("div").remove(".p-before");
 			$(".publicaciones").show();
 			$(".result-txt").remove();
 		}
@@ -143,7 +142,7 @@ $(document).ready(function () {
 	});
 
 	//ventana modal sesionopen.php ROUTES
-	$(document).on("click touchend", ".ruta, .ruta-n", function () {
+	$(document).on("click touchend", ".ruta", function () {
 		$(".modal-box").fadeIn("fast");
 		$("#modal-window-route").fadeIn("fast");
 	});
@@ -320,7 +319,7 @@ $(document).ready(function () {
 	if (e.which == 13 && sizeResult!=0 ) {
 		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
-		$("div").remove(".publicaciones-n");
+		$("div").remove(".p-before");
 		$(".result-txt").remove();
 		$(".no-results").remove();
 
@@ -354,7 +353,7 @@ $(document).ready(function () {
 	if (sizeResult!=0 ) {
 		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
-		$("div").remove(".publicaciones-n");
+		$("div").remove(".p-before");
 		$(".result-txt").remove();
 		$(".no-results").remove();
 

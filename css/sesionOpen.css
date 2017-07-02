@@ -271,7 +271,7 @@ body{
 	font-size: 90%;
 }
 
-.publicaciones, .publicaciones-n {
+.publicaciones{
 	padding: 0px;
 	display: flex;
 	background: white;
@@ -292,11 +292,11 @@ body{
 	width: 70%;
 }
 
-	.publicaciones a , .publicaciones-n a{
+	.publicaciones a {
 		text-decoration: none;
 		color: black;
 	}
-	.publicaciones img , .publicaciones-n img {
+	.publicaciones img  {
 		display: inline-block;
 		width: 70px;
 		height: 70px;
@@ -305,30 +305,30 @@ body{
 		cursor: pointer;
 	}
 
-	.publicaciones .ini-desti , .publicaciones-n .ini-desti {
+	.publicaciones .ini-desti {
 		padding: 3px 0px;
 		display:block;
 	}
-	.publicaciones .ini , .publicaciones-n .ini, .publicaciones .desti , .publicaciones-n .desti {
+	.publicaciones .ini, .publicaciones .desti {
 		display: inline-block;
 		color: #007272;
 		width: 50px;
 	}
-	.publicaciones .name, .publicaciones-n .name {
+	.publicaciones .name {
 		font-size: 90%;
 		font-weight: bold;
 		display: block;
 		padding: 20px 0px 7px;
 	}
-	.publicaciones .time, .publicaciones-n .time {
+	.publicaciones .time {
 		display: block;
 	}
-	.publicaciones .comentario, .publicaciones-n .comentario {
+	.publicaciones .comentario{
 		display: block;
 		word-break: break-all;
 		padding: 3px 0px;
 	}
-	.publicaciones .cupo , .publicaciones-n .cupo {
+	.publicaciones .cupo {
 		display: block;
 		text-align: right;
 		width: 65px;
@@ -342,7 +342,7 @@ body{
 		margin-top: 30px;
 		position: absolute;
 	}
-	.publicaciones .cupo:after , .publicaciones-n .cupo:after {
+	.publicaciones .cupo:after  {
 		line-height: 15px;
 		content:"Cupos";
 		color: white;
@@ -390,7 +390,7 @@ body{
 		content: "Chat";
 	}
 
-	.ruta , .ruta-n {
+	.ruta{
 		text-align: center;
 		height: 65px;
 		width: 65px;
@@ -404,17 +404,17 @@ body{
 		left: 30%;
 		display: none;
 	}
-	.ruta:hover, .ruta-n:hover {
+	.ruta:hover{
 		background-color: #007C7C;
 	}
-	.ruta img, .ruta-n img {
+	.ruta img{
 		width: 25px;
 		height: 25px;
 		border-radius: 0px;
 		margin-left: 3px;
 		margin-top:20px;
 	}
-	.ruta:after, .ruta-n:after {
+	.ruta:after{
 		line-height: 15px;
 		content:"Ver mapa";
 		color: white;
@@ -1199,29 +1199,29 @@ body{
 		top: 60px;
 		left: -2px;
 	 }
-	.ruta , .ruta-n {
+	.ruta {
 		height: 55px;
 		width: 55px;
 	}
-	.publicaciones .cupo , .publicaciones-n .cupo {
+	.publicaciones .cupo {
 		height: 55px;
 		width: 55px;
 		line-height: 55px;
 	}
-	.publicaciones .cupo:after , .publicaciones-n .cupo:after {
+	.publicaciones .cupo:after{
 		font-size: 85%;
 		top: 40px;
 		left: -13px;
 	}
-	.ruta img, .ruta-n img {
+	.ruta img{
 		margin-top:15px;
 	}
-	.ruta:after , .ruta-n:after {
+	.ruta:after  {
 		font-size: 85%;
 		top: 60px;
 		left: 5px;
 	}
-	.publicaciones .cont1 img , .publicaciones-n .cont1 img {
+	.publicaciones .cont1 img{
 		margin-top: 30px;
 		height: 55px;
 		width: 55px;
@@ -1256,7 +1256,7 @@ body{
 		width: 60px;
 		padding: 0px 3px;
 	}
-	.publicaciones , .publicaciones-n{
+	.publicaciones{
 		font-size: 80%;
 	}
 	.btn-pedirCupo, .btn-eliminar {

@@ -98,7 +98,7 @@ if ($id_uni && $stop_query) {
 				$inicio_stp=$all_stops[0];
 				$fin_stp=$all_stops[$cont_stop-1];
 				$output=$output."
-					<div class='publicaciones'  class='p-before'>
+					<div class='publicaciones'>
 					<div class='cont1' >
 							<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
 					</div>
@@ -200,7 +200,7 @@ if ($id_uni && $stop_query) {
 				$inicio_stp=$all_stops[0];
 				$fin_stp=$all_stops[$cont_stop-1];
 				$output=$output."
-					<div class='publicaciones'  class='p-before'>
+					<div class='publicaciones p-before'>
 					<div class='cont1' >
 							<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
 					</div>
