@@ -105,6 +105,10 @@ body{
 		margin-left: auto;
 		margin-right: auto;
 	}
+	#usr_img{
+		display: none;
+		margin-bottom: 20px;
+	}
 	img.put_image_profile{
 		width: 120px;
 	}
@@ -270,6 +274,77 @@ body{
 	display: inline-block;
 	font-size: 90%;
 }
+
+
+.spinner {
+	width: 100px;
+	height: 100px;
+	background-color: #E6ECF0;
+	border-radius: 50%;
+	position: relative;
+	display: block;
+	margin: 100px auto;
+}
+	.spinner:after, .spinner:before {
+	  content: "";
+	  display: block;
+	  width: 100px;
+	  height: 100px;
+	  border-radius: 50%;
+	}
+
+	.spinner-1:after {
+	  position: absolute;
+	  top: -4px;
+	  left: -4px;
+	  border: 4px solid transparent;
+	  border-top-color: #009999;
+	  border-bottom-color: #009999;
+	  -webkit-animation: spinny 1s linear infinite;
+	          animation: spinny 1s linear infinite;
+	}
+
+	@-webkit-keyframes spinny {
+	  0% {
+	    -webkit-transform: rotate(0deg) scale(1);
+	            transform: rotate(0deg) scale(1);
+	  }
+	  50% {
+	    -webkit-transform: rotate(45deg) scale(1.2);
+	            transform: rotate(45deg) scale(1.2);
+	  }
+	  100% {
+	    -webkit-transform: rotate(360deg) scale(1);
+	            transform: rotate(360deg) scale(1);
+	  }
+	}
+
+	@keyframes spinny {
+	  0% {
+	    -webkit-transform: rotate(0deg) scale(1);
+	            transform: rotate(0deg) scale(1);
+	  }
+	  50% {
+	    -webkit-transform: rotate(45deg) scale(1.2);
+	            transform: rotate(45deg) scale(1.2);
+	  }
+	  100% {
+	    -webkit-transform: rotate(360deg) scale(1);
+	            transform: rotate(360deg) scale(1);
+	  }
+	}
+
+	.options .spinner {
+		width: 50px;
+		height: 50px;
+		margin: 50px auto;
+		background-color: #161717;
+	}
+		.options .spinner:after, .options .spinner:before {
+			width: 50px;
+			height: 50px;
+		}
+
 
 .publicaciones{
 	padding: 0px;

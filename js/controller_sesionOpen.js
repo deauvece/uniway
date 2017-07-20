@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+	//loading image
+	$("#usr_img").hide();
+
 	//CONSULTA LAS PARADAS DE UN DETEMRINADO RECORRIDO (WAY) SESIONOPEN
 	$(document).on('click touchstart', '.ruta', function() {
 
@@ -61,14 +64,16 @@ $(document).ready(function () {
 
 	//LIMPIA LAS PUBLICACIONES
 	$("#search-input").on("keyup",function() {
-		var sizeResult = $("#search-input").val().length;
-		if (sizeResult==0) {
-			$(".no-results").css("display","none");
-			$("div").remove(".p-before");
-			$(".publicaciones").show();
-			$(".result-txt").remove();
-		}
-	});
+			var sizeResult = $("#search-input").val().length;
+			if (sizeResult==0) {
+				$(".no-results").css("display","none");
+				$("div").remove(".p-before");
+				$(".publicaciones").show();
+				$(".result-txt").remove();
+			}
+		});
+
+
 
 
 	//AGREGA LAS PUBLICACIONES MAS RECIENTES AL CARGAR LA PAGINA
@@ -82,12 +87,14 @@ $(document).ready(function () {
 			},
 			dataType: 'json',
 			success: function(array){
+				$("#pub-box .spinner").hide();
 				$("#pub-box").append(array.output);
 			}
 		});
 	}
 
 
+	$("#usr_img").hide();
 	//CARGA LOS DATOS DEL USUARIO
 	$.ajax({
 		url: '../php/json_user_query.php',
@@ -97,6 +104,8 @@ $(document).ready(function () {
 		},
 		dataType: 'json',
 		success: function(array){
+			$(".options .spinner").hide();
+			$("#usr_img").show();
 			$(".put_image_profile").attr("src",array.profile_image)
 			if (array.usr_active=="true") {
 				$("#logout").before("<a href='group-chat.php?id_way="+array.way_active+"'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' />Ver conversación</li></a>");
@@ -323,6 +332,9 @@ $(document).ready(function () {
 		$(".result-txt").remove();
 		$(".no-results").remove();
 
+		//spinner
+		$("#pub-box .spinner").show();
+
 			var id_user= $("#id_usr").val();
 			//para comprobar si el usuario ya está en otro recorrido
 			var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo
@@ -335,6 +347,7 @@ $(document).ready(function () {
 				},
 				dataType: 'json',
 				success: function(array){
+					$("#pub-box .spinner").hide();
 					if (array.nr==1) {
 						$("#pub-box").append(array.output);
 					}else{
@@ -357,6 +370,9 @@ $(document).ready(function () {
 		$(".result-txt").remove();
 		$(".no-results").remove();
 
+		//spinner
+		$("#pub-box .spinner").show();
+
 
 			var id_user= $("#id_usr").val();
 			//para comprobar si el usuario ya está en otro recorrido
@@ -370,6 +386,7 @@ $(document).ready(function () {
 				},
 				dataType: 'json',
 				success: function(array){
+					$("#pub-box .spinner").hide();
 					if (array.output) {
 						$("#pub-box").append(array.output);
 					}else{

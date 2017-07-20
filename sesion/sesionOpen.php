@@ -62,6 +62,7 @@ $rdnString=$vector_random['random_string'];
 		<div class="sesion_container_1">
 			<section class="options">
 				<a href="sesionOpen.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
+				<div class="spinner spinner-1"></div>
 				<a href="userProfile.php?idu=myProfile">
 					<img id="usr_img" src="" title="Editar perfil" class="put_image_profile" alt="profile image" />
 				</a>
@@ -93,6 +94,7 @@ $rdnString=$vector_random['random_string'];
 			</section>
 			<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
 			<section id="pub-box">
+					<div class="spinner spinner-1"></div>
 			</section>
 		</div>
 		<div class="sesion_container_3">
