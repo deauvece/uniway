@@ -15,7 +15,7 @@ function checkLogin() {
 }
 function conectarse()
 {
-   if (!($conn=pg_connect("host=localhost user=deauvece port=5432 dbname=deauvece_uniway password=P?'oG0s+")))
+   if (!($conn=pg_connect("host=localhost user=ddanniel port=5432 dbname=ddanniel_uniway password=MgMNt4DDbV8KPzCE")))
    {
       echo "Error conectando a la base de datos.";
       exit();

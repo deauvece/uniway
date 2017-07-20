@@ -364,27 +364,8 @@ $(document).ready(function () {
 
 	/*Funciones home page ---------------------------------------------------------------------------------*/
 		//verifica validez de los email pagina de contacto
-		$(".verif_email").on("keyup",function(){
-			$.ajax({
-				url: 'php/json_email_validator.php',
-				type: 'get',
-				data: {
-					email: $(this).val()
-				},
-				dataType: 'json',
-				success: function(array){
-					if (array.isValid==false) {
-						$(".erroremail").text("La dirección de correo no es válida.");
-						$('.submit-btn').prop("disabled", true);
-					}else{
-						$(".erroremail").text("");
-						$('.submit-btn').prop("disabled", false);
-					}
-				}
-			});
-		});
 		//verifica validez de los email pagina de registro
-		$(".verif_email").on("keyup",function(){
+		$(".verif_email").on("change",function(){
 			$.ajax({
 				url: 'php/json_email_validator.php',
 				type: 'get',
@@ -403,6 +384,7 @@ $(document).ready(function () {
 				}
 			});
 		});
+
 		//envia correo de contacto
 		$(".enviarCorreo").on("click",function(){
 					  $("form[name='cont-form']").validate({
