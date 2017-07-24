@@ -21,6 +21,7 @@
 <body>
 
 <a name="inicio"></a>
+<img class="scrolltop" src="Imagenes/arrow1.png" alt="scrolltop"/>
 <!--BARRA DE NAVEGACION-->
 <nav class="home-nav">
 	<ul>
@@ -86,8 +87,13 @@
 		</div>
 		<div id="institutions">
 			<img id="map" src="Imagenes/map2.png" alt="" />
-			<h2>¿Quieres Uniway en tu institución?</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="inside_inst">
+				<h2>¿Quieres Uniway en tu institución?</h2>
+				<p>Si Uniway no está disponible para tu institución solicítalo escribiendonos un mensaje, entre más personas de tu institución lo soliciten más rápido estará disponible!</p>
+				<button class="contact-modal">Escribenos</button>
+			</div>
+		</div>
+		<div class="avaible_u">
 			<h2>Instituciones para las que actualmente está disponible Uniway</h2>
 			<ul>
 				<li><img src="Imagenes/uis.png" alt="" /></li>
@@ -95,7 +101,6 @@
 				<li><img src="Imagenes/usta.png" alt="" /></li>
 				<li><img src="Imagenes/upb.gif" alt="" /></li>
 			</ul>
-
 		</div>
 	</div>
 
@@ -109,7 +114,7 @@
 			¿Tienes alguna pregunta? sientete libre de escribirnos cualquier cosa, recomendaciones, preguntas, criticas, donaciones
 			, regaños, estaremos respondiendo lo más pronto posible!
 		</p>
-		<a id="contact-modal">Escribenos</a>
+		<a class="contact-modal">Escribenos</a>
 	</div>
 	<div class="social">
 		<h3>Encuentranos tambien aquí</h3>
@@ -139,7 +144,7 @@
 
 			<label for="content-contact">Mensaje</label>
 			<textarea id="content-contact" name="content" rows="3" cols="10" ></textarea>
-			
+
 			<input class="enviarCorreo submit-btn" type="submit" name="submit" value="Enviar">
 			<input id="close-contact-form" type="button" name="name" value="Cancelar">
 		</form>
@@ -176,6 +181,10 @@ $('a[href^="#"]').on('click',function (e) {
 		function () {
 			window.location.hash = target;
 		});
+	var w =$( window ).width();
+	if (w < 800) {
+		$("#btn-label > img").hide().attr("src","Imagenes/bmenu.png").fadeIn("slow");
+	}
 	});
 </script>
 </body>

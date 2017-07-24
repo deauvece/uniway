@@ -16,6 +16,18 @@ body{
 	}
 /*=====scrollbarr=========*/
 /*========================================iNDEX PAGE==================================*/
+.scrolltop{
+	position: fixed;
+	bottom: 0px;
+	right: 40px;
+	padding: 10px;
+	box-sizing: border-box;
+	width: 50px;
+	background-color: black;
+	cursor: pointer;
+	display: none;
+	z-index: 1;
+}
 .home-nav {
 	position: fixed;
 	top: 0px;
@@ -204,49 +216,84 @@ header {
 	}
 /*instituciones*/
 #institutions{
-	min-height: 400px;
-	padding-top: 80px;
+	display: flex;
+	box-sizing: border-box;
+	align-content: center;
+	justify-content: center;
+	width: 100%;
+	padding: 50px 55px 50px;
+	color: white;
+	background-color: #b72c2c;
 }
-#institutions #map{
-	float: left;
-	margin-left: 30px;
-	padding: 20px;
-	box-sizing: padding-box;
-	width: 500px;
-}
-#institutions h2 {
-	margin-top: 40px;
-}
-#institutions h2:nth-child(4){
-	margin-top: 180px;
-}
-#institutions p{
-	text-align: justify;
-	color: #68686E;
-	font-size: 110%;
-	margin-bottom: 50px;
-	padding: 20px;
-}
-#institutions ul {
-	padding: 0px;
-	margin: 0px;
-	margin-bottom: 40px;
-	list-style-type: none;
+	#institutions #map{
 
+		box-sizing: padding-box;
+		padding: 70px 20px 80px;
+		width: 700px;
+	}
+
+	#institutions .inside_inst h2 {
+		margin-top: 100px;
+		color: white;
+	}
+	#institutions .inside_inst p{
+		display: inline-block;
+		text-align: justify;
+		color: #68686E;
+		color: white;
+		font-size: 110%;
+		padding: 10px 40px;
+	}
+	#institutions button {
+		color: #B72C2C;
+		cursor: pointer;
+		border-radius: 3px;
+		background-color: white;
+		font-weight: bold;
+		font-size: 90%;
+		text-decoration: none;
+		padding: 20px;
+		border-width: 0px;
+		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.7);
+		transition: all 0.4s;
+		outline: none;
+		position: relative;
+	}
+		#institutions button:active{
+			top: 2px;
+			left: 2px;
+			box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
+		}
+
+
+.avaible_u{
+	background-color: white;
+	padding: 80px 0px;
 }
-#institutions li {
-	display: inline-block;
-}
-#institutions li img {
-	width: 180px;
-	margin: 20px;
-}
+	.avaible_u h2{
+		color: #b72c2c;
+	}
+	.avaible_u ul {
+		padding: 0px;
+		margin: 0px;
+		margin-bottom: 40px;
+		list-style-type: none;
+
+	}
+	.avaible_u li {
+		display: inline-block;
+	}
+	.avaible_u li img {
+		width: 180px;
+		margin: 20px 55px;
+	}
+
 
 
 .contenedorM {
 	background-color: white;
 	min-height: 500px;
-	padding: 30px;
+	padding: 30px 0px;
 	text-align: center;
 }
 	.contenedorM h2{
@@ -261,7 +308,7 @@ header {
 				display: inline-block;
 				min-height: 300px;
 				width: 280px;
-				margin: 30px 25px;
+				margin: 30px 60px;
 			}
 			.contenedorM .columnas  .col h2 {
 				margin-top: 20px;
@@ -727,17 +774,23 @@ header {
 		transform: translate(2px, 2px);
 	}
 /*====================================RESPONSIVE=============================================*/
-@media (max-width:1150px) {
+@media (max-width:850px) {
 	/*INDEX PAGE- INSTITUTIONS*/
+	#institutions{
+		padding: 100px 10px;
+	}
+	#institutions .inside_inst h2 {
+		margin-top: 0px;
+	}
 	#institutions #map{
 		flex: none;
 		width: 30%;
 		margin-top: 50px;
 	}
-	/*INDEX PAGE- INSTITUTIONS*/
 	#institutions #map{
 		display: none;
 	}
+
 }
 @media (max-width:950px){
 	/*INDEX PAGE - HEADER*/
@@ -758,6 +811,7 @@ header {
 
 }
 @media (max-width:800px) {
+
 	/*REGISTER PAGE */
 	.contact-form {
 		width: 100%;

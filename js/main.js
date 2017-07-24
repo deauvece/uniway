@@ -45,23 +45,11 @@ $(document).ready(function () {
 		var w =$( window ).width();
 		if (w<800) {
 			$(".left-section").hide();
+			$("#bmenu").hide().attr("src","../Imagenes/bmenuw.png").fadeIn("slow");
 		}
 
 	});
-	//scroll efect
-	/*
-	$('a[href^="#"]').on('click',function (e) {
-		var target = this.hash;
-		var $target = $(target);
-		$('html, body').stop().animate(
-			{'scrollTop': $target.offset().top},
-			900,
-			'swing',
-			function () {
-				window.location.hash = target;
-			});
-		});
-	*/
+
 
 	/*Funciones sesionOpen.php ----------------------------------------------------------------------------*/
 
@@ -137,11 +125,6 @@ $(document).ready(function () {
 		    event.stopPropagation();
 	    });
 
-
-		//update page when there's new updates
-		$("#new-updates").click(function(){
-			location.reload();
-		});
 		//crear recorrido
 		$(".dinamic_button").on("click","#btn-add",function(){
 			$("#addRouteBox").fadeIn();
@@ -170,7 +153,14 @@ $(document).ready(function () {
 		});
 		//menu opciones
 		$("#bmenuw").click(function(){
-			$(".sesion_container_1").fadeToggle();
+			var state = $(".sesion_container_1").css("display");
+			if (state=="block"){
+				$("#bmenuw").hide().attr("src","../Imagenes/bmenuw.png").fadeIn("slow");
+				$(".sesion_container_1").fadeOut();
+			}else{
+				$("#bmenuw").hide().attr("src","../Imagenes/closebmenuw.png").fadeIn("slow");
+				$(".sesion_container_1").fadeIn();
+			}
 		});
 		$(".sinmenu li a").click(function(){
 			$(".sinmenu").css("left","100%");
@@ -180,8 +170,10 @@ $(document).ready(function () {
 			var left = $(".sinmenu").css("left");
 			w=w+"px";
 			if (left==w) {
+				$("#btn-label > img").hide().attr("src","Imagenes/closebmenu.png").fadeIn("slow");
 				$(".sinmenu").css("left","0%");
 			}else {
+				$("#btn-label > img").hide().attr("src","Imagenes/bmenu.png").fadeIn("slow");
 				$(".sinmenu").css("left","100%");
 			}
 		});
@@ -297,7 +289,14 @@ $(document).ready(function () {
 
 		//menu opciones
 		$("#bmenu").click(function(){
-			$(".left-section").toggle();
+			var state = $(".left-section").css("display");
+			if (state=="block"){
+				$("#bmenu").hide().attr("src","../Imagenes/bmenuw.png").fadeIn("slow");
+				$(".left-section").fadeOut();
+			}else{
+				$("#bmenu").hide().attr("src","../Imagenes/closebmenuw.png").fadeIn("slow");
+				$(".left-section").fadeIn();
+			}
 		});
 		$(".big_container").click(function(){
 			var w =$( window ).width();
@@ -363,7 +362,7 @@ $(document).ready(function () {
 
 
 	/*Funciones home page ---------------------------------------------------------------------------------*/
-		//verifica validez de los email pagina de contacto
+
 		//verifica validez de los email pagina de registro
 		$(".verif_email").on("change",function(){
 			$.ajax({
@@ -457,25 +456,33 @@ $(document).ready(function () {
 					    }
 					  });
 		});
-		//cambia la barra de navegacion
+		//cambia la barra de navegacion y scroll to top button
 		$(window).scroll(function (event) {
 		    var scroll = $(window).scrollTop();
 		    if (scroll>100) {
+			    $(".scrolltop").fadeIn();
 			    var w =$( window ).width();
     				if (w > 800) {
-					$("#logo img").css("height","35px");
-					$(".home-nav").css({height:"55px",});
+					$("#logo img").css("height","30px");
+					$(".home-nav").css({height:"60px",paddingTop:"15px"});
 					$("header h2, header p").css({opacity:"0",});
+
 				}
 		    }else {
+			    $(".scrolltop").fadeOut();
 			    var w =$( window ).width();
     				if (w > 800) {
 					$("#logo a img").css("height","45px");
-					$(".home-nav").css({height:"70px",});
+					$(".home-nav").css({height:"70px",paddingTop:"20px"});
 					$("header h2, header p").css({opacity:"1",});
+
 				}
 
 		    }
+		});
+		$(".scrolltop").click(function() {
+		  $("html, body").animate({ scrollTop: 0 }, "slow");
+		  return false;
 		});
 		//login user
 		//contact-form index.html
@@ -489,7 +496,7 @@ $(document).ready(function () {
 				window.location="login-user.php";
 			}
 		});
-		$("#contact-modal").click(function(){
+		$(".contact-modal").click(function(){
 			$("#contact-box").fadeIn();
 			$(".contact-form > h2, .contact-form input[type='submit'],.contact-form  input[type='button']").css({
 				backgroundColor: "#b72c2c"

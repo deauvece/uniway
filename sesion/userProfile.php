@@ -70,27 +70,19 @@ if ($is_driver=='t') {
 				<li> <a href="sesionOpen.php">Inicio</a></li>
 				<li> <span>/ Configuración de usuario</span></li>
 			</ul>
-			<img id="bmenu" src="../Imagenes/bmenu.png" width="30px" />
+			<img id="bmenu" src="../Imagenes/bmenuw.png" width="30px" />
 		</nav>
 		<section class="left-section" >
-			<section class="logo-section" >
-				<a href="sesionOpen.php">
-					<img src="../Imagenes/logo-only.png" alt="" />
-					<img src="../Imagenes/logo-name.png" alt="" />
-				</a>
-			</section>
 			<section class="generalInfo">
 				<img id="little_img" src="<?php echo $rute_img;?>"/>
 				<section class="options-left-section">
 					<ul>
-						<a href="#basicInfo"><li><span></span>Información básica</li></a>
-						<a href="#verif_info"><li><span></span>Verificar cuenta</li></a>
-						<a href="#transportInfo"><li><span></span>Transporte</li></a>
-						<a href="#userRutesBox"><li <?php if ($is_driver=='f') { echo " style='display:none'";} ?>><span></span>Rutas</li></a>
-						<a href="#qualificationsBox"><li><span></span>Comentarios</li></a>
-						<li>
-							<span></span><a href="../php/logout.php">Cerrar sesión</a>
-						</li>
+						<a href="#basicInfo"><li>Información básica</li></a>
+						<a href="#verif_info"><li>Verificar cuenta</li></a>
+						<a href="#transportInfo"><li>Transporte</li></a>
+						<a href="#userRutesBox"><li <?php if ($is_driver=='f') { echo " style='display:none'";} ?>>Rutas</li></a>
+						<a href="#qualificationsBox"><li>Comentarios</li></a>
+						<a href="../php/logout.php"><li>Cerrar sesión</li></a>
 					</ul>
 				</section>
 			</section>
@@ -406,10 +398,10 @@ if ($is_driver=='t') {
 				<form action="../php/addRoute.php" name="form_stops" method="post" id="addRoute2">
 					<div class="new-add">
 						<select class="firs-stop" name="stop1">
-							<option value="UIS - Cra. 27, Bucaramanga">Universidad industrial de santander (UIS), Sede principal</option>
-							<option value="Facultad de Salud - Universidad Industrial de Santander">Universidad industrial de santander (UIS), Salud</option>
+							<option value="Universidad Industrial de Santander - Calle 9">Universidad industrial de santander (UIS), Sede principal</option>
+							<option value="Cra. 32 #29-31, Bucaramanga, Santander">Universidad industrial de santander (UIS), Salud</option>
 							<option value="Unab - Calle 42, Bucaramanga">Universidad Autónoma de Bucaramanga (UNAB), Cabecera</option>
-							<option value="FOSUNAB, Floridablanca - Santander">Universidad Autónoma de Bucaramanga (UNAB), Salud</option>
+							<option value="FOSUNAB, Floridablanca - Santander">FOSUNAB, Salud</option>
 						</select>
 						<input type="text" class="paradas2" id="stop2" name="stop2" placeholder="Busca una parada" autocomplete="off" required />
 						<button id="hide_stp_2" class="hide_stop" type="button">x</button>

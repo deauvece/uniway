@@ -70,8 +70,9 @@ $(document).ready(function () {
 				$("div").remove(".p-before");
 				$(".publicaciones").show();
 				$(".result-txt").remove();
+				$(document).attr("title", "Uniway");
 			}
-		});
+	});
 
 
 
@@ -92,6 +93,27 @@ $(document).ready(function () {
 			}
 		});
 	}
+
+
+	//MUESTRA NUEVAS PUBLICACIONES
+	$("#new-updates").click(function(){
+		$(".publicaciones").remove();
+		$(this).hide();
+		$("#pub-box .spinner").show();
+		$.ajax({
+			url: '../php/json_ways_query.php',
+			type: 'get',
+			data: {
+				id_uni: $("#status_feed").attr("class")
+			},
+			dataType: 'json',
+			success: function(array){
+				$("#pub-box .spinner").hide();
+				$("#pub-box").append(array.output);
+			}
+		});
+
+	});
 
 
 	$("#usr_img").hide();

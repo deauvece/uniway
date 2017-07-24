@@ -92,7 +92,7 @@ $rdnString=$vector_random['random_string'];
 				<input id="search-input" class="search" type="text" name="name" placeholder="¿Para dónde vas?" autocomplete="off" autofocus>
 				<img id="search_image" src="../Imagenes/search.png" alt="" />
 			</section>
-			<a id='new-updates'><span>Ver nuevas publicaciones</span></a>
+			<a id='new-updates'><span>Hay nuevas publicaciones</span></a>
 			<section id="pub-box">
 					<div class="spinner spinner-1"></div>
 			</section>
