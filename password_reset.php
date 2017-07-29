@@ -28,7 +28,7 @@
 					<input id="change_pass_email" type="email" name="email">
 					<p id="change_pass_error"></p>
 				</div>
-				<button id="change_pass" type="button" name="button">Cambiar contraseña</button>
+				<button class="button_1" id="change_pass" type="button" name="button">Cambiar contraseña</button>
 			</div>
 		</section>
 	</body>

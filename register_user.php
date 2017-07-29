@@ -22,7 +22,7 @@
 				</li>
 
 				<a href="login-user.php">
-					<li id="login">Iniciar Sesión</li>
+					<li class="button_1" id="login">Iniciar Sesión</li>
 				</a>
 			</ul>
 		</section>
@@ -78,7 +78,7 @@
 						echo "<span class='error'>Para terminar el registro debes completar el captcha.</span>";
 					}
 				?>
-				<input class="submit-btn" type="submit" value="Crear cuenta">
+				<input class="button_1" type="submit" value="Crear cuenta">
 				<span class="termycon">
 					Al hacer click en "Crear cuenta", aceptas los Términos y las condiciones
 					de Uniway y la politica de privacidad.

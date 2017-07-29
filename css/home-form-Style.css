@@ -15,6 +15,36 @@ body{
 	  background: rgba(0, 0, 0, 0.5);
 	}
 /*=====scrollbarr=========*/
+/*=====general============*/
+.button_1 {
+	text-decoration: none;
+	color: white;
+	background-color: #CE3232;
+	padding: 10px;
+	cursor: pointer;
+	position: relative;
+	transition: all 0.2s;
+	border-width: 0px;
+	box-shadow:  4px 4px 0px 0px rgba(157, 39, 39, 0.4);
+	transition: all 0.2s;
+	cursor: pointer;
+	border-width: 0px;
+	outline: none;
+	border-radius: 2px;
+}
+.button_1:hover{
+	background-color: #b72c2c;
+}
+.button_1:active{
+	top: 2px;
+	left: 2px;
+	box-shadow:  0px 0px 0px 0px rgba(157, 39, 39, 0.4);
+}
+
+
+
+
+
 /*========================================iNDEX PAGE==================================*/
 .scrolltop{
 	position: fixed;
@@ -27,6 +57,8 @@ body{
 	cursor: pointer;
 	display: none;
 	z-index: 1;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 .home-nav {
 	position: fixed;
@@ -70,22 +102,8 @@ body{
 			text-decoration: none;
 		}
 	#login {
-		background-color: #b72c2c;
 		padding: 10px;
-		border-radius: 3px;
-		cursor: pointer;
-		position: relative;
-		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
-		transition: all 0.2s;
 	}
-	#login:active{
-		top: 2px;
-		left: 2px;
-		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
-	}
-		#login a {
-			color: white;
-		}
 
 	#login-form {
 		z-index: 2;
@@ -142,25 +160,10 @@ body{
 	#login-form  button{
 		margin-top: 10px;
 		margin-bottom: 10px;
-		border-width: 0px;
-		border-radius: 3px;
-		background-color: #b72c2c;
-		color: white;
 		text-transform: uppercase;
 		font-weight: bold;
 		font-size: 70%;
-		padding: 10px 0px;
 		width: 80%;
-		cursor: pointer;
-		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
-		transition: all 0.2s;
-		outline: none;
-		position: relative;
-	}
-	#login-form button:active{
-		top: 2px;
-		left: 2px;
-		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 	}
 
 #logo {
@@ -229,7 +232,7 @@ header {
 
 		box-sizing: padding-box;
 		padding: 70px 20px 80px;
-		width: 700px;
+		width: 600px;
 	}
 
 	#institutions .inside_inst h2 {
@@ -246,25 +249,11 @@ header {
 	}
 	#institutions button {
 		color: #B72C2C;
-		cursor: pointer;
-		border-radius: 3px;
 		background-color: white;
 		font-weight: bold;
 		font-size: 90%;
-		text-decoration: none;
 		padding: 20px;
-		border-width: 0px;
-		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.7);
-		transition: all 0.4s;
-		outline: none;
-		position: relative;
 	}
-		#institutions button:active{
-			top: 2px;
-			left: 2px;
-			box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
-		}
-
 
 .avaible_u{
 	background-color: white;
@@ -327,13 +316,7 @@ header {
 				border-radius: 50%;
 			}
 
-}
-
-.contenedorFormularios .opciones ul {
-	/*afecta register_user.php*/
-}
-
-.contact-box {
+.c-box {
 	display: none;
 	z-index: 3;
 	background-color: lightgrey;
@@ -400,26 +383,13 @@ header {
 		max-height: 120px;
 		margin-bottom: 15px;
 	}
-	.contact-form input[type="submit"],.contact-form input[type="button"] {
-		cursor: pointer;
-		margin-top: 10px;
-		color: white;
-		padding: 10px;
-		background-color: #b72c2c;
-		width: 82%;
-		border: 0px;
-		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
-		transition: all 0.4s;
-		outline: none;
-		position: relative;
-		text-transform: uppercase;
+	.contact-form input[type="submit"], .contact-form input[type="button"] {
 		font-size: 70%;
+		padding: 5px;
+		margin-top: 10px;
+		width: 82%;
+		text-transform: uppercase;
 		font-weight: bold;
-	}
-	.contact-form input[type="submit"]:active, .contact-form input[type="button"]:active{
-		top: 2px;
-		left: 2px;
-		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 	}
 	.email_send{
 		display: block;
@@ -459,22 +429,8 @@ header {
 				margin-bottom: 50px;
 			}
 			footer .contenido a {
-				color: white;
-				cursor: pointer;
-				border-radius: 3px;
-				background-color: #B72C2C;
-				text-decoration: none;
 				padding: 20px;
-				box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
-				transition: all 0.4s;
-				outline: none;
-				position: relative;
 			}
-				footer .contenido a:active{
-					top: 2px;
-					left: 2px;
-					box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
-				}
 		footer .social {
 			height: 300px;
 			padding: 30px;
@@ -560,23 +516,12 @@ header {
 	.contenedorContact .login .botonLogin {
 		border-radius: 3px;
 		color: white;
-		font-size: 80%;
-		background-color: #B72C2C;
+		font-size: 85%;
 		margin-top: 10px;
 		margin-bottom: 10px;
-		padding: 15px 0;
 		width: 80%;
-		cursor: pointer;
-		position: relative;
-		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
-		transition: all 0.2s;
-		text-transform: uppercase;
+		padding: 15px;
 	}
-		.contenedorContact .login .botonLogin:active{
-			top: 2px;
-			left: 2px;
-			box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
-		}
 
 	.contenedorContact .error {
 		margin-top: -5px;
@@ -672,11 +617,8 @@ header {
 	width: 80%;
 }
 	.register input[type="submit"]{
-		color: white;
-		border-radius: 3px;
-		background-color: #B72C2C;
+		background-color: #CE3232;
 		margin-top: 10px;
-		cursor: pointer;
 	}
 	#message{
 		font: 90%;
@@ -756,16 +698,8 @@ header {
 		display: none;
 	}
 	.reset_container button {
-		background-color: #b72c2c;
-		padding: 10px;
-		border-width: 0px;
-		color: white;
 		width: 250px;
 		margin: 10px 30px 20px 0px;
-		cursor: pointer;
-		border-radius: 3px;
-		box-shadow:  2px 2px 4px 1px rgba(0, 0, 0, 0.4);
-		transition: all 0.2s;
 	}
 	.reset_container button:active{
 		top: 2px;
@@ -823,7 +757,7 @@ header {
 	}
 	.sinmenu #login {
 		background-color: #232626;
-		padding: 5px;
+		padding-left: 0px;
 		border-radius: 0px;
 		box-shadow:  none;
 	}

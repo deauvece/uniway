@@ -38,7 +38,7 @@ $rdnString=$vector_random['random_string'];
 	<head>
 		<title>Uniway</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->

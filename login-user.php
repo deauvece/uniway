@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
 	<title>Uniway | Inicio de sesión</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no">
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
@@ -37,13 +37,13 @@
 				<?php
 					}
 				?>
-				<input class="botonLogin" type="submit" name="submit" value="Entrar">
+				<button class="botonLogin button_1" type="submit">Entrar</button>
 				<span><a href="password_reset.php">¿Has olvidado tu contraseña?</a></span>
 			</form>
 			<hr>
 			<p>¿Todavia no tienes una cuenta? Regístrate!</p>
 			<a href="register_user.php">
-				<input class="botonLogin" type="submit" name="submit" value="Registrarse">
+				<button class="botonLogin button_1" type="button">Registrarse</button>
 			</a>
 		</div>
 </section>

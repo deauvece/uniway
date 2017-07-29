@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
 <a name="inicio"></a>
 <img class="scrolltop" src="Imagenes/arrow1.png" alt="scrolltop"/>
 <!--BARRA DE NAVEGACION-->
@@ -40,8 +39,8 @@
 				<li>
 					<a href="register_user.php">Registrarse</a>
 				</li>
-				<li id="login">
-					<a>Iniciar Sesión</a>
+				<li id="login" class="button_1">
+					<a href="#">Iniciar Sesión</a>
 				</li>
 			</ul>
 		</li>
@@ -59,6 +58,9 @@
 	<h2>Viaja seguro y rápido</h2>
 	<p>Comparte tu carro con toda la comunidad universitaria.</p>
 </header>
+
+
+
 
 <section class="contenedorM">
 	<h2>Pertenecer a esta comunidad te traerá muchas ventajas.</h2>
@@ -90,7 +92,7 @@
 			<div class="inside_inst">
 				<h2>¿Quieres Uniway en tu institución?</h2>
 				<p>Si Uniway no está disponible para tu institución solicítalo escribiendonos un mensaje, entre más personas de tu institución lo soliciten más rápido estará disponible!</p>
-				<button class="contact-modal">Escribenos</button>
+				<button class="contact-modal button_1">Escribenos</button>
 			</div>
 		</div>
 		<div class="avaible_u">
@@ -114,7 +116,7 @@
 			¿Tienes alguna pregunta? sientete libre de escribirnos cualquier cosa, recomendaciones, preguntas, criticas, donaciones
 			, regaños, estaremos respondiendo lo más pronto posible!
 		</p>
-		<a class="contact-modal">Escribenos</a>
+		<a class="contact-modal button_1">Escribenos</a>
 	</div>
 	<div class="social">
 		<h3>Encuentranos tambien aquí</h3>
@@ -126,9 +128,9 @@
 	</div>
 </footer>
 
-<div id="contact-box" class="contact-box">
+<div id="contact-box" class="c-box">
 	<div class="contact-form">
-		<form name="cont-form" action="">
+		<form name="cont-form">
 			<h2>
 				Contacto
 			</h2>
@@ -145,8 +147,8 @@
 			<label for="content-contact">Mensaje</label>
 			<textarea id="content-contact" name="content" rows="3" cols="10" ></textarea>
 
-			<input class="enviarCorreo submit-btn" type="submit" name="submit" value="Enviar">
-			<input id="close-contact-form" type="button" name="name" value="Cancelar">
+			<input class="enviarCorreo button_1" type="submit" name="submit" value="Enviar">
+			<input class="button_1" id="close-contact-form" type="button"  value="Cancelar">
 		</form>
 	</div>
 	<form id="login-form"  action="php/login.php" method="POST" >
@@ -155,13 +157,13 @@
 		</div>
 		<input type="email" name="correo" placeholder="Correo electrónico" required>
 		<input type="password" name="contrasena" placeholder="Contraseña" required>
-		<button type="submit" name="button">Entrar</button>
+		<button class="button_1" type="submit">Entrar</button>
 		<span><a href="password_reset.php">¿Has olvidado tu contraseña?</a></span>
 		<hr>
 		<a href="register_user.php">
-			<button type="button" name="button">Registrarse</button>
+			<button class="button_1" type="button">Registrarse</button>
 		</a>
-		<button id="close-login-form" type="button" name="button">Cancelar</button>
+		<button class="button_1" id="close-login-form" type="button">Cancelar</button>
 	</form>
 </div>
 <span class="email_send">Mensaje enviado!</span>
