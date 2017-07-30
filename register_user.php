@@ -102,6 +102,9 @@ $(document).ready(function(){
 		if (pswd.length < 8) {
 			$('#message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
 			$('.submit-btn').prop("disabled", true);
+		}else if ($('#pass1').val() != $('#pass2').val()) {
+			$('#message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+			$('.submit-btn').prop("disabled", true);
 		}else {
 			$('#message').html("");
 			$('.submit-btn').prop("disabled", false);

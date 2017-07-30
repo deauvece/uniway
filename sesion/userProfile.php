@@ -380,7 +380,7 @@ if ($is_driver=='t') {
 				</div>
 			<?php
 			//selecciono todas las rutas del usuario
-			$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+			$sql_routes="SELECT id_route FROM routes WHERE id_user='$idu'";
 			$result_routes = pg_query($conn, $sql_routes);
 			$numFilas_routes = pg_num_rows($result_routes);
 			if  ($numFilas_routes!=0)

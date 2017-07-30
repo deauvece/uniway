@@ -44,7 +44,7 @@ function generateRandomString($length = 20) {
 }
 
 $rand=generateRandomString();
-$sql22="UPDATE status_feed SET random_string='$rand' WHERE id_status='$id_u'  ";
+$sql22="UPDATE universities SET random_string='$rand' WHERE id_u='$id_u'  ";
 $result2 = pg_query($conn, $sql22);
 
 

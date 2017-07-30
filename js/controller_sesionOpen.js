@@ -426,7 +426,7 @@ $(document).ready(function () {
 			url: '../php/json_check_status.php',
 			type: 'get',
 			data: {
-				rdn_string: $("#status_feed").attr("value"),
+				rdn_string: $("#status_feed").attr("value"), 
 				id_uni: $("#status_feed").attr("class")
 			},
 			dataType: 'json',

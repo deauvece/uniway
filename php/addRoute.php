@@ -27,8 +27,8 @@ $result1 = pg_query($conn,$sql_busqueda);
 $vector=pg_fetch_array($result1);
 $id_route=$vector['id_route'];
 //insersion en la tabla de usr_routes
-$sql_user_routes="INSERT INTO usr_routes (id_user,id_route) VALUES ('$id_user','$id_route')";
-$result_user_routes= pg_query($conn, $sql_user_routes);
+/*$sql_user_routes="INSERT INTO usr_routes (id_user,id_route) VALUES ('$id_user','$id_route')";
+$result_user_routes= pg_query($conn, $sql_user_routes);*/
 
 //creacion de la relacion ruta-paradas
 $vector_stops[0]=$stop1;

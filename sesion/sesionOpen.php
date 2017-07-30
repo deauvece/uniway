@@ -27,7 +27,7 @@ if ($status_usr=="true") {
 }
 
 //Para el estado de actualizacion de las publicaiones
-$sql_random="SELECT random_string FROM status_feed WHERE id_status='$id_university' ";
+$sql_random="SELECT random_string FROM universities WHERE id_u='$id_university' ";
 $result_random= pg_query($conn, $sql_random);
 $vector_random=pg_fetch_array($result_random);
 $rdnString=$vector_random['random_string'];
@@ -137,7 +137,7 @@ $rdnString=$vector_random['random_string'];
 			<span class="commentTitle" >Selecciona una de tus rutas:</span>
 			<?php
 			//consulta las rutas del usuario y las muestra como opcion
-			$sql_routes="SELECT id_route FROM usr_routes WHERE id_user='$idu'";
+			$sql_routes="SELECT id_route FROM routes WHERE id_user='$idu'";
 			$result_routes = pg_query($conn, $sql_routes);
 			$numFilas_routes = pg_num_rows($result_routes);
 			$contador=1;
@@ -356,7 +356,7 @@ $rdnString=$vector_random['random_string'];
 
 	<script src="../js/jquery-3.1.1.min.js"></script>
 	<script src="../js/jquery-ui/jquery-ui.js"></script>
-	<script src="../js/main.js"></script> 
+	<script src="../js/main.js"></script>
 	<script src="../js/controller_sesionOpen.js"></script>
 	<script src="../js/lolliclock.js"></script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>
