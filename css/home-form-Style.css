@@ -101,8 +101,10 @@ body{
 			padding: 10px;
 			text-decoration: none;
 		}
-	#login {
-		padding: 10px;
+	.home-nav .sinmenu > #login > a{
+		color: white;
+		padding-left: 20px;
+
 	}
 
 	#login-form {

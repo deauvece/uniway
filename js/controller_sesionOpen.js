@@ -48,7 +48,8 @@ $(document).ready(function () {
 			   	    origin: array_stops[0],
 			   	    destination: array_stops[(array.tam)-1],
 			   	    waypoints: waypts,
-			   	    optimizeWaypoints: true,
+				    //true para reordenar los waypoints
+			   	    optimizeWaypoints: false,
 			   	    travelMode: 'DRIVING'
 			   	  }, function(response, status) {
 			   	    if (status === 'OK') {

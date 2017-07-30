@@ -18,7 +18,7 @@ function generateRandomString($length = 12) {
 }
 $rand= generateRandomString();
 //insersion en la tabla de rutas
-$sql="INSERT INTO routes (spots,id_user,rand) VALUES ('4','$id_user','$rand')";
+$sql="INSERT INTO routes (spots,id_user,rand,rute_name) VALUES ('4','$id_user','$rand','$rute_name')";
 $result = pg_query($conn, $sql);
 
 //busqueda del id de la ruta

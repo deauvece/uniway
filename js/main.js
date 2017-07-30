@@ -8,7 +8,7 @@ country: 'long_name',
 postal_code: 'short_name'
 };
 function initAutocomplete() {
-	var options = {
+	var options = { 
 	componentRestrictions: {country: "col"}
 	};
 	//FORM-USERPROFILE

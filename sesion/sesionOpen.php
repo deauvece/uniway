@@ -146,12 +146,19 @@ $rdnString=$vector_random['random_string'];
 				while($vector_routes=pg_fetch_array($result_routes))
 				{
 					$id_ruta= $vector_routes['id_route'];
+
+					//rute_name
+					$sql_rute_name="SELECT rute_name FROM routes WHERE id_route='$id_ruta'";
+					$result_rute_name = pg_query($conn, $sql_rute_name);
+					$vector_rute_name=pg_fetch_array($result_rute_name);
+					$rute_name= $vector_rute_name['rute_name'];
+
 					?>
 						<div class="rutaXBox">
 						<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
 						<label for="ruta<?php echo $contador; ?>"></label>
 						<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
-						<option value="" selected >Ruta <?php echo $contador; ?></option>
+						<option value="" selected ><?php echo $rute_name; ?></option>
 					<?php
 					//se imprimen las paradas
 					$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
@@ -349,7 +356,7 @@ $rdnString=$vector_random['random_string'];
 
 	<script src="../js/jquery-3.1.1.min.js"></script>
 	<script src="../js/jquery-ui/jquery-ui.js"></script>
-	<script src="../js/main.js"></script>
+	<script src="../js/main.js"></script> 
 	<script src="../js/controller_sesionOpen.js"></script>
 	<script src="../js/lolliclock.js"></script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>

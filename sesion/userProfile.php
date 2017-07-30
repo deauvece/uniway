@@ -123,8 +123,23 @@ if ($is_driver=='t') {
 								<option value="F" <?php if ($sex=="F"){echo "selected";} ?> >Femenino</option>
 							</select>
 						</li>
+					</ul>
+					<ul>
+						<li></li>
+						<li id="change_password">Cambia tu contraseña</li>
+						<li>
+							<label for="pass1">Nueva contraseña</label>
+							<input id="pass1" type="password" name="nw_ps" autocomplete="off">
+						</li>
+						<li>
+							<label for="pass2">Introduce de nuevo la contraseña</label>
+							<input id="pass2" type="password" name="nw_ps2"  autocomplete="off">
+						</li>
 						<input type="text" name="id_user" hidden value="<?php echo "$idu"; ?>">
 					</ul>
+					<div class="message">
+
+					</div>
 					<div class="security">
 
 						<h4>Visibildiad de los datos</h4>
@@ -148,7 +163,7 @@ if ($is_driver=='t') {
 							<?php  }	?>
 						</ul>
 					</div>
-					<button type="submit" name="button" >Guardar</button>
+					<button id="submit-btn-reg" type="submit" name="button" >Guardar</button>
 				</form>
 			</div>
 			<div class="transportInfo" id="verif_info" >
@@ -372,9 +387,15 @@ if ($is_driver=='t') {
 			 {
 			      while($vector_routes=pg_fetch_array($result_routes))
 			      {
-					?> <div class="userRutes"> <?php
+					?> <div class="userRutes"><?php
 					$id_ruta= $vector_routes['id_route'];
-					echo "<span class='del_route' data-id='$id_ruta' >ELIMINAR</span>";
+
+					$sql_rute_name="SELECT rute_name FROM routes WHERE id_route='$id_ruta'";
+					$result_rute_name = pg_query($conn, $sql_rute_name);
+					$vector_rute_name=pg_fetch_array($result_rute_name);
+					$rute_name= $vector_rute_name['rute_name'];
+
+					echo "<span class='del_route' data-id='$id_ruta' >ELIMINAR</span><span class='rute_name'>$rute_name</span> ";
 					//selecciono todas las paradas de esa ruta
 					$sql_stops="SELECT id_stop FROM route_stop WHERE id_route='$id_ruta'";
 					$result_stops = pg_query($conn, $sql_stops);
@@ -397,6 +418,9 @@ if ($is_driver=='t') {
 			?>
 				<form action="../php/addRoute.php" name="form_stops" method="post" id="addRoute2">
 					<div class="new-add">
+						<label for="rute_name">Nombre</label>
+						<input type="text" name="rute_name" id="rute_name" required>
+						<label for="">Paradas</label>
 						<select class="firs-stop" name="stop1">
 							<option value="Universidad Industrial de Santander - Calle 9">Universidad industrial de santander (UIS), Sede principal</option>
 							<option value="Cra. 32 #29-31, Bucaramanga, Santander">Universidad industrial de santander (UIS), Salud</option>
@@ -412,6 +436,7 @@ if ($is_driver=='t') {
 						<input type="text" class="paradas2" id="stop5" name="stop5" placeholder="Busca una parada" autocomplete="off" required />
 						<button id="hide_stp_5" class="hide_stop" type="button">x</button>
 						<input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
+
 					</div>
 					<button class="userAddRutes" id="add-route-user2"  type="submit" name="button">Enviar</button>
 				</form>
@@ -481,4 +506,33 @@ if ($is_driver=='t') {
 <script src="../js/jquery-ui/jquery-ui.js"></script>
 <script src="../js/main.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#pass1').keyup(function() {
+		var pswd = $(this).val();
+		if (pswd.length < 8 && pswd.length > 1 ) {
+			$('.message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
+			$('#submit-btn-reg').prop("disabled", true);
+		}else if ($('#pass1').val() != $('#pass2').val()) {
+			$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+			$('#submit-btn-reg').prop("disabled", true);
+		}
+		else {
+			$('.message').html("");
+			$('#submit-btn-reg').prop("disabled", false);
+		}
+	});
+	$('#pass2').keyup(function() {
+		if ($('#pass1').val() != $('#pass2').val()) {
+			$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+			$('#submit-btn-reg').prop("disabled", true);
+		}else {
+			$('.message').html("");
+			$('#submit-btn-reg').prop("disabled", false);
+		}
+	});
+});
+</script>
+
 </html>

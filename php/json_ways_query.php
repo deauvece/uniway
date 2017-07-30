@@ -83,7 +83,13 @@ if ($id_uni && $stop_query) {
 				//parada inicio-final
 				$cont_stop=0;
 				$all_stops=array();
-				$sql30="SELECT * FROM route_stop WHERE id_route='$id_route_query'";
+				//si el recorrido termina en la universidad ($start_uni=false) se cambia el orden de las rutas
+				if (!$touniversity) {
+					$sql30="SELECT * FROM route_stop WHERE id_route='$id_route_query' DESC";
+				}else {
+					$sql30="SELECT * FROM route_stop WHERE id_route='$id_route_query'";
+				}
+
 				$result30 = pg_query($conn, $sql30);
 				while ($vector30=pg_fetch_array($result30)){
 					$stop_id=$vector30['id_stop'];
@@ -185,7 +191,13 @@ if ($id_uni && $stop_query) {
 				//parada inicio-final
 				$cont_stop=0;
 				$all_stops=array();
-				$sql30="SELECT * FROM route_stop WHERE id_route='$id_route_query'";
+
+				//si el recorrido termina en la universidad ($start_uni=true) se cambia el orden de las rutas
+				if ($touniversity == "true" ) {
+					$sql30="SELECT * FROM route_stop WHERE id_route='$id_route_query' ORDER BY creation_date DESC";
+				}else {
+					$sql30="SELECT * FROM route_stop WHERE id_route='$id_route_query'";
+				}
 				$result30 = pg_query($conn, $sql30);
 				while ($vector30=pg_fetch_array($result30)){
 					$stop_id=$vector30['id_stop'];

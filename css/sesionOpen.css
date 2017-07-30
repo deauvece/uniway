@@ -1355,7 +1355,7 @@ body{
 	/*sesionOpen*/
 	#map{
 		background-color: lightgray;
-	
+
 	}
 }
 
@@ -1535,6 +1535,25 @@ body{
 	padding: 7px 0px;
 	background-color: #F3F3F3;
 }
+
+
+.new-add label{
+	font-size: 90%;
+	margin: 0px auto 5px;
+	display: block;
+	color: gray;
+}
+#rute_name{
+	text-align: center;
+	margin: 0 auto 10px;
+	display: block;
+	width: 94%;
+	border-width: 0px;
+	padding: 5px;
+	box-sizing: border-box;
+	background-color: white;
+}
+
 .paradas2{
 	display: inline-block;
 	width: 90%;
@@ -1614,6 +1633,18 @@ body{
 			border-radius: 3px;
 			overflow: hidden;
 		}
+			#change_password{
+				margin-left: 0px;
+				margin-bottom: 40px;
+				font-weight: bold;
+				width: 100%;
+				text-align: left;
+				display: block;
+			}
+			.message{
+				text-align: center;
+			}
+
 			.basicInfo ul , .transportInfo ul {
 				list-style-type: none;
 				padding: 0px;
@@ -1765,12 +1796,13 @@ body{
 		  }
 		  .basicInfo select, .transportInfo select {
 		  	display: block;
-		  	margin-bottom: 20px;
 		  	border-width: 0px;
+			margin: 0px auto;
+			margin-bottom: 0px;
 			margin-left: auto;
 			margin-right: auto;
 			width: 95%;
-			padding: 15px;
+			padding: 7px 15px;
 			background-color: #F3F3F3;
 		  }
 		  .transportInfo select{
@@ -1942,7 +1974,7 @@ body{
 			display: inline-block;
 			padding:5px;
 			width: 210px;
-			min-height: 220px;
+			min-height: 250px;
 			background-color: white;
 			margin: 15px;
 			border-radius: 5px;
@@ -1966,6 +1998,10 @@ body{
 		.userRutes span:nth-child(2){
 			margin-top:-36px;
 		}
+
+		span.rute_name{
+			background-color: #EBEBEB
+		}
 		 .userRutes .del_route {
 			display: inline-block;
 			float: none;
@@ -1978,7 +2014,7 @@ body{
 			color: white;
 			background-color: #b72c2c;
 			position: relative;
-			top:183px;
+			top:210px;
 			right:0px;
 		}
 		.userRutes .del_route:hover{
