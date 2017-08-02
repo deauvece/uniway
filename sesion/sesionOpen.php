@@ -330,6 +330,7 @@ $rdnString=$vector_random['random_string'];
 			</div>
 		</section>
 		<div class="error_way">
+			<p>Error</p>
 			<span></span>
 			<button type="button">Vale</button>
 		</div>
@@ -359,6 +360,28 @@ $rdnString=$vector_random['random_string'];
 	<script src="../js/main.js"></script>
 	<script src="../js/controller_sesionOpen.js"></script>
 	<script src="../js/lolliclock.js"></script>
+	<script type="text/javascript">
+	var placeSearch, autocomplete;
+	var componentForm = {
+	street_number: 'short_name',
+	route: 'long_name',
+	locality: 'long_name',
+	administrative_area_level_1: 'short_name',
+	country: 'long_name',
+	postal_code: 'short_name'
+	};
+	function initAutocomplete() {
+		var options = {
+		componentRestrictions: {country: "col"}
+		};
+		//FEED-SESIONOPEN
+		autocomplete = new google.maps.places.Autocomplete(
+		  (document.getElementById('search-input')),options
+	  );
+
+	}
+
+	</script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>
 	</body>
 </html>

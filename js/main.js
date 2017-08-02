@@ -1,38 +1,4 @@
-var placeSearch, autocomplete;
-var componentForm = {
-street_number: 'short_name',
-route: 'long_name',
-locality: 'long_name',
-administrative_area_level_1: 'short_name',
-country: 'long_name',
-postal_code: 'short_name'
-};
-function initAutocomplete() {
-	var options = { 
-	componentRestrictions: {country: "col"}
-	};
-	//FORM-USERPROFILE
-	autocomplete = new google.maps.places.Autocomplete(
-	  ($('.new-add > #stop1')[0]),options
-	);
-	autocomplete2 = new google.maps.places.Autocomplete(
-	  ($('.new-add > #stop2')[0]),options
-	);
-	autocomplete3 = new google.maps.places.Autocomplete(
-	  ($('.new-add > #stop3')[0]),options
-	);
-	autocomplete4 = new google.maps.places.Autocomplete(
-	  ($('.new-add > #stop4')[0]),options
-	);
-	autocomplete5 = new google.maps.places.Autocomplete(
-	  ($('.new-add > #stop5')[0]),options
-  );
-	//FEED-SESIONOPEN
-	autocomplete = new google.maps.places.Autocomplete(
-	  (document.getElementById('search-input')),options
-  );
 
-}
 $(document).ready(function () {
 	/*Funciones generales ----------------------------------------------------------------------------*/
 
@@ -83,20 +49,12 @@ $(document).ready(function () {
 			$(".comments_info .add_comment button").fadeIn("slow");
 			$(".score-box").fadeIn();
 		});
-		$("#modal-window-route").click(function(event){
-			if (event.stopPropagation){
-				  event.stopImmediatePropagation();
-			   }
-			   else if(window.event){
-				 window.event.cancelBubble=true;
-			   }
+		$("#modal-window-route").click(function(e){
+			e.stopPropagation();
 		});
 		//error window
-		$(".error_way").click(function(){
-			return false;
-		});
-		$(".error_way button").click(function(){
-			location.reload();
+		$(".error_way").click(function(e){
+			e.stopPropagation();
 		});
 
 		//ventana modal sesionopen.php USERS
@@ -121,8 +79,8 @@ $(document).ready(function () {
 		    $(".modal-window").fadeOut("fast");
 		    $("#modal-window-route").fadeOut("fast");
 	    });
-	    $("#modal-window").click(function(){
-		    event.stopPropagation();
+	    $("#modal-window").click(function(e){
+		    e.stopPropagation();
 	    });
 
 		//crear recorrido
@@ -135,21 +93,11 @@ $(document).ready(function () {
 			$("#addRouteBox").fadeOut();
 			$("#addRoute").hide();
 		});
-		$("#addRoute").click(function(event){
-			if (event.stopPropagation){
-			       event.stopPropagation();
-			   }
-			   else if(window.event){
-			      window.event.cancelBubble=true;
-			   }
+		$("#addRoute").click(function(e){
+			e.stopPropagation();
 		});
-		$("#addRoute").click(function(event){
-			if (event.stopPropagation){
-			       event.stopImmediatePropagation();
-			   }
-			   else if(window.event){
-			      window.event.cancelBubble=true;
-			   }
+		$("#addRoute").click(function(e){
+			e.stopPropagation();
 		});
 		//menu opciones
 		$("#bmenuw").click(function(){
@@ -219,6 +167,56 @@ $(document).ready(function () {
 
 
 	/*Funciones userProfile.php ---------------------------------------------------------------------------*/
+		//verifica contraseñas
+		$('#pass1').keyup(function() {
+			var pswd = $(this).val();
+			if (pswd.length < 8 && pswd.length > 1 ) {
+				$('.message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
+				$('#submit-btn-reg').prop("disabled", true);
+			}else if ($('#pass1').val() != $('#pass2').val()) {
+				$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+				$('#submit-btn-reg').prop("disabled", true);
+			}
+			else {
+				$('.message').html("");
+				$('#submit-btn-reg').prop("disabled", false);
+			}
+		});
+		$('#pass2').keyup(function() {
+			if ($('#pass1').val() != $('#pass2').val()) {
+				$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+				$('#submit-btn-reg').prop("disabled", true);
+			}else {
+				$('.message').html("");
+				$('#submit-btn-reg').prop("disabled", false);
+			}
+		});
+
+		//mostrar preview de la imagen de perfil a subir
+		$("#uploadBtn2").change(function () {
+
+		    if (this.files && this.files[0]) {
+		        var reader = new FileReader();
+		        reader.onload = function (e) {
+		            $('#big_image').prop("src","");
+				  $('#big_image').prop("src",e.target.result);
+				  $("#profile_Image button").show();
+		            //$('#profile_Image').prop('<img src="'+e.target.result+'" width="450" height="300"/>');
+		        }
+		        reader.readAsDataURL(this.files[0]);
+		    }
+		});
+		$("#uploadBtn").change(function () {
+		    if (this.files && this.files[0]) {
+		        var reader = new FileReader();
+		        reader.onload = function (e) {
+		            $('#transport_image').prop("src","");
+				  $('#transport_image').prop("src",e.target.result);
+		        }
+		        reader.readAsDataURL(this.files[0]);
+		    }
+		});
+		//mostrar preview de la imagen del transporte a subir
 
 		//cerrar mensaje cambios hecho update
 		$(".update-done").click(function() {
@@ -227,10 +225,12 @@ $(document).ready(function () {
 		$(".update-done").delay( 1500 ).fadeOut( 400 );
 		//agregar transporte
 		$("#btn-transp").click(function(){
+			$(".no_vehicle").hide();
 			$("#btn-transp").css("display", "none");
 			$("#transport-box").slideDown();
 		});
 		$("#close-transport").click(function(){
+			$(".no_vehicle").show();
 			$("#btn-transp").fadeIn("slow");
 			$("#transport-box").slideUp();
 		});
@@ -265,8 +265,8 @@ $(document).ready(function () {
 			$("#addRouteBox").fadeOut();
 			$("#delete_transport_form").hide();
 		});
-		$("#delete_transport_form").click(function(){
-	 	    return false;
+		$("#delete_transport_form").click(function(e){
+	 	    e.stopPropagation();
 	     });
 
 		//cambiar imagen de usuario
@@ -281,9 +281,22 @@ $(document).ready(function () {
 		$("#addRouteBox").click(function(){
 			$("#addRouteBox").fadeOut();
 			$("#profile_Image").hide();
+			$("#modal_add_stop").hide();
 		});
-		$("#profile_Image").click(function(){
-	 	    event.stopPropagation();
+		$("#profile_Image").click(function(e){
+			e.stopPropagation();
+	     });
+		//mostrar formulario agregar rutas add stop addstop
+		$("#add-route-user").click(function(){
+			$("#addRouteBox").fadeIn();
+			$("#modal_add_stop").fadeIn();
+		});
+		$("#close_add_stop").click(function(){
+			$("#addRouteBox").fadeOut();
+			$("#modal_add_stop").fadeOut();
+		});
+		$("#modal_add_stop").click(function(e){
+			e.stopPropagation();
 	     });
 
 
@@ -305,37 +318,6 @@ $(document).ready(function () {
 			}
 		});
 
-		//agregar rutas
-		$("#add-route-user").click(function(){
-			$(".new-add").slideToggle();
-			$(this).hide();
-			$("#add-route-user2").show();
-			$(".error-del").text("");
-		});
-		//eliminar paradas
-		/*$("#hide_stp_1").on("click",function(){
-			$("#stop1").fadeOut();
-			$(this).hide();
-		});
-		$("#hide_stp_2").on("click",function(){
-			$("#stop2").fadeOut();
-			$(this).hide();
-		});*/
-		$("#hide_stp_3").on("click",function(){
-			$("#stop3").attr("required", false);
-			$("#stop3").fadeOut();
-			$(this).remove();
-		});
-		$("#hide_stp_4").on("click",function(){
-			$("#stop4").attr("required", false);
-			$("#stop4").fadeOut();
-			$(this).remove();
-		});
-		$("#hide_stp_5").on("click",function(){
-			$("#stop5").attr("required", false);
-			$("#stop5").fadeOut();
-			$(this).remove();
-		});
 
 		//eliminar rutas
 		$(".del_route").on("click", function(){
@@ -360,6 +342,8 @@ $(document).ready(function () {
 
 		});
 
+
+		//agregar rutas
 
 	/*Funciones home page ---------------------------------------------------------------------------------*/
 
@@ -457,7 +441,7 @@ $(document).ready(function () {
 					  });
 		});
 		//cambia la barra de navegacion y scroll to top button
-		$(window).scroll(function (event) {
+		$(window).scroll(function () {
 		    var scroll = $(window).scrollTop();
 		    if (scroll>100) {
 			    $(".scrolltop").fadeIn();

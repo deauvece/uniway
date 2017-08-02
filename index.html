@@ -172,9 +172,9 @@
 <script type="text/javascript">
 $('a[href^="#"]').on('click',function (e) {
 	var target = this.hash;
-	var $target = $(target);
+	var target2 = $(target);
 	$('html, body').stop().animate(
-		{'scrollTop': $target.offset().top},
+		{'scrollTop': target2.offset().top},
 		900,
 		'swing',
 		function () {

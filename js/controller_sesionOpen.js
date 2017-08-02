@@ -113,7 +113,25 @@ $(document).ready(function () {
 				$("#pub-box").append(array.output);
 			}
 		});
-
+	});
+	//actualiza publicaciones al mostrar un error
+	$(".error_way button").click(function(){
+		$(".publicaciones").remove();
+		$(this).parent().hide();
+		$("#modal-box").hide();
+		$("#pub-box .spinner").show();
+		$.ajax({
+			url: '../php/json_ways_query.php',
+			type: 'get',
+			data: {
+				id_uni: $("#status_feed").attr("class")
+			},
+			dataType: 'json',
+			success: function(array){
+				$("#pub-box .spinner").hide();
+				$("#pub-box").append(array.output);
+			}
+		});
 	});
 
 
@@ -426,7 +444,7 @@ $(document).ready(function () {
 			url: '../php/json_check_status.php',
 			type: 'get',
 			data: {
-				rdn_string: $("#status_feed").attr("value"), 
+				rdn_string: $("#status_feed").attr("value"),
 				id_uni: $("#status_feed").attr("class")
 			},
 			dataType: 'json',

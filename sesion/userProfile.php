@@ -95,53 +95,52 @@ if ($is_driver=='t') {
 					<span>Cambia las configuraciones básicas de tu cuenta.</span>
 				</div>
 				<form action="../php/update-user.php" method="post">
-					<ul>
-						<li>
+						<div class="block_data">
 							<label for="">Nombres</label>
 							<input type="text" name="names" value="<?php echo "$name"; ?>">
-						</li>
-						<li>
+						</div>
+						<div class="block_data">
 							<label for="">Apellidos</label>
 							<input type="text" name="last_names" value="<?php echo "$last_name"; ?>">
-						</li>
-						<li>
+						</div>
+						<div class="block_data">
 							<label for="">Universidad</label>
 							<input type="text" disabled name="name" value="<?php echo "$university"; ?>">
-						</li>
-						<li>
+						</div>
+						<div class="block_data">
 							<label for="">Telefono</label>
 							<input type="text" name="phone" value="<?php echo "$phone"; ?>">
-						</li>
-						<li>
+						</div>
+						<div class="block_data">
 							<label for="">Correo</label>
 							<input type="text" name="email" value="<?php echo "$email"; ?>">
-						</li>
-						<li>
+						</div>
+
+						<div class="block_data">
 							<label for="">Sexo</label>
 							<select name="sex">
 								<option value="M" <?php if ($sex=="M"){echo "selected";} ?> >Masculino</option>
 								<option value="F" <?php if ($sex=="F"){echo "selected";} ?> >Femenino</option>
 							</select>
-						</li>
-					</ul>
-					<ul>
-						<li></li>
-						<li id="change_password">Cambia tu contraseña</li>
-						<li>
+						</div>
+
+						<div class="block_data" id="change_password">
+							Cambia tu contraseña
+						</div>
+						<div class="block_data">
 							<label for="pass1">Nueva contraseña</label>
 							<input id="pass1" type="password" name="nw_ps" autocomplete="off">
-						</li>
-						<li>
+						</div>
+						<div class="block_data">
 							<label for="pass2">Introduce de nuevo la contraseña</label>
 							<input id="pass2" type="password" name="nw_ps2"  autocomplete="off">
-						</li>
+						</div>
 						<input type="text" name="id_user" hidden value="<?php echo "$idu"; ?>">
-					</ul>
+
 					<div class="message">
 
 					</div>
 					<div class="security">
-
 						<h4>Visibildiad de los datos</h4>
 						<span>
 							Esta configuración solo afecta la visibildad de los datos para los usuarios que no están compartiendo algún vehiculo contigo.
@@ -163,7 +162,7 @@ if ($is_driver=='t') {
 							<?php  }	?>
 						</ul>
 					</div>
-					<button id="submit-btn-reg" type="submit" name="button" >Guardar</button>
+					<button id="submit-btn-reg" type="submit" name="button" >Guardar cambios</button>
 				</form>
 			</div>
 			<div class="transportInfo" id="verif_info" >
@@ -238,17 +237,19 @@ if ($is_driver=='t') {
 				<?php if ($is_driver=="f") {
 				//formulario para agregar un transporte
 				?>
+					<p class="no_vehicle">
+						Actualmente no tienes ningún vehiculo.
+					</p>
 					<div class="add-transport-box">
 						<button type="button" id="btn-transp"  name="button" >Agregar</button>
 					</div>
 					<form id="transport-box" action="../php/addTransport.php" method="post" enctype="multipart/form-data">
 						<input type="text" name="id_user" hidden value="<?php echo "$idu";?>">
-						<ul>
-							<li>
+							<div class="block_data">
 								<label for="">Placa</label>
 								<input type="text" placeholder="xxxnnn ( Sin guiones )" name="license_plate" required>
-							</li>
-							<li>
+							</div>
+							<div class="block_data">
 								<label for="">Tipo de vehiculo</label>
 								<select name="type" required>
 									<option value="Carro">Carro</option>
@@ -257,12 +258,12 @@ if ($is_driver=='t') {
 									<option value="Van">Minivan</option>
 								</select>
 
-							</li>
-							<li>
+							</div>
+							<div class="block_data">
 								<label for="">Modelo</label>
 								<input type="text" name="model">
-							</li>
-							<li>
+							</div>
+							<div class="block_data">
 								<label for="">Aire acondicionado</label>
 								<div class="radio">
 									<!--M(masculino) F(femenino)-->
@@ -271,12 +272,13 @@ if ($is_driver=='t') {
 										<input type="radio" id="radio_airn" name="air_conditioner" value="no">
 										<label for="radio_airn">No</label>
 								</div>
-							</li>
-							<li>
+							</div>
+							<div class="block_data">
 								<label for="">Precio</label>
 								<input type="text" required placeholder="Se recomienda un valor de 2000" name="price">
-							</li>
-							<li>
+							</div>
+
+							<div class="block_data">
 								<label for="">Wi-fi</label>
 								<div class="radio">
 									<!--M(masculino) F(femenino)-->
@@ -285,36 +287,37 @@ if ($is_driver=='t') {
 										<input type="radio" id="radio_wfn" name="wifi" value="no">
 										<label for="radio_wfn">No</label>
 								</div>
-							</li>
-							<li>
+							</div>
+							<div class="block_data">
 								<label for="">Foto del vehículo</label>
+								<img id="transport_image" src="../Imagenes/transportImages/default.png" alt="" />
 								<label class="file_label" for="uploadBtn">Selecciona una foto</label>
 								<input id="uploadBtn" type="file"  name="file" accept="image/*" />
-							</li>
+							</div>
 							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
-						</ul>
+
 						<button type="button" name="button" id="close-transport"  >Cancelar</button>
-						<button type="submit" name="button" >Guardar</button>
+						<button type="submit" name="button" >Guardar cambios</button>
 					</form>
 					<?php
 					}else{
 						//Muestra la informacion del transporte
 						?>
 						<form id="form-update-transport" action="../php/update-transport.php" method="post" enctype="multipart/form-data">
-							<ul>
-								<li>
+
+								<div class="block_data">
 									<label for="">Placas</label>
 									<input type="text" disabled name="license_plate" value="<?php echo "$license_plate";?>">
-								</li>
-								<li>
+								</div>
+								<div class="block_data">
 									<label for="">Modelo</label>
 									<input type="text" name="model" value="<?php echo "$model";?>">
-								</li>
-								<li>
+								</div>
+								<div class="block_data">
 									<label for="">Precio</label>
 									<input type="text" name="price" value="<?php echo "$price";?>">
-								</li>
-								<li>
+								</div>
+								<div class="block_data">
 									<label >Tipo </label>
 									<select name="type">
 										<option value="Camioneta"
@@ -331,8 +334,8 @@ if ($is_driver=='t') {
 											echo " selected ";
 										}?>>Minivan</option>
 									</select>
-								</li>
-								<li>
+								</div>
+								<div class="block_data">
 									<label >Aire acondicionado</label>
 									<select name="air_conditioner">
 										<option value="yes"
@@ -343,8 +346,8 @@ if ($is_driver=='t') {
 											echo " selected ";
 										}?>>No</option>
 									</select>
-								</li>
-								<li>
+								</div>
+								<div class="block_data">
 									<label >Wi-fi</label>
 									<select  name="wifi">
 										<option value="yes"
@@ -355,18 +358,18 @@ if ($is_driver=='t') {
 											echo " selected ";
 										}?>>No</option>
 									</select>
-								</li>
-								<li>
+								</div>
+								<div class="block_data">
 									<label >Imagen </label>
 									<?php if (!$image){ $image="../Imagenes/transportImages/default.png";}?>
-									<img src="<?php echo "$image"; ?>"/>
-									<label class="file_label" for="uploadBtn" style='background-color:#B72C2C' >Selecciona una foto</label>
+									<img id="transport_image" src="<?php echo "$image"; ?>"/>
+									<label class="file_label" for="uploadBtn" >Selecciona una foto</label>
 									<input id="uploadBtn" type="file" name="file" accept="image/*"/>
-								</li>
-							</ul>
+								</div>
+
 							<input type="hidden" name="id_user" value="<?php echo "$idu"; ?>">
 							<button id="delete-button" type="button" name="button" >Eliminar Vehículo</button>
-							<button type="submit" name="button" >Guardar</button>
+							<button type="submit" name="button" >Guardar cambios</button>
 						</form>
 			<?php
 			}
@@ -416,34 +419,10 @@ if ($is_driver=='t') {
 				 }
 			}else { echo "<p style='font-size:90%'>No hay rutas disponibles</p>";  }
 			?>
-				<form action="../php/addRoute.php" name="form_stops" method="post" id="addRoute2">
-					<div class="new-add">
-						<label for="rute_name">Nombre</label>
-						<input type="text" name="rute_name" id="rute_name" required>
-						<label for="">Paradas</label>
-						<select class="firs-stop" name="stop1">
-							<option value="Universidad Industrial de Santander - Calle 9">Universidad industrial de santander (UIS), Sede principal</option>
-							<option value="Cra. 32 #29-31, Bucaramanga, Santander">Universidad industrial de santander (UIS), Salud</option>
-							<option value="Unab - Calle 42, Bucaramanga">Universidad Autónoma de Bucaramanga (UNAB), Cabecera</option>
-							<option value="FOSUNAB, Floridablanca - Santander">FOSUNAB, Salud</option>
-						</select>
-						<input type="text" class="paradas2" id="stop2" name="stop2" placeholder="Busca una parada" autocomplete="off" required />
-						<button id="hide_stp_2" class="hide_stop" type="button">x</button>
-						<input type="text" class="paradas2" id="stop3" name="stop3" placeholder="Busca una parada" autocomplete="off" required />
-						<button id="hide_stp_3" class="hide_stop" type="button">x</button>
-						<input type="text" class="paradas2" id="stop4" name="stop4" placeholder="Busca una parada" autocomplete="off" required />
-						<button id="hide_stp_4" class="hide_stop" type="button">x</button>
-						<input type="text" class="paradas2" id="stop5" name="stop5" placeholder="Busca una parada" autocomplete="off" required />
-						<button id="hide_stp_5" class="hide_stop" type="button">x</button>
-						<input type="hidden" name="id_user"  value="<?php echo $idu; ?>">
-
-					</div>
-					<button class="userAddRutes" id="add-route-user2"  type="submit" name="button">Enviar</button>
-				</form>
 				<span class="error-del"></span>
-				<div class="box-button">
+
 				   <button class="userAddRutes" id="add-route-user"  type="button" name="button">Agregar ruta</button>
-				</div>
+				
 			</div>
 			<div class="qualificationsBox" id="qualificationsBox">
 				<div class="title">
@@ -481,58 +460,236 @@ if ($is_driver=='t') {
 
 
 	    <div id="addRouteBox">
-			 <form id="delete_transport_form" action="../php/deleteTransport.php" method="post">
+			 <form id="delete_transport_form" action="../php/deleteTransport.php" method="POST">
+				 <p>Confirmar eliminación</p>
 				 <span>¿Estás seguro que deseas eliminar este vehículo? Toda la información relacionada a este también se eliminará.</span>
 				 <input type="text" hidden name="id_user"  value="<?php echo "$idu";?>">
 				 <input type="text" hidden name="license_plate"  value="<?php echo "$license_plate";?>">
-				 <button type="submit" name="button" >Sí, eliminar</button>
+				 <button type="submit" >Sí, eliminar</button>
 				 <button id="cancel-delete" type="button" name="button" >No, cancelar</button>
 			 </form>
 			 <!--formulario para subir la imagen-->
 			 <form id="profile_Image"  action="../Imagenes/profileImages/subirImagen.php" method="post" enctype="multipart/form-data" >
+				 <p>
+				 	Cambia tu foto de perfil
+				 </p>
 				 <img id="big_image" src="<?php echo $rute_img;?>"  />
-				 <label class="file_label" for="uploadBtn2" style='background-color:#B72C2C' >Selecciona una foto</label>
-				 <input id="uploadBtn2" type="file" name="file2" accept="image/*"/>
-				 <button type="submit">Subir</button>
+				 <div class="inputs_pf_image">
+					 <label class="file_label" for="uploadBtn2" style='background-color:#B72C2C' >Selecciona una foto</label>
+					 <input id="uploadBtn2" type="file" name="file2" accept="image/*" required/>
+					 <button type="submit">Subir</button>
+				 </div>
 			 </form>
+			 <div id="modal_add_stop">
+				 <button type="button" id="close_add_stop" name="button">X</button>
+	 			<form id="form_stops" action="../php/addRoute.php" name="form_stops" method="post">
+	 				<p>Crea una ruta</p>
+	 				<input type="text" class="query" id="rute_name" name="rute_name" placeholder="Escribe un nombre para la ruta" >
+	 				<span>Selecciona una de las universidades como destino/origen de tu ruta</span>
+	 				<select class="firs-stop" name="stop1">
+	 					<option value="Universidad Industrial de Santander - Calle 9">Universidad industrial de santander (UIS), Sede principal</option>
+	 					<option value="Universidad industrial de santander (UIS), Salud">Universidad industrial de santander (UIS), Salud</option>
+	 					<option value="Unab - Calle 42, Bucaramanga">Universidad Autónoma de Bucaramanga (UNAB), Cabecera</option>
+	 					<option value="FOSUNAB, Floridablanca - Santander">FOSUNAB, Salud</option>
+	 				</select>
+	 				<span>Escribe y selecciona de las opciones que se muestran al escribir, el mapa se generará automaticamente. ( minimo 1, máximo 4 paradas contando el destino )</span>
+	 				<div class="query_box">
+	 					<input type="text" class="query" id="query" placeholder="Busca una parada" onFocus="initAutocomplete_stop()" />
+	 					<button id="add_stop" type="button">Agregar</button>
+	 				</div>
+	 				<span class="error">No puedes agregar más de 4 paradas</span>
+	 				<div class="cont-stops">
+	 					<p>Paradas</p>
+	 				</div>
+	 				<button type="button" class="delete_stop">Eliminar ultima parada</button>
+	 				<div id="map_stops">
+	 				</div>
+					<input id="usr_id" type="hidden" name="id_user"  value="<?php echo $idu ?>">
+					<span class="errorVal">El nombre de tamaño minimo 4 y maximo 25, agregar al menos una parada.</span>
+	 				<button type="submit" name="button">Crear</button>
+	 			</form>
+	 		</div>
 	    </div>
 	    <?php if (isset($_GET["update"])=="done"){ ?>
 		    <div class="update-done">
 		    		Se han hecho los cambios
 		    </div>
 	    <?php  }  ?>
-</body>
+
+
+
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/jquery-ui/jquery-ui.js"></script>
 <script src="../js/main.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>
+<script>
+	//autocompletar
+	var autocomplete;
+	var autocompleteListener;
+	function initAutocomplete_stop() {
+		var options = {
+		componentRestrictions: {country: "col"}
+		};
+		autocomplete = new google.maps.places.Autocomplete( ($('#query')[0])  ,  options );
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#pass1').keyup(function() {
-		var pswd = $(this).val();
-		if (pswd.length < 8 && pswd.length > 1 ) {
-			$('.message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
-			$('#submit-btn-reg').prop("disabled", true);
-		}else if ($('#pass1').val() != $('#pass2').val()) {
-			$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
-			$('#submit-btn-reg').prop("disabled", true);
+	}
+	$('#query').on('focus', function() {
+		$(this).val('');
+	});
+	//mostrar informacion y generar mapa
+	var array_stops=[];
+	var max_stops=5;
+	//primera parada = universidad
+	var first_stop = $("select[name=stop1]").val();
+	array_stops[0]=first_stop;
+	//cada vez que cambie, se actualiza el valor
+	$('#modal_add_stop > select').on('change', function() {
+		first_stop = this.value;
+		array_stops[0]=first_stop;
+		createMap();
+	})
+
+
+	function createMap() {
+			var size_array = array_stops.length;
+			//si ya hay dos paradas se muestra el mapa
+			if (size_array > 1) {
+				//genera el mapa
+				$("#map_stops").css("height","500px");
+				var directionsService = new google.maps.DirectionsService;
+				var directionsDisplay = new google.maps.DirectionsRenderer;
+				var map = new google.maps.Map(document.getElementById('map_stops'), {
+					zoom: 10,
+					center: {lat: 7.13, lng: -73.13}
+				});
+				directionsDisplay.setMap(map);
+
+				var waypts = [];
+				  for (var i = 0; i < size_array; i++) {
+				    if (i!=0 || i!=size_array-1) {
+					 waypts.push({
+					   location: array_stops[i],
+					   stopover: true
+					 });
+				    }
+				  }
+				  directionsService.route({
+				    origin: array_stops[0],
+				    destination: array_stops[(size_array)-1],
+				    waypoints: waypts,
+				    //true para reordenar los waypoints
+				    optimizeWaypoints: false,
+				    travelMode: 'DRIVING'
+				  }, function(response, status) {
+				    if (status === 'OK') {
+					 directionsDisplay.setDirections(response);
+					 var route = response.routes[0];
+				    } else {
+					 console.log('Directions request failed due to ' + status + ' (stop doesnt exist)');
+				    }
+			    });
+
+			}
+	}
+	function addStop() {
+		var count = $(".cont-stops input").length;
+		//se le suma el destino/origen universidad
+		count=count+1;
+
+		//determina si muestra boton para eliminar ultima parada
+		if (count>0) {
+			$(".delete_stop").fadeIn();
 		}
-		else {
-			$('.message').html("");
-			$('#submit-btn-reg').prop("disabled", false);
+
+
+
+		if (count<max_stops) {
+			//se quita el erroe en caso de que esté
+			$("#modal_add_stop .error").css("display","none");
+			//se agrega a cont-stops para que el usuario la vea
+			var info = $("#query").val();
+			$(".cont-stops").append("<input class='query' id='stop"+(count+1)+"' name='stop"+(count+1)+"' disabled type='text'  value='"+info+"'>");
+			//se agrega al vector array_stops
+			array_stops[count]=info;
+			//crea el mapa
+			createMap();
+		}else{
+			$("#modal_add_stop .error").css("display","block");
+		}
+
+	}
+	$("#add_stop").on("click",function () {
+		var sizeResult = $("#query").val().length;
+		if (sizeResult!=0 ) {
+			addStop();
+		}
+
+	});
+
+	$("#query").keypress(function (e) {
+		var sizeResult = $("#query").val().length;
+		if (e.which == 13 && sizeResult!=0 ) {
+			addStop();
 		}
 	});
-	$('#pass2').keyup(function() {
-		if ($('#pass1').val() != $('#pass2').val()) {
-			$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
-			$('#submit-btn-reg').prop("disabled", true);
-		}else {
-			$('.message').html("");
-			$('#submit-btn-reg').prop("disabled", false);
+
+
+	$(".delete_stop").on("click", function(){
+		var count = $(".cont-stops input").length;
+		//si solo hay una parada y se elimina el boton desaparece
+		if (count==1) { $(this).hide(); }
+		//y se quita el error en caso de que esté
+		$("#modal_add_stop .error").css("display","none");
+		array_stops.splice(count, 1);
+		$(".cont-stops input:last-child").remove();
+		//si hay al menos una parada se genera el mapa (inicial + parada(input))
+		if (count>0) {
+			createMap();
 		}
+
 	});
-});
+
+	$('#form_stops> button[type=submit]').on('click', function(e){
+	   $(".errorVal").css("display","none");
+        e.preventDefault();
+	   //input rute name
+        var len = $('#rute_name').val().length;
+	   //minimo una parada
+	   var count = $(".cont-stops input").length;
+	   //se le suma el destino/origen universidad
+        if (len > 4 && len < 20 && count>0) {
+		   //envia el formulario
+		   $.ajax({
+ 			  url: '../php/addRoute.php',
+ 			  type: 'post',
+ 			  data: {
+ 				  stop1: $("select[name=stop1]").val(),
+				  stop2: $("#form_stops #stop2").val(),
+				  stop3: $("#form_stops #stop3").val(),
+				  stop4: $("#form_stops #stop4").val(),
+				  stop5: $("#form_stops #stop5").val(),
+				  rute_name: $("#rute_name").val(),
+				  id_user: $("#usr_id").val()
+ 			  },
+ 			  dataType: 'json',
+ 			  success: function(array){
+				  //para mostrar la ruta creada
+				  location.reload();
+ 			  }
+ 		  });
+	  }else{
+		  $(".errorVal").css("display","block");
+	  }
+    });
+
+
+	//previene que no se envien los formularios  al presionar enter
+	$(document).on("keypress", "form", function(event) {
+	    return event.keyCode != 13;
+	});
+
+
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places" async defer></script>
 
+</body>
 </html>

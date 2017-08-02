@@ -5,6 +5,8 @@ include("functions.php");
 $conn=conectarse();
 extract($_POST);
 
+
+
 //creacion del caracter aleatorio de tamaño CINCOO
 function generateRandomString($length = 12) {
     //solo letras del alfabeto
@@ -26,9 +28,6 @@ $sql_busqueda="SELECT id_route FROM routes WHERE rand='$rand'";
 $result1 = pg_query($conn,$sql_busqueda);
 $vector=pg_fetch_array($result1);
 $id_route=$vector['id_route'];
-//insersion en la tabla de usr_routes
-/*$sql_user_routes="INSERT INTO usr_routes (id_user,id_route) VALUES ('$id_user','$id_route')";
-$result_user_routes= pg_query($conn, $sql_user_routes);*/
 
 //creacion de la relacion ruta-paradas
 $vector_stops[0]=$stop1;
@@ -70,5 +69,11 @@ for ($i=0; $i < 5 ; $i++) {
   }
 
 }
-header("location:../sesion/userProfile.php?idu=myProfile#userRutesBox");
+
+$array = array(
+	'response' => "Data sent"
+);
+ echo json_encode($array);
+
+
 ?>

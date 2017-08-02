@@ -53,7 +53,7 @@ if ($id_way_thisGroup){
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
 	</head>
 	<body >
-		<a href="sesionOpen.php"><img id="back-chat" src="../Imagenes/left4.png" /></a>
+		<a href="sesionOpen.php"><img id="back-chat" src="../Imagenes/leftw.png" /></a>
 		<a href="sesionOpen.php"><img id="logo-chat" src="../Imagenes/logo-name-white.png" /></a>
 		<img id="info-button" src="../Imagenes/info.png"/>
 		<nav class="nav-chat" >
@@ -140,22 +140,24 @@ if ($id_way_thisGroup){
 		</div>
 		<div class="modal-box" id="modal-box">
 			<div class="msg-out">
+				<p>Confirmación</p>
 				<span>¿Estás seguro que deseas salir del grupo?</span>
 				<form action="../php/delete-user-way.php" method="post">
 					<input type="hidden" name="id_way" value="<?php echo $id_way_thisGroup ?>">
 					<input type="hidden" name="id_user" value="<?php echo $idu ?>">
-					<button class="yes-confirm" type="submit">Si</button>
+					<button class="yes-confirm" type="submit">Si, salir</button>
 				</form>
 				<button class="no-confirm" type="button">Cancelar</button>
 			</div>
 			<div class="delete-way">
+				<p>Confirmación</p>
 				<span>
 					¿Estás seguro que deseas eliminar el grupo? Ten encuenta
 					que se eliminaran todos los datos relacionados a este.
 				</span>
 				<form action="../php/deleteWay.php" method="post">
 					<input type="hidden" name="id_way" value="<?php echo $id_way_thisGroup ?>">
-					<button class="yes-confirm" type="submit">Si</button>
+					<button class="yes-confirm" type="submit">Si, eliminar</button>
 				</form>
 				<button class="no-confirm" type="button">Cancelar</button>
 			</div>

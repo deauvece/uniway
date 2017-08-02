@@ -105,8 +105,8 @@ $(document).ready(function () {
 		$(".msg-out").hide();
 		$(".delete-way").hide();
 	});
-	$(".msg-out").click(function(){
-	     event.stopPropagation();
+	$(".msg-out").click(function(e){
+	     e.stopPropagation();
 	});
 	//modal window delete way
 	$("#delete-group").click(function(){
@@ -114,11 +114,19 @@ $(document).ready(function () {
 		$(".msg-out").hide();
 		$(".delete-way").show();
 	});
-	$(".delete-way").click(function(){
-	     event.stopPropagation();
+	$(".delete-way").click(function(e){
+	     e.stopPropagation();sdklfhasjkdfhsdjfsjkf
 	});
 	//options-info
 	$("#info-button").click(function(){
+		var state = $(".people").css("display");
+		if (state=="block"){
+			$("#info-button").prop("src","../Imagenes/info.png");
+			console.log("none");
+		}else{
+			$("#info-button").prop("src","../Imagenes/closebmenuw.png");
+			console.log("block");
+		}
 	     $(".container-chat .people").fadeToggle();
 	});
 	/*$(".cht-box").click(function(){

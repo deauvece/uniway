@@ -136,7 +136,7 @@ if ($id_uni && $stop_query) {
 					$output=$output."<span class='ruta'><img src='../Imagenes/route.png'/> </span>
 					</div>
 					<div class='cont3' >
-					<span class='cupo'>".$spots."</span>
+					<button class='cupo'>".$spots."</button><span>Cupo(s)</span>
 					</div>
 					</div>";
 			}
@@ -244,7 +244,7 @@ if ($id_uni && $stop_query) {
 					$output=$output."<span class='ruta'><img src='../Imagenes/route.png'/> </span>
 					</div>
 					<div class='cont3' >
-					<span class='cupo'>".$spots."</span>
+					<button class='cupo'>".$spots."</button><span>Cupo(s)</span>
 					</div>
 					</div>";
 
