@@ -44,7 +44,7 @@ if (!$file) {
 	    echo "El archivo supera el peso permitido.";/* Si supera el tamaño de permitido lo decimos*/
 	  }
   }
-header("location:../sesion/userProfile.php?idu=myProfile");
+echo "Tamaño de imagen cero."
 }
 
 ?>

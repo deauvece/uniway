@@ -211,38 +211,15 @@ $rdnString=$vector_random['random_string'];
 	</div>
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
-			<img id="back" src="../Imagenes/left4.png" />
-			<div class="encb">
-				<img id="user_img_query" style="border: 2px solid #B72C2C" class="user_img_query" src="../Imagenes/perfil.png"  alt="user imageeeee"/>
-				<div class="user_score">
-					<span id="user_score" >4.5</span>
-					<img src="../Imagenes/puntuacion.png"/>
-				</div>
-				<div class="block">
-					<label for="user_name_query">Nombre</label>
-					<span id="user_name_query" class="user_name_query">Nombre usuario</span>
-				</div>
-				<div class="block">
-					<label for="user_status_query">Estado</label>
-					<span id="user_status_query" class="user_status_query" style="color:#B72C2C"  >Usuario no verificado</span>
-				</div>
-				<div class="block">
-					<label for="user_university_query">Universidad</label>
-					<span id="user_university_query" class="user_university_query" >Universidad </span>
-				</div>
-				<div class="block">
-					<label for="user_email_query">Correo</label>
-					<span id="user_email_query" class="user_email_query">correo@ejemplo.com</span>
-				</div>
-				<div class="block">
-					<label for="user_phone_query">Telefono</label>
-					<span id="user_phone_query" class="user_phone_query">3133333333</span>
-				</div>
+			<img id="back" src="../Imagenes/leftw.png" />
+			<div class="wrap1">
+				<div class="verif_wrap"></div>
+				<img id="user_img_query" class="user_img_query" src="../Imagenes/perfil.png"  alt="imagen de usuario"/>
 			</div>
 			<div class="info-usr">
 				<ul>
-					<li id="data_option" class="info_options" value="data_info" >Datos</li>
-					<li class="info_options" value="transport_info" ><span class='li_underline'></span>Vehículo</li>
+					<li id="data_option" class="info_options" value="data_info" ><span class='li_underline'></span>Datos</li>
+					<li class="info_options" value="transport_info" >Vehículo</li>
 					<li class="info_options" value="routes_info" >Rutas</li>
 					<li class="info_options" value="comments_info" >Comentarios</li>
 				</ul>
@@ -277,15 +254,15 @@ $rdnString=$vector_random['random_string'];
 				</div>
 				<div class="transport_info">
 					<div class="tr-box">
+						<label for="user_transport_model">Modelo</label>
+						<span id="user_transport_model" ></span>
+					</div>
+					<div class="tr-box">
 						<img id="user_transport_image" src="" width="80%" />
 					</div>
 					<div class="tr-box">
 						<label for="user_transport_type">Tipo</label>
 						<span id="user_transport_type" ></span>
-					</div>
-					<div class="tr-box">
-						<label for="user_transport_model">Modelo</label>
-						<span id="user_transport_model" ></span>
 					</div>
 					<div class="tr-box">
 						<label for="user_transport_license_plate">Placas</label>

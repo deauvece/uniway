@@ -729,11 +729,13 @@ body{
 }
 .modal-window {
 	display: none;
-	margin: 30px auto 0px auto;
+	margin: 30px auto 0px ;
 	height: 575px;
 	width: 768px;
 	background-color: white;
 	border-radius: 0px;
+	overflow: auto;
+	position: relative;
 }
 	#back{
 		cursor: pointer;
@@ -741,150 +743,146 @@ body{
 		padding: 5px;
 		height: 25px;
 		width: 25px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
 	}
-	.modal-window .encb{
-		width: 300px;
-		float: left;
-	}
-	.encb .block, .encb2 .block {
-		display: block;
-	}
-		.modal-window .encb img {
-			display: block;
-			margin-top: 30px;
-			margin-left: auto;
-			margin-right: auto;
-			height: 180px;
-			width: 180px;
-			border-radius: 100px;
-		}
-		.modal-window .encb label{
-			text-align: right;
-			display: inline-block;
-			font-size: 70%;
-			width: 80px;
-		}
-		.modal-window .encb span{
-			text-align: left;
-			display: inline-block;
-			max-width: 205px;
-			overflow: hidden;
-			margin-left: 5px;
-			font-weight: bold;
-			font-size: 80%;
-		}
-		.modal-window .encb2 label {
-			display: block;
-			width: auto;
-		}
-		.modal-window .encb2 span{
-			max-width: none;
-			display: block;
-		}
-		.modal-window .encb span:nth-child(2) {
-			padding-top: 30px;
-		}
 
-			.user_score{
-				text-align: center;
-				display: block;
-				margin: 20px auto -10px;
-			}
-			.encb .user_score > img , .encb2 .user_score > img{
-				display: inline-block;
-				height: 20px;
-				width: 20px;
-				margin: 0px;
-				padding: 0px;
-				border-radius: 100px;
-			}
-			.encb2 .user_score > img{
-				height: 30px;
-				width: 30px;
-			}
-			.encb2 .user_score{
-				padding: 10px;
-			}
-			.encb2 .user_score > span{
-				font-size: 120%;
-			}
+	.modal-window .wrap1{
+		min-height: 290px;
+	}
+	.modal-window  .verif_wrap{
+		height: 160px;
+		width: 100%;
+	}
+	.modal-window .wrap1 img{
+		width: 220px;
+		height: 220px;
+		display: block;
+		margin: 0 auto;
+		position: absolute;
+		top: 40px;
+		left: 50%;
+		margin-left: -110px;
+		border-radius: 50%;
+	}
 
 	.modal-window .info-usr {
 		background-color: #F5F5F5;
 		display: block;
-		float: left;
-		margin-left: 10px;
-		margin-top: -35px;
-		text-align: left;
-		height: 100%;
-		width: 450px;
-		border-width: 1px;
-		border-color: black;
-	}
-	#data_option{
-		display: none;
+		min-height: 300px;
+		width: 100%;
 	}
 		.info-usr ul {
-			background-color: white;
+			background-color: #F5F5F5;
 			padding: 0px;
 			margin: 0px;
-			height: 30px;
+			height: 40px;
+			width: 100%;
 			list-style-type: none;
+			text-align: center;
 		}
 		.info-usr ul li {
 			cursor: pointer;
 			padding: 0px;
 			margin: 0px;
 			margin-top: -5px;
-			width: 32%;
+			width: 100px;
 			height: 25px;
-			display: inline-block;
 			text-align: center;
+			display: inline-block;
 			text-transform: uppercase;
 			font-size: 80%;
 		}
 		.info-usr .li_underline {
 			position: relative;
 			display: inline-block;
-			top:22px;
+			top:30px;
 			height: 2px;
 			width: 100%;
-			background-color: #009999;
+			background-color: gray;
 		}
+
+	/*data_info*/
+	.encb2{
+		background-color: white;
+		min-height: 400px;
+	}
+		.user_score{
+			background-color: #F5F5F5;
+			padding: 10px;
+			display: block;
+			display: flex;
+			margin-bottom: 30px;
+		}
+		 .encb2 .user_score > img{
+			display: inline-block;
+			height: 25px;
+			width: 25px;
+			margin: 0px;
+			margin-left: 3px;
+			padding: 0px;
+		}
+		.encb2 .user_score > span{
+			width: 50%;
+			text-align: right;
+			font-size: 130%;
+			line-height: 28px;
+		}
+
+	 .encb2 .block {
+		box-sizing: border-box;
+		display: inline-block;
+		display: flex;
+		padding: 10px 0px;
+	}
+	.encb2 .block:hover {
+		background-color: #F5F5F5;
+	}
+		.modal-window .encb2 label {
+			text-align: right;
+			width: 45%;
+			font-size: 80%;
+		}
+		.modal-window .encb2 span{
+			box-sizing: border-box;
+			padding-left: 30px;
+			font-size: 90%;
+		}
+
+
+
 		.transport_info{
-			height: 92%;
-			overflow: auto;
+			display: none;
 		}
 			.transport_info .tr-box{
-				display: block;
+				min-height: 80px;
+				display: flex;
 				background-color: white;
-				margin: 2px 5px;
-				min-height: 50px;
+			}
+			.transport_info .tr-box:hover{
+				background-color: #F5F5F5;
 			}
 			.transport_info .tr-box label{
-				display: block;
-				font-size: 90%;
-				font-weight: bold;
-				margin: 0px 0px 0px 7px;
-				padding-top: 7px;
+				text-align: right;
+				line-height: 80px;;
+				width: 45%;
+				font-size: 80%;
 			}
 			.transport_info .tr-box span{
-				display: block;
-				text-align: center;
-				padding: 0px 10px 5px;
+				box-sizing: border-box;
+				padding-left: 30px;
+				line-height: 80px;
 			}
 			.transport_info .tr-box img{
 				display: block;
-				width: 100%;
-				margin: 0px auto;
-				padding: 10px 0px;
-				max-width: 500px;
-				max-height: 500px;
+				margin: 10px auto;
+				border-radius: 5px;
+				width: 80%;
+				height: auto;
 			}
 		.routes_info{
 			display: none;
-			height: 90%;
-			overflow: auto;
 		}
 			.routes_info .rts-box {
 				border: 1px solid #D0D0D0;
@@ -909,8 +907,6 @@ body{
 
 		.comments_info{
 			display: none;
-			height: 90%;
-			overflow: auto;
 		}
 		#del-cm-btn{
 			border-width: 0px;
@@ -1039,9 +1035,6 @@ body{
 				text-align: center;
 				background: lightblue
 			}
-		.data_info{
-			display: none;
-		}
 
 		.error_way{
 			display: none;
@@ -1091,7 +1084,7 @@ body{
 	margin-top:30px;
 	margin-left: auto;
 	margin-right: auto;
-	overflow: scroll;
+	overflow: auto;
 }
 #modal-window-route .cont-stops{
 	cursor: default;
@@ -1143,7 +1136,6 @@ body{
 	#modal-window-route{
 		width: auto;
 		height: 100vh;
-		overflow: scroll;
 		margin: 0px auto;
 	}
 	.sesion_container_1{
@@ -1180,68 +1172,9 @@ body{
 	}
 }
 @media (max-width:768px) {
-	/*sesionOpen*/
-	.encb .user_score #user_score, .encb .user_score > img{
-		display: none;
-	}
-	#data_option{
-		display: inline-block;
-	}
-	.info-usr ul li {
-		width: 22%;
-	}
-	.data_info{
-		padding: 0px;
-		margin: 10px;
-		height: 80%;
-		background-color: white;
-	}
-	.encb2 .block{
-		height: 45px;
-		float: none;
-		display: block;
-		width: 97%;
-	}
-	.encb2 .block:nth-child(1) {
-		padding-top: 30px;
-	}
-
-	.encb2 .block label{
-		width: 25%;
-		font-size: 100%;
-	}
-	.encb2 .block span{
-		display: block;
-		width: 100%;
-		font-size: 100%;
-	}
-	#user_score{
-		display: inline-block;
-		font-size: 150%;
-	}
 	.modal-window {
-		display: none;
-		height: 100%;
 		width: 100%;
 		margin-top: 0px;
-		overflow: auto;
-	}
-	.modal-window .encb{
-		overflow: hidden;
-		height: 150px;
-		width: auto;
-		float: none;
-		margin: 0px;
-		padding-top: 3px;
-	}
-	.modal-window .info-usr {
-		float: none;
-		width: auto;
-	}
-	.modal-window .encb img {
-
-		height: 100px;
-		width: 100px;
 	}
 }
 @media (max-width:600px) {
@@ -1258,14 +1191,6 @@ body{
 
 @media (max-width:550px) {
 	/*sesionOpen*/
-	.modal-window {
-		width: 100%;
-	}
-	.encb2 .block label{
-		width: 100px;
-		padding: 0 4px;
-		font-size: 90%;
-	}
 	.btn-pedirCupo, .btn-eliminar {
 		height: 55px;
 		width: 55px;
@@ -1306,22 +1231,21 @@ body{
 
 @media (max-width:500px) {
 	/*sesionOpen*/
-	.encb2 .block{
-		height: 50px;
-	}
 	.encb2 .block label{
-		text-align: left;
-		float: none;
-		padding-left: 10px;
-		display: block;
-		width: 80px;
+		width: 25%;
 	}
 	.encb2 .block span{
-		padding-top: 5px;
-		float: none;
-		display: block;
-		width: 100%;
-		text-align: center;
+		width: 75%;
+	}
+	.info-usr ul {
+		padding: 0px;
+		margin: 0px;
+		box-sizing: border-box;
+	}
+	.info-usr ul li {
+		box-sizing: border-box;
+		width: 80px;
+		font-size: 70%;
 	}
 
 }
@@ -1338,19 +1262,33 @@ body{
 		padding: 0px 10px;
 		box-sizing: border-box;
 	}
-
-}
-@media (max-width: 420px) {
-	/*sesionOpen*/
-	#map{
-		background-color: lightgray;
+	.info-usr ul li {
+		box-sizing: border-box;
+		width: 70px;
+		font-size: 70%;
 	}
+
+
+	.modal-window .wrap1{
+		min-height: 230px;
+	}
+	.modal-window  .verif_wrap{
+		height: 130px;
+		width: 100%;
+	}
+	.modal-window .wrap1 img{
+		width: 160px;
+		height: 160px;
+		display: block;
+		margin: 0 auto;
+		position: absolute;
+		top: 40px;
+		left: 50%;
+		margin-left: -80px;
+		border-radius: 50%;
+	}
+
 }
-
-
-
-
-
 
 /*============================================userProfile===================================================*/
 .navProfile {

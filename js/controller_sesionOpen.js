@@ -288,18 +288,20 @@ $(document).ready(function () {
 				//basic info
 				$(".user_img_query").attr("src", array.profile_image);
 				$(".user_name_query").text(array.full_name);
-				$(".user_university_query").text(array.university_acr);
+				$(".user_university_query").text(array.university_name);
 				$(".user_email_query").text(array.email);
 				$(".user_phone_query").text(array.phone);
 				$(".user_score> span").text(array.score_user);
 				//verified user
 				$(".user_verified_query").text(array.is_verified);
 					if (array.is_verified=='t') {
-						$(".user_img_query").attr("style","");
+						$(".verif_wrap").css("background-color","#002A2A")
 						$(".user_status_query").attr("style","color:#007272");
 						$(".user_status_query").text("Usuario verificado");
 					}else{
-						$(".user_img_query").attr("style","border: 2px solid #B72C2C");
+						//#002A2A = verde
+						//#CE3232 = rojo
+						$(".verif_wrap").css("background-color","#CE3232")
 						$(".user_status_query").attr("style","color:#B72C2C");
 						$(".user_status_query").text("Usuario no verificado");
 					}
