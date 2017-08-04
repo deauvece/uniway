@@ -23,7 +23,7 @@
 				  //Error de contraseña o correo
 					if (isset($_GET["errorusuario"])=="si")
 					{
-				?>
+				?> 
 					<span class="error">El nombre de usuario y la contraseña que ingresaste no coinciden con nuestros registros. Por favor, revisa e inténtalo de nuevo.</span>
 				<?php
 					}

@@ -1,4 +1,7 @@
 <?PHP
+// Activar errores
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
 // llamar la funciones
 include("functions.php");
 $conn=conectarse();
@@ -14,18 +17,18 @@ $result2 = pg_query($conn, $sql2);
 session_start();
 $_SESSION['is_driver']= "t";
 
-//update the transport image
-$file=$_FILES["file"];
-if (!$file) {
+$size= $_FILES[ 'file' ][ 'size' ];
+if ( $size == 0) {
 	$ruta="../Imagenes/transportImages/default.png";
 	$sql1_update= "UPDATE transports SET image='$ruta' WHERE license_plate='".$license_plate."' ";
 	$result_img = pg_query($conn,$sql1_update);
+	header("location:../sesion/userProfile.php?idu=myProfile");
 }else{
 	$idu=$id_user;
 	$cad = "transport_image_".$idu;
 	$tamano = $_FILES[ 'file' ][ 'size' ]; // Leemos el tamaño del fichero en bytes
 	$tamaño_max="2000000"; // Tamaño maximo permitido son 2 megabytes
-	if ($tamano!=0) {
+
 	if( $tamano < $tamaño_max){ // Comprovamos el tamaño
 		 $destino = '../Imagenes/transportImages' ; // Carpeta donde se guardara
 		 $sep=explode('image/',$_FILES['file']['type']); // Separamos image/
@@ -42,9 +45,8 @@ if (!$file) {
 		 }
 	}else {
 	    echo "El archivo supera el peso permitido.";/* Si supera el tamaño de permitido lo decimos*/
-	  }
-  }
-echo "Tamaño de imagen cero."
+	}
+
 }
 
 ?>

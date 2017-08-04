@@ -217,6 +217,10 @@ $rdnString=$vector_random['random_string'];
 				<img id="user_img_query" class="user_img_query" src="../Imagenes/perfil.png"  alt="imagen de usuario"/>
 			</div>
 			<div class="info-usr">
+				<div class="user_score">
+					<span id="user_score">4.5</span>
+					<img src="../Imagenes/puntuacion.png"/>
+				</div>
 				<ul>
 					<li id="data_option" class="info_options" value="data_info" ><span class='li_underline'></span>Datos</li>
 					<li class="info_options" value="transport_info" >Vehículo</li>
@@ -225,10 +229,6 @@ $rdnString=$vector_random['random_string'];
 				</ul>
 				<div class="data_info">
 					<div class="encb2">
-						<div class="user_score">
-							<span id="user_score">4.5</span>
-							<img src="../Imagenes/puntuacion.png"/>
-						</div>
 						<div class="block">
 							<label for="user_status_query">Estado</label>
 							<span id="user_status_query" class="user_status_query" style="color:#B72C2C"  >Usuario no verificado</span>
@@ -258,7 +258,9 @@ $rdnString=$vector_random['random_string'];
 						<span id="user_transport_model" ></span>
 					</div>
 					<div class="tr-box">
-						<img id="user_transport_image" src="" width="80%" />
+						<div class="img-box">
+							<img id="user_transport_image" src="" width="80%" />
+						</div>
 					</div>
 					<div class="tr-box">
 						<label for="user_transport_type">Tipo</label>

@@ -104,7 +104,6 @@ body{
 	.home-nav .sinmenu > #login > a{
 		color: white;
 		padding-left: 20px;
-
 	}
 
 	#login-form {
@@ -760,6 +759,9 @@ header {
 		border-radius: 0px;
 		box-shadow:  none;
 	}
+	.home-nav .sinmenu > #login > a{
+		padding: 10px 0px 0px 40px;
+	}
 	.home-nav .sinmenu  {
 		display: block;
 		width: 100%;
@@ -830,6 +832,10 @@ header {
 			width: 100%;
 		}.contenedorContact .login input {
 			display: block;
+			width: 95%;
+		}
+		
+		.contenedorContact .login .botonLogin {
 			width: 95%;
 		}
 	/*REGISTER PAGE */
