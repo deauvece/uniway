@@ -422,7 +422,7 @@ if ($is_driver=='t') {
 				<span class="error-del"></span>
 
 				   <button class="userAddRutes" id="add-route-user"  type="button" name="button">Agregar ruta</button>
-				
+
 			</div>
 			<div class="qualificationsBox" id="qualificationsBox">
 				<div class="title">
@@ -524,14 +524,13 @@ if ($is_driver=='t') {
 <script>
 	//autocompletar
 	var autocomplete;
-	var autocompleteListener;
 	function initAutocomplete_stop() {
 		var options = {
 		componentRestrictions: {country: "col"}
 		};
 		autocomplete = new google.maps.places.Autocomplete( ($('#query')[0])  ,  options );
-
 	}
+
 	$('#query').on('focus', function() {
 		$(this).val('');
 	});
@@ -690,6 +689,5 @@ if ($is_driver=='t') {
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places" async defer></script>
-
 </body>
 </html>

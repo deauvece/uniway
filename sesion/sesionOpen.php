@@ -88,21 +88,28 @@ $rdnString=$vector_random['random_string'];
 
 		<div class="sesion_container_2">
 		<!--feeeeeeeeeeeeeeeeeeeeeed section (center)-->
-			<section class="find">
-				<input id="search-input" class="search" type="text" name="name" placeholder="¿Para dónde vas?" autocomplete="off" autofocus>
+			<div class="find">
+				<input id="search-input" class="search onAuto" type="text" name="name" placeholder="Busca un recorrido por lugar o usuario" autocomplete="off" >
 				<img id="search_image" src="../Imagenes/search.png" alt="" />
-			</section>
+			</div>
+			<div id="search_options">
+				<p>Filtros de busqueda:</p>
+				<input id="user_opt" type="radio" name="opt_serch" value="user">
+				<label for="user_opt">Usuario</label>
+				<input id="stop_opt" type="radio" name="opt_serch" value="stop" checked>
+				<label for="stop_opt">Lugar</label>
+			</div>
 			<a id='new-updates'><span>Hay nuevas publicaciones</span></a>
-			<section id="pub-box">
-					<div class="spinner spinner-1"></div>
-			</section>
+			<div id="pub-box">
+				<div class="spinner spinner-1"></div>
+			</div>
 		</div>
 		<div class="sesion_container_3">
-			<section class="news">
-				<img src="../Imagenes/news.png" width="100%" />
+			<section class="ads">
+				<!--<img src="../Imagenes/news.png" width="100%" />-->
 			</section>
 			<!--ads section (right)-->
-			<section class="ads">
+			<section class="news">
 				<span class="copy" >©2017 Uniway</span>
 				<div class="links">
 					<a href="#">Sobre nosotros</a>
@@ -334,33 +341,27 @@ $rdnString=$vector_random['random_string'];
 	<input type="hidden" id="us_img" value="<?php echo $us_img; ?>">
 	<input id='status_feed' type='button' hidden class='<?php echo "$id_university"; ?>' value='<?php echo "$rdnString"; ?>'>
 
+
+
 	<script src="../js/jquery-3.1.1.min.js"></script>
 	<script src="../js/jquery-ui/jquery-ui.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/controller_sesionOpen.js"></script>
 	<script src="../js/lolliclock.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places" async defer></script>
 	<script type="text/javascript">
-	var placeSearch, autocomplete;
-	var componentForm = {
-	street_number: 'short_name',
-	route: 'long_name',
-	locality: 'long_name',
-	administrative_area_level_1: 'short_name',
-	country: 'long_name',
-	postal_code: 'short_name'
-	};
-	function initAutocomplete() {
+	var autocomplete_feed;
+	function initAutocomplete_feed() {
 		var options = {
 		componentRestrictions: {country: "col"}
 		};
-		//FEED-SESIONOPEN
-		autocomplete = new google.maps.places.Autocomplete(
-		  (document.getElementById('search-input')),options
-	  );
-
+		autocomplete_feed = new google.maps.places.Autocomplete( ($('.onAuto')[0]), options );
 	}
-
+	$(document).ready(function () {
+		$('div.find').on("focus",".onAuto",function(){
+			initAutocomplete_feed();
+		});
+	});
 	</script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places&callback=initAutocomplete" async defer></script>
-	</body>
+</body>
 </html>

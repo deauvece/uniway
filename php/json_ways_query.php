@@ -5,8 +5,9 @@
 error_reporting(0);
 include("../php/functions.php");
 $conn=conectarse();
-$stop_query=$_GET['stop_query'];
+$input_query=$_GET['stop_query'];
 $id_uni=$_GET['id_uni'];
+$opt_search=$_GET['opt_search'];
 session_start();
 $idu=$_SESSION['id_usuario'];
 //publicacion activa del usuario si es que tiene
@@ -15,43 +16,45 @@ $result20 = pg_query($conn, $sql20);
 $vector20=pg_fetch_array($result20);
 $way_active=$vector20['id_way'];
 
-/*function make_output($id_uni,$query){
-	if ($query==0) {
-		$sql3="SELECT * FROM ways WHERE id_u='$id_uni' ORDER BY id_way DESC LIMIT 30";
+if ($id_uni && $input_query) {
+	$input_query=strtolower($input_query);
+	//realiza la consulta de publicaciones para una parada (BUSQUEDA) o para un usario dependiendo de opt_search
+	if ($opt_search=="user") {
+		//Busca una publicacion de algun usuario con un nombre como el de la busqueda
+		$sql_usr="SELECT id_user FROM users WHERE names LIKE '%$input_query%' LIMIT 10 ";
+		$result_usr = pg_query($conn, $sql_usr);
+		while ($vector_usr=pg_fetch_array($result_usr)){
+			$result_query[]=$vector_usr['id_user'];
+	     }
+		$size_result=count($result_query);
+
 	}else{
-		$sql3="SELECT * FROM ways WHERE id_route='$query' AND id_u='$id_uni' ORDER BY id_way DESC LIMIT 10 ";
+		//Busca una parada para el texto introducido
+		$sql1="SELECT id_stop FROM stops WHERE name LIKE '%$input_query%' ";
+		$result1 = pg_query($conn, $sql1);
+		$vector=pg_fetch_array($result1);
+		$result_stop=$vector['id_stop'];
+		//Busca una ruta que tenga la parada y esté activa
+		$sql2="SELECT id_route FROM route_stop WHERE id_stop='$result_stop' AND status='active' ";
+		$result2 = pg_query($conn, $sql2);
+		while ($vector2=pg_fetch_array($result2))
+	     {
+			$result_query[]=$vector2['id_route'];
+	     }
+		$size_result=count($result_query);
+
 	}
-	$result3 = pg_query($conn, $sql3);
-	$numFilas_ways = pg_num_rows($result3);
-	$cont_ways=1;
-
-	return $output;
-}*/
-
-
-if ($id_uni && $stop_query) {
-	//realiza la consulta de publicaciones para una parada (BUSQUEDA)
-	//Busca una parada para el texto introducido
-	$sql1="SELECT id_stop FROM stops WHERE name LIKE '$stop_query%' ";
-	$result1 = pg_query($conn, $sql1);
-	$vector=pg_fetch_array($result1);
-	$result_stop=$vector['id_stop'];
-
-	//Busca una ruta que tenga la parada y esté activa
-	$sql2="SELECT id_route FROM route_stop WHERE id_stop='$result_stop' AND status='active' ";
-	$result2 = pg_query($conn, $sql2);
-	while ($vector2=pg_fetch_array($result2))
-     {
-		$result_routes[]=$vector2['id_route'];
-     }
-	$size_result_routes=count($result_routes);
-
 	$output="<p class='result-txt'>Resultados de la busqueda.</p>";
-	for ($i=0; $i < $size_result_routes ; $i++) {
+	for ($i=0; $i < $size_result ; $i++) {
 		//Busca un recorrido que tenga la ruta
-		$query=$result_routes[$i];
+		$query=$result_query[$i];
 		//MAXIMO DIEZ RESULTADOS, si se cambia toca aumentar las variables en todos los arrrays
-		$sql3="SELECT * FROM ways WHERE id_route='$query' AND id_u='$id_uni' ORDER BY id_way DESC LIMIT 10 ";
+		//dependiendo de la opcion de busqueda se cambia el query
+		if ($opt_search=="user") {
+			$sql3="SELECT * FROM ways WHERE id_user='$query' AND id_u='$id_uni' ORDER BY id_way DESC LIMIT 10 ";
+		}else{
+			$sql3="SELECT * FROM ways WHERE id_route='$query' AND id_u='$id_uni' ORDER BY id_way DESC LIMIT 10 ";
+		}
 		$result3 = pg_query($conn, $sql3);
 		$numFilas_ways = pg_num_rows($result3);
 		$cont_ways=1;

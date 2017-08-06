@@ -29,6 +29,11 @@ $(document).ready(function () {
 			   $(".name,.time,.ini-desti,.comentario",this).hide();
 			   $(".ruta, .btn-pedirCupo, .btn-eliminar",this).show();
 		    },
+		    mouseenter: function () {
+			    $(this).css({
+ 				   backgroundColor:"#F5F8FA"
+ 			   });
+		   },
 		    mouseleave: function () {
 			    $(this).css({
  				   backgroundColor:"white",

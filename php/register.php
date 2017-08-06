@@ -7,7 +7,7 @@ require_once "recaptchalib.php";
 /*foreach ($_POST as $key => $value) {
 echo '<p><strong>' . $key.':</strong> '.$value.'</p>';
 }*/
- 
+
 //clave secreta
 $secret = "6LdlABcUAAAAAN8n0ysKFiyhC9BkICAl_Ztw3oJh";
 //respuesta vacía
@@ -45,6 +45,8 @@ if ($response != null && $response->success) {
 			}else{
 			  $encrpt_pswd= password_hash($password,PASSWORD_DEFAULT);
 			  //imagen predeterminada de perfil
+			  $names=strtolower($names);
+			  $last_names=strtolower($last_names);
 			  $profile_image="../Imagenes/profileImages/upload/perfil.png";
 			  $sql3="INSERT INTO users ( names, last_names, phone, email, password, id_u,profile_image)
 			  VALUES ('$names', '$last_names', '$phone', '$email', '$encrpt_pswd', '$id_u', '$profile_image')";

@@ -63,37 +63,22 @@ $(document).ready(function () {
 		});
 	});
 
-	//LIMPIA LAS PUBLICACIONES
-	$("#search-input").on("keyup",function() {
-			var sizeResult = $("#search-input").val().length;
-			if (sizeResult==0) {
-				$(".no-results").css("display","none");
-				$("div").remove(".p-before");
-				$(".publicaciones").show();
-				$(".result-txt").remove();
-				$(document).attr("title", "Uniway");
-			}
+
+	//AGREGA LAS PUBLICACIONES MAS RECIENTES AL CARGAR LA PAGINA
+	$.ajax({
+		url: '../php/json_ways_query.php',
+		type: 'get',
+		data: {
+			id_uni: $("#status_feed").attr("class")
+		},
+		dataType: 'json',
+		success: function(array){
+			$("#pub-box .spinner").hide();
+			$("#pub-box").append(array.output);
+		}
 	});
 
 
-
-
-	//AGREGA LAS PUBLICACIONES MAS RECIENTES AL CARGAR LA PAGINA
-	var publications_box=$("#pub-box").val();
-	if (!publications_box) {
-		$.ajax({
-			url: '../php/json_ways_query.php',
-			type: 'get',
-			data: {
-				id_uni: $("#status_feed").attr("class")
-			},
-			dataType: 'json',
-			success: function(array){
-				$("#pub-box .spinner").hide();
-				$("#pub-box").append(array.output);
-			}
-		});
-	}
 
 
 	//MUESTRA NUEVAS PUBLICACIONES
@@ -361,14 +346,44 @@ $(document).ready(function () {
 
 	});
 
+	//LIMPIA LAS PUBLICACIONES
+	$("div.find").on("keyup","#search-input",function() {
+			var sizeResult = $("#search-input").val().length;
+			if (sizeResult==0) {
+				$(".no-results").css("display","none");
+				$("div").remove(".p-before");
+				$(".publicaciones").show();
+				$(".result-txt").remove();
+				$(document).attr("title", "Uniway");
+			}
+	});
+
+
+	//desactiva y activa el autocomplete para busquedas por usuario
+	$("#user_opt + label").on("click",function(){
+		console.log("autocomplete OFF");
+		$("#search-input").remove();
+		$("div.find").prepend("<input id='search-input' class='search offAuto' type='text' name='name' onFocus='' placeholder='¿Para dónde vas?' autocomplete='off'>");
+	});
+	$("#stop_opt + label").on("click",function(){
+		console.log("autocomplete ON");
+		$("#search-input").remove();
+		$("div.find").prepend("<input id='search-input' class='search onAuto' type='text' name='name' onFocus='' placeholder='¿Para dónde vas?' autocomplete='off'>");
+	});
+
 	//CONSULTA LAS PUBLICACIONES AL PRESIONAR ENTER
-	$("#search-input").keypress(function (e) {
+	//$("div.find").on("keypress","#search-input",function (e) {
+	$("div.find").on("keypress","#search-input",function (e) {
 
 	var sizeResult = $("#search-input").val().length;
 	var search = $("#search-input").val().split(",");
 	var search_stop= search[0];
 
 	if (e.which == 13 && sizeResult!=0 ) {
+
+		//type of search
+		var opt_search = $("input[name='opt_serch']:checked").val();
+
 		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
 		$("div").remove(".p-before");
@@ -378,26 +393,28 @@ $(document).ready(function () {
 		//spinner
 		$("#pub-box .spinner").show();
 
-			var id_user= $("#id_usr").val();
-			//para comprobar si el usuario ya está en otro recorrido
-			var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo
-			$.ajax({
-				url: '../php/json_ways_query.php',
-				type: 'get',
-				data: {
-					stop_query: search_stop,
-					id_uni: $("#status_feed").attr("class")
-				},
-				dataType: 'json',
-				success: function(array){
-					$("#pub-box .spinner").hide();
-					if (array.nr==1) {
-						$("#pub-box").append(array.output);
-					}else{
-						$("#pub-box").append(array.output);
-					}
+		var id_user= $("#id_usr").val();
+		//para comprobar si el usuario ya está en otro recorrido
+		var id_way_usr= $("#way_usr_active").val(); //vacio si no está activo
+		$.ajax({
+			url: '../php/json_ways_query.php',
+			type: 'get',
+			data: {
+				stop_query: search_stop,
+				id_uni: $("#status_feed").attr("class"),
+				//type of search
+				opt_search: opt_search
+			},
+			dataType: 'json',
+			success: function(array){
+				$("#pub-box .spinner").hide();
+				if (array.nr==1) {
+					$("#pub-box").append(array.output);
+				}else{
+					$("#pub-box").append(array.output);
 				}
-			});
+			}
+		});
 
 		}
 	});
@@ -407,6 +424,9 @@ $(document).ready(function () {
 		var search = $("#search-input").val().split(",");
 		var search_stop= search[0];
 	if (sizeResult!=0 ) {
+		//type of search
+		var opt_search = $("input[name='opt_serch']:checked").val();
+
 		$(".no-results").css("display:none");
 		$(".publicaciones").hide();
 		$("div").remove(".p-before");
@@ -425,7 +445,9 @@ $(document).ready(function () {
 				type: 'get',
 				data: {
 					stop_query: search_stop,
-					id_uni: $("#status_feed").attr("class")
+					id_uni: $("#status_feed").attr("class"),
+					//type of search
+					opt_search: opt_search
 				},
 				dataType: 'json',
 				success: function(array){

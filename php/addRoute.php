@@ -30,11 +30,11 @@ $vector=pg_fetch_array($result1);
 $id_route=$vector['id_route'];
 
 //creacion de la relacion ruta-paradas
-$vector_stops[0]=$stop1;
-$vector_stops[1]=$stop2;
-$vector_stops[2]=$stop3;
-$vector_stops[3]=$stop4;
-$vector_stops[4]=$stop5;
+$vector_stops[0]=strtolower($stop1);
+$vector_stops[1]=strtolower($stop2);
+$vector_stops[2]=strtolower($stop3);
+$vector_stops[3]=strtolower($stop4);
+$vector_stops[4]=strtolower($stop5);
 //POR AHORA SON CINCO PARADAS O MENOS
 for ($i=0; $i < 5 ; $i++) {
   //busqueda del id de la parada
