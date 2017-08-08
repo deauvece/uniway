@@ -4,7 +4,7 @@
 	<title>Uniway | Inicio de sesión</title>
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 </head>
@@ -23,7 +23,7 @@
 				  //Error de contraseña o correo
 					if (isset($_GET["errorusuario"])=="si")
 					{
-				?> 
+				?>
 					<span class="error">El nombre de usuario y la contraseña que ingresaste no coinciden con nuestros registros. Por favor, revisa e inténtalo de nuevo.</span>
 				<?php
 					}

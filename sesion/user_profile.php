@@ -6,13 +6,11 @@ ini_set('display_errors', 1);
 include("../php/functions.php"); //check the user type
 checkLogin();
 
-//consulta del id para obtener todos los datos
-$var=$_GET["idu"];
-if ($var=='myProfile') {	$idu=$_SESSION['id_usuario'] ;
-}else{$idu=$var;}
+
 
 //user info
 $conn=conectarse();
+$idu=$_SESSION['id_usuario'];
 $name=$_SESSION['id_nombre_usuario'];
 $last_name=$_SESSION['id_apellido_usuario'];
 $phone=$_SESSION['user_phone'];
@@ -55,7 +53,7 @@ if ($is_driver=='t') {
 		<title>Uniway / Perfil</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesion.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
@@ -67,7 +65,7 @@ if ($is_driver=='t') {
 	<body>
 		<nav class="navProfile" >
 			<ul>
-				<li> <a href="sesionOpen.php">Inicio</a></li>
+				<li> <a href="home.php">Inicio</a></li>
 				<li> <span>/ Configuración de usuario</span></li>
 			</ul>
 			<img id="bmenu" src="../Imagenes/bmenuw.png" width="30px" />
@@ -481,7 +479,7 @@ if ($is_driver=='t') {
 				 </div>
 			 </form>
 			 <div id="modal_add_stop">
-				 <button type="button" id="close_add_stop" name="button">X</button>
+				<img id="close_add_stop_feed" src="../Imagenes/leftw.png" />
 	 			<form id="form_stops" action="../php/addRoute.php" name="form_stops" method="post">
 	 				<p>Crea una ruta</p>
 	 				<input type="text" class="query" id="rute_name" name="rute_name" placeholder="Escribe un nombre para la ruta" >
@@ -520,7 +518,7 @@ if ($is_driver=='t') {
 
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/jquery-ui/jquery-ui.js"></script>
-<script src="../js/main.js"></script>
+<script src="../js/view_sesion.js"></script>
 <script>
 	//autocompletar
 	var autocomplete;

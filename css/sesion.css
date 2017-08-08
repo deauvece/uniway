@@ -1,10 +1,37 @@
-/*General style*/
+/*
+--Paleta de colores
+Rojo:
+	#CE3232
+Rojo oscuro:
+	#861212
+Verde:
+	#006E6E
+Verde oscuro:
+	#002A2A
+Verde claro (chat):
+	#CEFEA9
+Blanco:
+	#F6F6F6
+Gris claro:
+	#F0F0F0
+Gris:
+	#D0D0D0
+	#68686E
+Gris oscuro:
+	#4B4B4B
+	#292929
+Negro:
+	#0F1010
+*/
+
+
 body{
-	background-color: #E6ECF0;
+	background-color: #F0F0F0;
 	margin: 0px;
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
-/*=====scrollbarr=========*/
+
+/*scrollbarr*/
 	::-webkit-scrollbar{
 	  width: 8px;  /* for vertical scrollbars */
 	  height: 12px; /* for horizontal scrollbars */
@@ -17,12 +44,13 @@ body{
 	::-webkit-scrollbar-thumb{
 	  background: rgba(0, 0, 0, 0.5);
 	}
-/*=====scrollbarr=========*/
-/*============================================sesionopen=======================================================*/
+
+
+/*============================================home=======================================================*/
 
 #nav_feed{
 	display: none;
-	background-color: #161717;
+	background-color: #0F1010;
 	width: 100%;
 	height: 60px;
 	z-index: 3;
@@ -82,16 +110,17 @@ body{
 		display: inline-block;
 		margin: 0px;
 		margin-top: -10px;
-		background-color: #161717;
+		background-color: #0F1010;
 		color: white;
 		text-align: center;
 		z-index: 2;
+		font-size: 90%;
 	}
 	.options .editar {
 		font-size: 80%;
 		display: block;
 		text-decoration: none;
-		color: #009999;
+		color: #006E6E;
 		margin-top: -10px;
 	}
 		.options .editar:hover{
@@ -142,7 +171,7 @@ body{
 			cursor: pointer;
 		}
 			.lista li:hover {
-				background-color: #0A0B0B;
+				background-color: #0F1010;
 			}
 
 		.lista li .icono {
@@ -173,7 +202,7 @@ body{
 
 .find {
 	display: block;
-	background-color: #F5F8FA;
+	background-color: #F6F6F6;
 	height: 70px;
 	position: relative;
 	padding-left: 30px;
@@ -213,7 +242,7 @@ body{
 		height: 55px;
 		padding: 5px;
 		color: white;
-		background-color: #009999;
+		background-color: #006E6E;
 		border-radius: 50%;
 		border-width: 0px;
 		outline: 0;
@@ -262,12 +291,12 @@ body{
 	margin-top: -15px;
 	padding: 30px 10px;
 	background-color: white;
-	border: 1px solid #E2E2E2;
+	border: 1px solid #D0D0D0;
 }
 .result-txt{
 	display: block;
 	width: 100%;
-	color: #007272;
+	color: #006E6E;
 	background-color: white;
 	padding: 10px;
 	box-sizing: border-box;
@@ -279,7 +308,7 @@ body{
 .spinner {
 	width: 100px;
 	height: 100px;
-	background-color: #E6ECF0;
+	background-color: #F0F0F0;
 	border-radius: 50%;
 	position: relative;
 	display: block;
@@ -298,8 +327,8 @@ body{
 	  top: -4px;
 	  left: -4px;
 	  border: 4px solid transparent;
-	  border-top-color: #009999;
-	  border-bottom-color: #009999;
+	  border-top-color: #006E6E;
+	  border-bottom-color: #006E6E;
 	  -webkit-animation: spinny 1s linear infinite;
 	          animation: spinny 1s linear infinite;
 	}
@@ -338,7 +367,7 @@ body{
 		width: 50px;
 		height: 50px;
 		margin: 50px auto;
-		background-color: #161717;
+		background-color: #0F1010;
 	}
 		.options .spinner:after, .options .spinner:before {
 			width: 50px;
@@ -373,7 +402,7 @@ body{
 	}
 
 	#search_options  input[type="radio"]:checked + label{
-		background-color: #DDDDDD;
+		background-color: #D0D0D0;
 	}
 
 .publicaciones{
@@ -420,12 +449,12 @@ body{
 	}
 	.publicaciones .ini, .publicaciones .desti {
 		display: inline-block;
-		color: #007272;
+		color: #006E6E;
 		width: 50px;
 	}
 	.publicaciones .name {
-		font-size: 90%;
-		font-weight: bold;
+		color: black;
+		text-transform: capitalize;
 		display: block;
 		padding: 20px 0px 7px;
 	}
@@ -444,7 +473,7 @@ body{
 		border-radius: 50%;
 		border-width: 0px;
 		color: gray;
-		background-color: #F1F1F1;
+		background-color: #F0F0F0;
 		cursor: pointer;
 	}
 		.publicaciones .cont3 span{
@@ -462,7 +491,7 @@ body{
 		border-radius: 50%;
 		cursor: pointer;
 		color: white;
-		background-color: #C74444;
+		background-color: #CE3232;
 		border-width: 0px;
 		position: absolute;
 		top: 20%;
@@ -470,7 +499,7 @@ body{
 		font-size: 80%;
 	}
 	.btn-pedirCupo:hover, .btn-eliminar:hover {
-		background-color: #AC2C2C;
+		background-color: #861212;
 	}
 	.btn-pedirCupo > img, .btn-eliminar > img {
 		width: 25px;
@@ -497,7 +526,7 @@ body{
 		width: 70px;
 		border-radius: 50%;
 		line-height: 65px;
-		background-color: #009999;
+		background-color: #006E6E;
 		color: white;
 		cursor: pointer;
 		position: absolute;
@@ -506,7 +535,7 @@ body{
 		display: none;
 	}
 	.ruta:hover{
-		background-color: #007C7C;
+		background-color: #006E6E;
 	}
 	.ruta img{
 		width: 25px;
@@ -579,7 +608,6 @@ body{
      margin-top:50px;
 	padding: 0px;
 	padding-bottom: 10px;
-	background: rgba(255, 0, 0, 1);
 	background-color: white;
 	border-radius: 3px;
 	width: 50%;
@@ -599,7 +627,7 @@ body{
 	padding: 10px 0px;
 	width: 90%;
 	margin: 0px auto;
-	border: 1px solid #E5E5E5;
+	border: 1px solid #D0D0D0;
 	transition: all 0.2s;
 	cursor: pointer;
 }
@@ -636,7 +664,7 @@ body{
 	right: 0px;
 }
 
-/*Checked para sesionopen (formulario de crear un recorrido)*/
+/*Checked para home (formulario de crear un recorrido)*/
 #addRoute input[type="radio"] {
 	display: none;
 }
@@ -660,7 +688,7 @@ body{
 	width: 100%;
 }
 #addRoute label {
-	background-color: #E3E3E3;
+	background-color: #D0D0D0;
 	display: inline-block;
 	height: 30px;
 	width: 30px;
@@ -704,7 +732,7 @@ body{
 
 	#addRoute #start_l:before , #addRoute #finish_l:before  {
 		content: "Termina";
-		background-color: #C1C1C1;
+		background-color: #D0D0D0;
 		border: none;
 		display: inline-block;
 		width: 1px;
@@ -739,7 +767,7 @@ body{
 	#addRoute textarea {
 		display: block;
 		border: none;
-		background-color: #E3E3E3;
+		background-color: #D0D0D0;
 		margin: 0px auto;
 		resize: vertical;
 		min-height: 80px;
@@ -763,7 +791,7 @@ body{
 	display: none;
 	margin: 30px auto 0px ;
 	height: 575px;
-	width: 768px;
+	width: 60%;
 	background-color: white;
 	border-radius: 0px;
 	overflow: auto;
@@ -800,13 +828,13 @@ body{
 	}
 
 	.modal-window .info-usr {
-		background-color: #F5F5F5;
+		background-color: #D0D0D0;
 		display: block;
 		min-height: 300px;
 		width: 100%;
 	}
 		.info-usr ul {
-			background-color: #F5F5F5;
+			background-color: #D0D0D0;
 			padding: 0px;
 			margin: 0px;
 			height: 40px;
@@ -842,7 +870,7 @@ body{
 		padding-top: 30px;
 	}
 		.user_score{
-			background-color: #F5F5F5;
+			background-color: #D0D0D0;
 			padding: 10px;
 			display: block;
 			display: flex;
@@ -869,7 +897,7 @@ body{
 		padding: 10px 0px;
 	}
 	.encb2 .block:hover {
-		background-color: #F5F5F5;
+		background-color: #D0D0D0;
 	}
 		.modal-window .encb2 label {
 			text-align: right;
@@ -893,7 +921,7 @@ body{
 				background-color: white;
 			}
 			.transport_info .tr-box:hover{
-				background-color: #F5F5F5;
+				background-color: #D0D0D0;
 			}
 			.transport_info .tr-box label{
 				text-align: right;
@@ -933,7 +961,7 @@ body{
 				font-size: 80%;
 			}
 			.routes_info .rts-box span:first-child {
-				background-color: #EBEBEB;
+				background-color: #D0D0D0;
 			}
 			.routes_info .rts-box span:hover {
 				cursor: pointer;
@@ -945,7 +973,7 @@ body{
 		}
 		#del-cm-btn{
 			border-width: 0px;
-			background-color: #C74444;
+			background-color: #CE3232;
 			padding: 5px 0px;
 			color: white;
 			border-radius: 3px;
@@ -965,11 +993,11 @@ body{
 		}
 		.comments_info .comm_fail{
 			display: none;
-			background-color: #C74444;
+			background-color: #CE3232;
 			color:white;
 			margin: 5px;
 			padding: 5px;
-			border: 1px solid #E2E2E2;
+			border: 1px solid #D0D0D0;
 			text-align: center;
 			font-size: 80%;
 			height: 20px;
@@ -981,22 +1009,21 @@ body{
 				background-color: white;
 				margin: 5px;
 				padding: 5px;
-				border: 1px solid #E2E2E2;
+				border: 1px solid #D0D0D0;
 				min-height: 60px;
 			}
 			.comments_info .add_comment{
-				font-family: 'Fira Sans Extra Condensed', sans-serif;
+
 				text-align: center;
 			}
 			.comments_info .add_comment .score-box{
 				display: none;
-				background-color: blue;
 				width: 95%;
 				margin: 0px auto 30px;
 				padding: 0px;
 			}
 			.comments_info .add_comment label{
-				background-color: #F5F5F5;
+				background-color: #D0D0D0;
 				margin: 0px;
 				padding: 5px 0px;
 				float: left;
@@ -1006,7 +1033,7 @@ body{
 				transition: all 0.3s;
 			}
 			.comments_info .add_comment label:hover{
-				background-color: #E3E3E3;
+				background-color: #D0D0D0;
 			}
 			.comments_info .add_comment input[type="radio"]{
 				display: none;
@@ -1016,7 +1043,7 @@ body{
 				margin: 0px auto;
 				width: 95%;
 				cursor: pointer;
-				background-color: #009999;
+				background-color: #006E6E;
 				color: white;
 				border-width: 0px;
 				padding: 5px;
@@ -1053,7 +1080,7 @@ body{
 				text-align: center;
 				padding: 2px;
 				display: inline-block;
-				background-color: #009999;
+				background-color: #006E6E;
 				color: white;
 				height: 15px;
 				width: 30px;
@@ -1062,13 +1089,12 @@ body{
 			}
 			.comments_info .cm-box >span {
 				font-size: 85%;
-				color: #606060;
+				color: #4B4B4B;
 			}
 			.comments_info .cm-box p {
 				padding: 0px;
 				margin: 0px;
 				text-align: center;
-				background: lightblue
 			}
 
 		.error_way{
@@ -1132,16 +1158,15 @@ body{
 	transition: all 0.2s;
 }
 #modal-window-route .cont-stops p{
-	background-color: red;
 	color: white;
 	font-size: 90%;
 	text-align: center;
-	background-color: #C74444;
+	background-color: #CE3232;
 	margin: 0px;
 	padding: 3px 0px;
 }
 #modal-window-route .cont-stops span:hover{
-	background-color: #F7F7F7;
+	background-color: #F6F6F6;
 }
 #map{
 	background-color: lightgray;
@@ -1374,7 +1399,7 @@ body{
 }
 .left-section {
 	position: fixed;
-	background-color: #161717;
+	background-color: #0F1010;
 	width: 275px;
 	z-index: 3;
 	height: 100vh;
@@ -1420,7 +1445,6 @@ body{
 		}
 		#profile_Image .inputs_pf_image{
 			margin-top: 30px;
-			background-color: blue;
 			display: flex;
 		}
 		#profile_Image input[type="file"]{
@@ -1463,7 +1487,7 @@ body{
 			height: 30px;
 		}
 		.generalInfo .options-left-section ul li:hover {
-			background-color: #0A0B0B;
+			background-color: #0F1010;
 		}
 
 	/*modal addstop add stop*/
@@ -1478,15 +1502,13 @@ body{
 		overflow: auto;
 		position: relative;
 	}
-	#close_add_stop{
-		background-color: #861212;
-		font-weight: bold;
-		width: 38px;
-		height: 38px;
+	#close_add_stop,#close_add_stop_feed{
+		width: 20px;
+		height: 20px;
 		padding: 0px;
 		position: absolute;
-		top: 0px;
-		right: 0px;
+		top: 20px;
+		left: 15px;
 		border-width: 0px;
 		color:white;
 		cursor: pointer;
@@ -1496,10 +1518,10 @@ body{
 		margin: 0px -15px 15px;
 		background-color: #002A2A;
 		text-align: center;
-		padding: 10px 0px;
+		padding: 20px 0px;
 	}
 	#modal_add_stop > form .errorVal{
-		color: #921E1E;
+		color: #861212;
 		display: none;
 		margin: 0 auto;
 		padding: 5px 0px;
@@ -1559,20 +1581,20 @@ body{
 		margin: 0;
 	}
 	#modal_add_stop .cont-stops input:hover{
-		background-color: #F7F7F7;
+		background-color: #F6F6F6;
 	}
 	#modal_add_stop .cont-stops p{
 		color: white;
-		font-size: 90%;
 		text-align: center;
-		background-color: #C74444;
+		background-color: #002A2A;
 		margin: 0px;
-		padding: 10px 0px;
+		padding: 5px 0px;
+		font-size: 90%;
 	}
 	#modal_add_stop .delete_stop{
 		color: white;
 		margin: 0px auto 10px;
-		background-color: #C74444;
+		background-color: #002A2A;
 		width: 100%;
 		border-width: 0px;
 		padding: 5px 0px;
@@ -1580,7 +1602,7 @@ body{
 		display: none;
 	}
 		#modal_add_stop .delete_stop:hover{
-			background-color: #A93939;
+			background-color: #CE3232;
 		}
 
 	#map_stops{
@@ -1596,7 +1618,7 @@ body{
 		margin-bottom: 35px;
 		color: white;
 		cursor: pointer;
-		background-color: #C74444;
+		background-color: #002A2A;
 	}
 	/*modal add stop*/
 	.error, .error-del{
@@ -1606,7 +1628,7 @@ body{
 		font-size: 80%;
 		text-align: center;
 		font-weight: bolder;
-		color: #921E1E;
+		color: #861212;
 	}
 	.update-done{
 		position: fixed;
@@ -1633,7 +1655,7 @@ body{
 		border-width: 0px;
 		border-style:  solid;
 		border-bottom-width: 2px;
-		border-color: #E5E5E5;
+		border-color: #D0D0D0;
 	}
 	.userRutesBox > .title{
 		background-color: white;
@@ -1671,19 +1693,21 @@ body{
 				display: inline-block;
 				width: 49%;
 			}
+			.basicInfo .block_data input{
+				text-transform: capitalize;
+			}
 			.basicInfo .block_data input , .transportInfo .block_data input {
 				display: block;
 				width: 90%;
 				border-width: 0px;
 				border-style:  solid;
 				border-bottom-width: 2px;
-				border-color: #E5E5E5;
+				border-color: #D0D0D0;
 				background-color:  white;
 				margin: 0 auto;
 				font-size: 95%;
 				transition: all 0.2s;
 				padding: 5px 0px 5px 25px;
-
 			}
 				.basicInfo .block_data input:focus , .transportInfo .block_data input:focus {
 					outline: none;
@@ -1783,7 +1807,7 @@ body{
 				border-width: 0px;
 				color: white;
 				padding: 10px 0px;
-				background-color: #B72C2C;
+				background-color: #CE3232;
 			}
 			#delete_transport_form button:last-child{
 				background-color: #002A2A;
@@ -1857,7 +1881,7 @@ body{
 		  }
 		  #delete-button{
 			  margin: 30px auto -50px;
-			  background-color: #B72C2C;
+			  background-color: #CE3232;
 		  }
 		  .file_label {
 			  text-align: center;
@@ -1865,7 +1889,7 @@ body{
 			  display: block;
 			  color: white;
 			  padding: 10px;
-			  background-color: #B72C2C;
+			  background-color: #CE3232;
 		  }
 		/*   Transporte*/
 
@@ -1896,7 +1920,7 @@ body{
 			border-width: 0px;
 			border-style:  solid;
 			border-bottom-width: 2px;
-			border-color: #E5E5E5;
+			border-color: #D0D0D0;
 			background-color:  white;
 			margin-left: auto;
 			margin-right: auto;
@@ -1912,7 +1936,7 @@ body{
 			width: 100%;
 			padding: 5px;
 			display: block;
-			background-color: #C8C8C8;
+			background-color: #D0D0D0;
 		}
 		.emails-verif ul, .emails-verif ul li{
 			display: block;
@@ -1923,7 +1947,7 @@ body{
 
 		.verif_info > p{
 			text-align: center;
-			color: #B72C2C;
+			color: #CE3232;
 			font-size: 95%;
 		}
 		.verfied-user{
@@ -1938,7 +1962,7 @@ body{
 		.userRutesBox {
 			text-align: center;
 			margin-bottom: 20px;
-			background-color: #F5F5F5;
+			background-color: #D0D0D0;
 			border-radius: 3px;
 			margin-top: 60px;
 		}
@@ -1950,7 +1974,7 @@ body{
 			background-color: white;
 			margin: 15px;
 			border-radius: 5px;
-			border: 1px solid #E2E2E2;
+			border: 1px solid #D0D0D0;
 		}
 		.userRutes span {
 			display: block;
@@ -1965,14 +1989,14 @@ body{
 			padding: 10px 0px;
 		}
 		.userRutes span:hover {
-			background-color: #EBEBEB;
+			background-color: #D0D0D0;
 		}
 		.userRutes span:nth-child(2){
 			margin-top:-36px;
 		}
 
 		span.rute_name{
-			background-color: #EBEBEB
+			background-color: #D0D0D0
 		}
 		 .userRutes .del_route {
 			display: inline-block;
@@ -2018,7 +2042,7 @@ body{
 				background-color: white;
 			}
 			.qualifications:hover {
-				background-color: #F7F7F7;
+				background-color: #F6F6F6;
 			}
 			.qualifications .number {
 				font-size: 110%;
@@ -2070,7 +2094,7 @@ body{
 		padding-top: 20px;
 	}
 	.navProfile ul{
-		background-color: #161717;
+		background-color: #0F1010;
 		color: white;
 	}
 	.logo-section{
@@ -2131,7 +2155,7 @@ body{
 		list-style: none;
 		padding: 5px 150px 0px 0px;
 		margin: 0px;
-		background-color: #232626;
+		background-color: #292929;
 		height: 55px;
 	}
 	.nav-chat ul li{
@@ -2177,7 +2201,7 @@ body{
 	background-color: white;
 	width: 100%;
 	height: 610px;
-	font-family: 'Fira Sans Extra Condensed', sans-serif;
+
 }
 	.container-chat .people {
 		overflow: auto;
@@ -2185,7 +2209,7 @@ body{
 		float: left;
 		width: 350px;
 		height: 100%;
-		border: 0px solid #E2E2E2;
+		border: 0px solid #D0D0D0;
 		border-right-width: 1px;
 		border-left-width: 1px;
 	}
@@ -2196,7 +2220,7 @@ body{
 			font-weight: bold;
 			font-size: 80%;
 			padding: 10px 3px 10px 10px;
-			border: 0px solid #E2E2E2;
+			border: 0px solid #D0D0D0;
 			border-top-width: 1px;
 		}
 		.people .cond-group{
@@ -2206,12 +2230,12 @@ body{
 			width: 35px;
 			padding: 2px;
 			display: block;
-			color: #009999;
+			color: #006E6E;
 			background-color: white;
 			font-size: 80%;
 			float: right;
 			border-radius: 3px;
-			border: 1px solid #009999;
+			border: 1px solid #006E6E;
 		}
 		.people .usr-box .kick-usr{
 			display: none;
@@ -2251,13 +2275,13 @@ body{
 				text-align: center;
 				font-size: 80%;
 				color: white;
-				background-color: #009999;
+				background-color: #006E6E;
 			}
 			.people .out-usr-cht{
 			}
 			.people .delete-group-usr-cht{
 				cursor: pointer;
-				background-color: #B72C2C;
+				background-color: #CE3232;
 				display: block;
 			}
 	.container-chat .cht-box {
@@ -2274,11 +2298,11 @@ body{
 			height: 25px;
 		}
 		.cht-box .content-cht {
-			background-color: #EBEEF0;
+			background-color: #F6F6F6;
 			display: block;
 			height: 90%;
 			overflow: auto;
-			border: 0px solid #E2E2E2;
+			border: 0px solid #D0D0D0;
 			border-bottom-width: 1px;
 		}
 		.cht-box .input-cht {
@@ -2296,11 +2320,11 @@ body{
 				padding-top: 20px;
 				padding-left: 20px;
 				resize: none;
-				font-family: 'Fira Sans Extra Condensed', sans-serif;
+
 				background-color: white;
 			}
 		.content-cht .comment-center{
-			background-color: #D1D4D7;
+			background-color: #D0D0D0;
 			display: block;
 			margin: 5px auto;
 			width: 35%;
@@ -2311,7 +2335,7 @@ body{
 
 		}
 		.content-cht .comment-left , .content-cht .comment-right  {
-			background-color: #EBEEF0;
+			background-color: #F6F6F6;
 			display: block;
 			text-align: left;
 		}
@@ -2383,7 +2407,7 @@ body{
 		cursor: pointer;
 	}
 	form > .yes-confirm{
-		background-color: #B72C2C;
+		background-color: #CE3232;
 	}
 	@media (max-width:950px) {
 		.container-chat .people {
@@ -2475,7 +2499,7 @@ body{
 	text-decoration: none;
 	color: white;
 	padding: 15px;
-	background-color: #005252;
+	background-color: #002A2A;
 }
 @media (max-width:350px) {
 	.maintenance img {

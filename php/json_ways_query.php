@@ -116,7 +116,7 @@ if ($id_uni && $input_query) {
 							".$full_name_user."
 							</span>
 							<span class='time'>";
-							$output=$output."Hora de salida:".$hour;
+							$output=$output."Hora de salida: ".$hour;
 							$output=$output."</span>";
 							$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
 							$output=$output."<span class='comentario'>".$comentario."</span>";
@@ -224,7 +224,7 @@ if ($id_uni && $input_query) {
 							".$full_name_user."
 							</span>
 							<span class='time'>";
-							$output=$output."Hora de salida:".$hour;
+							$output=$output."Hora de salida: ".$hour;
 							$output=$output."</span>";
 							$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
 							$output=$output."<span class='comentario'>".$comentario."</span>";

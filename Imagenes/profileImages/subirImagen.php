@@ -42,6 +42,6 @@ $new_ruta="../Imagenes/profileImages/upload/profile_".$idu.".".$tipo;
 $sql1_update= "UPDATE users SET profile_image='$new_ruta' WHERE id_user='".$idu."' ";
 $result_img = pg_query($conn,$sql1_update);
 //redirecciona
-header("location:../../sesion/userProfile.php?idu=myProfile");
+header("location:../../sesion/user_profile.php");
 
 ?>

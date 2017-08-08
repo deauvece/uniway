@@ -49,5 +49,5 @@ $result2 = pg_query($conn, $sql22);
 
 
 
-header("location:../sesion/sesionOpen.php");
+header("location:../sesion/home.php");
 ?>

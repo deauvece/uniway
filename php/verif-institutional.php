@@ -42,16 +42,16 @@
 		$_SESSION['tkn1_user_verif']= $rand;
 		$_SESSION['tkn2_user_verif']= $rand2;
 
-		$link="http://www.uniway.heliohost.org/sesion/userProfile.php?idu=myProfile&tkn=$tkn";
+		$link="http://www.uniway.heliohost.org/sesion/user_profile.php?tkn=$tkn";
 		//content
 		$content="Por favor haz click en el siguiente enlace para completar tu verificacion de correo institucional \n $link \n $rand \n $rand2 \n si no haz solicitado una verificacion por favor haz caso omiso a este mensaje. \n Att: admin uniway.";
 		//envia el correo
 		mail($to,$subject,$content,$headers);
 
 		//redirecciona (verification => true)
-		header("location:../sesion/userProfile.php?idu=myProfile&vr=tru#verif_info");
+		header("location:../sesion/user_profile.php?vr=tru#verif_info");
 	}else{
-		header("location:../sesion/userProfile.php?idu=myProfile&vr=fal#verif_info");
+		header("location:../sesion/user_profile.php?vr=fal#verif_info");
 	}
 
  ?>

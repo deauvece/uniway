@@ -39,7 +39,7 @@ $rdnString=$vector_random['random_string'];
 		<title>Uniway</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesion.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
@@ -54,25 +54,30 @@ $rdnString=$vector_random['random_string'];
 	<body>
 	<nav id="nav_feed">
 		<ul>
-			<li><a href="sesionOpen.php"><img src="../Imagenes/logo-name-white.png" alt="logo"/></a></li>
+			<li><a href="home.php"><img src="../Imagenes/logo-name-white.png" alt="logo"/></a></li>
 			<img id="bmenuw" src="../Imagenes/bmenuw.png" width="30px" />
 		</ul>
 	</nav>
 	<div class="sesion_container">
 		<div class="sesion_container_1">
 			<section class="options">
-				<a href="sesionOpen.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
+				<a href="home.php"><img id="logo-nav" src="../Imagenes/logo-name-white.png" alt="logo"/></a>
 				<div class="spinner spinner-1"></div>
-				<a href="userProfile.php?idu=myProfile">
+				<a href="user_profile.php">
 					<img id="usr_img" src="" title="Editar perfil" class="put_image_profile" alt="profile image" />
 				</a>
 				<br>
-				<a class="editar" href="userProfile.php?idu=myProfile" >Editar perfil</a>
+				<a class="editar" href="user_profile.php" >Editar perfil</a>
 				<!--options section (left)-->
 				<div class="other-options">
 					<ul class="lista">
-						<a href="#"><li id='score_li'><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" /> &nbsp; &nbsp;<span id="score_usr"></span></li></a>
-						<a id="logout" href="../php/logout.php"><li><span></span><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
+						<a href=""><li id='score_li'><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" /> &nbsp; &nbsp;<span id="score_usr"></span></li></a>
+						<?php if ($is_driver=='t') {
+							?>
+							<a id="add-route-user-feed"><li><img src="../Imagenes/add.png" class="icono" alt="iconos" />Agregar ruta</li></a>
+							<?php
+						} ?>
+						<a id="logout" href="../php/logout.php"><li><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
 					</ul>
 				</div>
 				<hr color="#161717" >
@@ -190,7 +195,7 @@ $rdnString=$vector_random['random_string'];
 					$contador=$contador + 1;
 				}
 			}else{
-				echo "<p style='font-size:70%; text-align:center'>No tienes rutas disponibles <br> <a href='userProfile.php?idu=myProfile#userRutesBox'> CREAR</a> </p>";
+				echo "<p style='font-size:70%; text-align:center'>No tienes rutas disponibles <br> <a href='user_profile.php#userRutesBox'> CREAR</a> </p>";
 			}
 			?>
 			<span class="commentTitle" >Selecciona los cupos disponibles:</span>
@@ -216,6 +221,7 @@ $rdnString=$vector_random['random_string'];
 			<button type="submit" <?php if($contador==1){echo "disabled";} ?> >Crear</button>
 		</form>
 	</div>
+
 	<div id="modal-box" class="modal-box">
 		<section   id="modal-window" class="modal-window">
 			<img id="back" src="../Imagenes/leftw.png" />
@@ -333,6 +339,39 @@ $rdnString=$vector_random['random_string'];
 				<span id="stp5"></span>
 			</div>
 		</section>
+		<?php if ($is_driver=='t') {
+			?>
+			<div id="modal_add_stop">
+				<img id="close_add_stop_feed" src="../Imagenes/leftw.png" />
+				<form id="form_stops" action="../php/addRoute.php" name="form_stops" method="post">
+					<p>Crea una ruta</p>
+					<input type="text" class="query" id="rute_name" name="rute_name" placeholder="Escribe un nombre para la ruta" >
+					<span>Selecciona una de las universidades como destino/origen de tu ruta</span>
+					<select class="firs-stop" name="stop1">
+						<option value="Universidad Industrial de Santander - Calle 9">Universidad industrial de santander (UIS), Sede principal</option>
+						<option value="Universidad industrial de santander (UIS), Salud">Universidad industrial de santander (UIS), Salud</option>
+						<option value="Unab - Calle 42, Bucaramanga">Universidad Autónoma de Bucaramanga (UNAB), Cabecera</option>
+						<option value="FOSUNAB, Floridablanca - Santander">FOSUNAB, Salud</option>
+					</select>
+					<span>Escribe y selecciona de las opciones que se muestran al escribir, el mapa se generará automaticamente. ( minimo 1, máximo 4 paradas contando el destino )</span>
+					<div class="query_box">
+						<input type="text" class="query" id="query" placeholder="Busca una parada" onFocus="initAutocomplete_stop()" />
+						<button id="add_stop" type="button">Agregar</button>
+					</div>
+					<span class="error">No puedes agregar más de 4 paradas</span>
+					<div class="cont-stops">
+						<p>Paradas</p>
+					</div>
+					<button type="button" class="delete_stop">Eliminar ultima parada</button>
+					<div id="map_stops">
+					</div>
+					<input id="usr_id" type="hidden" name="id_user"  value="<?php echo $idu ?>">
+					<span class="errorVal">El nombre de tamaño minimo 4 y maximo 25, agregar al menos una parada.</span>
+					<button type="submit" name="button">Crear</button>
+				</form>
+			</div>
+			<?php
+		} ?>
 	</div>
 
 	<input type="hidden" id="id_usr" value="<?php echo $idu; ?>">
@@ -345,8 +384,8 @@ $rdnString=$vector_random['random_string'];
 
 	<script src="../js/jquery-3.1.1.min.js"></script>
 	<script src="../js/jquery-ui/jquery-ui.js"></script>
-	<script src="../js/main.js"></script>
-	<script src="../js/controller_sesionOpen.js"></script>
+	<script src="../js/view_sesion.js"></script>
+	<script src="../js/controller_home.js"></script>
 	<script src="../js/lolliclock.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places" async defer></script>
 	<script type="text/javascript">
@@ -362,6 +401,173 @@ $rdnString=$vector_random['random_string'];
 			initAutocomplete_feed();
 		});
 	});
+	</script>
+	<script>
+		//autocompletar
+		var autocomplete;
+		function initAutocomplete_stop() {
+			var options = {
+			componentRestrictions: {country: "col"}
+			};
+			autocomplete = new google.maps.places.Autocomplete( ($('#query')[0])  ,  options );
+		}
+
+		$('#query').on('focus', function() {
+			$(this).val('');
+		});
+		//mostrar informacion y generar mapa
+		var array_stops=[];
+		var max_stops=5;
+		//primera parada = universidad
+		var first_stop = $("select[name=stop1]").val();
+		array_stops[0]=first_stop;
+		//cada vez que cambie, se actualiza el valor
+		$('#modal_add_stop > select').on('change', function() {
+			first_stop = this.value;
+			array_stops[0]=first_stop;
+			createMap();
+		})
+
+
+		function createMap() {
+				var size_array = array_stops.length;
+				//si ya hay dos paradas se muestra el mapa
+				if (size_array > 1) {
+					//genera el mapa
+					$("#map_stops").css("height","500px");
+					var directionsService = new google.maps.DirectionsService;
+					var directionsDisplay = new google.maps.DirectionsRenderer;
+					var map = new google.maps.Map(document.getElementById('map_stops'), {
+						zoom: 10,
+						center: {lat: 7.13, lng: -73.13}
+					});
+					directionsDisplay.setMap(map);
+
+					var waypts = [];
+					  for (var i = 0; i < size_array; i++) {
+					    if (i!=0 || i!=size_array-1) {
+						 waypts.push({
+						   location: array_stops[i],
+						   stopover: true
+						 });
+					    }
+					  }
+					  directionsService.route({
+					    origin: array_stops[0],
+					    destination: array_stops[(size_array)-1],
+					    waypoints: waypts,
+					    //true para reordenar los waypoints
+					    optimizeWaypoints: false,
+					    travelMode: 'DRIVING'
+					  }, function(response, status) {
+					    if (status === 'OK') {
+						 directionsDisplay.setDirections(response);
+						 var route = response.routes[0];
+					    } else {
+						 console.log('Directions request failed due to ' + status + ' (stop doesnt exist)');
+					    }
+				    });
+
+				}
+		}
+		function addStop() {
+			var count = $(".cont-stops input").length;
+			//se le suma el destino/origen universidad
+			count=count+1;
+
+			//determina si muestra boton para eliminar ultima parada
+			if (count>0) {
+				$(".delete_stop").fadeIn();
+			}
+
+
+
+			if (count<max_stops) {
+				//se quita el erroe en caso de que esté
+				$("#modal_add_stop .error").css("display","none");
+				//se agrega a cont-stops para que el usuario la vea
+				var info = $("#query").val();
+				$(".cont-stops").append("<input class='query' id='stop"+(count+1)+"' name='stop"+(count+1)+"' disabled type='text'  value='"+info+"'>");
+				//se agrega al vector array_stops
+				array_stops[count]=info;
+				//crea el mapa
+				createMap();
+			}else{
+				$("#modal_add_stop .error").css("display","block");
+			}
+
+		}
+		$("#add_stop").on("click",function () {
+			var sizeResult = $("#query").val().length;
+			if (sizeResult!=0 ) {
+				addStop();
+			}
+
+		});
+
+		$("#query").keypress(function (e) {
+			var sizeResult = $("#query").val().length;
+			if (e.which == 13 && sizeResult!=0 ) {
+				addStop();
+			}
+		});
+
+
+		$(".delete_stop").on("click", function(){
+			var count = $(".cont-stops input").length;
+			//si solo hay una parada y se elimina el boton desaparece
+			if (count==1) { $(this).hide(); }
+			//y se quita el error en caso de que esté
+			$("#modal_add_stop .error").css("display","none");
+			array_stops.splice(count, 1);
+			$(".cont-stops input:last-child").remove();
+			//si hay al menos una parada se genera el mapa (inicial + parada(input))
+			if (count>0) {
+				createMap();
+			}
+
+		});
+
+		$('#form_stops> button[type=submit]').on('click', function(e){
+		   $(".errorVal").css("display","none");
+	        e.preventDefault();
+		   //input rute name
+	        var len = $('#rute_name').val().length;
+		   //minimo una parada
+		   var count = $(".cont-stops input").length;
+		   //se le suma el destino/origen universidad
+	        if (len > 4 && len < 20 && count>0) {
+			   //envia el formulario
+			   $.ajax({
+	 			  url: '../php/addRoute.php',
+	 			  type: 'post',
+	 			  data: {
+	 				  stop1: $("select[name=stop1]").val(),
+					  stop2: $("#form_stops #stop2").val(),
+					  stop3: $("#form_stops #stop3").val(),
+					  stop4: $("#form_stops #stop4").val(),
+					  stop5: $("#form_stops #stop5").val(),
+					  rute_name: $("#rute_name").val(),
+					  id_user: $("#usr_id").val()
+	 			  },
+	 			  dataType: 'json',
+	 			  success: function(array){
+					  //para mostrar la ruta creada
+					  location.reload();
+	 			  }
+	 		  });
+		  }else{
+			  $(".errorVal").css("display","block");
+		  }
+	    });
+
+
+		//previene que no se envien los formularios  al presionar enter
+		$(document).on("keypress", "form", function(event) {
+		    return event.keyCode != 13;
+		});
+
+
 	</script>
 </body>
 </html>

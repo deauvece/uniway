@@ -15,22 +15,19 @@
 		<title>Uniway</title>
     		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesion.css">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
 	</head>
 	<body>
-
-    <section class="maintenance">
-      <img src="../Imagenes/logo.png" alt="" />
-      <p class="title">
-        Sitio en construccion
-      </p>
-      <p class="content">
-        Lo sentimos <?php echo $name; ?> la plataforma está en desarrollo, ten paciencia muy pronto estará lista!
-      </p>
-      <a href="../php/logout.php">Cerrar sesión</a>
-    </section>
-
-		<script type="text/javascript" src="../js/main.js"  ></script>
+		<section class="maintenance">
+			<img src="../Imagenes/logo.png" alt="" />
+			<p class="title">
+				Sitio en construccion
+			</p>
+			<p class="content">
+				Lo sentimos <?php echo $name; ?> la plataforma está en desarrollo, ten paciencia muy pronto estará lista!
+			</p>
+			<a href="../php/logout.php">Cerrar sesión</a>
+		</section>
 	</body>
 </html>

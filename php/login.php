@@ -40,7 +40,7 @@
 		    $_SESSION['user_university_acr']= $vectorUniversity11["acronym"];
 		    $_SESSION['user_university']= $vectorUniversity11["name"];
 
-		    header("location:../sesion/sesionOpen.php");
+		    header("location:../sesion/home.php");
 
             }
           }

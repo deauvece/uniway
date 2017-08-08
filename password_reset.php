@@ -7,13 +7,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		<!--Style-->
-		<link rel="stylesheet" href="css/home-form-Style.css">
+		<link rel="stylesheet" href="css/index.css">
 		<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 		<!--JS-->
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="js/jquery-ui/jquery-ui.js"></script>
-		<script src="js/main.js"></script>
+		<script src="js/view_index.js"></script>
 		<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.structure.css">
 		<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.theme.css">

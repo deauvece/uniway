@@ -1,9 +1,37 @@
-/*===================================GENERAL===========================================*/
+/*
+--Paleta de colores
+Rojo:
+	#CE3232
+Rojo oscuro:
+	#861212
+Verde:
+	#006E6E
+Verde oscuro:
+	#002A2A
+Verde claro (chat):
+	#CEFEA9
+Blanco:
+	#F6F6F6
+Gris claro:
+	#F0F0F0
+Gris:
+	#D0D0D0
+	#68686E
+Gris oscuro:
+	#4B4B4B
+	#292929
+Negro:
+	#0F1010
+*/
+
+
 body{
 	margin:0px;
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
-/*=====scrollbarr=========*/
+
+
+/*scrollbar*/
 	::-webkit-scrollbar{
 	  width: 12px;  /* for vertical scrollbars */
 	  height: 12px; /* for horizontal scrollbars */
@@ -14,8 +42,11 @@ body{
 	::-webkit-scrollbar-thumb{
 	  background: rgba(0, 0, 0, 0.5);
 	}
-/*=====scrollbarr=========*/
-/*=====general============*/
+
+
+
+
+/*basic boton*/
 .button_1 {
 	text-decoration: none;
 	color: white;
@@ -33,7 +64,7 @@ body{
 	border-radius: 2px;
 }
 .button_1:hover{
-	background-color: #b72c2c;
+	background-color: #861212;
 }
 .button_1:active{
 	top: 2px;
@@ -71,7 +102,7 @@ body{
 	width: 100%;
 	text-align: right;
 	transition: all 0.2s;
-	box-shadow: 1px 1px 2px 1px #B3B3B3;
+	box-shadow: 1px 1px 2px 1px #D0D0D0;
 }
 	.home-nav ul li input {
 		display: none;
@@ -96,7 +127,7 @@ body{
 			display: inline;
 		}
 		.home-nav .sinmenu li a {
-      		color :#881E1E;
+      		color :#861212;
 			display: inline;
 			padding: 10px;
 			text-decoration: none;
@@ -130,26 +161,21 @@ body{
 	#login-form .head {
 		margin-top: -10px;
 		margin-bottom: 20px;
-		background-color: #b72c2c;
+		background-color: #CE3232;
 	}
 	#login-form img {
 		height: 50px;
 		margin-bottom: 0px;
 	}
 	#login-form input {
-		width: 80%;
+		width: 85%;
 		padding: 15px 0px;
 		text-align:center;
-		border-width: 1px;
-		border-style: solid;
-		border-color: #ACAAAA;
+		border-width: 0px;
 		border-radius: 3px;
 		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 10px;
-
-		background-color:#F3F3F3;
+		margin: 0px auto 10px;
+		background-color:#F6F6F6;
 	}
 	#login-form > span a {
 		display: block;
@@ -159,12 +185,11 @@ body{
 		margin-top: 5px;
 	}
 	#login-form  button{
-		margin-top: 10px;
-		margin-bottom: 10px;
+		margin: 10px auto;
 		text-transform: uppercase;
 		font-weight: bold;
 		font-size: 70%;
-		width: 80%;
+		width: 85%;
 	}
 
 #logo {
@@ -225,19 +250,16 @@ header {
 	align-content: center;
 	justify-content: center;
 	width: 100%;
-	padding: 50px 55px 50px;
+	padding: 120px 55px;
 	color: white;
-	background-color: #b72c2c;
+	background-color: #CE3232;
 }
 	#institutions #map{
-
 		box-sizing: padding-box;
-		padding: 70px 20px 80px;
-		width: 600px;
+		height: 300px;
 	}
-
 	#institutions .inside_inst h2 {
-		margin-top: 100px;
+		margin-top: 40px;
 		color: white;
 	}
 	#institutions .inside_inst p{
@@ -249,7 +271,7 @@ header {
 		padding: 10px 40px;
 	}
 	#institutions button {
-		color: #B72C2C;
+		color: #CE3232;
 		background-color: white;
 		font-weight: bold;
 		font-size: 90%;
@@ -261,7 +283,7 @@ header {
 	padding: 80px 0px;
 }
 	.avaible_u h2{
-		color: #b72c2c;
+		color: #861212;
 	}
 	.avaible_u ul {
 		padding: 0px;
@@ -287,10 +309,13 @@ header {
 	text-align: center;
 }
 	.contenedorM h2{
-		color: #881E1E;
+		color: #861212;
 		font-size: 180%;
 		margin: 70px 0px 20px;
 	}
+			.contenedorM .columnas{
+				padding-bottom: 80px;
+			}
 			.contenedorM .columnas  .col {
 				cursor: pointer;
 				border-radius: 5px;
@@ -332,7 +357,7 @@ header {
 		display: none;
 		border-radius: 3px;
 		padding: 20px 0px;
-		background-color: #E74C3C;
+		background-color: #CE3232;
 		background-color: white;
 		width: 50%;
 		min-height: 400px;
@@ -350,7 +375,7 @@ header {
 		padding: 13px 0px;
 		margin-top: -20px;
 		text-align: center;
-		background-color: #b72c2c;
+		background-color: #CE3232;
 	}
 	.contact-form label {
 		margin-left: 9%;
@@ -365,13 +390,13 @@ header {
 		margin-top: -5px;
 		font-size: 90%;
 		font-weight: bold;
-		color: #921E1E;
+		color: #861212;
 	}
 	.contact-form input , textarea {
-		background-color: #F3F3F3;
+		background-color: #F6F6F6;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #B4B4B4;
+		border-color: #F0F0F0;
 		border-radius: 3px;
 		margin: 5px auto;
 		padding: 3px;
@@ -386,17 +411,19 @@ header {
 	}
 	.contact-form input[type="submit"], .contact-form input[type="button"] {
 		font-size: 70%;
-		padding: 5px;
+		padding: 10px 0px;
 		margin-top: 10px;
 		width: 82%;
 		text-transform: uppercase;
 		font-weight: bold;
+		border-width: 0px;
+		background-color: #CE3232;
 	}
 	.email_send{
 		display: block;
 		color: white;
 		text-align: center;
-		background-color: #007272;
+		background-color: #006E6E;
 		padding: 10px;
 		border-radius: 3px;
 		width: 250px;
@@ -408,7 +435,7 @@ header {
 		transition: all 0.9s;
 	}
 	footer {
-		background-color: #252525;
+		background-color: #0F1010;
 		color: white;
 		padding: 30px;
 		min-height: 500px;
@@ -443,9 +470,12 @@ header {
 			footer .social a {
 				display: block;
 				text-align: center;
-				text-transform: uppercase;
 				text-decoration: none;
-				color:#006666 ;
+			}
+			footer .social a img{
+				height: 50px;
+				width: 50px;
+
 			}
 	.copyright {
 		text-align: center;
@@ -459,7 +489,7 @@ header {
 .contenedorContact {
 	display: block;
 	height: 100vh;
-	background-color: #F7F7F7;
+	background-color: #F0F0F0;
 	color: white;
 	padding: 40px 10px 10px 10px;
 	text-align: center;
@@ -477,10 +507,10 @@ header {
 	margin-right: auto;
 	width: 75%;
 	padding-bottom: 20px;
-	box-shadow: 7px 7px 4px 3px #E0E0E0;
+	box-shadow: 7px 7px 4px 3px #F0F0F0;
 }
 	.login .title {
-		background-color: #B72C2C;
+		background-color: #CE3232;
 		display: block;
 		font-size: 1.3em;
 		padding: 10px;
@@ -491,13 +521,13 @@ header {
 	}
 	.login a {
 		text-decoration: none;
-		color: #616161;
+		color: #68686E;
 		display: block;
 		margin-bottom: 20px;
 	}
 	.login hr {
 		width: 90%;
-		color: #616161;
+		color: #68686E;
 
 	}
 
@@ -505,7 +535,7 @@ header {
 		display: block;
 		margin: 0 auto;
 		border-width: 0px;
-		background-color:#F3F3F3;
+		background-color:#F6F6F6;
 		width: 80%;
 		margin-bottom: 20px;
 		padding: 15px 0;
@@ -527,7 +557,7 @@ header {
 		display: block;
 		font-size: 80%;
 		font-weight: bold;
-		color: #921E1E;
+		color: #861212;
 		padding: 0 50px;
 	}
 	.erroremail{
@@ -537,7 +567,7 @@ header {
 		display: block;
 		font-size: 70%;
 		font-weight: bold;
-		color: #921E1E;
+		color: #861212;
 	}
 	/*para registerPage*/
 	.register  > span.erroremail{
@@ -551,13 +581,13 @@ header {
 	.login > p {
 		display: block;
 		padding: 10px;
-		color: #616161;
+		color: #68686E;
 		margin-bottom: 5px;
 	}
 
 /*========================================REGISTER PAGE==================================*/
 .registerPage{
-	background-color: #F7F7F7;
+	background-color: #F0F0F0;
 	padding-bottom: 80px;
 }
 .registerPage>a>img{
@@ -576,7 +606,7 @@ header {
 	}
 	.account-login ul li {
 		display: inline-block;
-		color: #616161;
+		color: #68686E;
 		margin-left: 20px;
 	}
 	.account-login ul > a{
@@ -589,7 +619,7 @@ header {
 	background-color: white;
 	width: 80%;
 	margin: 0 auto;
-	box-shadow: 7px 7px 4px 3px #E0E0E0;
+	box-shadow: 7px 7px 4px 3px #F0F0F0;
 	border-radius: 5px;
 	padding-bottom: 30px;
 }
@@ -600,7 +630,7 @@ header {
 	width: 100%;
 	text-align: center;
 	padding: 10px 0;
-	background-color: #B72C2C;
+	background-color: #CE3232;
 	color: white;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -609,7 +639,7 @@ header {
 	display: block;
 	margin: 0 auto 20px;
 	border-width: 0px;
-	background-color:#F3F3F3;
+	background-color:#F6F6F6;
 	padding: 15px 0px;
 	text-align: center;
 	width: 80%;
@@ -636,12 +666,12 @@ header {
 		display: block;
 		margin: 0px auto 0px;
 		text-align: center;
-		color: #616161;
+		color: #68686E;
 		padding: 0 35px;
 	}
 /*=============================================PASSWORD RESET PAGE========================================*/
 .reset_container{
-	background-color: #F7F7F7;
+	background-color: #F0F0F0;
 	height: 100vh;
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
@@ -662,12 +692,12 @@ header {
 	width: 75%;
 	min-height: 250px;
 	border-radius: 5px;
-	box-shadow: 7px 7px 4px 3px #E0E0E0;
+	box-shadow: 7px 7px 4px 3px #F0F0F0;
 	text-align: right;
 }
 	.reset_box span{
 		display: block;
-		background-color: #b72c2c;
+		background-color: #CE3232;
 		color: white;
 		padding:10px 0;
 		text-align: center;
@@ -677,7 +707,7 @@ header {
 		border-top-right-radius: 5px;
 	}
 	.reset_box .input_reset_box{
-		color: #616161;
+		color: #68686E;
 		padding: 30px;
 		text-align: left;
 	}
@@ -685,12 +715,12 @@ header {
 		width: 250px;
 		border-radius: 4px;
 		border-width: 0px;
-		background-color:#F3F3F3;
+		background-color:#F6F6F6;
 		padding: 15px 0px;
 		text-align: center;
 	}
 	.input_reset_box p#change_pass_error{
-		color: #b72c2c;
+		color: #861212;
 		font-weight: bold;
 		font-size: 0.9em;
 		display: none;
@@ -705,6 +735,9 @@ header {
 		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.6);
 		transform: translate(2px, 2px);
 	}
+
+
+
 /*====================================RESPONSIVE=============================================*/
 @media (max-width:850px) {
 	/*INDEX PAGE- INSTITUTIONS*/
@@ -754,7 +787,7 @@ header {
 		left: 15px;
 	}
 	.sinmenu #login {
-		background-color: #232626;
+		background-color: #0F1010;
 		padding-left: 0px;
 		border-radius: 0px;
 		box-shadow:  none;
@@ -767,7 +800,7 @@ header {
 		width: 100%;
 		height: 100vh;
 		text-align: left;
-    		background-color: #232626;
+    		background-color: #0F1010;
 		margin: 0px;
 		position: fixed;
 		top: 90px;
@@ -834,7 +867,7 @@ header {
 			display: block;
 			width: 95%;
 		}
-		
+
 		.contenedorContact .login .botonLogin {
 			width: 95%;
 		}

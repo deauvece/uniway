@@ -32,5 +32,5 @@ $spots++;
 $sql3="UPDATE ways SET spots='$spots' WHERE id_way='$id_way'";
 $result3 = pg_query($conn, $sql3);
 
-header("location:../sesion/sesionOpen.php");
+header("location:../sesion/home.php");
 ?>

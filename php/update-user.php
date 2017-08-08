@@ -46,5 +46,5 @@ $_SESSION['license_plate_public']= $license_plate_public;
 $sql11="SELECT * FROM users WHERE id_user='$id_user'";
 $result11 = pg_query($conn, $sql11);
 $vectorprueba=pg_fetch_array($result11);
-header("location:../sesion/userProfile.php?idu=myProfile&update=done");
+header("location:../sesion/user_profile.php?update=done");
 ?>

@@ -4,7 +4,7 @@
 	<title>Uniway | Registro</title>
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="css/home-form-Style.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 </head>
@@ -94,7 +94,7 @@
 <!--captcha google-->
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/view_index.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#pass1').keyup(function() {

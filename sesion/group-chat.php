@@ -26,12 +26,12 @@ if ($id_way_thisGroup){
 		$vector=pg_fetch_array($result);
 		$size=pg_num_rows($result);
 		if ($size==0) {
-			header("location:sesionOpen.php");
+			header("location:home.php");
 		}
 	}
 
 }else{
-	header("location:sesionOpen.php");
+	header("location:home.php");
 }
 
 ?>
@@ -42,24 +42,24 @@ if ($id_way_thisGroup){
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="icon" type="image/png" href="../Imagenes/favicon.png" />
-		<link rel="stylesheet" type="text/css" href="../css/sesionOpen.css">
+		<link rel="stylesheet" type="text/css" href="../css/sesion.css">
 		<!--Fuente texto-->
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 		<script src="../js/jquery-3.1.1.min.js"></script>
 		<script src="../js/jquery-ui/jquery-ui.js"></script>
-		<script src="../js/group-chat.js"></script>
+		<script src="../js/group_chat.js"></script>
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.structure.css">
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
 	</head>
 	<body >
-		<a href="sesionOpen.php"><img id="back-chat" src="../Imagenes/leftw.png" /></a>
-		<a href="sesionOpen.php"><img id="logo-chat" src="../Imagenes/logo-name-white.png" /></a>
+		<a href="home.php"><img id="back-chat" src="../Imagenes/leftw.png" /></a>
+		<a href="home.php"><img id="logo-chat" src="../Imagenes/logo-name-white.png" /></a>
 		<img id="info-button" src="../Imagenes/info.png"/>
 		<nav class="nav-chat" >
 			<ul>
-				<a href="userProfile.php?idu=myProfile"><li><img src="<?php echo $rute_img ?>"/><span><?php echo $name; ?></span></li></a>
-				<a href="sesionOpen.php"><li>Inicio</li></a>
+				<a href="user_profile.php"><li><img src="<?php echo $rute_img ?>"/><span><?php echo $name; ?></span></li></a>
+				<a href="home.php"><li>Inicio</li></a>
 			</ul>
 		</nav>
 		<div class="container-chat">

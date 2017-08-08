@@ -25,5 +25,5 @@ $idu=$_SESSION['id_usuario'];
 $sql1="UPDATE users SET status_way='false' WHERE id_user='$idu' ";
 $result1 = pg_query($conn, $sql1);
 
-header("location:../sesion/sesionOpen.php");
+header("location:../sesion/home.php");
 ?>

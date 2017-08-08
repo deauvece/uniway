@@ -22,7 +22,7 @@ if ( $size == 0) {
 	$ruta="../Imagenes/transportImages/default.png";
 	$sql1_update= "UPDATE transports SET image='$ruta' WHERE license_plate='".$license_plate."' ";
 	$result_img = pg_query($conn,$sql1_update);
-	header("location:../sesion/userProfile.php?idu=myProfile");
+	header("location:../sesion/user_profile.php");
 }else{
 	$idu=$id_user;
 	$cad = "transport_image_".$idu;
@@ -39,7 +39,7 @@ if ( $size == 0) {
 			$sql1_update= "UPDATE transports SET image='$ruta' WHERE license_plate='".$license_plate."' ";
 			$result_img = pg_query($conn,$sql1_update);
 			move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], "$destino/$cad.$tipo");  // Subimos el archivo
-			header("location:../sesion/userProfile.php?idu=myProfile");
+			header("location:../sesion/user_profile.php");
 		 }else {
 		   echo "el tipo de archivo no es de los permitidos";/* Si no es el tipo permitido lo decimos*/
 		 }

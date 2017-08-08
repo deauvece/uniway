@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head> 
 	<title>Uniway</title>
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<link rel="stylesheet" href="css/home-form-Style.css">
+	<link rel="stylesheet" href="css/index.css">
 	<link rel="icon" type="image/png" href="Imagenes/favicon.png" />
 	<!--jquery-->
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="js/jquery-ui/jquery-ui.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/validate.js"></script>
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.structure.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.theme.css">
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
-	<!--FACEBOOK LOGIN-->
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.js"></script>
+	<script src="js/view_index.js"></script>
+	<script src="js/validate.js"></script>
 </head>
 
 <body>
@@ -87,23 +86,24 @@
 				Conoce a toda la comunidad, profesores y compañeros, para crear y fortalecer vinculos sociales. <br><br><br>
 			</p>
 		</div>
-		<div id="institutions">
-			<img id="map" src="Imagenes/map2.png" alt="" />
-			<div class="inside_inst">
-				<h2>¿Quieres Uniway en tu institución?</h2>
-				<p>Si Uniway no está disponible para tu institución solicítalo escribiendonos un mensaje, entre más personas de tu institución lo soliciten más rápido estará disponible!</p>
-				<button class="contact-modal button_1">Escribenos</button>
-			</div>
+	</div>
+
+	<div id="institutions">
+		<img id="map" src="Imagenes/map2.png" alt="" />
+		<div class="inside_inst">
+			<h2>¿Quieres Uniway en tu institución?</h2>
+			<p>Si Uniway no está disponible para tu institución solicítalo escribiendonos un mensaje, entre más personas de tu institución lo soliciten más rápido estará disponible!</p>
+			<button class="contact-modal button_1">Escribenos</button>
 		</div>
-		<div class="avaible_u">
-			<h2>Instituciones para las que actualmente está disponible Uniway</h2>
-			<ul>
-				<li><img src="Imagenes/uis.png" alt="" /></li>
-				<li><img src="Imagenes/unab.png" alt="" /></li>
-				<li><img src="Imagenes/usta.png" alt="" /></li>
-				<li><img src="Imagenes/upb.gif" alt="" /></li>
-			</ul>
-		</div>
+	</div>
+	<div class="avaible_u">
+		<h2>Instituciones para las que actualmente está disponible Uniway</h2>
+		<ul>
+			<li><img src="Imagenes/uis.png" alt="" /></li>
+			<li><img src="Imagenes/unab.png" alt="" /></li>
+			<li><img src="Imagenes/usta.png" alt="" /></li>
+			<li><img src="Imagenes/upb.gif" alt="" /></li>
+		</ul>
 	</div>
 
 </section>
@@ -169,22 +169,5 @@
 <section class="copyright">
 	<p>Uniway &copy;2017. Todos los derechos reservados.<p>
 </section>
-<script type="text/javascript">
-$('a[href^="#"]').on('click',function (e) {
-	var target = this.hash;
-	var target2 = $(target);
-	$('html, body').stop().animate(
-		{'scrollTop': target2.offset().top},
-		900,
-		'swing',
-		function () {
-			window.location.hash = target;
-		});
-	var w =$( window ).width();
-	if (w < 800) {
-		$("#btn-label > img").hide().attr("src","Imagenes/bmenu.png").fadeIn("slow");
-	}
-	});
-</script>
 </body>
 </html>
