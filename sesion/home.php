@@ -140,7 +140,7 @@ $rdnString=$vector_random['random_string'];
 
 	<div id="addRouteBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?>>
 		<form  action="../php/addWay.php" method="post" id="addRoute">
-			<button type="button" id="closeAddRoute" > X </button>
+			<img id="closeAddRoute" src="../Imagenes/leftw.png" />
 			<p>
 				Publica un recorrido.
 			</p>
@@ -166,7 +166,7 @@ $rdnString=$vector_random['random_string'];
 					$rute_name= $vector_rute_name['rute_name'];
 
 					?>
-						<div class="rutaXBox">
+					<div class="rutaXBox">
 						<input type="radio" id="ruta<?php echo $contador; ?>" name="id_ruta" value="<?php echo $id_ruta; ?>" required>
 						<label for="ruta<?php echo $contador; ?>"></label>
 						<select name="ruta<?php echo $contador; ?>" id="opt-routes" class="opt-routes" >
@@ -189,7 +189,7 @@ $rdnString=$vector_random['random_string'];
 						}
 					}
 					?>
-					</select>
+						</select>
 					</div>
 					<?php
 					$contador=$contador + 1;
@@ -209,11 +209,17 @@ $rdnString=$vector_random['random_string'];
 			<input id="timepicker" type="text" name="timepicker" autocomplete="off" required placeholder="Haz click">
 
 			<div class="finish_start">
-				<span>El recorrido comienza o termina en la universidad</span>
-				<input type="radio" id="start" name="touniversity" value="false" required checked >
-					<label id="start_l" for="start"></label>
-				<input type="radio" id="finish" name="touniversity" value="true" required >
-					<label id="finish_l" for="finish"></label>
+				<span id="fs_text" >El recorrido comienza o termina en la universidad</span>
+				<div class="rutaXBox">
+					<input id="start_l" type="radio" name="touniversity" value="false" required>
+					<label for="start_l"></label>
+					<span>Termina</span>
+				</div>
+				<div class="rutaXBox">
+					<input id="end_l" type="radio" name="touniversity" value="true" >
+					<label for="end_l"></label>
+					<span>Comienza</span>
+				</div>
 			</div>
 			<span class="commentTitle" >Informacion adicional:</span>
 			<textarea name="comment" rows="3" cols="31" required></textarea>
@@ -342,34 +348,34 @@ $rdnString=$vector_random['random_string'];
 		<?php if ($is_driver=='t') {
 			?>
 			<div id="modal_add_stop">
-				<img id="close_add_stop_feed" src="../Imagenes/leftw.png" />
-				<form id="form_stops" action="../php/addRoute.php" name="form_stops" method="post">
-					<p>Crea una ruta</p>
-					<input type="text" class="query" id="rute_name" name="rute_name" placeholder="Escribe un nombre para la ruta" >
-					<span>Selecciona una de las universidades como destino/origen de tu ruta</span>
-					<select class="firs-stop" name="stop1">
-						<option value="Universidad Industrial de Santander - Calle 9">Universidad industrial de santander (UIS), Sede principal</option>
-						<option value="Universidad industrial de santander (UIS), Salud">Universidad industrial de santander (UIS), Salud</option>
-						<option value="Unab - Calle 42, Bucaramanga">Universidad Autónoma de Bucaramanga (UNAB), Cabecera</option>
-						<option value="FOSUNAB, Floridablanca - Santander">FOSUNAB, Salud</option>
-					</select>
-					<span>Escribe y selecciona de las opciones que se muestran al escribir, el mapa se generará automaticamente. ( minimo 1, máximo 4 paradas contando el destino )</span>
-					<div class="query_box">
-						<input type="text" class="query" id="query" placeholder="Busca una parada" onFocus="initAutocomplete_stop()" />
-						<button id="add_stop" type="button">Agregar</button>
-					</div>
-					<span class="error">No puedes agregar más de 4 paradas</span>
-					<div class="cont-stops">
-						<p>Paradas</p>
-					</div>
-					<button type="button" class="delete_stop">Eliminar ultima parada</button>
-					<div id="map_stops">
-					</div>
-					<input id="usr_id" type="hidden" name="id_user"  value="<?php echo $idu ?>">
-					<span class="errorVal">El nombre de tamaño minimo 4 y maximo 25, agregar al menos una parada.</span>
-					<button type="submit" name="button">Crear</button>
-				</form>
-			</div>
+			    <img id="close_add_stop_feed" src="../Imagenes/leftw.png" />
+			    <form id="form_stops" action="../php/addRoute.php" name="form_stops" method="post">
+				    <p>Crea una ruta</p>
+				    <input type="text" class="query" id="rute_name" name="rute_name" placeholder="Escribe un nombre para la ruta" >
+				    <span>Selecciona una de las universidades como destino/origen de tu ruta</span>
+				    <select class="firs-stop" name="stop1">
+					    <option value="Universidad Industrial de Santander - Calle 9">Universidad industrial de santander (UIS), Sede principal</option>
+					    <option value="Universidad industrial de santander (UIS), Salud">Universidad industrial de santander (UIS), Salud</option>
+					    <option value="Unab - Calle 42, Bucaramanga">Universidad Autónoma de Bucaramanga (UNAB), Cabecera</option>
+					    <option value="FOSUNAB, Floridablanca - Santander">FOSUNAB, Salud</option>
+				    </select>
+				    <span>Escribe y selecciona de las opciones que se muestran al escribir, el mapa se generará automaticamente. ( minimo 1, máximo 4 paradas contando el destino )</span>
+				    <div class="query_box">
+					    <input type="text" class="query" id="query" placeholder="Busca una parada" onFocus="initAutocomplete_stop()" />
+					    <button id="add_stop" type="button">Agregar</button>
+				    </div>
+				    <span class="error">No puedes agregar más de 4 paradas</span>
+				    <div class="cont-stops">
+					    <p>Paradas</p>
+				    </div>
+				    <button type="button" class="delete_stop">Eliminar ultima parada</button>
+				    <div id="map_stops">
+				    </div>
+				    <input id="usr_id" type="hidden" name="id_user"  value="<?php echo $idu ?>">
+				    <span class="errorVal">El nombre de tamaño minimo 4 y maximo 25, agregar al menos una parada.</span>
+				    <button type="submit" name="button">Crear</button>
+			    </form>
+		    </div>
 			<?php
 		} ?>
 	</div>
@@ -387,23 +393,17 @@ $rdnString=$vector_random['random_string'];
 	<script src="../js/view_sesion.js"></script>
 	<script src="../js/controller_home.js"></script>
 	<script src="../js/lolliclock.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places" async defer></script>
-	<script type="text/javascript">
-	var autocomplete_feed;
-	function initAutocomplete_feed() {
-		var options = {
-		componentRestrictions: {country: "col"}
-		};
-		autocomplete_feed = new google.maps.places.Autocomplete( ($('.onAuto')[0]), options );
-	}
-	$(document).ready(function () {
-		$('div.find').on("focus",".onAuto",function(){
-			initAutocomplete_feed();
-		});
-	});
-	</script>
 	<script>
-		//autocompletar
+		//autocompletar search
+		var autocomplete2;
+		function initAutocomplete_search() {
+			var options = {
+			componentRestrictions: {country: "col"}
+			};
+			autocomplete2 = new google.maps.places.Autocomplete( ($('#search-input')[0])  ,  options );
+		}
+
+		//autocompletar paradas
 		var autocomplete;
 		function initAutocomplete_stop() {
 			var options = {
@@ -411,163 +411,7 @@ $rdnString=$vector_random['random_string'];
 			};
 			autocomplete = new google.maps.places.Autocomplete( ($('#query')[0])  ,  options );
 		}
-
-		$('#query').on('focus', function() {
-			$(this).val('');
-		});
-		//mostrar informacion y generar mapa
-		var array_stops=[];
-		var max_stops=5;
-		//primera parada = universidad
-		var first_stop = $("select[name=stop1]").val();
-		array_stops[0]=first_stop;
-		//cada vez que cambie, se actualiza el valor
-		$('#modal_add_stop > select').on('change', function() {
-			first_stop = this.value;
-			array_stops[0]=first_stop;
-			createMap();
-		})
-
-
-		function createMap() {
-				var size_array = array_stops.length;
-				//si ya hay dos paradas se muestra el mapa
-				if (size_array > 1) {
-					//genera el mapa
-					$("#map_stops").css("height","500px");
-					var directionsService = new google.maps.DirectionsService;
-					var directionsDisplay = new google.maps.DirectionsRenderer;
-					var map = new google.maps.Map(document.getElementById('map_stops'), {
-						zoom: 10,
-						center: {lat: 7.13, lng: -73.13}
-					});
-					directionsDisplay.setMap(map);
-
-					var waypts = [];
-					  for (var i = 0; i < size_array; i++) {
-					    if (i!=0 || i!=size_array-1) {
-						 waypts.push({
-						   location: array_stops[i],
-						   stopover: true
-						 });
-					    }
-					  }
-					  directionsService.route({
-					    origin: array_stops[0],
-					    destination: array_stops[(size_array)-1],
-					    waypoints: waypts,
-					    //true para reordenar los waypoints
-					    optimizeWaypoints: false,
-					    travelMode: 'DRIVING'
-					  }, function(response, status) {
-					    if (status === 'OK') {
-						 directionsDisplay.setDirections(response);
-						 var route = response.routes[0];
-					    } else {
-						 console.log('Directions request failed due to ' + status + ' (stop doesnt exist)');
-					    }
-				    });
-
-				}
-		}
-		function addStop() {
-			var count = $(".cont-stops input").length;
-			//se le suma el destino/origen universidad
-			count=count+1;
-
-			//determina si muestra boton para eliminar ultima parada
-			if (count>0) {
-				$(".delete_stop").fadeIn();
-			}
-
-
-
-			if (count<max_stops) {
-				//se quita el erroe en caso de que esté
-				$("#modal_add_stop .error").css("display","none");
-				//se agrega a cont-stops para que el usuario la vea
-				var info = $("#query").val();
-				$(".cont-stops").append("<input class='query' id='stop"+(count+1)+"' name='stop"+(count+1)+"' disabled type='text'  value='"+info+"'>");
-				//se agrega al vector array_stops
-				array_stops[count]=info;
-				//crea el mapa
-				createMap();
-			}else{
-				$("#modal_add_stop .error").css("display","block");
-			}
-
-		}
-		$("#add_stop").on("click",function () {
-			var sizeResult = $("#query").val().length;
-			if (sizeResult!=0 ) {
-				addStop();
-			}
-
-		});
-
-		$("#query").keypress(function (e) {
-			var sizeResult = $("#query").val().length;
-			if (e.which == 13 && sizeResult!=0 ) {
-				addStop();
-			}
-		});
-
-
-		$(".delete_stop").on("click", function(){
-			var count = $(".cont-stops input").length;
-			//si solo hay una parada y se elimina el boton desaparece
-			if (count==1) { $(this).hide(); }
-			//y se quita el error en caso de que esté
-			$("#modal_add_stop .error").css("display","none");
-			array_stops.splice(count, 1);
-			$(".cont-stops input:last-child").remove();
-			//si hay al menos una parada se genera el mapa (inicial + parada(input))
-			if (count>0) {
-				createMap();
-			}
-
-		});
-
-		$('#form_stops> button[type=submit]').on('click', function(e){
-		   $(".errorVal").css("display","none");
-	        e.preventDefault();
-		   //input rute name
-	        var len = $('#rute_name').val().length;
-		   //minimo una parada
-		   var count = $(".cont-stops input").length;
-		   //se le suma el destino/origen universidad
-	        if (len > 4 && len < 20 && count>0) {
-			   //envia el formulario
-			   $.ajax({
-	 			  url: '../php/addRoute.php',
-	 			  type: 'post',
-	 			  data: {
-	 				  stop1: $("select[name=stop1]").val(),
-					  stop2: $("#form_stops #stop2").val(),
-					  stop3: $("#form_stops #stop3").val(),
-					  stop4: $("#form_stops #stop4").val(),
-					  stop5: $("#form_stops #stop5").val(),
-					  rute_name: $("#rute_name").val(),
-					  id_user: $("#usr_id").val()
-	 			  },
-	 			  dataType: 'json',
-	 			  success: function(array){
-					  //para mostrar la ruta creada
-					  location.reload();
-	 			  }
-	 		  });
-		  }else{
-			  $(".errorVal").css("display","block");
-		  }
-	    });
-
-
-		//previene que no se envien los formularios  al presionar enter
-		$(document).on("keypress", "form", function(event) {
-		    return event.keyCode != 13;
-		});
-
-
 	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbb1jMuRuD6sgd53qwhd7lvJ8h8OSUk&libraries=places" async defer></script>
 </body>
 </html>

@@ -112,15 +112,11 @@ if ($id_uni && $input_query) {
 							<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
 					</div>
 					<div  data-way='$id_way' class='cont2' >
-							<span class='name'>
-							".$full_name_user."
-							</span>
-							<span class='time'>";
-							$output=$output."Hora de salida: ".$hour;
-							$output=$output."</span>";
-							$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
-							$output=$output."<span class='comentario'>".$comentario."</span>";
-
+							<span class='info'>$full_name_user</span>
+							<span class='info'><img src='../Imagenes/start.png'/>$inicio_stp</span>
+							<span class='info'><img src='../Imagenes/end.png'/>$fin_stp</span>
+							<span class='info'><img src='../Imagenes/calendar.png'/>Hora de salida :$hour</span>
+							<span class='info'>$comentario</span>";
 
 							if ($id_user_w==$idu) {
 								$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";
@@ -220,15 +216,11 @@ if ($id_uni && $input_query) {
 							<img class='open-modal'   title='Ver perfil' src=".$profile_image_user." alt=".$id_user_w." />
 					</div>
 					<div  data-way='$id_way' class='cont2' >
-							<span class='name'>
-							".$full_name_user."
-							</span>
-							<span class='time'>";
-							$output=$output."Hora de salida: ".$hour;
-							$output=$output."</span>";
-							$output=$output."<span class='ini-desti'> <span class='ini'>Inicio:</span>$inicio_stp<br> <span class='desti'>Fin:</span>$fin_stp</span>";
-							$output=$output."<span class='comentario'>".$comentario."</span>";
-
+							<span class='info'>$full_name_user</span>
+							<span class='info'><img src='../Imagenes/start.png'/>$inicio_stp</span>
+							<span class='info'><img src='../Imagenes/end.png'/>$fin_stp</span>
+							<span class='info'><img src='../Imagenes/calendar.png'/>Hora de salida :$hour</span>
+							<span class='info'>$comentario</span>";
 
 							if ($id_user_w==$idu) {
 								$output=$output."<a href='group-chat.php?id_way=$id_way'><button class='btn-eliminar' type='button'><img src='../Imagenes/group.png'/></button></a>";

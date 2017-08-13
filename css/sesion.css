@@ -102,7 +102,7 @@ body{
 	padding-right: 10px;
 	justify-content: center;
 	width: 20%;
-	box-sizing: auto;
+	box-sizing: border-box;
 }
 .options {
 		width: 100%;
@@ -218,7 +218,7 @@ body{
 		margin: 0px -10px;
 		margin-left: 0px;
 		border-width:0px;
-		font-size: 95%;
+		font-size: 85%;
 		color: rgba(0, 0, 0, 0.7);
 		outline: 0;
 	}
@@ -226,7 +226,7 @@ body{
 			position: absolute;
 			right: 10px;
 			top:15px;
-			background-color: rgba(255, 255, 255, 0);
+			background-color: #F6F6F6;
 			height: 35px;
 			width: 35px;
 			cursor: pointer;
@@ -427,14 +427,11 @@ body{
 	width: 15%;
 }
 .cont2{
+	padding: 15px 5px 0px;
 	width: 70%;
 }
 
-	.publicaciones a {
-		text-decoration: none;
-		color: black;
-	}
-	.publicaciones img  {
+	.publicaciones .cont1 img  {
 		display: inline-block;
 		width: 70px;
 		height: 70px;
@@ -443,28 +440,26 @@ body{
 		cursor: pointer;
 	}
 
-	.publicaciones .ini-desti {
-		padding: 3px 0px;
-		display:block;
+	.publicaciones .cont2 span.info{
+		margin: 1px;
+		display: block;
+		color: gray;
 	}
-	.publicaciones .ini, .publicaciones .desti {
-		display: inline-block;
-		color: #006E6E;
-		width: 50px;
-	}
-	.publicaciones .name {
-		color: black;
+	.publicaciones .cont2 span.info:first-child{
 		text-transform: capitalize;
-		display: block;
-		padding: 20px 0px 7px;
+		margin-bottom: 5px;
+		color: #4B4B4B;
 	}
-	.publicaciones .time {
-		display: block;
+	.publicaciones .cont2 span:nth-child(5){
+		margin-top: 10px;
+		margin-bottom: 15px;
+		color: #4B4B4B;
 	}
-	.publicaciones .comentario{
-		display: block;
-		word-break: break-all;
-		padding: 3px 0px;
+	.publicaciones .cont2 .info > img{
+		width: 20px;
+		position: relative;
+		top: 5px;
+		margin-right: 15px;
 	}
 	.publicaciones .cupo {
 		width: 70px;
@@ -475,6 +470,9 @@ body{
 		color: gray;
 		background-color: #F0F0F0;
 		cursor: pointer;
+	}
+	.publicaciones .cupo:hover {
+		background-color: #D0D0D0;
 	}
 		.publicaciones .cont3 span{
 			display: block;
@@ -497,6 +495,7 @@ body{
 		top: 20%;
 		right: 30%;
 		font-size: 80%;
+		transition: all 0.2s;
 	}
 	.btn-pedirCupo:hover, .btn-eliminar:hover {
 		background-color: #861212;
@@ -533,9 +532,10 @@ body{
 		top: 20%;
 		left: 30%;
 		display: none;
+		transition: all 0.2s;
 	}
 	.ruta:hover{
-		background-color: #006E6E;
+		background-color: #002A2A;
 	}
 	.ruta img{
 		width: 25px;
@@ -624,20 +624,21 @@ body{
 	text-align: center;
 	display: block;
 	outline: none;
-	padding: 10px 0px;
+	padding: 7px 0px;
 	width: 90%;
 	margin: 0px auto;
-	border: 1px solid #D0D0D0;
+	border-width: 0px;
 	transition: all 0.2s;
 	cursor: pointer;
+	background-color: #F0F0F0;
 }
-#addRoute > select {
-	text-align-last: center;
+#addRoute select {
 	display: block;
 	width: 90%;
 	padding: 5px 0px;
 	border-width: 0px;
 	margin: 0px auto;
+	background-color: #F0F0F0;
 }
 
 #addRoute button {
@@ -654,14 +655,13 @@ body{
 }
 
 #addRoute #closeAddRoute {
-	background-color: #861212;
-	font-weight: bold;
-	width: 49px;
-	height: 49px;
+	width: 23px;
+	height: 23px;
 	padding: 0px;
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 13px;
+	left: 10px;
+	cursor: pointer;
 }
 
 /*Checked para home (formulario de crear un recorrido)*/
@@ -679,84 +679,66 @@ body{
 	height: 30px;
 	width: 90%;
 }
-#addRoute .rutaXBox select{
-	margin: 0px;
-	padding: 0px;
-	position: static;
-	height: 30px;
-	border-width: 0px;
-	width: 100%;
-}
 #addRoute label {
 	background-color: #D0D0D0;
 	display: inline-block;
-	height: 30px;
-	width: 30px;
 	cursor: pointer;
 	position: relative;
-	transition: all .2s
-}
- #addRoute label:before {
-	background:#002A2A;
-	border: 3px solid #002A2A;
-	content: "";
-	display: inline-block;
-	width: 6px;
-	height: 6px;
-	position: absolute;
-	top: 9px;
-	left: 9px;
 	transition: all .2s;
+	height: 30px;
+	width: 60px;
 }
-#addRoute  input[type="radio"]:checked + label:before{
-	background-color: #002A2A;
-	width: 23px;
-	height: 24px;
-	top: 0;
-	left: 0;
-}
+	#addRoute .rutaXBox select{
+		margin: 0px;
+		padding: 0px;
+		position: static;
+		height: 30px;
+		border-width: 0px;
+		width: 100%;
+	}
+		 #addRoute label:before {
+			background-color:#68686E;
+			content: "";
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			border-radius: 3px;
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			transition: all .2s;
+		}
+		#addRoute  input[type="radio"]:checked + label:before{
+			background-color: #002A2A;
+			left: 30px;
+		}
+
 #addRoute .finish_start{
-	min-height: 51px;
 	display: block;
-	margin: 5px auto;
+	margin: 5px auto 0px;
 	width: 90%;
 	padding: 0px;
 }
-.finish_start span {
-	background-color: white;
-	display: block;
-	padding: 3px;
-	font-size: 80%;
-	margin-bottom: 5px;
-}
-
-	#addRoute #start_l:before , #addRoute #finish_l:before  {
-		content: "Termina";
-		background-color: #D0D0D0;
-		border: none;
-		display: inline-block;
-		width: 1px;
-		height: 1px;
-		position: absolute;
-		top: 5px;
-		left: 45px;
-		transition: all .2s;
+	span#fs_text{
+		font-size: 75%;
+		display: block;
+		margin: 5px auto;
+		padding: 0px 0px;
+	}
+	#addRoute .finish_start .rutaXBox{
+		width: 100%;
+	}
+	.rutaXBox > span {
+		display: block;
+		font-size: 85%;
+		line-height: 30px;
+		box-sizing: border-box;
+		padding-left: 5px;
+		width: 100%;
+		background-color: #F0F0F0;
 	}
 
-	#addRoute #start_l:before{
-		content:"Comienza";
-		left: 30px;
-	}
-	#addRoute #start_l , #addRoute #finish_l  {
-		width: 50%;
-		margin-top: -5px;
-		float: right;
-		font-size: 80%;
-	}
-	#addRoute  #start:checked + label, #addRoute  #finish:checked + label, #addRoute  #start:checked + label:before, #addRoute  #finish:checked + label:before{
-		background-color: #002A2A;
-		color: white;
-	}
+
 	#addRoute  .commentTitle {
 		font-size: 75%;
 		display: block;
@@ -767,12 +749,11 @@ body{
 	#addRoute textarea {
 		display: block;
 		border: none;
-		background-color: #D0D0D0;
-		margin: 0px auto;
+		background-color: #F0F0F0;
+		margin: 0px auto 20px;
 		resize: vertical;
-		min-height: 80px;
+		min-height: 70px;
 		width: 90%;
-		margin-bottom: 10px;
 	}
 
 
@@ -1318,10 +1299,6 @@ body{
 	.publicaciones{
 		font-size: 80%;
 	}
-	.cont2{
-		padding: 0px 10px;
-		box-sizing: border-box;
-	}
 	.info-usr ul li {
 		box-sizing: border-box;
 		width: 70px;
@@ -1601,9 +1578,6 @@ body{
 		cursor: pointer;
 		display: none;
 	}
-		#modal_add_stop .delete_stop:hover{
-			background-color: #CE3232;
-		}
 
 	#map_stops{
 		width: 100%;
@@ -1962,7 +1936,7 @@ body{
 		.userRutesBox {
 			text-align: center;
 			margin-bottom: 20px;
-			background-color: #D0D0D0;
+			background-color: #F6F6F6;
 			border-radius: 3px;
 			margin-top: 60px;
 		}
@@ -1989,14 +1963,14 @@ body{
 			padding: 10px 0px;
 		}
 		.userRutes span:hover {
-			background-color: #D0D0D0;
+			background-color: #F6F6F6;
 		}
 		.userRutes span:nth-child(2){
 			margin-top:-36px;
 		}
 
 		span.rute_name{
-			background-color: #D0D0D0
+			background-color: #F0F0F0
 		}
 		 .userRutes .del_route {
 			display: inline-block;

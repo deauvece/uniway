@@ -3,7 +3,197 @@ $(document).ready(function () {
 
 
 /*
-Indice - home.php
+	Indice both pages
+	Indice home.php
+	Indice user_profile.php
+*/
+
+
+
+
+/*
+Indice both pages
+
+//previene que no se envien los formularios  al presionar enter
+//clear search input
+//mostrar informacion y generar mapa
+//funcion crear mapa
+//funcion agregar paradas
+//adsaklds
+//eliminar paradas del formulario
+//envia los datos del formulario de ruta
+*/
+
+
+//previene que no se envien los formularios  al presionar enter
+$(document).on("keypress", "form", function(event) {
+    return event.keyCode != 13;
+});
+
+
+//clear search input
+$('#query, #search-input').on('focus', function() {
+	$(this).val('');
+});
+
+//mostrar informacion y generar mapa
+var array_stops=[];
+var max_stops=5;
+//primera parada = universidad
+var first_stop = $("select[name=stop1]").val();
+array_stops[0]=first_stop;
+//cada vez que cambie, se actualiza el valor
+$('#modal_add_stop > select').on('change', function() {
+	first_stop = this.value;
+	array_stops[0]=first_stop;
+	createMap();
+})
+
+
+//funcion crear mapa
+function createMap() {
+		var size_array = array_stops.length;
+		//si ya hay dos paradas se muestra el mapa
+		if (size_array > 1) {
+			//genera el mapa
+			$("#map_stops").css("height","500px");
+			var directionsService = new google.maps.DirectionsService;
+			var directionsDisplay = new google.maps.DirectionsRenderer;
+			var map = new google.maps.Map(document.getElementById('map_stops'), {
+				zoom: 10,
+				center: {lat: 7.13, lng: -73.13}
+			});
+			directionsDisplay.setMap(map);
+
+			var waypts = [];
+			  for (var i = 0; i < size_array; i++) {
+			    if (i!=0 || i!=size_array-1) {
+				 waypts.push({
+				   location: array_stops[i],
+				   stopover: true
+				 });
+			    }
+			  }
+			  directionsService.route({
+			    origin: array_stops[0],
+			    destination: array_stops[(size_array)-1],
+			    waypoints: waypts,
+			    //true para reordenar los waypoints
+			    optimizeWaypoints: false,
+			    travelMode: 'DRIVING'
+			  }, function(response, status) {
+			    if (status === 'OK') {
+				 directionsDisplay.setDirections(response);
+				 var route = response.routes[0];
+			    } else {
+				 console.log('Directions request failed due to ' + status + ' (stop doesnt exist)');
+			    }
+		    });
+
+		}
+}
+//funcion agregar paradas
+function addStop() {
+	var count = array_stops.length;
+	//se le suma el destino/origen universidad
+
+	//determina si muestra boton para eliminar ultima parada
+	if (count>0) {
+		$(".delete_stop").fadeIn();
+	}
+
+	if (count<max_stops) {
+		//se quita el erroe en caso de que esté
+		$("#modal_add_stop .error").css("display","none");
+		//se agrega a cont-stops para que el usuario la vea
+		var info = $("#query").val();
+		index=count+1;
+		$(".cont-stops").append("<input class='query' id='stop"+index+"' name='stop"+index+"' disabled type='text'  value='"+info+"'>");
+		//se agrega al vector array_stops
+		array_stops[count]=info;
+		//crea el mapa
+		createMap();
+
+	}else{
+		console.log(count);
+		$("#modal_add_stop .error").css("display","block");
+	}
+
+}
+
+//adsaklds
+$("#add_stop").on("click",function () {
+	var sizeResult = $("#query").val().length;
+	if (sizeResult!=0 ) {
+		addStop();
+	}
+
+});
+$("#query").keypress(function (e) {
+	var sizeResult = $("#query").val().length;
+	if (e.which == 13 && sizeResult!=0 ) {
+		addStop();
+	}
+});
+
+
+//eliminar paradas del formulario
+$(".delete_stop").on("click", function(){
+	var count = array_stops.length;
+	//si solo hay dos paradas y se elimina el boton desaparece
+	if (count==2) { $(this).hide(); }
+	//y se quita el error en caso de que esté
+	$("#modal_add_stop .error").css("display","none");
+	array_stops.splice(count-1, 1);
+	$(".cont-stops input:last-child").remove();
+	//si hay al menos dos parada se genera el mapa (inicial + parada(input))
+	if (count>1) {
+		createMap();
+	}
+
+});
+
+//envia los datos del formulario de ruta
+$('#form_stops> button[type=submit]').on('click', function(e){
+   $(".errorVal").css("display","none");
+   e.preventDefault();
+   //input rute name
+   var len = $('#rute_name').val().length;
+   //minimo una parada
+   var count = $(".cont-stops input").length;
+   //se le suma el destino/origen universidad
+   if (len > 4 && len < 20 && count>0) {
+	   //envia el formulario
+	   $.ajax({
+		  url: '../php/addRoute.php',
+		  type: 'post',
+		  data: {
+			  stop1: $("select[name=stop1]").val(),
+			  stop2: $("#form_stops #stop2").val(),
+			  stop3: $("#form_stops #stop3").val(),
+			  stop4: $("#form_stops #stop4").val(),
+			  stop5: $("#form_stops #stop5").val(),
+			  rute_name: $("#rute_name").val(),
+			  id_user: $("#usr_id").val()
+		  },
+		  dataType: 'json',
+		  success: function(array){
+			  //para mostrar la ruta creada
+			  location.reload();
+		  }
+	  });
+  }else{
+	  $(".errorVal").css("display","block");
+  }
+});
+
+
+
+
+
+
+/*
+Indice home.php
 
 //botones hover de las publicaciones
 //agregar calificaciones y comentarios a los usuarios en ventana modal
@@ -29,7 +219,7 @@ Indice - home.php
 				backgroundColor:"rgba(0, 0, 0, 0.7)",
 				color:"rgba(0, 0, 0, 0)",
 			});
-			$(".name,.time,.ini-desti,.comentario",this).hide();
+			$("span.info",this).hide();
 			$(".ruta, .btn-pedirCupo, .btn-eliminar",this).show();
 		},
 		mouseenter: function () {
@@ -42,7 +232,7 @@ Indice - home.php
 				backgroundColor:"white",
 				color:"rgba(0, 0, 0, 1)",
 			});
-			$(".name,.time,.ini-desti,.comentario",this).show();
+			$("span.info",this).show();
 			$(".ruta, .btn-pedirCupo, .btn-eliminar",this).hide();
 		}
 	},".publicaciones");
@@ -169,7 +359,7 @@ Indice - home.php
 
 
 /*
-Indice - user_profile.php
+Indice user_profile.php
 
 //menu opciones
 //efecto slide en las opciones del menu

@@ -308,7 +308,12 @@ $("#send_comment").on("click",function(){
 	$("#stop_opt + label").on("click",function(){
 		console.log("autocomplete ON");
 		$("#search-input").remove();
-		$("div.find").prepend("<input id='search-input' class='search onAuto' type='text' name='name' onFocus='' placeholder='Busca un recorrido por lugar o usuario' autocomplete='off'>");
+		$("div.find").prepend("<input id='search-input' class='search onAuto' type='text' name='name' onFocus='initAutocomplete_search()' placeholder='Busca un recorrido por lugar o usuario' autocomplete='off'>");
+	});
+	$("div.find").on("focus","#search-input",function () {
+		if ($(this).prop("class") =="search onAuto") {
+			initAutocomplete_search();
+		}
 	});
 
 //consulta datos de los usuarios en las publicaciones - modal feed
