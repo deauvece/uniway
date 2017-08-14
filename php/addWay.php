@@ -4,12 +4,14 @@ include("functions.php");
 $conn=conectarse();
 extract($_POST);
 
+
+
 //true=> usuario activo
 $status_user="true";
 $sql3="UPDATE users SET status_way='$status_user' WHERE id_user='$id_user'";
 $result3 = pg_query($conn, $sql3);
 
-$sql="INSERT INTO ways (hour,id_user,id_route,spots,touniversity,comment,id_u,max_spots) VALUES ('$timepicker','$id_user','$id_ruta','$spots','$touniversity','$comment','$id_u','$spots')";
+$sql="INSERT INTO ways (hour,date,id_user,id_route,spots,touniversity,comment,id_u,max_spots) VALUES ('$timepicker','$datepicker','$id_user','$id_ruta','$spots','$touniversity','$comment','$id_u','$spots')";
 $result = pg_query($conn, $sql);
 
 //lo agrega a usr_ways
@@ -46,7 +48,6 @@ function generateRandomString($length = 20) {
 $rand=generateRandomString();
 $sql22="UPDATE universities SET random_string='$rand' WHERE id_u='$id_u'  ";
 $result2 = pg_query($conn, $sql22);
-
 
 
 header("location:../sesion/home.php");

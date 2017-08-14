@@ -92,6 +92,7 @@ body{
 .sesion_container_1{
 	width: 20%;
 	justify-content: center;
+	background-color: #0F1010;
 }
 .sesion_container_2{
 	justify-content: center;
@@ -407,7 +408,6 @@ body{
 
 .publicaciones{
 	padding: 0px;
-	display: flex;
 	background: white;
 	min-height: 150px;
 	font-size: 90%;
@@ -415,146 +415,103 @@ body{
 	transition: all 0.35s;
 	border: 0px solid #D0D0D0;
 	border-bottom-width: 1px;
+	margin-bottom: 5px;
 }
-
 .cont1{
-	display: flex;
-	justify-content:center;
-	width: 15%;
+	padding-top: 20px;
+	position: relative;
+	min-height: 55px;
 }
-.cont3{
-	text-align: center;
-	width: 15%;
-}
-.cont2{
-	padding: 15px 5px 0px;
-	width: 70%;
-}
-
 	.publicaciones .cont1 img  {
-		display: inline-block;
-		width: 70px;
-		height: 70px;
+		width: 50px;
+		height: 50px;
 		border-radius: 50%;
-		margin-top: 30px;
 		cursor: pointer;
+		position: absolute;
+		top: 20px;
+		left: 25px;
+	}
+	.publicaciones .cont1 .usr_name{
+		text-transform: capitalize;
+		display: block;
+		margin-left: 85px;
+		margin-bottom: 5px;
+	}
+	.publicaciones .cont1 .comment{
+		display: block;
+		color: #4B4B4B;
+		margin-left: 85px;
+		padding-right: 20px;
 	}
 
-	.publicaciones .cont2 span.info{
-		margin: 1px;
-		display: block;
-		color: gray;
-	}
-	.publicaciones .cont2 span.info:first-child{
-		text-transform: capitalize;
-		margin-bottom: 5px;
-		color: #4B4B4B;
-	}
-	.publicaciones .cont2 span:nth-child(5){
-		margin-top: 10px;
-		margin-bottom: 15px;
-		color: #4B4B4B;
-	}
-	.publicaciones .cont2 .info > img{
+.cont2{
+	padding: 3px 20px 30px 35px;
+}
+	.publicaciones .cont2 span.info > img{
 		width: 20px;
 		position: relative;
 		top: 5px;
 		margin-right: 15px;
 	}
-	.publicaciones .cupo {
-		width: 70px;
-		margin: 30px auto 0px;
-		height: 70px;
-		border-radius: 50%;
-		border-width: 0px;
-		color: gray;
-		background-color: #F0F0F0;
+	.publicaciones .cont2 span.info{
+		display: block;
+		color: #4B4B4B;
+	}
+	.publicaciones .cont2 span:nth-child(3){
+		margin-bottom: 10px;
+	}
+	.publicaciones .cont2 hr{
+		color: rgba(255, 255, 255, 0.2);
+	}
+
+.cont3{
+	width: 50%;
+	position: absolute;
+	bottom: 3px;
+	right: 0px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+	.publicaciones .cont3 a{
+		padding: 5px 0px;
+		box-sizing: border-box;
+		padding-left: 33px;
+		width: 33%;
+		text-decoration: none;
 		cursor: pointer;
+		position: relative;
+		color: darkgray;
+		font-size: 105%;
+		font-variant: small-caps;
 	}
-	.publicaciones .cupo:hover {
-		background-color: #D0D0D0;
+	.publicaciones .cont3 a:last-child{
+		padding-left: 26px;
+		color: rgba(134, 18, 18, 0.7);
 	}
-		.publicaciones .cont3 span{
-			display: block;
-			color: white;
-			margin-top: 5px;
-			font-size: 90%;
+		.publicaciones .cont3 a:hover{
+			text-decoration: underline;
 		}
-
-
-	.btn-pedirCupo, .btn-eliminar {
-		display: none;
-		width: 70px;
-		height: 70px;
-		border-radius: 50%;
-		cursor: pointer;
-		color: white;
-		background-color: #CE3232;
-		border-width: 0px;
-		position: absolute;
-		top: 20%;
-		right: 30%;
-		font-size: 80%;
-		transition: all 0.2s;
-	}
-	.btn-pedirCupo:hover, .btn-eliminar:hover {
-		background-color: #861212;
-	}
-	.btn-pedirCupo > img, .btn-eliminar > img {
-		width: 25px;
-		height: 25px;
-		margin-top: -2px;
-	}
-	.btn-pedirCupo:after, .btn-eliminar:after {
-		content: "Chat";
-		color: white;
-		position: absolute;
-		left: 20px;
-		top: 75px;
-		white-space: nowrap;
-		border-radius: 2px;
-	}
-	.btn-pedirCupo:after {
-		content: "Pedir cupo";
-		left: 3px;
-	}
-
-	.ruta{
+	.publicaciones .cont3 a span{
+		font-size: 115%;
+		display: inline-block;
 		text-align: center;
-		height: 70px;
-		width: 70px;
-		border-radius: 50%;
-		line-height: 65px;
-		background-color: #006E6E;
-		color: white;
-		cursor: pointer;
-		position: absolute;
-		top: 20%;
-		left: 30%;
-		display: none;
-		transition: all 0.2s;
-	}
-	.ruta:hover{
-		background-color: #002A2A;
-	}
-	.ruta img{
-		width: 25px;
 		height: 25px;
-		border-radius: 0px;
-		margin-left: 3px;
-		margin-top:20px;
-	}
-	.ruta:after{
-		font-size: 95%;
-		line-height: 15px;
-		content:"Ver mapa";
-		color: white;
+		width: 25px;
 		position: absolute;
-		left: 12px;
-		top: 75px;
-		white-space: nowrap;
-		border-radius: 2px;
+		top: 4px;
+		left: 0px;
 	}
+	.publicaciones .cont3 a img{
+		height: 25px;
+		width: 25px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+
+
+
 .ads {
 	padding: 40px;
 	display: inline-block;
@@ -603,22 +560,35 @@ body{
 
 #addRoute {
 	display: none;
-	margin-left: auto;
-	margin-right: auto;
-     margin-top:50px;
+	margin: 20px auto 0px;
 	padding: 0px;
-	padding-bottom: 10px;
+	padding-bottom: 40px;
 	background-color: white;
-	border-radius: 3px;
 	width: 50%;
-	min-height: 300px;
+	height: 575px;
+	overflow: auto;
 	position: relative;
 }
+
+
+#addRoute #datepicker_root{
+	display: none;
+	position: absolute;
+	top: 320px;
+	left: 50%;
+	margin-left: -140px;
+	width: 280px;
+	z-index: 100;
+	background-color: white;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26), 0 2px 10px 0 rgba(0,0,0,0.16);
+}
+
 #addRoute p {
 	background-color: #002A2A;
 	color: white;
 	padding: 15px 5px;
 	text-align: center;
+	margin-top: 0px;
 }
 #addRoute input {
 	text-align: center;
@@ -641,7 +611,7 @@ body{
 	background-color: #F0F0F0;
 }
 
-#addRoute button {
+#addRoute > button {
 	margin: 0px auto;
 	width: 90%;
 	color: white;
@@ -649,6 +619,7 @@ body{
 	display: block;
 	background-color: #002A2A;
 	border-width: 0px;
+	border-radius: 3px;
 	cursor: pointer;
 	outline: none;
 	text-transform: uppercase;
@@ -809,13 +780,13 @@ body{
 	}
 
 	.modal-window .info-usr {
-		background-color: #D0D0D0;
+		background-color: #F0F0F0;
 		display: block;
 		min-height: 300px;
 		width: 100%;
 	}
 		.info-usr ul {
-			background-color: #D0D0D0;
+			background-color: #F0F0F0;
 			padding: 0px;
 			margin: 0px;
 			height: 40px;
@@ -851,7 +822,7 @@ body{
 		padding-top: 30px;
 	}
 		.user_score{
-			background-color: #D0D0D0;
+			background-color: #F0F0F0;
 			padding: 10px;
 			display: block;
 			display: flex;
@@ -878,7 +849,7 @@ body{
 		padding: 10px 0px;
 	}
 	.encb2 .block:hover {
-		background-color: #D0D0D0;
+		background-color: #F0F0F0;
 	}
 		.modal-window .encb2 label {
 			text-align: right;
@@ -902,7 +873,7 @@ body{
 				background-color: white;
 			}
 			.transport_info .tr-box:hover{
-				background-color: #D0D0D0;
+				background-color: #F0F0F0;
 			}
 			.transport_info .tr-box label{
 				text-align: right;
@@ -1168,6 +1139,9 @@ body{
 	}
 }
 @media (max-width: 800px) {
+	#addRoute {
+		width: 75%;
+	}
 	#logo-nav{
 		display: none;
 	}
@@ -1226,51 +1200,18 @@ body{
 	.sesion_container_1{
 		width: 100%;
 	}
-
-
-}
-
-@media (max-width:550px) {
-	/*sesionOpen*/
-	.btn-pedirCupo, .btn-eliminar {
-		height: 55px;
-		width: 55px;
-	}
-	.btn-eliminar:after{
-		font-size: 90%;
-		top: 60px;
-		left: 15px;
-	}
-	.btn-pedirCupo:after{
-		font-size: 90%;
-		top: 60px;
-		left: -2px;
-	 }
-	.ruta {
-		height: 55px;
-		width: 55px;
-	}
-	.publicaciones .cupo {
-		height: 55px;
-		width: 55px;
-	}
-	.ruta img{
-		margin-top:15px;
-	}
-	.ruta:after  {
-		font-size: 85%;
-		top: 60px;
-		left: 5px;
-	}
-	.publicaciones .cont1 img{
-		margin-top: 30px;
-		height: 55px;
-		width: 55px;
+	.cont3{
+		width: 90%;
 	}
 
 }
 
 @media (max-width:500px) {
+	#addRoute {
+		margin: 0px;
+		width: 100%;
+		height: 100vh;
+	}
 	/*sesionOpen*/
 	.encb2 .block label{
 		width: 25%;
@@ -1292,10 +1233,6 @@ body{
 }
 @media (max-width:425px) {
 	/*sesionOpen*/
-	.cont1, .cont3{
-		width: 60px;
-		padding: 0px 3px;
-	}
 	.publicaciones{
 		font-size: 80%;
 	}

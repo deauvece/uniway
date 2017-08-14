@@ -195,7 +195,6 @@ $('#form_stops> button[type=submit]').on('click', function(e){
 /*
 Indice home.php
 
-//botones hover de las publicaciones
 //agregar calificaciones y comentarios a los usuarios en ventana modal
 //modal windows prevent default - para que no se cierren al hacer click
 //abrir ventanas modal
@@ -212,30 +211,6 @@ Indice home.php
 
 
 
-//botones hover de las publicaciones
-	$("#pub-box").on({
-		click: function () {
-			$(this).css({
-				backgroundColor:"rgba(0, 0, 0, 0.7)",
-				color:"rgba(0, 0, 0, 0)",
-			});
-			$("span.info",this).hide();
-			$(".ruta, .btn-pedirCupo, .btn-eliminar",this).show();
-		},
-		mouseenter: function () {
-			$(this).css({
-				   backgroundColor:"#F5F8FA"
-			});
-		},
-		mouseleave: function () {
-			$(this).css({
-				backgroundColor:"white",
-				color:"rgba(0, 0, 0, 1)",
-			});
-			$("span.info",this).show();
-			$(".ruta, .btn-pedirCupo, .btn-eliminar",this).hide();
-		}
-	},".publicaciones");
 
 
 //agregar calificaciones y comentarios a los usuarios en ventana modal
@@ -265,20 +240,42 @@ Indice home.php
 
 //abrir ventanas modal
 	//users information modal
-    $("#pub-box").on("click",".open-modal",function(){
-	    $(".modal-box").fadeToggle("fast");
-	    $(".modal-window").fadeToggle("fast");
-    });
-    //add route - addroute
-    $("#add-route-user-feed").on("click",function() {
-	    $(".modal-box").fadeIn("fast");
-	    $("#modal_add_stop").fadeIn("fast");
-    });
-    //dinamic button - addway - add way
-		$(".dinamic_button").on("click","#btn-add",function(){
-			$("#addRouteBox").fadeIn();
-			$("#addRoute").show();
-			$('#timepicker').lolliclock({autoclose:true});
+	$("#pub-box").on("click",".open-modal",function(){
+		$(".modal-box").fadeToggle("fast");
+		$(".modal-window").fadeToggle("fast");
+	});
+	//add route - addroute
+	$("#add-route-user-feed").on("click",function() {
+		$(".modal-box").fadeIn("fast");
+		$("#modal_add_stop").fadeIn("fast");
+	});
+	//dinamic button - addway - add way
+	$(".dinamic_button").on("click","#btn-add",function(){
+		$("#addRouteBox").fadeIn();
+		$("#addRoute").show();
+	});
+	//date and time picker
+		//time
+		$("#timepicker").lolliclock({
+			autoclose:true,
+		});
+		$("#timepicker").on("click", function(){
+			$("#datepicker_root").slideUp("fast");
+		});
+		//date
+		$("#datepicker").pickadate({
+			  monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+			  monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+			  weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+			  weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			  formatSubmit: 'dddd/dd/mm/yyyy',
+			  format: 'dddd, dd mmm, yyyy'
+		});
+		$("#datepicker").on("click",function(){
+			$("#datepicker_root").slideToggle("fast");
+		});
+		$("#datepicker_root > *").on("click",function(){
+			$("#datepicker_root").slideUp("fast");
 		});
 
 //cerrar ventanas modal

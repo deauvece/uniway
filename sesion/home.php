@@ -47,7 +47,8 @@ $rdnString=$vector_random['random_string'];
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.structure.css">
 		<link rel="stylesheet" type="text/css" href="../js/jquery-ui/jquery-ui.theme.css">
-		<!--timepicker-->
+		<!--date and time picker style-->
+		<link rel="stylesheet" type="text/css" href="../js/default.date.css">
 		<link rel="stylesheet" type="text/css" href="../js/lolliclock.css">
 	</head>
 
@@ -207,6 +208,8 @@ $rdnString=$vector_random['random_string'];
 			</select>
 			<span class="commentTitle" >Selecciona una hora:</span>
 			<input id="timepicker" type="text" name="timepicker" autocomplete="off" required placeholder="Haz click">
+			<span class="commentTitle" >Selecciona una fecha:</span>
+			<input id="datepicker" type="text" name="datepicker" required placeholder="Haz click">
 
 			<div class="finish_start">
 				<span id="fs_text" >El recorrido comienza o termina en la universidad</span>
@@ -392,6 +395,9 @@ $rdnString=$vector_random['random_string'];
 	<script src="../js/jquery-ui/jquery-ui.js"></script>
 	<script src="../js/view_sesion.js"></script>
 	<script src="../js/controller_home.js"></script>
+	<!--date and time picker-->
+	<script src="../js/picker.js"></script>
+	<script src="../js/picker.date.js"></script>
 	<script src="../js/lolliclock.js"></script>
 	<script>
 		//autocompletar search

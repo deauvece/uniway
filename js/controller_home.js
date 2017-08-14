@@ -43,7 +43,7 @@ Indice - controller home
 				$("#add-route-user-feed").before("<a href='group-chat.php?id_way="+array.way_active+"'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' />Ver conversación</li></a>");
 			}
 			if (array.usr_active=="true") {
-				$(".dinamic_button").html("<a href='group-chat.php?id_way="+array.way_active+"' ><button  data='Ver conversación' style='background-color:#C74444' id='btn-see' type='button' name='button'><img height='25px' src='../Imagenes/group.png'  /></button></a>");
+				$(".dinamic_button").html("<a href='group-chat.php?id_way="+array.way_active+"' ><button  data='Ver conversación' style='background-color:#C74444' id='btn-see' type='button' name='button'><img height='25px' src='../Imagenes/groupw.png'  /></button></a>");
 			}else{
 				if (array.is_driver=="t") {
 					$(".dinamic_button").html("<button id='btn-add' type='button' name='button 'data='Crear recorrido' >+</button>");
