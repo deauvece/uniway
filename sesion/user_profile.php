@@ -72,7 +72,10 @@ if ($is_driver=='t') {
 		</nav>
 		<section class="left-section" >
 			<section class="generalInfo">
-				<img id="little_img" src="<?php echo $rute_img;?>"/>
+				<div class="edit_img_box">
+					<img id="little_img" src="<?php echo $rute_img;?>" alt="Cambiar foto de perfil"/>
+					<a id="edit_img"><img src="../Imagenes/edity.png" /></a>
+				</div>
 				<section class="options-left-section">
 					<ul>
 						<a href="#basicInfo"><li>Información básica</li></a>
@@ -80,7 +83,7 @@ if ($is_driver=='t') {
 						<a href="#transportInfo"><li>Transporte</li></a>
 						<a href="#userRutesBox"><li <?php if ($is_driver=='f') { echo " style='display:none'";} ?>>Rutas</li></a>
 						<a href="#qualificationsBox"><li>Comentarios</li></a>
-						<a href="../php/logout.php"><li>Cerrar sesión</li></a>
+						<a id="logout" href="../php/logout.php">Cerrar sesion</a>
 					</ul>
 				</section>
 			</section>
@@ -519,6 +522,10 @@ if ($is_driver=='t') {
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/jquery-ui/jquery-ui.js"></script>
 <script src="../js/view_sesion.js"></script>
+<!--date and time picker-->
+<script src="../js/picker.js"></script>
+<script src="../js/picker.date.js"></script>
+<script src="../js/lolliclock.js"></script>
 <script>
 	//autocompletar
 	var autocomplete;

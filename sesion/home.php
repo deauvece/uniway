@@ -67,28 +67,33 @@ $rdnString=$vector_random['random_string'];
 				<a href="user_profile.php">
 					<img id="usr_img" src="" title="Editar perfil" class="put_image_profile" alt="profile image" />
 				</a>
-				<br>
-				<a class="editar" href="user_profile.php" >Editar perfil</a>
-				<!--options section (left)-->
-				<div class="other-options">
-					<ul class="lista">
-						<a href=""><li id='score_li'><img src="../Imagenes/puntuacion.png" class="icono" alt="iconos" /> &nbsp; &nbsp;<span id="score_usr"></span></li></a>
-						<?php if ($is_driver=='t') {
-							?>
-							<a id="add-route-user-feed"><li><img src="../Imagenes/add.png" class="icono" alt="iconos" />Agregar ruta</li></a>
-							<?php
-						} ?>
-						<a id="logout" href="../php/logout.php"><li><img src="../Imagenes/logout.png" class="icono" alt="iconos" /> Cerrar sesion</li></a>
-					</ul>
-				</div>
-				<hr color="#161717" >
-				<div class="other-options">
-					<ul class="lista">
-						<li><span></span>Buscar usuario</li>
-						<li><span></span>Contacto</li>
-						<li><span></span>Ayuda</li>
-					</ul>
-				</div>
+				<!---->
+				<span class="score_usr"><img src="../Imagenes/puntuacion.png" alt="iconos" /> &nbsp; &nbsp;<span id="score_usr"></span></span>
+				<ul class="lista2">
+					<li>
+						<span>Notificaciones</span>
+						<ul class="inside_ul" id="notif">
+							No tienes notificaciones.
+						</ul>
+					</li>
+					<li>
+						<span>Acciones</span>
+						<ul class="inside_ul" id="action">
+							<a href="user_profile.php"><li><img src="../Imagenes/edit.png"/>Editar perfil</li></a>
+							<a href=""><li><img src="../Imagenes/search.png"/>Buscar usuario</li></a>
+							<a  id="add-route-user-feed2"><li><img src="../Imagenes/add.png"/>Crear ruta</li></a>
+						</ul>
+					</li>
+					<li>
+						<span>Otras</span>
+						<ul class="inside_ul">
+							<a href=""><li><img src="../Imagenes/email.png"/>Contacto</li></a>
+							<a href=""><li><img src="../Imagenes/help.png"/>Preguntas frecuentes</li></a>
+						</ul>
+					</li>
+				</ul>
+				<a id="logout" href="../php/logout.php">Cerrar sesion</a>
+
 			</section>
 		</div>
 
@@ -136,7 +141,10 @@ $rdnString=$vector_random['random_string'];
 
 	</div>
 
+	<section class="dinamic_button2">
+	</section>
 	<section class="dinamic_button">
+		<button type="button" name="button"><img src="../Imagenes/bmenuw.png"/></button>
 	</section>
 
 	<div id="addRouteBox" <?php if ($is_driver=='f') { echo "style='display:none'";} ?>>

@@ -83,6 +83,79 @@ body{
 	right: 20px;
 	cursor: pointer;
 }
+
+.dinamic_button button {
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	width: 55px;
+	height: 55px;
+	color: white;
+	background-color: #CE3232;
+	border-radius: 50%;
+	border-width: 0px;
+	outline: 0;
+	cursor: pointer;
+	z-index: 1;
+	transition: all .5s;
+}
+.dinamic_button img {
+	height: 25px;
+	width: 25px;
+}
+
+.dinamic_button2{
+	display: none;
+	position: fixed;
+	bottom: 110px;
+	right: 45px;
+}
+	.dinamic_button2 button{
+		margin: 5px;
+		display: block;
+		background-color: #002A2A;
+		box-sizing: border-box;
+		width: 55px;
+		height: 55px;
+		color: white;
+		border-radius: 50%;
+		border-width: 0px;
+		outline: 0;
+		cursor: pointer;
+		z-index: 1;
+
+	}
+
+	/*
+
+	.dinamic_button2 button:hover + span{
+		display: block;
+	}
+	*/
+
+
+		.dinamic_button2 img{
+			height: 25px;
+			width: 25px;
+		}
+
+	.dinamic_button2 span{
+
+		position: absolute;
+		right: 70px;
+		text-align: center;
+		width: 100px;
+		margin-top: -45px;
+		color: white;
+		padding: 3px 10px;
+		font-size: 90%;
+		border-radius: 15px;
+		background-color: rgba(75, 75, 75, 0.8);
+	}
+
+
+
 .sesion_container{
 	margin-top: 10px;
 	display: flex;
@@ -117,30 +190,97 @@ body{
 		z-index: 2;
 		font-size: 90%;
 	}
-	.options .editar {
-		font-size: 80%;
-		display: block;
-		text-decoration: none;
-		color: #006E6E;
-		margin-top: -10px;
-	}
-		.options .editar:hover{
-			cursor: pointer;
-			text-decoration: underline;
-		}
 	.options img {
 		height: 120px;
 		border-radius: 50%;
 		display: block;
-		margin-top: 30px;
-		margin-left: auto;
-		margin-right: auto;
+		margin: 30px auto 0px;
 	}
+	.put_image_profile{
+		padding: 1px;
+		background-color: black;
+	}
+	.options .score_usr{
+		padding: 10px 0px;
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		position: relative;
+		margin-bottom: 20px;
+		margin-top: -20px;
+	}
+		.options .score_usr img{
+			display: inline-block;
+			margin: 0px;
+			margin-top: -2px;
+			border-radius: 0px;
+			height: 18px;
+		}
+
+	.options ul.lista2 {
+		text-align: left;
+		list-style-type: none;
+
+		padding: 0px;
+		margin: 0px;
+	}
+	.options ul.lista2 > li span {
+		display: block;
+		padding: 15px;
+		padding-left: 20px;
+		box-sizing: border-box;
+		width: 100%;
+		cursor: pointer;
+		border-bottom: 1px solid black;
+	}
+	.options ul.lista2 > li span:hover {
+		background-color: black;
+	}
+		ul.lista2 .inside_ul{
+			display: none;
+			margin: 0px;
+			padding: 15px;
+			padding-left:20px;
+			list-style-type: none;
+		}
+		.inside_ul a {
+			text-decoration: none;
+			color: white;
+			transition: all .3s;
+		}
+			.inside_ul a:hover {
+				text-decoration: underline;
+			}
+		.inside_ul > a li{
+			padding: 5px 0px;
+			box-sizing: border-box;
+		}
+		ul.inside_ul > a li img{
+			display: inline-block;
+			position: relative;
+			top: 5px;
+			margin: 0px;
+			margin-right: 10px;
+			border-radius: 0px;
+			height: 18px;
+		}
+
+	#logout{
+		background-color: #861212;
+		display: block;
+		text-decoration: none;
+		padding: 15px 0px;
+		color: white;
+		padding-left: 20px;
+		text-align: left;
+	}
+		#logout:hover{
+			text-decoration: underline;
+		}
+
 	#usr_img{
 		display: none;
 		margin-bottom: 20px;
-	}
-	img.put_image_profile{
 		width: 120px;
 	}
 	.options #logo-nav {
@@ -148,62 +288,12 @@ body{
 		height: 30px;
 		margin: 30px auto 0px auto;
 	}
-	.options .nombre {
-		display: block;
-		margin: 15px 10px 5px 5px;
-	}
 
-	.lista {
-		display: block;
-		margin-top: 20px;
-		list-style-type: none;
-		text-align: left;
-	}
-	.lista li span {
-		margin-right: 5px;
-		float: right;
-	}
-	.lista #score_usr{
-		float: none;
-	}
-		.lista li {
-			padding: 10px;
-			margin-left: -40px;
-			cursor: pointer;
-		}
-			.lista li:hover {
-				background-color: #0F1010;
-			}
 
-		.lista li .icono {
-			display: inline;
-			margin-right: 15px;
-			margin-top: -20px;
-			border-radius: 0px;
-			height: 15px;
-		}
-		.lista a {
-			text-decoration: none;
-			color: white;
-		}
-
-		#score_li{
-			text-align: center;
-			margin-left: -40px;
-			color: white;
-			margin-bottom: 20px;
-			background-color: #0F1010;
-		}
-		#score_li .icono {
-			display: inline;
-			margin: auto;
-			border-radius: 0px;
-			height: 15px;
-		}
 
 .find {
 	display: block;
-	background-color: #F6F6F6;
+	background-color: white;
 	height: 70px;
 	position: relative;
 	padding-left: 30px;
@@ -227,50 +317,12 @@ body{
 			position: absolute;
 			right: 10px;
 			top:15px;
-			background-color: #F6F6F6;
+			background-color: white;
 			height: 35px;
 			width: 35px;
 			cursor: pointer;
 		}
 
-	#btn-add, #btn-see {
-		box-sizing: border-box;
-		position: fixed;
-		bottom: 50px;
-		right: 50px;
-		font-size: 150%;
-		width: 55px;
-		height: 55px;
-		padding: 5px;
-		color: white;
-		background-color: #006E6E;
-		border-radius: 50%;
-		border-width: 0px;
-		outline: 0;
-		cursor: pointer;
-		transition: all 0.2s;
-		z-index: 1;
-	}
-	#btn-add:active, #btn-see:active{
-		bottom: 48px;
-		right: 48px;
-		box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.4);
-	}
-		#btn-add:hover {
-			background-color: #006E6E;
-		}
-	#btn-see[data]:hover:after, #btn-add[data]:hover:after {
-	  content: attr(data);
-	  padding: 6px;
-	  color: white;
-	  font-size: 50%;
-	  position: absolute;
-	  left: -50px;
-	  bottom: 100%;
-	  white-space: nowrap;
-	  border-radius: 2px;
-	  background: rgba(0,0,0,0.6);
-	}
 
 #new-updates {
 	display: none;
@@ -381,6 +433,7 @@ body{
 	margin: 0px;
 	margin-bottom: 10px;
 	padding: 0px;
+	border-top: 1px solid #F0F0F0;
 	background-color: white;
 	color: gray;
 	font-size: 85%;
@@ -1322,15 +1375,29 @@ body{
 	padding-top: 70px;
 	height: 50%;
 }
+
+	.edit_img_box{
+		display: flex;
+		align-content: center;
+		justify-content: center;
+	}
+		#edit_img{
+			cursor: pointer;
+			position: relative;
+		}
+		#edit_img img{
+			position: relative;
+			top: 90px;
+			height: 20px;
+			width: 20px;
+		}
 	#little_img  {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
+		display: inline-block;
 		height: 120px;
 		width: 120px;
 		border-radius: 90px;
-		padding: 2px;
-		background-color: grey;
+		padding: 1px;
+		background-color: black;
 		cursor: pointer;
 	}
 
@@ -1397,11 +1464,12 @@ body{
 	}
 		.generalInfo .options-left-section ul li {
 			padding-top: 15px;
-			padding-left: 30px;
+			padding-left: 20px;
 			height: 30px;
+			border-bottom: 1px solid black;
 		}
 		.generalInfo .options-left-section ul li:hover {
-			background-color: #0F1010;
+			background-color: black;
 		}
 
 	/*modal addstop add stop*/

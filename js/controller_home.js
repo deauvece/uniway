@@ -39,14 +39,14 @@ Indice - controller home
 			$(".options .spinner").hide();
 			$("#usr_img").show();
 			$(".put_image_profile").attr("src",array.profile_image)
+			var add_stop_button= "<button id='add-route-user-feed' type='button'><img src='../Imagenes/addw.png' /></button><span>Crear ruta</span>";
 			if (array.usr_active=="true") {
-				$("#add-route-user-feed").before("<a href='group-chat.php?id_way="+array.way_active+"'><li><span></span><img src='../Imagenes/mensaje.png' class='icono' alt='iconos' />Ver conversación</li></a>");
-			}
-			if (array.usr_active=="true") {
-				$(".dinamic_button").html("<a href='group-chat.php?id_way="+array.way_active+"' ><button  data='Ver conversación' style='background-color:#C74444' id='btn-see' type='button' name='button'><img height='25px' src='../Imagenes/groupw.png'  /></button></a>");
+				$(".dinamic_button2").html("<a href='group-chat.php?id_way="+array.way_active+"' ><button type='button'><img src='../Imagenes/groupw.png'/></button></a><span>Ver chat</span>"+add_stop_button);
+				$("#notif").html("<a href='group-chat.php?id_way="+array.way_active+"'><li><img src='../Imagenes/groupg.png' />Ver conversación</li></a>");
 			}else{
 				if (array.is_driver=="t") {
-					$(".dinamic_button").html("<button id='btn-add' type='button' name='button 'data='Crear recorrido' >+</button>");
+					$(".dinamic_button2").html("<button id='btn-add' type='button'><img src='../Imagenes/startw.png' /></button><span>Publica recorrido</span>"+add_stop_button);
+					$("#action").append("<a id='btn-add2'><li><img src='../Imagenes/start.png' />Publica recorrido</li></a>");
 				}
 			}
 			var idu = $("#id_usr").val();

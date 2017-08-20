@@ -195,6 +195,8 @@ $('#form_stops> button[type=submit]').on('click', function(e){
 /*
 Indice home.php
 
+//dinamic unordered list - left options in home
+//show dinamic button
 //agregar calificaciones y comentarios a los usuarios en ventana modal
 //modal windows prevent default - para que no se cierren al hacer click
 //abrir ventanas modal
@@ -210,6 +212,28 @@ Indice home.php
 
 
 
+//dinamic unordered list - left options in home
+
+$(".lista2 li > span").on("click", function(){
+	$(".inside_ul").slideUp();
+	if ($(this).siblings().css("display") != "block") {
+		$(this).siblings().slideToggle();
+	}
+
+});
+
+//show dinamic button
+$(".dinamic_button button").on("click",function(){
+	var col = $(this).css("background-color");
+	if (col=="rgb(206, 50, 50)") {
+		$(this).css("background-color","#861212");
+		$(".dinamic_button img").prop("src","../Imagenes/closebmenuw.png");
+	}else{
+		$(this).css("background-color","#CE3232");
+		$(".dinamic_button img").prop("src","../Imagenes/bmenuw.png");
+	}
+	$(".dinamic_button2").slideToggle("fast");
+});
 
 
 
@@ -245,12 +269,20 @@ Indice home.php
 		$(".modal-window").fadeToggle("fast");
 	});
 	//add route - addroute
-	$("#add-route-user-feed").on("click",function() {
+	$(".dinamic_button2").on("click","#add-route-user-feed",function() {
+		$(".modal-box").fadeIn("fast");
+		$("#modal_add_stop").fadeIn("fast");
+	});
+	$(".lista2").on("click","#add-route-user-feed2",function() {
 		$(".modal-box").fadeIn("fast");
 		$("#modal_add_stop").fadeIn("fast");
 	});
 	//dinamic button - addway - add way
-	$(".dinamic_button").on("click","#btn-add",function(){
+	$(".dinamic_button2").on("click","#btn-add",function(){
+		$("#addRouteBox").fadeIn();
+		$("#addRoute").show();
+	});
+	$(".lista2").on("click","#btn-add2",function(){
 		$("#addRouteBox").fadeIn();
 		$("#addRoute").show();
 	});
@@ -377,78 +409,77 @@ Indice user_profile.php
 */
 
 //menu opciones
-$("#bmenu").click(function(){
-	var state = $(".left-section").css("display");
-	if (state=="block"){
-		$("#bmenu").hide().attr("src","../Imagenes/bmenuw.png").fadeIn("slow");
-		$(".left-section").fadeOut();
-	}else{
-		$("#bmenu").hide().attr("src","../Imagenes/closebmenuw.png").fadeIn("slow");
-		$(".left-section").fadeIn();
-	}
-});
+	$("#bmenu").click(function(){
+		var state = $(".left-section").css("display");
+		if (state=="block"){
+			$("#bmenu").hide().attr("src","../Imagenes/bmenuw.png").fadeIn("slow");
+			$(".left-section").fadeOut();
+		}else{
+			$("#bmenu").hide().attr("src","../Imagenes/closebmenuw.png").fadeIn("slow");
+			$(".left-section").fadeIn();
+		}
+	});
+
 //efecto slide en las opciones del menu
-$(".options-left-section ul a").on("click",function(){
-	var name_id= $(this).attr("href");
-	$(".big_container > div").hide();
-	$(name_id).slideDown();
-
-	var w =$( window ).width();
-	if (w<800) {
-		$(".left-section").hide();
-		$("#bmenu").hide().attr("src","../Imagenes/bmenuw.png").fadeIn("slow");
-	}
-
-});
+	$(".options-left-section ul a").on("click",function(){
+		var name_id= $(this).attr("href");
+		$(".big_container > div").hide();
+		$(name_id).slideDown();
+		var w =$( window ).width();
+		if (w<800) {
+			$(".left-section").hide();
+			$("#bmenu").hide().attr("src","../Imagenes/bmenuw.png").fadeIn("slow");
+		}
+	});
 //verifica contraseñas iguales
-$('#pass1').keyup(function() {
-	var pswd = $(this).val();
-	if (pswd.length < 8 && pswd.length > 1 ) {
-		$('.message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
-		$('#submit-btn-reg').prop("disabled", true);
-	}else if ($('#pass1').val() != $('#pass2').val()) {
-		$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
-		$('#submit-btn-reg').prop("disabled", true);
-	}
-	else {
-		$('.message').html("");
-		$('#submit-btn-reg').prop("disabled", false);
-	}
-});
-$('#pass2').keyup(function() {
-	if ($('#pass1').val() != $('#pass2').val()) {
-		$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
-		$('#submit-btn-reg').prop("disabled", true);
-	}else {
-		$('.message').html("");
-		$('#submit-btn-reg').prop("disabled", false);
-	}
-});
+	$('#pass1').keyup(function() {
+		var pswd = $(this).val();
+		if (pswd.length < 8 && pswd.length > 1 ) {
+			$('.message').html('La contraseña debe tener mínimo 8 caracteres').css('color', '#921E1E');
+			$('#submit-btn-reg').prop("disabled", true);
+		}else if ($('#pass1').val() != $('#pass2').val()) {
+			$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+			$('#submit-btn-reg').prop("disabled", true);
+		}
+		else {
+			$('.message').html("");
+			$('#submit-btn-reg').prop("disabled", false);
+		}
+	});
+	$('#pass2').keyup(function() {
+		if ($('#pass1').val() != $('#pass2').val()) {
+			$('.message').html('Las contraseñas no coinciden.').css('color', '#921E1E');
+			$('#submit-btn-reg').prop("disabled", true);
+		}else {
+			$('.message').html("");
+			$('#submit-btn-reg').prop("disabled", false);
+		}
+	});
 
 //mostrar preview de la imagen de perfil a subir
-$("#uploadBtn2").change(function () {
+	$("#uploadBtn2").change(function () {
 
-    if (this.files && this.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#big_image').prop("src","");
-		  $('#big_image').prop("src",e.target.result);
-		  $("#profile_Image button").show();
-        }
-        reader.readAsDataURL(this.files[0]);
-    }
-});
+	    if (this.files && this.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            $('#big_image').prop("src","");
+			  $('#big_image').prop("src",e.target.result);
+			  $("#profile_Image button").show();
+	        }
+	        reader.readAsDataURL(this.files[0]);
+	    }
+	});
 //mostrar preview de la imagen de transporte a subir
-$("#uploadBtn").change(function () {
-    if (this.files && this.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#transport_image').prop("src","");
-		  $('#transport_image').prop("src",e.target.result);
-        }
-        reader.readAsDataURL(this.files[0]);
-    }
-});
+	$("#uploadBtn").change(function () {
+	    if (this.files && this.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            $('#transport_image').prop("src","");
+			  $('#transport_image').prop("src",e.target.result);
+	        }
+	        reader.readAsDataURL(this.files[0]);
+	    }
+	});
 //mostrar nombre de las imagenes a subir
 	//imagen de usuario a subir
 	$("#uploadBtn").change(function(){
@@ -460,8 +491,8 @@ $("#uploadBtn").change(function () {
 	});
 
 //cerrar mensaje cambios hechos
-$(".update-done").click(function() {  $(this).remove(); });
-$(".update-done").delay( 1500 ).fadeOut( 400 );
+	$(".update-done").click(function() {  $(this).remove(); });
+	$(".update-done").delay( 1500 ).fadeOut( 400 );
 
 
 //formulario agregar transporte
@@ -498,7 +529,7 @@ $(".update-done").delay( 1500 ).fadeOut( 400 );
 			$("#delete_transport_form").show();
 		});
 		//cambiar imagen de usuario
-		$("#little_img").click(function(){
+		$("#little_img, #edit_img").click(function(){
 			$("#addRouteBox").fadeIn();
 			$("#profile_Image").show();
 		});
@@ -540,27 +571,27 @@ $(".update-done").delay( 1500 ).fadeOut( 400 );
 
 
 //eliminar rutas - controller
-$(".del_route").on("click", function(){
-	var route = $(this);
+	$(".del_route").on("click", function(){
+		var route = $(this);
 
-	$.ajax({
-		url: '../php/deleteRoute.php',
-		type: 'get',
-		data: {
-			id_route: $(this).attr("data-id")
-		},
-		dataType: 'json',
-		success: function(array){
-			if(array.val=="success"){
-				route.parent().fadeOut("fast");
-				$(".error-del").text("Se ha eliminado la ruta.");
-			}else{
-				$(".error-del").text("La ruta existe actualmente en una publicación y no se puede eliminar.");
+		$.ajax({
+			url: '../php/deleteRoute.php',
+			type: 'get',
+			data: {
+				id_route: $(this).attr("data-id")
+			},
+			dataType: 'json',
+			success: function(array){
+				if(array.val=="success"){
+					route.parent().fadeOut("fast");
+					$(".error-del").text("Se ha eliminado la ruta.");
+				}else{
+					$(".error-del").text("La ruta existe actualmente en una publicación y no se puede eliminar.");
+				}
 			}
-		}
-	});
+		});
 
-});
+	});
 
 
 });

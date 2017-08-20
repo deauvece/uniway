@@ -1,34 +1,90 @@
 <?php
-function checkLogin() {
-	session_start();
-	if ($_SESSION['activo'] == false) {
-	  header("location:../login-user.php?errorSesion=si");
-	}else {
-	  $name = $_SESSION['id_nombre_usuario'] ;
-	  $last_name = $_SESSION['id_apellido_usuario'] ;
-	  $full_name= $name ." ". $last_name;
+
+/*
+indice functions
+
+//revisa si el usuario puede acceder a la pagina
+//funcion para la conexion con la BD
+//crea el div de una publicacion (json_ways_query)
+//resize image para las imagenes de perfil y de trasnporte
+
+
+*/
+
+
+
+//revisa si el usuario puede acceder a la pagina
+	function checkLogin() {
+		session_start();
+		if ($_SESSION['activo'] == false) {
+			header("location:../login-user.php?errorSesion=si");
+		}else{
+			$name = $_SESSION['id_nombre_usuario'] ;
+			$last_name = $_SESSION['id_apellido_usuario'] ;
+			$full_name= $name ." ". $last_name;
+		}
+		/*if ($_SESSION['admin']=='f') {
+		  header("location:maintenance.php");
+		  exit();
+	  }*/
 	}
-	/*if ($_SESSION['admin']=='f') {
-	  header("location:maintenance.php");
-	  exit();
-  }*/
-}
-function conectarse()
-{
-   if (!($conn=pg_connect("host=localhost user=ddanniel port=5432 dbname=ddanniel_uniway password=MgMNt4DDbV8KPzCE")))
-   {
-      echo "Error conectando a la base de datos.";
-      exit();
-   }
 
-  if (!pg_dbname())
-   {
-      echo "Error seleccionando la base de datos.";
-      exit();
-   }
-  return $conn;
-}
+//funcion para la conexion con la BD
+	function conectarse(){
+		if (!($conn=pg_connect("host=localhost user=ddanniel port=5432 dbname=ddanniel_uniway password=MgMNt4DDbV8KPzCE"))){
+			echo "Error conectando a la base de datos.";
+			exit();
+		}
+		if (!pg_dbname()){
+			echo "Error seleccionando la base de datos.";
+			exit();
+		}
+		return $conn;
+	}
 
+//crea el div de una publicacion (json_ways_query)
+	function make_publications(
+						   $class,
+						   $profile_image_user,
+						   $id_user_w,
+						   $full_name_user,
+						   $comentario,
+						   $inicio_stp,
+						   $fin_stp,
+						   $date_vec,
+						   $hour,
+						   $id_way,
+						   $button,
+						   $spots	)
+	{
+	   $pub="
+		 <div class='publicaciones  ".$class."'>
+			 <div class='cont1' >
+					 <img class='open-modal'   title='Ver perfil' src='".$profile_image_user."' alt='".$id_user_w."' />
+					 <span class='usr_name'>".$full_name_user."</span>
+					 <span class='comment'>".$comentario."</span>
+
+			 </div>
+			 <div  class='cont2' >
+					 <span class='info'><img src='../Imagenes/start.png'/>".$inicio_stp."</span>
+					 <span class='info'><img src='../Imagenes/end.png'/>".$fin_stp."</span>
+					 <span class='info'><img src='../Imagenes/calendar.png'/>".$date_vec[0]."&nbsp;".$date_vec[1]."&nbsp; a las &nbsp; ".$hour."</span>
+					 <hr/>
+			 </div>
+			 <div data-way='".$id_way."' class='cont3' >
+				 <a class='ruta'><img src='../Imagenes/route.png'/> Ver </a>
+				 ".$button."
+				 <a class='cupo'><span>".$spots."</span>Cupo(s)</a>
+			 </div>
+		 </div>";
+
+	   return $pub;
+	}
+
+
+
+
+//resize image para las imagenes de perfil y de trasnporte
 /**
  * easy image resize function
  * @param  $file - file name to resize
@@ -43,111 +99,111 @@ function conectarse()
  * @param  $grayscale - if true, image will be grayscale (default is false)
  * @return boolean|resource
  */
-  function smart_resize_image($file,
-                              $string             = null,
-                              $width              = 0,
-                              $height             = 0,
-                              $proportional       = false,
-                              $output             = 'file',
-                              $delete_original    = true,
-                              $use_linux_commands = false,
-                              $quality            = 100,
-                              $grayscale          = false
-  		 ) {
+		function smart_resize_image($file,
+								$string             = null,
+								$width              = 0,
+								$height             = 0,
+								$proportional       = false,
+								$output             = 'file',
+								$delete_original    = true,
+								$use_linux_commands = false,
+								$quality            = 100,
+								$grayscale          = false )
+		{
+		if ( $height <= 0 && $width <= 0 ) return false;
+		if ( $file === null && $string === null ) return false;
+		# Setting defaults and meta
+		$info                         = $file !== null ? getimagesize($file) : getimagesizefromstring($string);
+		$image                        = '';
+		$final_width                  = 0;
+		$final_height                 = 0;
+		list($width_old, $height_old) = $info;
+		$cropHeight = $cropWidth = 0;
+		# Calculating proportionality
+		if ($proportional) {
+			if      ($width  == 0)  $factor = $height/$height_old;
+			elseif  ($height == 0)  $factor = $width/$width_old;
+			else                    $factor = min( $width / $width_old, $height / $height_old );
+			$final_width  = round( $width_old * $factor );
+			$final_height = round( $height_old * $factor );
+		}else{
+			$final_width = ( $width <= 0 ) ? $width_old : $width;
+			$final_height = ( $height <= 0 ) ? $height_old : $height;
+			$widthX = $width_old / $width;
+			$heightX = $height_old / $height;
 
-    if ( $height <= 0 && $width <= 0 ) return false;
-    if ( $file === null && $string === null ) return false;
-    # Setting defaults and meta
-    $info                         = $file !== null ? getimagesize($file) : getimagesizefromstring($string);
-    $image                        = '';
-    $final_width                  = 0;
-    $final_height                 = 0;
-    list($width_old, $height_old) = $info;
-	$cropHeight = $cropWidth = 0;
-    # Calculating proportionality
-    if ($proportional) {
-      if      ($width  == 0)  $factor = $height/$height_old;
-      elseif  ($height == 0)  $factor = $width/$width_old;
-      else                    $factor = min( $width / $width_old, $height / $height_old );
-      $final_width  = round( $width_old * $factor );
-      $final_height = round( $height_old * $factor );
-    }
-    else {
-      $final_width = ( $width <= 0 ) ? $width_old : $width;
-      $final_height = ( $height <= 0 ) ? $height_old : $height;
-	  $widthX = $width_old / $width;
-	  $heightX = $height_old / $height;
+			$x = min($widthX, $heightX);
+			$cropWidth = ($width_old - $width * $x) / 2;
+			$cropHeight = ($height_old - $height * $x) / 2;
+		}
+		# Loading image to memory according to type
+		switch ( $info[2] ) {
+			case IMAGETYPE_JPEG:  $file !== null ? $image = imagecreatefromjpeg($file) : $image = imagecreatefromstring($string);  break;
+			case IMAGETYPE_GIF:   $file !== null ? $image = imagecreatefromgif($file)  : $image = imagecreatefromstring($string);  break;
+			case IMAGETYPE_PNG:   $file !== null ? $image = imagecreatefrompng($file)  : $image = imagecreatefromstring($string);  break;
+			default: return false;
+		}
 
-	  $x = min($widthX, $heightX);
-	  $cropWidth = ($width_old - $width * $x) / 2;
-	  $cropHeight = ($height_old - $height * $x) / 2;
-    }
-    # Loading image to memory according to type
-    switch ( $info[2] ) {
-      case IMAGETYPE_JPEG:  $file !== null ? $image = imagecreatefromjpeg($file) : $image = imagecreatefromstring($string);  break;
-      case IMAGETYPE_GIF:   $file !== null ? $image = imagecreatefromgif($file)  : $image = imagecreatefromstring($string);  break;
-      case IMAGETYPE_PNG:   $file !== null ? $image = imagecreatefrompng($file)  : $image = imagecreatefromstring($string);  break;
-      default: return false;
-    }
+		# Making the image grayscale, if needed
+		if ($grayscale) {
+			imagefilter($image, IMG_FILTER_GRAYSCALE);
+		}
 
-    # Making the image grayscale, if needed
-    if ($grayscale) {
-      imagefilter($image, IMG_FILTER_GRAYSCALE);
-    }
-
-    # This is the resizing/resampling/transparency-preserving magic
-    $image_resized = imagecreatetruecolor( $final_width, $final_height );
-    if ( ($info[2] == IMAGETYPE_GIF) || ($info[2] == IMAGETYPE_PNG) ) {
-      $transparency = imagecolortransparent($image);
-      $palletsize = imagecolorstotal($image);
-      if ($transparency >= 0 && $transparency < $palletsize) {
-        $transparent_color  = imagecolorsforindex($image, $transparency);
-        $transparency       = imagecolorallocate($image_resized, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
-        imagefill($image_resized, 0, 0, $transparency);
-        imagecolortransparent($image_resized, $transparency);
-      }
-      elseif ($info[2] == IMAGETYPE_PNG) {
-        imagealphablending($image_resized, false);
-        $color = imagecolorallocatealpha($image_resized, 0, 0, 0, 127);
-        imagefill($image_resized, 0, 0, $color);
-        imagesavealpha($image_resized, true);
-      }
-    }
-    imagecopyresampled($image_resized, $image, 0, 0, $cropWidth, $cropHeight, $final_width, $final_height, $width_old - 2 * $cropWidth, $height_old - 2 * $cropHeight);
+		# This is the resizing/resampling/transparency-preserving magic
+		$image_resized = imagecreatetruecolor( $final_width, $final_height );
+		if ( ($info[2] == IMAGETYPE_GIF) || ($info[2] == IMAGETYPE_PNG) ) {
+			$transparency = imagecolortransparent($image);
+			$palletsize = imagecolorstotal($image);
+			if ($transparency >= 0 && $transparency < $palletsize) {
+				$transparent_color  = imagecolorsforindex($image, $transparency);
+				$transparency       = imagecolorallocate($image_resized, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
+				imagefill($image_resized, 0, 0, $transparency);
+				imagecolortransparent($image_resized, $transparency);
+			}elseif ($info[2] == IMAGETYPE_PNG) {
+				imagealphablending($image_resized, false);
+				$color = imagecolorallocatealpha($image_resized, 0, 0, 0, 127);
+				imagefill($image_resized, 0, 0, $color);
+				imagesavealpha($image_resized, true);
+			}
+		}
+		imagecopyresampled($image_resized, $image, 0, 0, $cropWidth, $cropHeight, $final_width, $final_height, $width_old - 2 * $cropWidth, $height_old - 2 * $cropHeight);
 
 
-    # Taking care of original, if needed
-    if ( $delete_original ) {
-      if ( $use_linux_commands ) exec('rm '.$file);
-      else @unlink($file);
-    }
-    # Preparing a method of providing result
-    switch ( strtolower($output) ) {
-      case 'browser':
-        $mime = image_type_to_mime_type($info[2]);
-        header("Content-type: $mime");
-        $output = NULL;
-      break;
-      case 'file':
-        $output = $file;
-      break;
-      case 'return':
-        return $image_resized;
-      break;
-      default:
-      break;
-    }
+		# Taking care of original, if needed
+		if ( $delete_original ) {
+			if ( $use_linux_commands ) exec('rm '.$file);
+			else @unlink($file);
+		}
+		# Preparing a method of providing result
+		switch ( strtolower($output) ) {
+			case 'browser':
+				$mime = image_type_to_mime_type($info[2]);
+				header("Content-type: $mime");
+				$output = NULL;
+			break;
+			case 'file':
+				$output = $file;
+			break;
+			case 'return':
+				return $image_resized;
+			break;
+			default:
+			break;
+		}
 
-    # Writing image according to type to the output destination and image quality
-    switch ( $info[2] ) {
-      case IMAGETYPE_GIF:   imagegif($image_resized, $output);    break;
-      case IMAGETYPE_JPEG:  imagejpeg($image_resized, $output, $quality);   break;
-      case IMAGETYPE_PNG:
-        $quality = 9 - (int)((0.9*$quality)/10.0);
-        imagepng($image_resized, $output, $quality);
-        break;
-      default: return false;
-    }
-    return true;
-  }
+		# Writing image according to type to the output destination and image quality
+		switch ( $info[2] ) {
+			case IMAGETYPE_GIF:   imagegif($image_resized, $output);    break;
+			case IMAGETYPE_JPEG:  imagejpeg($image_resized, $output, $quality);   break;
+			case IMAGETYPE_PNG:
+			$quality = 9 - (int)((0.9*$quality)/10.0);
+			imagepng($image_resized, $output, $quality);
+			break;
+			default: return false;
+		}
+		return true;
+	}
+
+
+
 ?>
