@@ -68,16 +68,19 @@
 				<input autocomplete="off" type="password" id="pass1" name="password" placeholder="Contraseña"  required>
 				<input type="password" id="pass2" placeholder="Confirma la contraseña" required>
 				<span id="message" ></span>
-				<div class="text-xs-center">
-					<div class="g-recaptcha" data-size="compact" data-sitekey="6LdlABcUAAAAAONiTJxjYQNxI9o5k6OHxuBBjftB"></div>
-				</div>
+
+				<!-- <div class="text-xs-center">
+					<div class="g-recaptcha" data-sitekey="6LddMGAUAAAAAFgJBaVq5AKBSW-QVAnE7H9ldN3V"></div>
+				</div> -->
 				<?php
 				  //Error de captcha
+				  /*
 					if (isset($_GET["error_captcha"])=="y")
 					{
 						echo "<span class='error'>Para terminar el registro debes completar el captcha.</span>";
-					}
+					}*/
 				?>
+
 				<input class="button_1" type="submit" value="Crear cuenta">
 				<span class="termycon">
 					Al hacer click en "Crear cuenta", aceptas los Términos y las condiciones

@@ -180,6 +180,7 @@ $('#form_stops> button[type=submit]').on('click', function(e){
 		  success: function(array){
 			  //para mostrar la ruta creada
 			  location.reload();
+              
 		  }
 	  });
   }else{

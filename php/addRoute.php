@@ -35,6 +35,8 @@ $vector_stops[1]=strtolower($stop2);
 $vector_stops[2]=strtolower($stop3);
 $vector_stops[3]=strtolower($stop4);
 $vector_stops[4]=strtolower($stop5);
+
+
 //POR AHORA SON CINCO PARADAS O MENOS
 for ($i=0; $i < 5 ; $i++) {
   //busqueda del id de la parada

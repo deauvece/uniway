@@ -66,7 +66,11 @@ Indice - controller home
 		success: function(array){
 			$("#pub-box .spinner").hide();
 			$("#pub-box").append(array.output);
-		}
+		},
+        error: function(data) {
+            alert("paila");
+        }
+
 	});
 
 
@@ -222,6 +226,8 @@ $("#pub-box").on('click','.btn-pedirCupo',function(){
 				window.location=url;
 			}else {
 				$(".modal-window").hide();
+				$("#modal_add_stop").hide();
+
 				$(".modal-box").fadeIn("fast");
 				$(".error_way span").text(array.message);
 				$(".error_way").fadeIn();

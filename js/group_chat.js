@@ -11,9 +11,13 @@ Indice chat
 	//prevent default
 	//abrir ventanas modal
 	//cerrar ventanas modal
-//envia el comentario al presionar enter
-//envia el comentario al presionar el boton de enviar
-//actualiza los comentarios cada x segundos
+//enviar y recibir mensajes
+	//realiza la conexion con el servidor
+	//funcion en caso de error
+	//funcion al cargar la pagina
+	//funcion para enviar mensajes
+	//funcion para recibir mensajes
+	//funcion cerrar la conexion con el servidor al cerrar la ventana
 
 
 
@@ -78,36 +82,59 @@ Indice chat
 			$(".delete-way").hide();
 		});
 
-//envia el comentario al presionar enter
-	$('#textarea-inpt').keypress(function (e) {
-		var hgth = $(this).val().length;
-		if (e.which == 13) {
-			if (hgth > 0) {
-				$.ajax({
-					url: '../php/add-comment.php',
-					type: 'get',
-					data: {
-						id_user: $(this).attr("data-idu"),
-						name_user: $(this).attr("data-name-user"),
-						id_way: $(this).attr("data-way"),
-						comment: $(this).val()
-					},
-					dataType: 'json',
-					success: function(array){
-						$('.content-cht').animate({"scrollTop": $('.content-cht')[0].scrollHeight}, "fast");
-						$(this).val('');
-					}
-				});
-			}
-			$(this).val('');
-		  e.preventDefault();
-		}
-	});
 
-//envia el comentario al presionar el boton de enviar
-	$('#send-button').on("click",function() {
-		var hgth = $('#textarea-inpt').val().length;
-			if (hgth > 0) {
+//enviar y recibir mensajes
+
+	//realiza la conexion con el servidor
+		var ws="ws://localhost:8080?way=";
+		var way = $("#textarea-inpt").attr("data-way");
+		ws=ws+way;
+		var conn = new WebSocket(ws);
+	//funcion en caso de error
+		conn.onerror = function (error) {
+			console.log("an error occurred when sending/receiving data");
+		};
+	//funcion al cargar la pagina
+		conn.onopen = function(e){
+			console.log("Connection established!");
+		};
+	//funcion para enviar mensajes
+		//eventos: enter / boton
+		$("#send-button").on("click",function(){
+			var val=$('#textarea-inpt').val();
+			if (val.length > 1 ) {
+				sendMess(val);//se envia el mensaje
+				$('#textarea-inpt').val('');
+			}
+		});
+		$('#textarea-inpt').keypress(function (e) {
+			if(e.which  == 13) {
+				e.preventDefault();
+				var val=$('#textarea-inpt').val();
+				if (val.length > 1 ) {
+					sendMess(val);//se envia el mensaje
+				}
+				$('#textarea-inpt').val('');
+			}
+		});
+		//envia el mensaje
+		function sendMess(val){
+			//contenido del mensaje
+				//hora actual
+				now = new Date();
+				time = now.getHours()+":"+now.getHours();
+			var message = [];
+				//el caracter '°' separa la informacion del mensaje
+			message[0] = $('#textarea-inpt').attr("data-name-user")+"°";
+			message[1] = time+"°";;
+			message[2] = $('#textarea-inpt').attr("data-way")+"°";;
+			message[3] = $('#textarea-inpt').attr("data-idu")+"°";;
+			message[4] = val;
+			//el mensaje debe ser de tamaño mayor a 1
+			if (message[4].length > 1 ) {
+				//se envia al resto de usuarios conectados
+				conn.send(message);
+				//se agrega a la base de datos
 				$.ajax({
 					url: '../php/add-comment.php',
 					type: 'get',
@@ -115,41 +142,36 @@ Indice chat
 						id_user: $('#textarea-inpt').attr("data-idu"),
 						name_user: $('#textarea-inpt').attr("data-name-user"),
 						id_way: $('#textarea-inpt').attr("data-way"),
-						comment: $('#textarea-inpt').val()
+						comment: message[4]
 					},
 					dataType: 'json',
 					success: function(array){
+						//se muestra en pantalla
+						var mes ="<div class='comment-right' data-id="+message[3]+" ><div class='box'><span class='name-coment'>Yo</span><span class='content-coment' >"+message[4]+"<span class='time-coment' >"+time+"</span></span></div></div>";
+						$('.content-cht').append(mes);
 						$('.content-cht').animate({"scrollTop": $('.content-cht')[0].scrollHeight}, "fast");
-						$('#textarea-inpt').val('');
+						delete now,time;
 					}
 				});
 			}
-			$('#textarea-inpt').val('');
-	});
+		};
+	//funcion para recibir mensajes
+		conn.onmessage = function(e){
+			var message = e.data;
+			message=message.split("°");
+			message[1]=message[1].substring(1);
+			message[4]=message[4].substring(1);
+			var mes ="<div class='comment-left' data-id="+message[3]+" ><div class='box'><span class='name-coment'>"+message[0]+"</span><span class='content-coment' >"+message[4]+"<span class='time-coment' >"+message[1]+"</span></span></div></div>";
+			$('.content-cht').append(mes);
+			$('.content-cht').animate({"scrollTop": $('.content-cht')[0].scrollHeight}, "fast");
+		};
 
-//actualiza los comentarios cada x segundos
-	function update_cmt(){
-		var idway = $("#textarea-inpt").attr("data-way");
-		var lastcommentid = $(".content-cht > div:last-child").attr("data-id");
+	//funcion cerrar la conexion con el servidor al cerrar la ventana
+		$(window).bind("beforeunload", function() {
+			conn.onclose = function(e){
+				console.log("client out");
+			};
+		})
 
-		  $.ajax({
-			  url: '../php/json_check_comments.php',
-			  type: 'get',
-			  data: {
-				  id_way:idway,
-				  last_comment_id: lastcommentid
-			  },
-			  dataType: 'json',
-			  success: function(array){
-				  if (array.state=="same") {
-				  }else{
-					  $('.content-cht').append(array.cms);
-					  $('.content-cht').animate({"scrollTop": $('.content-cht')[0].scrollHeight}, "fast");
-				  }
-			  }
-		  });
-	}
-	//1000 = 1 segundo
-	var interval = setInterval(update_cmt, 1000);
 
 });

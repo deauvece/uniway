@@ -9,7 +9,6 @@ $name_stop=strtoupper($name_stop);
 
 $sql="SELECT * FROM stops WHERE name='$name_stop'";
 $result = pg_query($conn, $sql);
-
 $vector=pg_fetch_array($result);
 $result_name=$vector['name'];
 

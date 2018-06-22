@@ -6,7 +6,7 @@ $conn=conectarse();
 //si no viene con la variable de id_way lo redirecciona
 $id_way_thisGroup=$_GET["id_way"];
 if ($id_way_thisGroup){
-	session_start();
+//	session_start();
 	//datos de usuario
 	$idu=$_SESSION['id_usuario'];
 	$name=$_SESSION['id_nombre_usuario'];
@@ -122,14 +122,11 @@ if ($id_way_thisGroup){
 					?>
 					<div <?php if ($id_user_comment==$idu) {echo "class='comment-right'";}else{echo "class='comment-left'";} ?> data-id="<?php echo $comment_split[1] ?>" >
 						<div class="box"  >
-							<span class="name-coment"><?php echo $name_user_comment ?></span>
+							<span class="name-coment"><?php if ($id_user_comment==$idu) {echo "Yo";}else{echo $name_user_comment ;} ?></span>
 							<span class="content-coment" ><?php echo $user_comment ?><span class="time-coment" ><?php echo $hour_comment ?></span></span>
-
 						</div>
 					</div>
-								<?php
-						}
-					?>
+					<?php } 	?>
 				</div>
 				<div class="input-cht">
 					<img id="send-button" src="../Imagenes/send.png"/>

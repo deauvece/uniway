@@ -20,7 +20,7 @@ $result4 = pg_query($conn,$sql4);
 $vector4=pg_fetch_array($result4);
 $id_way_this = $vector4['id_way'];
 
-$sql00="INSERT INTO usr_ways (id_user,id_way) VALUES ('$id_user','$id_way_this')";
+$sql00="INSERT INTO usr_ways (id_user,id_way,id_u) VALUES ('$id_user','$id_way_this','$id_u')";
 $result00 = pg_query($conn, $sql00);
 
 //agrega el primer comentario
@@ -50,5 +50,5 @@ $sql22="UPDATE universities SET random_string='$rand' WHERE id_u='$id_u'  ";
 $result2 = pg_query($conn, $sql22);
 
 
-header("location:../sesion/home.php");
+//header("location:../sesion/home.php");
 ?>

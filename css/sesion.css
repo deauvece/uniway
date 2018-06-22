@@ -293,7 +293,7 @@ body{
 
 .find {
 	display: block;
-	background-color: white;
+	background-color: #F6F6F6;
 	height: 70px;
 	position: relative;
 	padding-left: 30px;
@@ -317,7 +317,7 @@ body{
 			position: absolute;
 			right: 10px;
 			top:15px;
-			background-color: white;
+			background-color: #F6F6F6;
 			height: 35px;
 			width: 35px;
 			cursor: pointer;

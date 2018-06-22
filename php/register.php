@@ -1,15 +1,13 @@
 <?PHP
+
+
 /*================Se hace el proceso para comprobar el recaptcha===================*/
+/*
 // coge la librería recaptcha
 require_once "recaptchalib.php";
 
-//Para imprimir los datos enviados por el formulario, solo era para comprobar
-/*foreach ($_POST as $key => $value) {
-echo '<p><strong>' . $key.':</strong> '.$value.'</p>';
-}*/
-
 //clave secreta
-$secret = "6LdlABcUAAAAAN8n0ysKFiyhC9BkICAl_Ztw3oJh";
+$secret = "6LddMGAUAAAAAEA7lrybhPrVl0CLtWEIHi3Y26Fa";
 //respuesta vacía
 $response = null;
 //comprueba la clave secreta
@@ -23,7 +21,9 @@ $response = $reCaptcha->verifyResponse(
     );
 }
 
-if ($response != null && $response->success) {
+*/
+
+//if ($response != null && $response->success) {
 			//si hubo exito se procede a hacer el registro del usuario
 			extract($_POST);
 			include("functions.php");
@@ -50,12 +50,15 @@ if ($response != null && $response->success) {
 			  $profile_image="../Imagenes/profileImages/upload/perfil.png";
 			  $sql3="INSERT INTO users ( names, last_names, phone, email, password, id_u,profile_image)
 			  VALUES ('$names', '$last_names', '$phone', '$email', '$encrpt_pswd', '$id_u', '$profile_image')";
+
 			  $result = pg_query($conn, $sql3);
 			  header("location:../login-user.php");
 			}
+
+/*
    } else {
 	   header("location:../register_user.php?error_captcha=y");
-   }
+   } */
 
 /*===========================================================================================*/
 

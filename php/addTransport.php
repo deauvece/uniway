@@ -7,6 +7,7 @@ include("functions.php");
 $conn=conectarse();
 extract($_POST);
 
+
 $sql="INSERT INTO transports (license_plate,model,air_conditioner,wifi,price,id_user,type)
 	VALUES ('$license_plate','$model','$air_conditioner','$wifi','$price','$id_user','$type')";
 $result = pg_query($conn, $sql);

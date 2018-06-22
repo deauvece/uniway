@@ -3,18 +3,15 @@
 //Consulta las publicaciones para una parada determinada (buscador) o las más actuales
 
 
-
-
-
-
 include("../php/functions.php"); //make_publications() conectarse()
 $conn=conectarse();
 //recibe los datos
 session_start();
 $idu=$_SESSION['id_usuario'];
-$input_query=$_GET['stop_query'];
+//$input_query=$_GET['stop_query'];
 $id_uni=$_GET['id_uni'];
-$opt_search=$_GET['opt_search'];
+//$opt_search=$_GET['opt_search'];
+$input_query="";
 
 /*
 Esquema general
@@ -252,9 +249,13 @@ if ($id_uni && $input_query) {
 			}}
 
 			//cierra las llaves del while e if
+
 			$array = array(
-			    'output' => "$output"
-		    );
+				'output' => "$output"
+			);
+			if (strlen($output)==0) {
+				$array['output']="No hay resultados";
+			}
 	    		echo json_encode($array);
 }
 ?>
