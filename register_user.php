@@ -13,7 +13,7 @@
 
 <section class="registerPage">
 		<a href="index.html">
-			<img src="Imagenes/logo.png" id="nombre" />
+			<img src="Imagenes/logo-name-white.png" id="nombre" />
 		</a>
 		<section class="account-login">
 			<ul>
@@ -27,9 +27,7 @@
 			</ul>
 		</section>
 		<form class="register" autocomplete="off" action="php/register.php" method="POST" >
-				<p>
-					Ingresa tus datos y has parte de esta gran comunidad!
-				</p>
+				<h5>Ingresa tus datos y has parte de esta gran comunidad!</h5>
 				<input type="text" name="names" placeholder="Nombres" pattern="[a-zA-Z\s]{4,25}" required title="Solo letras mayusculas y minusculas, entre 4 y 25 caracteres"/>
 				<input type="text" name="last_names" placeholder="Apellidos" pattern="[a-zA-Z\s]{4,25}" required title="Solo letras mayusculas y minusculas">
 				<input type="tel" name="phone" placeholder="Numero celular" pattern="[0-9]{10}" required title="Solo 10 caracteres numericos">
@@ -69,16 +67,15 @@
 				<input type="password" id="pass2" placeholder="Confirma la contraseña" required>
 				<span id="message" ></span>
 
-				<!-- <div class="text-xs-center">
+				<div class="text-xs-center">
 					<div class="g-recaptcha" data-sitekey="6LddMGAUAAAAAFgJBaVq5AKBSW-QVAnE7H9ldN3V"></div>
-				</div> -->
+				</div>
 				<?php
 				  //Error de captcha
-				  /*
-					if (isset($_GET["error_captcha"])=="y")
-					{
-						echo "<span class='error'>Para terminar el registro debes completar el captcha.</span>";
-					}*/
+				  if (isset($_GET["error_captcha"])=="y")
+				  {
+					  echo "<span class='error'>Para terminar el registro debes completar el captcha.</span>";
+				  }
 				?>
 
 				<input class="button_1" type="submit" value="Crear cuenta">

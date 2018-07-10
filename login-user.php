@@ -12,10 +12,9 @@
 <body>
 <section class="contenedorContact">
 	<a href="index.html">
-		<img class="loginImg" src="Imagenes/logo.png"  /><br><br>
+		<img class="loginImg" src="Imagenes/logo-name-white.png"  /><br><br>
 	</a>
 		<div class="login">
-			<span class="title">Inicia sesión</span>
 			<form  action="php/login.php" method="POST" >
 				<input type="email" name="correo" placeholder="Correo electrónico" required>
 				<input type="password" name="contrasena" placeholder="Contraseña" required>
@@ -46,6 +45,9 @@
 				<button class="botonLogin button_1" type="button">Registrarse</button>
 			</a>
 		</div>
+</section><!--COPYRIGHT-->
+<section class="copyright">
+	<p>Uniway &copy;2018. Todos los derechos reservados.<p>
 </section>
 </body>
 </html>

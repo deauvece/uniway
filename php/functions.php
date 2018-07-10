@@ -31,7 +31,7 @@ indice functions
 
 //funcion para la conexion con la BD
 	function conectarse(){
-		if (!($conn=pg_connect("host=localhost user=davc2 port=5432 dbname=uniway password="))){
+		if (!($conn=pg_connect("host=localhost user=davc2 port=5432 dbname=uniway password=''"))){
 			echo "Error conectando a la base de datos.";
 			exit();
 		}

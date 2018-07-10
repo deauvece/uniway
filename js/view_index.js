@@ -133,27 +133,27 @@ $(".enviarCorreo").on("click",function(){
 });
 
 //cambia la barra de navegacion al hacer scroll (index)
-$(window).scroll(function () {
-    var scroll = $(window).scrollTop();
-    if (scroll>100) {
-	    $(".scrolltop").fadeIn();
-	    var w =$( window ).width();
-			if (w > 800) {
-			$("#logo img").css("height","30px");
-			$(".home-nav").css({height:"60px",paddingTop:"15px"});
-			$("header h2, header p").css({opacity:"0",});
-		}
-    }else {
-	    $(".scrolltop").fadeOut();
-	    var w =$( window ).width();
-			if (w > 800) {
-			$("#logo a img").css("height","45px");
-			$(".home-nav").css({height:"70px",paddingTop:"20px"});
-			$("header h2, header p").css({opacity:"1",});
-
-		}
-    }
-});
+// $(window).scroll(function () {
+//     var scroll = $(window).scrollTop();
+//     if (scroll>100) {
+// 	    $(".scrolltop").fadeIn();
+// 	    var w =$( window ).width();
+// 			if (w > 800) {
+// 			$("#logo img").css("height","30px");
+// 			$(".home-nav").css({height:"60px",paddingTop:"15px"});
+// 			$("header h2, header p").css({opacity:"0",});
+// 		}
+//     }else {
+// 	    $(".scrolltop").fadeOut();
+// 	    var w =$( window ).width();
+// 			if (w > 800) {
+// 			$("#logo a img").css("height","45px");
+// 			$(".home-nav").css({height:"70px",paddingTop:"20px"});
+// 			$("header h2, header p").css({opacity:"1",});
+//
+// 		}
+//     }
+// });
 
 //boton para regresar arriba - scroll to top button (index)
 $(".scrolltop").click(function() {
@@ -201,18 +201,18 @@ $(".verif_email").on("change",function(){
 			$(".contact-form > h2, .contact-form input[type='submit'],.contact-form  input[type='button']").css({
 				backgroundColor: "#b72c2c"
 			});
-			$(".contact-form").fadeIn().css("transform","translateY(-400px)");
+			$(".contact-form").fadeIn().css("transform","translateY(-100vh)");
 		});
 	//ocular ventanas modal
 		//ocultar formulario login
 		$("#close-login-form").click(function(){
-			$("#login-form").fadeOut().css("transform","translateY(-450px)");
+			$("#login-form").fadeOut().css("transform","translateY(-100vh)");
 			$("#contact-box").fadeOut();
 		});
 		//ocultar formulario contacto
 		$("#close-contact-form").click(function() {
 			$("#contact-box").fadeOut();
-			$(".contact-form").fadeOut().css("transform","translateY(400px)");
+			$(".contact-form").fadeOut().css("transform","translateY(100vh)");
 		});
 
 

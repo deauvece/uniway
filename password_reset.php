@@ -20,16 +20,20 @@
 	</head>
 	<body>
 		<section class="reset_container">
-			<a href="index.html"><img src="Imagenes/logo.png" alt="" /></a>
+			<a href="index.html"><img src="Imagenes/logo-name-white.png" alt="" /></a>
 			<div class="reset_box">
 				<span>¿Olvidaste tu contraseña?</span>
 				<div class="input_reset_box">
 					<p>Tranquilo, a todos nos pasa. Déjanos saber tu email y te enviaremos un correo electŕonico con las instrucciones.</p>
-					<input id="change_pass_email" type="email" name="email">
+					<input id="change_pass_email" type="email" name="email" autofocus>
 					<p id="change_pass_error"></p>
 				</div>
 				<button class="button_1" id="change_pass" type="button" name="button">Cambiar contraseña</button>
 			</div>
 		</section>
 	</body>
+	<!--COPYRIGHT-->
+	<section class="copyright">
+		<p>Uniway &copy;2018. Todos los derechos reservados.<p>
+	</section>
 </html>
